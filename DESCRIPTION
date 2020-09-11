@@ -1,0 +1,25 @@
+Package: colorpath
+Title: Build Color Paths
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Ian J",
+           family = "Lyttle",
+           role = c("aut", "cre"),
+           email = "ian.lyttle@schneider-electric.com",
+           comment = c(ORCID = "0000-0001-9962-4849"))
+Description: The idea of a color path is introduced as a level of 
+ abstraction above a color palette. It is thought that a set of palettes: 
+ categorical, sequential, and diverging, could be built using colors contained
+ within a set of paths. A color path is built by constructing splines 
+ through HCL space, then scaling the input to aim for perceptual uniformity.
+ This may also be useful for constructing sets of palettes each for light mode
+ and dark mode.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    bezier,
+    colorspace,
+    farver
