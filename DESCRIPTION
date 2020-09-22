@@ -25,3 +25,5 @@ Imports:
     farver
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
+Suggests: 
+    testthat
