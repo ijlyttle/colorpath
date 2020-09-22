@@ -16,7 +16,9 @@ knitr::opts_chunk$set(
 # colorpath
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/colorpath)](https://CRAN.R-project.org/package=colorpath)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build status](https://github.com/ijlyttle/colorpath/workflows/R-CMD-check/badge.svg)](https://github.com/ijlyttle/colorpath/actions)
 <!-- badges: end -->
 
 The goal of colorpath is to introduce as a level of abstraction above a color palette. It is thought that a set of palettes: categorical, sequential, and diverging, could be built using colors contained within a set of paths. A color path is built by constructing splines through HCL space, then scaling the input to aim for perceptual uniformity.

@@ -5,8 +5,12 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/colorpath)](https://CRAN.R-project.org/package=colorpath)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build
+status](https://github.com/ijlyttle/colorpath/workflows/R-CMD-check/badge.svg)](https://github.com/ijlyttle/colorpath/actions)
 <!-- badges: end -->
 
 The goal of colorpath is to introduce as a level of abstraction above a
@@ -27,3 +31,10 @@ You can install the github version of colorpath from
 # install.packages("remotes")
 remotes::install_github("ijlyttle/colorpath")
 ```
+
+## Code of Conduct
+
+Please note that the colorpath project is released with a [Contributor
+Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
