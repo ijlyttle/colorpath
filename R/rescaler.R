@@ -14,19 +14,23 @@
 #'
 #' Use `rescaler_bezier()` to rescale a Bézier palette-function to be more
 #' perceptually uniform. This uses fits a spline to equally-spaced points on
-#' the colorpath. The Bézier function carries some optimizations, so it may
-#' take a few seconds to run.
+#' the colorpath. The Bézier function makes some optimization calculations,
+#' so it may take a few seconds to run.
 #'
-#' @param x0 `numeric` value to correspond with `x = 0`
-#' @param x1 `numeric` value to correspond with `x = 1`
+#' @name rescaler
+#'
+#' @param range `numeric` values to correspond with `x = c(0, 1)`
+#'
+#' @param palette `cpath_palette_luv`, palette function on which the
+#'   luminance range will operate
 #'
 #' @inheritParams palette_bezier
 #' @param n `numeric` number of equally-spaced Bézier points to calculate
 #'
 #' @return A function with S3 class `cpath_rescaler`.
 #' @examples
-#'   # Linear rescaler
-#'   rlin <- rescaler_linear(0.25, 0.75)
+#'   # Linear input-rescaler
+#'   rlin <- rescaler_linear_input(c(0.25, 0.75))
 #'
 #'   # print for a preview
 #'   print(rlin)
@@ -36,6 +40,7 @@
 #'
 #'   # Bezier rescaler
 #'   rbez <- rescaler_bezier(mat_luv_blues)
+#'
 #'   # print for a preview
 #'   print(rbez)
 #'
@@ -44,23 +49,77 @@
 #'
 #' @export
 #'
-rescaler_linear <- function(x0, x1) {
+rescaler_linear_input <- function(range) {
 
   assertthat::assert_that(
-    x0 >= 0,
-    x0 <= 1,
-    x1 >= 0,
-    x1 <= 1
+    is.numeric(range),
+    identical(length(range), 2L),
+    range[1] >= 0,
+    range[1] <= 1,
+    range[2] >= 0,
+    range[2] <= 1
   )
 
   .f <- function(x) {
-    x0 + x * (x1 - x0)
+    range[1] + x * (range[2] - range[1])
   }
 
   structure(.f, class = "cpath_rescaler")
 }
 
-#' @rdname rescaler_linear
+#' @rdname rescaler
+#' @export
+#'
+rescaler_linear_luminance <- function(range, palette) {
+
+  range_input <- root_luminance(range, palette)
+
+  rescaler_linear_input(range_input)
+}
+
+#' Find input to palette function for given luminance
+#'
+#' This assumes that the input and luminance vary
+#' monotonically so there will be exactly one root.
+#'
+#' @param lum     `numeric` values for luminance
+#' @inheritParams rescaler
+#'
+#' @return `numeric` input values to `palette` corresponding to `lum`
+#'
+#' @noRd
+#'
+root_luminance <- function(lum, palette) {
+
+  root_luminance_single <- function(.lum) {
+
+    .f <- f_root_luminance(.lum, palette)
+
+    root_list <- stats::uniroot(.f, interval = c(0, 1))
+
+    root_list[["root"]]
+  }
+
+  vapply(lum, root_luminance_single, FUN.VALUE = 0)
+}
+
+
+# root function
+f_root_luminance <- function(lum, palette) {
+
+  function(x) {
+
+    luv_x <- palette(x)
+
+    lum_x <- luv_x[, "l"]
+
+    # want delta to go to zero
+    unname(lum - lum_x)
+  }
+
+}
+
+#' @rdname rescaler
 #' @export
 #'
 rescaler_bezier <- function(luv, n = 21) {

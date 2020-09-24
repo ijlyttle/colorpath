@@ -1,26 +1,30 @@
-test_that("rescaler_linear works", {
 
+pal_blues <- palette_bezier(mat_luv_blues)
+
+test_that("rescaler_linear_input works", {
+
+  # need the "\\[" notation for regular-expression escape
   expect_error(
-    rescaler_linear(-1, 0),
-    "x0 not greater than"
+    rescaler_linear_input(c(-1, 0)),
+    "range\\[1\\] not greater than"
   )
 
   expect_error(
-    rescaler_linear(2, 0),
-    "x0 not less than"
+    rescaler_linear_input(c(2, 0)),
+    "range\\[1\\] not less than"
   )
 
   expect_error(
-    rescaler_linear(0, -1),
-    "x1 not greater than"
+    rescaler_linear_input(c(0, -1)),
+    "range\\[2\\] not greater than"
   )
 
   expect_error(
-    rescaler_linear(0, 2),
-    "x1 not less than"
+    rescaler_linear_input(c(0, 2)),
+    "range\\[2\\] not less than"
   )
 
-  rlin <- rescaler_linear(0.25, 0.75)
+  rlin <- rescaler_linear_input(c(0.25, 0.75))
 
   expect_s3_class(rlin, "cpath_rescaler")
 
@@ -29,12 +33,46 @@ test_that("rescaler_linear works", {
     c(0.25, 0.5, 0.75)
   )
 
-  rlin_rev <- rescaler_linear(0.75, 0.25)
+  rlin_rev <- rescaler_linear_input(c(0.75, 0.25))
 
   expect_identical(
     rlin_rev(c(0, 0.5, 1)),
     c(0.75, 0.5, 0.25)
   )
+})
+
+test_that("f_root_luminance works", {
+
+  froot <- f_root_luminance(55, pal_blues)
+
+  expect_type(froot, "closure")
+  expect_equal(
+    froot(c(0, 0.5, 1)),
+    c(30, 0, -30)
+  )
+
+})
+
+
+test_that("root_luminance works", {
+
+  expect_equal(
+    root_luminance(c(25, 55, 85), palette = pal_blues),
+    c(0, 0.5, 1)
+  )
+
+})
+
+test_that("rescaler_linear_luminance works", {
+
+  rlum <- rescaler_linear_luminance(c(25, 55), pal_blues)
+  rlum2 <- rescaler_linear_luminance(c(55, 85), pal_blues)
+
+  expect_s3_class(rlum, "cpath_rescaler")
+
+  expect_identical(rlum(c(0, 1)), c(0, 0.5))
+  expect_identical(rlum2(c(0, 1)), c(0.5, 1))
+
 })
 
 test_that("rescaler_bezier works", {
