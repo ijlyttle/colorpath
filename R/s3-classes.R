@@ -16,4 +16,14 @@
 #' Philosophically, this acts just like a continuous-palette function,
 #' except that `LUV` values are returned instead of hex-codes.
 #'
+#' **`cpath_rescaler`**
+#'
+#' A function that:
+#'
+#'  - takes a numerical input `x` (vector, each member between 0 and 1)
+#'  - returns a rescaled numerical vector (call it `y`),
+#'    each member between 0 and 1
+#'
+#' There shall be a monotonic relationship between `x` and `y`.
+#'
 NULL
