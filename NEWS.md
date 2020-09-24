@@ -1,5 +1,7 @@
 # colorpath 0.0.0 (development version)
 
+* Added function to rescale a palette function, `rescale_palette()`. (#10)
+
 * Added rescaler function `rescaler_linear_luminance()`. (#11)
 
 * Added datasets `df_hcl_blues` and `mat_luv_blues`, which describe the same example colorpath. (#8)
