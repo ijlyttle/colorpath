@@ -26,4 +26,6 @@
 #'
 #' There shall be a monotonic relationship between `x` and `y`.
 #'
+#' @name colorpath_S3_classes
+#'
 NULL
