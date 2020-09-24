@@ -50,6 +50,21 @@ test_that("rescaler_bezier works", {
     dimnames = list(NULL, c("l", "u", "v"))
   )
 
+  expect_error(
+    rescaler_bezier(mat_luv, "foo"),
+    "numeric"
+  )
+
+  expect_error(
+    rescaler_bezier(mat_luv, -1),
+    "not greater than"
+  )
+
+  expect_error(
+    rescaler_bezier(seq(1, 10)),
+    "exactly three columns"
+  )
+
   rbez <- rescaler_bezier(mat_luv)
 
   expect_s3_class(rbez, "cpath_rescaler")

@@ -76,7 +76,15 @@ rescaler_linear <- function(x0, x1) {
 #'
 rescaler_bezier <- function(luv, n = 21) {
 
-  # TODO: some validation assertions
+  assertthat::assert_that(
+    identical(dim(luv)[2], 3L),
+    msg = "luv matrix must have exactly three columns"
+  )
+
+  assertthat::assert_that(
+    is.numeric(n),
+    n > 1
+  )
 
   # get the equally-spaced parameter points
   pob <- bezier::pointsOnBezier(p = luv, n = n, method = "evenly_spaced")
