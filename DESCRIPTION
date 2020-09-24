@@ -1,6 +1,6 @@
 Package: colorpath
 Title: Build Color Paths
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: 
     person(given = "Ian J",
            family = "Lyttle",
@@ -33,3 +33,5 @@ Suggests:
 Remotes: 
     r-lib/testthat
 Config/testthat/edition: 3    
+Depends: 
+    R (>= 2.10)
