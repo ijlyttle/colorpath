@@ -77,10 +77,10 @@ rescaler_linear_luminance <- function(range, palette) {
   rescaler_linear_input(range_input)
 }
 
-#' Find input to palette function for given luminance
+#' Find inputs to palette function for given luminances
 #'
-#' This assumes that the input and luminance vary
-#' monotonically so there will be exactly one root.
+#' This assumes that the input and luminance vary monotonically
+#'   so there will be exactly one root for a given luminance.
 #'
 #' @param lum     `numeric` values for luminance
 #' @inheritParams rescaler
@@ -91,6 +91,7 @@ rescaler_linear_luminance <- function(range, palette) {
 #'
 root_luminance <- function(lum, palette) {
 
+  # function to find a single root
   root_luminance_single <- function(.lum) {
 
     .f <- f_root_luminance(.lum, palette)
@@ -100,11 +101,13 @@ root_luminance <- function(lum, palette) {
     root_list[["root"]]
   }
 
+  # vectorize
   vapply(lum, root_luminance_single, FUN.VALUE = 0)
 }
 
 
-# root function
+# given a luminance target and a palette function,
+#   return a function of `x` which tells us how "bad" a guess `x` is.
 f_root_luminance <- function(lum, palette) {
 
   function(x) {
