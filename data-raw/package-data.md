@@ -16,12 +16,12 @@ library("usethis")
 First, let’s create a data frame:
 
 ``` r
-df_hcl <- 
+df_hcl_blues <- 
   tribble(
      ~h,  ~c,  ~l,
-    130,   0,  20,
-    130,  73,  50,
-    130,   0,  80
+    250,   0,  25,
+    250,  75,  55,
+    250,   0,  85
   ) %>%
   print()
 ```
@@ -29,51 +29,47 @@ df_hcl <-
     ## # A tibble: 3 x 3
     ##       h     c     l
     ##   <dbl> <dbl> <dbl>
-    ## 1   130     0    20
-    ## 2   130    73    50
-    ## 3   130     0    80
+    ## 1   250     0    25
+    ## 2   250    75    55
+    ## 3   250     0    85
 
 Next, we create a matrix:
 
 ``` r
-mat_hcl <- 
-  df_hcl %>%
+mat_hcl_blues <- 
+  df_hcl_blues %>%
   as.matrix() %>% 
   print()
 ```
 
     ##        h  c  l
-    ## [1,] 130  0 20
-    ## [2,] 130 73 50
-    ## [3,] 130  0 80
+    ## [1,] 250  0 25
+    ## [2,] 250 75 55
+    ## [3,] 250  0 85
 
 And convert it to LUV format:
 
 ``` r
-mat_luv <- 
-  mat_hcl %>%
+mat_luv_blues <- 
+  mat_hcl_blues %>%
   farver::convert_colour(from = "hcl", to = "luv") %>%
   round(digits = 4) %>%
   print()
 ```
 
-    ##       l        u       v
-    ## [1,] 20   0.0000  0.0000
-    ## [2,] 50 -46.9235 55.9212
-    ## [3,] 80   0.0000  0.0000
+    ##       l        u        v
+    ## [1,] 25   0.0000   0.0000
+    ## [2,] 55 -25.6515 -70.4769
+    ## [3,] 85   0.0000   0.0000
 
 We want to write out the HCL data frame and the LUV matrix:
 
 ``` r
-use_data(df_hcl, mat_luv, overwrite = TRUE)
+use_data(df_hcl_blues, mat_luv_blues, overwrite = TRUE)
 ```
 
     ## ✓ Setting active project to '/Users/sesa19001/Documents/repos/public/colorpath'
 
-    ## ✓ Adding 'R' to Depends field in DESCRIPTION
-
-    ## ✓ Creating 'data/'
-
-    ## ✓ Saving 'df_hcl', 'mat_luv' to 'data/df_hcl.rda', 'data/mat_luv.rda'
+    ## ✓ Saving 'df_hcl_blues', 'mat_luv_blues' to 'data/df_hcl_blues.rda', 'data/mat_luv_blues.rda'
 
     ## ● Document your data (see 'https://r-pkgs.org/data.html')

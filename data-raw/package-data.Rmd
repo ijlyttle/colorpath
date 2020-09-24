@@ -16,12 +16,12 @@ library("usethis")
 First, let's create a data frame:
 
 ```{r}
-df_hcl <- 
+df_hcl_blues <- 
   tribble(
      ~h,  ~c,  ~l,
-    130,   0,  20,
-    130,  73,  50,
-    130,   0,  80
+    250,   0,  25,
+    250,  75,  55,
+    250,   0,  85
   ) %>%
   print()
 ```
@@ -29,8 +29,8 @@ df_hcl <-
 Next, we create a matrix:
 
 ```{r}
-mat_hcl <- 
-  df_hcl %>%
+mat_hcl_blues <- 
+  df_hcl_blues %>%
   as.matrix() %>% 
   print()
 ```
@@ -38,8 +38,8 @@ mat_hcl <-
 And convert it to LUV format:
 
 ```{r}
-mat_luv <- 
-  mat_hcl %>%
+mat_luv_blues <- 
+  mat_hcl_blues %>%
   farver::convert_colour(from = "hcl", to = "luv") %>%
   round(digits = 4) %>%
   print()
@@ -48,5 +48,5 @@ mat_luv <-
 We want to write out the HCL data frame and the LUV matrix:
 
 ```{r}
-use_data(df_hcl, mat_luv, overwrite = TRUE)
+use_data(df_hcl_blues, mat_luv_blues, overwrite = TRUE)
 ```
