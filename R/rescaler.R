@@ -35,18 +35,7 @@
 #'   rlin(c(0, 0.5, 1))
 #'
 #'   # Bezier rescaler
-#'   mat_luv <- matrix(
-#'     c(
-#'        20,  50, 80, # l
-#'        0,  -46,  0, # u
-#'        0,   56,  0  # v
-#'     ),
-#'     ncol = 3L,
-#'     byrow = FALSE,
-#'     dimnames = list(NULL, c("l", "u", "v"))
-#'   )
-#'
-#'   rbez <- rescaler_bezier(mat_luv)
+#'   rbez <- rescaler_bezier(mat_luv_blues)
 #'   # print for a preview
 #'   print(rbez)
 #'

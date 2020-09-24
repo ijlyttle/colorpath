@@ -39,24 +39,13 @@ test_that("rescaler_linear works", {
 
 test_that("rescaler_bezier works", {
 
-  mat_luv <- matrix(
-    c(
-      20,  50, 80, # l
-      0,  -46,  0, # u
-      0,   56,  0  # v
-    ),
-    ncol = 3L,
-    byrow = FALSE,
-    dimnames = list(NULL, c("l", "u", "v"))
-  )
-
   expect_error(
-    rescaler_bezier(mat_luv, "foo"),
+    rescaler_bezier(mat_luv_blues, "foo"),
     "numeric"
   )
 
   expect_error(
-    rescaler_bezier(mat_luv, -1),
+    rescaler_bezier(mat_luv_blues, -1),
     "not greater than"
   )
 
@@ -65,7 +54,7 @@ test_that("rescaler_bezier works", {
     "exactly three columns"
   )
 
-  rbez <- rescaler_bezier(mat_luv)
+  rbez <- rescaler_bezier(mat_luv_blues)
 
   expect_s3_class(rbez, "cpath_rescaler")
 
@@ -73,7 +62,7 @@ test_that("rescaler_bezier works", {
   expect_identical(
     rbez(c(0, 0.5, 1)),
     c(0, 0.5, 1),
-    tolerance = 1.5e-4
+    tolerance = 2.e-4
   )
 
 })

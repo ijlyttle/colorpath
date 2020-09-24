@@ -19,6 +19,5 @@ it seems reasonable to compile these coordinates using a
 data frame.
 }
 \examples{
-  df_hcl <- data.frame(h = c(0, 30), c = c(50, 50), l = c(50, 60))
-  luv(df_hcl)
+  luv(df_hcl_blues)
 }
