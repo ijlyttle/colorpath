@@ -1,5 +1,7 @@
 # colorpath 0.0.0 (development version)
 
+* This is a demo for Sylvain.
+
 * Added function to convert LUV palette-function to hex-code palette-function, `palette_hex()`. (#14)
 
 * Added function to rescale a palette function, `rescale_palette()`. (#10)
