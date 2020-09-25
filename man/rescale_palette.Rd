@@ -15,7 +15,7 @@ rescale_palette(palette, rescaler)
 \code{function} with S3 class \code{"cpath_palette_luv"}
 }
 \description{
-Rescale palette
+Rescale a palette function using a rescaler function.
 }
 \examples{
   # create original palette
