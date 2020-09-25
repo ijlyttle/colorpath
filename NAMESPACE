@@ -3,6 +3,7 @@
 S3method(print,cpath_rescaler)
 export(luv)
 export(palette_bezier)
+export(palette_hex)
 export(rescale_palette)
 export(rescaler_bezier)
 export(rescaler_linear_input)
