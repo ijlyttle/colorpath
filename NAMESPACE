@@ -2,6 +2,7 @@
 
 S3method(print,cpath_rescaler)
 export(as_mat_luv)
+export(as_pal_disc)
 export(as_pal_hex)
 export(palette_bezier)
 export(rescale_palette)

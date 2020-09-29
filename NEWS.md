@@ -2,6 +2,8 @@
 
 * Refactored:
 
+  - added function `as_pal_disc()` to coerce to a discrete-palette function.
+  - renamed `palette_hex()` to `as_pal_hex()`.
   - renamed function `luv()` to `as_mat_luv()`.
   - renamed argument `luv` to `mat_luv`.
 
