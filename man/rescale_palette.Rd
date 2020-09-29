@@ -4,10 +4,10 @@
 \alias{rescale_palette}
 \title{Rescale palette}
 \usage{
-rescale_palette(palette, rescaler)
+rescale_palette(pal_luv, rescaler)
 }
 \arguments{
-\item{palette}{\code{function} with S3 class \code{"cpath_palette_luv"}}
+\item{pal_luv}{\code{function} with S3 class \code{"cpath_palette_luv"}}
 
 \item{rescaler}{\code{function} with S3 class \code{"cpath_rescaler"}}
 }

@@ -1,13 +1,13 @@
-test_that("hex_palette works", {
+test_that("as_pal_hex works", {
 
   pal_blues <- palette_bezier(mat_luv_blues)
 
   expect_error(
-    palette_hex("foo"),
+    as_pal_hex("foo"),
     "does not inherit from class cpath_palette_luv"
   )
 
-  pal_blues_hex <- palette_hex(pal_blues)
+  pal_blues_hex <- as_pal_hex(pal_blues)
   expect_type(pal_blues_hex, "closure")
 
   x <- seq(0, 1, by = 0.1)
