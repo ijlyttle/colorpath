@@ -119,7 +119,6 @@ f_root_luminance <- function(lum, palette) {
 #' Bézier rescaler
 #'
 #' @inheritParams pal_luv_bezier
-#' @param n `numeric` number of equally-spaced Bézier points to calculate
 #'
 #' @inherit rescaler_x
 #'

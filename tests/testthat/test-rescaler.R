@@ -1,5 +1,5 @@
 
-pal_blues <- pal_luv_bezier(mat_luv_blues)
+pal_blues <- pal_luv_bezier(mat_luv_blues, rescale_path = FALSE)
 
 test_that("rescaler_x works", {
 
@@ -48,7 +48,8 @@ test_that("f_root_luminance works", {
   expect_type(froot, "closure")
   expect_equal(
     froot(c(0, 0.5, 1)),
-    c(30, 0, -30)
+    c(30, 0, -30),
+    tolerance = 1.e-3
   )
 
 })

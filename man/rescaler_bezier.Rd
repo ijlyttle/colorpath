@@ -9,7 +9,7 @@ rescaler_bezier(mat_luv, n = 21)
 \arguments{
 \item{mat_luv}{\code{matrix} of LUV coordinates, control-points for Bézier spline.}
 
-\item{n}{\code{numeric} number of equally-spaced Bézier points to calculate}
+\item{n}{\code{numeric} if \code{rescale_path}, number of equally-spaced Bézier points to calculate.}
 }
 \value{
 A function with S3 class \code{cpath_rescaler}.

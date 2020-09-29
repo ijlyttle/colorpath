@@ -4,10 +4,15 @@
 \alias{pal_luv_bezier}
 \title{Create palette-function using Bézier spline}
 \usage{
-pal_luv_bezier(mat_luv)
+pal_luv_bezier(mat_luv, rescale_path = TRUE, n = 21)
 }
 \arguments{
 \item{mat_luv}{\code{matrix} of LUV coordinates, control-points for Bézier spline.}
+
+\item{rescale_path}{\code{logical} indicating to rescale the palette function to be
+perceptually-uniform with respect to the input.}
+
+\item{n}{\code{numeric} if \code{rescale_path}, number of equally-spaced Bézier points to calculate.}
 }
 \value{
 A function with S3 class \code{cpath_palette}.

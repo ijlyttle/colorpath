@@ -2,7 +2,10 @@
 
 * Refactored (#1, continued):
 
-  - renamed function `palette_bezier()` to `pal_luv_bezier()`.
+  - made `rescaler_bezier()` an internal function.
+  - renamed function `palette_bezier()` to `pal_luv_bezier()`; added argument 
+    `rescale_path`, defaults `TRUE`, to indicate to rescale the input according 
+    to the path length in LUV space.
   - reanmed function `rescale_palette()` to `rescale_pal_luv()`.
   - renamed function `rescaler_linear_luminance()` to `rescaler_luminance()`.
   - renamed function `rescaler_linear_input()` to `rescaler_x()`.

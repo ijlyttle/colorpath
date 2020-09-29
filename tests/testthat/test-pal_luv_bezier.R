@@ -11,11 +11,11 @@ test_that("pal_luv_bezier() works", {
   mat_luv_out <- mat_luv_blues
   mat_luv_out[2, 2:3] <- mat_luv_out[2, 2:3] / 2
 
-  pb <- pal_luv_bezier(mat_luv_blues)
+  pb <- pal_luv_bezier(mat_luv_blues, rescale_path = FALSE)
 
   expect_s3_class(pb, "cpath_pal_luv")
 
-  expect_identical(
+  expect_equal(
     pb(c(0, 0.5, 1)),
     mat_luv_out
   )
