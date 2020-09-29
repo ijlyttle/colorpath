@@ -30,7 +30,7 @@
 #' @return A function with S3 class `cpath_rescaler`.
 #' @examples
 #'   # Linear input-rescaler
-#'   rlin <- rescaler_linear_input(c(0.25, 0.75))
+#'   rlin <- rescaler_x(c(0.25, 0.75))
 #'
 #'   # print for a preview
 #'   print(rlin)
@@ -49,7 +49,7 @@
 #'
 #' @export
 #'
-rescaler_linear_input <- function(range) {
+rescaler_x <- function(range) {
 
   assertthat::assert_that(
     is.numeric(range),
@@ -70,11 +70,11 @@ rescaler_linear_input <- function(range) {
 #' @rdname rescaler
 #' @export
 #'
-rescaler_linear_luminance <- function(range, palette) {
+rescaler_luminance <- function(range, palette) {
 
   range_input <- root_luminance(range, palette)
 
-  rescaler_linear_input(range_input)
+  rescaler_x(range_input)
 }
 
 #' Find inputs to palette function for given luminances

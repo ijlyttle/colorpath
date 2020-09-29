@@ -1,7 +1,7 @@
 test_that("rescale_palette() works", {
 
   pal_blues <- palette_bezier(mat_luv_blues)
-  res_reverse <- rescaler_linear_input(c(1, 0))
+  res_reverse <- rescaler_x(c(1, 0))
 
   expect_error(
     rescale_palette(pal_blues, "foo"),

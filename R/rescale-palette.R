@@ -11,7 +11,7 @@
 #'   pal_blues <- palette_bezier(mat_luv_blues)
 #'
 #'   # create rescaler
-#'   rsc_reverse <- rescaler_linear_input(c(1, 0))
+#'   rsc_reverse <- rescaler_x(c(1, 0))
 #'
 #'   # create reversed palette
 #'   pal_blues_reverse <- rescale_palette(pal_blues, rsc_reverse)

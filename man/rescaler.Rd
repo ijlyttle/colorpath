@@ -2,14 +2,14 @@
 % Please edit documentation in R/rescaler.R
 \name{rescaler}
 \alias{rescaler}
-\alias{rescaler_linear_input}
-\alias{rescaler_linear_luminance}
+\alias{rescaler_x}
+\alias{rescaler_luminance}
 \alias{rescaler_bezier}
 \title{Rescaler functions}
 \usage{
-rescaler_linear_input(range)
+rescaler_x(range)
 
-rescaler_linear_luminance(range, palette)
+rescaler_luminance(range, palette)
 
 rescaler_bezier(mat_luv, n = 21)
 }
@@ -48,7 +48,7 @@ so it may take a few seconds to run.
 }
 \examples{
   # Linear input-rescaler
-  rlin <- rescaler_linear_input(c(0.25, 0.75))
+  rlin <- rescaler_x(c(0.25, 0.75))
 
   # print for a preview
   print(rlin)

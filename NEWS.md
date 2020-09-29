@@ -2,6 +2,8 @@
 
 * Refactored (#1, continued):
 
+  - renamed function `rescaler_linear_luminance()` to `rescaler_luminance()`.
+  - renamed function `rescaler_linear_input()` to `rescaler_x()`.
   - renamed S3 class `cpath_palette_luv` to `cpath_pal_luv`.
   - added function `as_pal_disc()` to coerce to a discrete-palette function.
   - renamed `palette_hex()` to `as_pal_hex()`.
