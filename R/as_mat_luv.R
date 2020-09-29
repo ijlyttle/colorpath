@@ -10,10 +10,10 @@
 #'   of rows as `df_hcl`
 #'
 #' @examples
-#'   luv(df_hcl_blues)
+#'   as_mat_luv(df_hcl_blues)
 #' @export
 #'
-luv <- function(df_hcl) {
+as_mat_luv <- function(df_hcl) {
 
   hcl_mat <- as.matrix(df_hcl[, c("h", "c", "l")])
 

@@ -2,8 +2,8 @@
 
 * Refactored:
 
+  - renamed function `luv()` to `as_mat_luv()`.
   - renamed argument `luv` to `mat_luv`.
-  - 
 
 * Added function to convert LUV palette-function to hex-code palette-function, `palette_hex()`. (#14)
 

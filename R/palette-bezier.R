@@ -2,7 +2,7 @@
 #'
 #' Thus takes a `matrix` of LUV coordinates and returns a palette-function
 #' (that returns LUV values) based on a Bézier spline. You can get an `LUV`
-#' matrix using the function [luv()].
+#' matrix using the function [as_mat_luv()].
 #'
 #' @param mat_luv `matrix` of LUV coordinates, control-points for Bézier spline.
 #'

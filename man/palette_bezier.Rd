@@ -15,7 +15,7 @@ A function with S3 class \code{cpath_palette}.
 \description{
 Thus takes a \code{matrix} of LUV coordinates and returns a palette-function
 (that returns LUV values) based on a Bézier spline. You can get an \code{LUV}
-matrix using the function \code{\link[=luv]{luv()}}.
+matrix using the function \code{\link[=as_mat_luv]{as_mat_luv()}}.
 }
 \examples{
  # create palette-function
