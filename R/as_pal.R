@@ -1,4 +1,4 @@
-#' Coerce to hex-code palette-function
+#' Convert palette-function
 #'
 #' @description
 #' The "standard" palette function in this package takes a numeric input

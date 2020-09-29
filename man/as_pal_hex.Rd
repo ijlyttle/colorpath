@@ -3,7 +3,7 @@
 \name{as_pal_hex}
 \alias{as_pal_hex}
 \alias{as_pal_disc}
-\title{Coerce to hex-code palette-function}
+\title{Convert palette-function}
 \usage{
 as_pal_hex(pal_luv)
 

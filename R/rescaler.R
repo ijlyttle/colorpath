@@ -17,15 +17,9 @@
 #' the colorpath. The Bézier function makes some optimization calculations,
 #' so it may take a few seconds to run.
 #'
-#' @name rescaler
-#'
 #' @param range `numeric` values to correspond with `x = c(0, 1)`
-#'
-#' @param palette `cpath_pal_luv`, palette function on which the
+#' @param pal_luv `cpath_pal_luv`, palette function on which the
 #'   luminance range will operate
-#'
-#' @inheritParams pal_luv_bezier
-#' @param n `numeric` number of equally-spaced Bézier points to calculate
 #'
 #' @return A function with S3 class `cpath_rescaler`.
 #' @examples
@@ -67,12 +61,12 @@ rescaler_x <- function(range) {
   structure(.f, class = "cpath_rescaler")
 }
 
-#' @rdname rescaler
+#' @rdname rescaler_x
 #' @export
 #'
-rescaler_luminance <- function(range, palette) {
+rescaler_luminance <- function(range, pal_luv) {
 
-  range_input <- root_luminance(range, palette)
+  range_input <- root_luminance(range, pal_luv)
 
   rescaler_x(range_input)
 }
@@ -122,7 +116,14 @@ f_root_luminance <- function(lum, palette) {
 
 }
 
-#' @rdname rescaler
+#' Bézier rescaler
+#'
+#' @inheritParams pal_luv_bezier
+#' @param n `numeric` number of equally-spaced Bézier points to calculate
+#'
+#' @inherit rescaler_x
+#'
+#' @keywords internal
 #' @export
 #'
 rescaler_bezier <- function(mat_luv, n = 21) {
