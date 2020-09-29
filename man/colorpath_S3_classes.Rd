@@ -8,7 +8,7 @@ This package uses S3 classes to help clarify expectations for
 function arguments and return values.
 }
 \details{
-\strong{\code{cpath_palette_luv}}
+\strong{\code{cpath_pal_luv}}
 
 A function that:
 \itemize{

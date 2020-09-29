@@ -3,7 +3,7 @@
 #' This package uses S3 classes to help clarify expectations for
 #' function arguments and return values.
 #'
-#' **`cpath_palette_luv`**
+#' **`cpath_pal_luv`**
 #'
 #' A function that:
 #'

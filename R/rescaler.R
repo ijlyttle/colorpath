@@ -17,20 +17,14 @@
 #' the colorpath. The Bézier function makes some optimization calculations,
 #' so it may take a few seconds to run.
 #'
-#' @name rescaler
-#'
-#' @param range `numeric` values to correspond with `x = c(0, 1)`
-#'
-#' @param palette `cpath_palette_luv`, palette function on which the
+#' @param range `numeric` values, in `x` or in luminance, to correspond with `x = c(0, 1)`
+#' @param pal_luv `cpath_pal_luv`, palette function on which the
 #'   luminance range will operate
-#'
-#' @inheritParams palette_bezier
-#' @param n `numeric` number of equally-spaced Bézier points to calculate
 #'
 #' @return A function with S3 class `cpath_rescaler`.
 #' @examples
-#'   # Linear input-rescaler
-#'   rlin <- rescaler_linear_input(c(0.25, 0.75))
+#'   # Input rescaler
+#'   rlin <- rescaler_x(c(0.25, 0.75))
 #'
 #'   # print for a preview
 #'   print(rlin)
@@ -38,18 +32,19 @@
 #'   # evaluate
 #'   rlin(c(0, 0.5, 1))
 #'
-#'   # Bezier rescaler
-#'   rbez <- rescaler_bezier(mat_luv_blues)
+#'   # Luminance rescaler
+#'   pal_luv_blues <- pal_luv_bezier(mat_luv_blues)
+#'   rlum <- rescaler_lum(c(40, 70), pal_luv_blues)
 #'
 #'   # print for a preview
-#'   print(rbez)
+#'   print(rlum)
 #'
 #'   # evaluate
-#'   rbez(c(0, 0.5, 1))
+#'   rlum(c(0, 0.5, 1))
 #'
 #' @export
 #'
-rescaler_linear_input <- function(range) {
+rescaler_x <- function(range) {
 
   assertthat::assert_that(
     is.numeric(range),
@@ -67,14 +62,14 @@ rescaler_linear_input <- function(range) {
   structure(.f, class = "cpath_rescaler")
 }
 
-#' @rdname rescaler
+#' @rdname rescaler_x
 #' @export
 #'
-rescaler_linear_luminance <- function(range, palette) {
+rescaler_lum <- function(range, pal_luv) {
 
-  range_input <- root_luminance(range, palette)
+  range_input <- root_luminance(range, pal_luv)
 
-  rescaler_linear_input(range_input)
+  rescaler_x(range_input)
 }
 
 #' Find inputs to palette function for given luminances
@@ -122,13 +117,19 @@ f_root_luminance <- function(lum, palette) {
 
 }
 
-#' @rdname rescaler
+#' Bézier rescaler
+#'
+#' @inheritParams pal_luv_bezier
+#'
+#' @inherit rescaler_x
+#'
+#' @keywords internal
 #' @export
 #'
-rescaler_bezier <- function(luv, n = 21) {
+rescaler_bezier <- function(mat_luv, n = 21) {
 
   assertthat::assert_that(
-    identical(dim(luv)[2], 3L),
+    identical(dim(mat_luv)[2], 3L),
     msg = "luv matrix must have exactly three columns"
   )
 
@@ -138,7 +139,7 @@ rescaler_bezier <- function(luv, n = 21) {
   )
 
   # get the equally-spaced parameter points
-  pob <- bezier::pointsOnBezier(p = luv, n = n, method = "evenly_spaced")
+  pob <- bezier::pointsOnBezier(p = mat_luv, n = n, method = "evenly_spaced")
 
   # create a spline-function mapping x to equally-spaced t
   x <- seq(0, 1, length.out = n)

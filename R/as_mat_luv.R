@@ -1,4 +1,4 @@
-#' Convert to `luv` matrix from `hcl` data frame
+#' Convert to LUV matrix from HCL data frame
 #'
 #' It is thought to specify a colorpath using HCL coordinates;
 #' it seems reasonable to compile these coordinates using a
@@ -10,10 +10,10 @@
 #'   of rows as `df_hcl`
 #'
 #' @examples
-#'   luv(df_hcl_blues)
+#'   as_mat_luv(df_hcl_blues)
 #' @export
 #'
-luv <- function(df_hcl) {
+as_mat_luv <- function(df_hcl) {
 
   hcl_mat <- as.matrix(df_hcl[, c("h", "c", "l")])
 
