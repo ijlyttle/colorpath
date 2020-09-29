@@ -2,7 +2,7 @@
 
 * Refactored (#1, continued):
 
-  - added arguments `rescale_path` and `n` to `pal_luv_bezier()`, will rescale so the palette is perceptually uniform (in LUV space) with respect to the input. 
+  - added arguments `rescale_path` and `n` to `pal_luv_bezier()`, rescales the palette to be perceptually uniform (in LUV space) with respect to the input. 
   - made `rescaler_bezier()` an internal function.
   - renamed function `palette_bezier()` to `pal_luv_bezier()`; added argument 
     `rescale_path`, defaults `TRUE`, to indicate to rescale the input according 
