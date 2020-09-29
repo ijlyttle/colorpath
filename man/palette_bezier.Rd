@@ -4,10 +4,10 @@
 \alias{palette_bezier}
 \title{Create palette-function using Bézier spline}
 \usage{
-palette_bezier(luv)
+palette_bezier(mat_luv)
 }
 \arguments{
-\item{luv}{\code{matrix} of LUV coordinates, control-points for Bézier spline.}
+\item{mat_luv}{\code{matrix} of LUV coordinates, control-points for Bézier spline.}
 }
 \value{
 A function with S3 class \code{cpath_palette}.

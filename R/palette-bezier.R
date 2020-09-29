@@ -4,7 +4,7 @@
 #' (that returns LUV values) based on a Bézier spline. You can get an `LUV`
 #' matrix using the function [luv()].
 #'
-#' @param luv `matrix` of LUV coordinates, control-points for Bézier spline.
+#' @param mat_luv `matrix` of LUV coordinates, control-points for Bézier spline.
 #'
 #' @return A function with S3 class `cpath_palette`.
 #'
@@ -17,14 +17,14 @@
 #'
 #' @export
 #'
-palette_bezier <- function(luv) {
+palette_bezier <- function(mat_luv) {
 
   assertthat::assert_that(
-    is.matrix(luv)
+    is.matrix(mat_luv)
   )
 
   .f <- function(x) {
-    mat <- bezier::bezier(t = x, p = luv)
+    mat <- bezier::bezier(t = x, p = mat_luv)
     dimnames(mat) <- list(NULL, c("l", "u", "v"))
 
     mat

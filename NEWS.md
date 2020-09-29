@@ -1,5 +1,10 @@
 # colorpath 0.0.0 (development version)
 
+* Refactored:
+
+  - renamed argument `luv` to `mat_luv`.
+  - 
+
 * Added function to convert LUV palette-function to hex-code palette-function, `palette_hex()`. (#14)
 
 * Added function to rescale a palette function, `rescale_palette()`. (#10)

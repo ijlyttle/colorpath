@@ -11,7 +11,7 @@ rescaler_linear_input(range)
 
 rescaler_linear_luminance(range, palette)
 
-rescaler_bezier(luv, n = 21)
+rescaler_bezier(mat_luv, n = 21)
 }
 \arguments{
 \item{range}{\code{numeric} values to correspond with \code{x = c(0, 1)}}
@@ -19,7 +19,7 @@ rescaler_bezier(luv, n = 21)
 \item{palette}{\code{cpath_palette_luv}, palette function on which the
 luminance range will operate}
 
-\item{luv}{\code{matrix} of LUV coordinates, control-points for Bézier spline.}
+\item{mat_luv}{\code{matrix} of LUV coordinates, control-points for Bézier spline.}
 
 \item{n}{\code{numeric} number of equally-spaced Bézier points to calculate}
 }

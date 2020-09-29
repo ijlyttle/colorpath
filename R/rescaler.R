@@ -125,10 +125,10 @@ f_root_luminance <- function(lum, palette) {
 #' @rdname rescaler
 #' @export
 #'
-rescaler_bezier <- function(luv, n = 21) {
+rescaler_bezier <- function(mat_luv, n = 21) {
 
   assertthat::assert_that(
-    identical(dim(luv)[2], 3L),
+    identical(dim(mat_luv)[2], 3L),
     msg = "luv matrix must have exactly three columns"
   )
 
@@ -138,7 +138,7 @@ rescaler_bezier <- function(luv, n = 21) {
   )
 
   # get the equally-spaced parameter points
-  pob <- bezier::pointsOnBezier(p = luv, n = n, method = "evenly_spaced")
+  pob <- bezier::pointsOnBezier(p = mat_luv, n = n, method = "evenly_spaced")
 
   # create a spline-function mapping x to equally-spaced t
   x <- seq(0, 1, length.out = n)
