@@ -4,7 +4,7 @@ test_that("as_pal_hex works", {
 
   expect_error(
     as_pal_hex("foo"),
-    "does not inherit from class cpath_palette_luv"
+    "does not inherit from class cpath_pal_luv"
   )
 
   pal_blues_hex <- as_pal_hex(pal_blues)

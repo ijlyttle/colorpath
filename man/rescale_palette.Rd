@@ -7,12 +7,12 @@
 rescale_palette(pal_luv, rescaler)
 }
 \arguments{
-\item{pal_luv}{\code{function} with S3 class \code{"cpath_palette_luv"}}
+\item{pal_luv}{\code{function} with S3 class \code{"cpath_pal_luv"}}
 
 \item{rescaler}{\code{function} with S3 class \code{"cpath_rescaler"}}
 }
 \value{
-\code{function} with S3 class \code{"cpath_palette_luv"}
+\code{function} with S3 class \code{"cpath_pal_luv"}
 }
 \description{
 Rescale a palette function using a rescaler function.

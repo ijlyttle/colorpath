@@ -43,7 +43,7 @@
 as_pal_hex <- function(pal_luv) {
 
   assertthat::assert_that(
-    inherits(pal_luv, "cpath_palette_luv")
+    inherits(pal_luv, "cpath_pal_luv")
   )
 
   function(x) {

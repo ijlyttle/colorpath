@@ -16,7 +16,7 @@ rescaler_bezier(mat_luv, n = 21)
 \arguments{
 \item{range}{\code{numeric} values to correspond with \code{x = c(0, 1)}}
 
-\item{palette}{\code{cpath_palette_luv}, palette function on which the
+\item{palette}{\code{cpath_pal_luv}, palette function on which the
 luminance range will operate}
 
 \item{mat_luv}{\code{matrix} of LUV coordinates, control-points for Bézier spline.}

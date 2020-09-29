@@ -10,12 +10,12 @@ test_that("rescale_palette() works", {
 
   expect_error(
     rescale_palette("foo", res_reverse),
-    "does not inherit from class cpath_palette_luv"
+    "does not inherit from class cpath_pal_luv"
   )
 
   pal_blues_reverse <- rescale_palette(pal_blues, res_reverse)
 
-  expect_s3_class(pal_blues_reverse, "cpath_palette_luv")
+  expect_s3_class(pal_blues_reverse, "cpath_pal_luv")
 
   x <- seq(0, 1, by = 0.1)
 

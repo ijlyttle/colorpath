@@ -30,5 +30,5 @@ palette_bezier <- function(mat_luv) {
     mat
   }
 
-  structure(.f, class = "cpath_palette_luv")
+  structure(.f, class = "cpath_pal_luv")
 }

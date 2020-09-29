@@ -10,7 +10,7 @@ as_pal_hex(pal_luv)
 as_pal_disc(pal)
 }
 \arguments{
-\item{pal_luv}{\code{function} with S3 class \code{"cpath_palette_luv"}}
+\item{pal_luv}{\code{function} with S3 class \code{"cpath_pal_luv"}}
 
 \item{pal}{\code{function} that takes a numeric input and returns a color value.}
 }

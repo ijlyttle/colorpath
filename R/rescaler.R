@@ -21,7 +21,7 @@
 #'
 #' @param range `numeric` values to correspond with `x = c(0, 1)`
 #'
-#' @param palette `cpath_palette_luv`, palette function on which the
+#' @param palette `cpath_pal_luv`, palette function on which the
 #'   luminance range will operate
 #'
 #' @inheritParams palette_bezier

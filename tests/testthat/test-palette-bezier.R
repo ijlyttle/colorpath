@@ -13,7 +13,7 @@ test_that("palette_bezier() works", {
 
   pb <- palette_bezier(mat_luv_blues)
 
-  expect_s3_class(pb, "cpath_palette_luv")
+  expect_s3_class(pb, "cpath_pal_luv")
 
   expect_identical(
     pb(c(0, 0.5, 1)),
