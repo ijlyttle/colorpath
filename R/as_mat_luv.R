@@ -1,4 +1,4 @@
-#' Convert to `luv` matrix from `hcl` data frame
+#' Convert to LUV matrix from HCL data frame
 #'
 #' It is thought to specify a colorpath using HCL coordinates;
 #' it seems reasonable to compile these coordinates using a

@@ -12,7 +12,7 @@
 #' It is important to keep in mind that each of these functions returns a
 #' **function**.
 #'
-#' @inherit rescale_pal_luv params
+#' @inherit pal_luv_rescale params
 #' @param pal `function` that takes a numeric input and returns a color value.
 #'
 #' @return `function`:

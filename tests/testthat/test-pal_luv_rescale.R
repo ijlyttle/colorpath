@@ -1,19 +1,19 @@
-test_that("rescale_pal_luv() works", {
+test_that("pal_luv_rescale() works", {
 
   pal_blues <- pal_luv_bezier(mat_luv_blues)
   res_reverse <- rescaler_x(c(1, 0))
 
   expect_error(
-    rescale_pal_luv(pal_blues, "foo"),
+    pal_luv_rescale(pal_blues, "foo"),
     "does not inherit from class cpath_rescaler"
   )
 
   expect_error(
-    rescale_pal_luv("foo", res_reverse),
+    pal_luv_rescale("foo", res_reverse),
     "does not inherit from class cpath_pal_luv"
   )
 
-  pal_blues_reverse <- rescale_pal_luv(pal_blues, res_reverse)
+  pal_blues_reverse <- pal_luv_rescale(pal_blues, res_reverse)
 
   expect_s3_class(pal_blues_reverse, "cpath_pal_luv")
 

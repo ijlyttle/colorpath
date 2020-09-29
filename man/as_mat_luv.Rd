@@ -2,7 +2,7 @@
 % Please edit documentation in R/as_mat_luv.R
 \name{as_mat_luv}
 \alias{as_mat_luv}
-\title{Convert to \code{luv} matrix from \code{hcl} data frame}
+\title{Convert to LUV matrix from HCL data frame}
 \usage{
 as_mat_luv(df_hcl)
 }

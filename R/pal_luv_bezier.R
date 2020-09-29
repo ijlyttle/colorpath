@@ -1,4 +1,4 @@
-#' Create palette-function using Bézier spline
+#' Create LUV palette-function using Bézier spline
 #'
 #' This takes a `matrix` of LUV control-points and returns a palette-function
 #' (that returns LUV values) based on a Bézier spline using those
@@ -41,7 +41,7 @@ pal_luv_bezier <- function(mat_luv, rescale_path = TRUE, n = 21) {
   # if need be, rescale
   if (rescale_path) {
     .r <- rescaler_bezier(mat_luv, n)
-    .f <- rescale_pal_luv(.f, .r)
+    .f <- pal_luv_rescale(.f, .r)
   }
 
   .f

@@ -1,6 +1,6 @@
-#' Rescale palette
+#' Rescale LUV palette-function
 #'
-#' Rescale a palette function using a rescaler function.
+#' Rescale LUV palette function using a rescaler function.
 #'
 #' @param pal_luv  `function` with S3 class `"cpath_pal_luv"`
 #' @param rescaler `function` with S3 class `"cpath_rescaler"`
@@ -14,14 +14,14 @@
 #'   rsc_reverse <- rescaler_x(c(1, 0))
 #'
 #'   # create reversed palette
-#'   pal_blues_reverse <- rescale_pal_luv(pal_blues, rsc_reverse)
+#'   pal_blues_reverse <- pal_luv_rescale(pal_blues, rsc_reverse)
 #'
 #'   pal_blues(0)
 #'   pal_blues_reverse(1)
 #'
 #' @export
 #'
-rescale_pal_luv <- function(pal_luv, rescaler) {
+pal_luv_rescale <- function(pal_luv, rescaler) {
 
   assertthat::assert_that(
     inherits(pal_luv, "cpath_pal_luv"),

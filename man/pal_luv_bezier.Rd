@@ -2,7 +2,7 @@
 % Please edit documentation in R/pal_luv_bezier.R
 \name{pal_luv_bezier}
 \alias{pal_luv_bezier}
-\title{Create palette-function using Bézier spline}
+\title{Create LUV palette-function using Bézier spline}
 \usage{
 pal_luv_bezier(mat_luv, rescale_path = TRUE, n = 21)
 }
