@@ -19,7 +19,7 @@ Rescale a palette function using a rescaler function.
 }
 \examples{
   # create original palette
-  pal_blues <- palette_bezier(mat_luv_blues)
+  pal_blues <- pal_luv_bezier(mat_luv_blues)
 
   # create rescaler
   rsc_reverse <- rescaler_x(c(1, 0))

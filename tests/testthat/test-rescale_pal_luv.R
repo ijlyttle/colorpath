@@ -1,6 +1,6 @@
 test_that("rescale_pal_luv() works", {
 
-  pal_blues <- palette_bezier(mat_luv_blues)
+  pal_blues <- pal_luv_bezier(mat_luv_blues)
   res_reverse <- rescaler_x(c(1, 0))
 
   expect_error(

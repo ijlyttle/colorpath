@@ -1,5 +1,5 @@
 
-pal_blues <- palette_bezier(mat_luv_blues)
+pal_blues <- pal_luv_bezier(mat_luv_blues)
 
 test_that("rescaler_x works", {
 

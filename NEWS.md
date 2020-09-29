@@ -2,6 +2,7 @@
 
 * Refactored (#1, continued):
 
+  - renamed function `palette_bezier()` to `pal_luv_bezier()`.
   - reanmed function `rescale_palette()` to `rescale_pal_luv()`.
   - renamed function `rescaler_linear_luminance()` to `rescaler_luminance()`.
   - renamed function `rescaler_linear_input()` to `rescaler_x()`.

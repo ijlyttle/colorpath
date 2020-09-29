@@ -24,7 +24,7 @@
 #' @param palette `cpath_pal_luv`, palette function on which the
 #'   luminance range will operate
 #'
-#' @inheritParams palette_bezier
+#' @inheritParams pal_luv_bezier
 #' @param n `numeric` number of equally-spaced Bézier points to calculate
 #'
 #' @return A function with S3 class `cpath_rescaler`.

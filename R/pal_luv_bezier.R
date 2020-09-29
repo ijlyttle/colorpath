@@ -10,14 +10,14 @@
 #'
 #' @examples
 #'  # create palette-function
-#'  pb <- palette_bezier(mat_luv_blues)
+#'  pb <- pal_luv_bezier(mat_luv_blues)
 #'
 #'  # evaluate
 #'  pb(c(0, 0.5, 1))
 #'
 #' @export
 #'
-palette_bezier <- function(mat_luv) {
+pal_luv_bezier <- function(mat_luv) {
 
   assertthat::assert_that(
     is.matrix(mat_luv)

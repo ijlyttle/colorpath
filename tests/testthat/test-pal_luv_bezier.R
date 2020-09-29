@@ -1,7 +1,7 @@
-test_that("palette_bezier() works", {
+test_that("pal_luv_bezier() works", {
 
   expect_error(
-    palette_bezier("foo"),
+    pal_luv_bezier("foo"),
     "not a matrix"
   )
 
@@ -11,7 +11,7 @@ test_that("palette_bezier() works", {
   mat_luv_out <- mat_luv_blues
   mat_luv_out[2, 2:3] <- mat_luv_out[2, 2:3] / 2
 
-  pb <- palette_bezier(mat_luv_blues)
+  pb <- pal_luv_bezier(mat_luv_blues)
 
   expect_s3_class(pb, "cpath_pal_luv")
 

@@ -36,7 +36,7 @@ It is important to keep in mind that each of these functions returns a
 }
 \examples{
   # create LUV palette-function
-  pal_blues <- palette_bezier(mat_luv_blues)
+  pal_blues <- pal_luv_bezier(mat_luv_blues)
 
   # create hex palette-function
   pal_blues_hex <- as_pal_hex(pal_blues)
