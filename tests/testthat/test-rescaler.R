@@ -64,10 +64,10 @@ test_that("root_luminance works", {
 
 })
 
-test_that("rescaler_luminance works", {
+test_that("rescaler_lum works", {
 
-  rlum <- rescaler_luminance(c(25, 55), pal_blues)
-  rlum2 <- rescaler_luminance(c(55, 85), pal_blues)
+  rlum <- rescaler_lum(c(25, 55), pal_blues)
+  rlum2 <- rescaler_lum(c(55, 85), pal_blues)
 
   expect_s3_class(rlum, "cpath_rescaler")
 

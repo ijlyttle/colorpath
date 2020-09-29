@@ -8,7 +8,7 @@
     `rescale_path`, defaults `TRUE`, to indicate to rescale the input according 
     to the path length in LUV space.
   - reanmed function `rescale_palette()` to `rescale_pal_luv()`.
-  - renamed function `rescaler_linear_luminance()` to `rescaler_luminance()`.
+  - renamed function `rescaler_linear_luminance()` to `rescaler_lum()`.
   - renamed function `rescaler_linear_input()` to `rescaler_x()`.
   - renamed S3 class `cpath_palette_luv` to `cpath_pal_luv`.
   - added function `as_pal_disc()` to coerce to a discrete-palette function.

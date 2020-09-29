@@ -17,13 +17,13 @@
 #' the colorpath. The Bézier function makes some optimization calculations,
 #' so it may take a few seconds to run.
 #'
-#' @param range `numeric` values to correspond with `x = c(0, 1)`
+#' @param range `numeric` values, in `x` or in luminance, to correspond with `x = c(0, 1)`
 #' @param pal_luv `cpath_pal_luv`, palette function on which the
 #'   luminance range will operate
 #'
 #' @return A function with S3 class `cpath_rescaler`.
 #' @examples
-#'   # Linear input-rescaler
+#'   # Input rescaler
 #'   rlin <- rescaler_x(c(0.25, 0.75))
 #'
 #'   # print for a preview
@@ -32,14 +32,15 @@
 #'   # evaluate
 #'   rlin(c(0, 0.5, 1))
 #'
-#'   # Bezier rescaler
-#'   rbez <- rescaler_bezier(mat_luv_blues)
+#'   # Luminance rescaler
+#'   pal_luv_blues <- pal_luv_bezier(mat_luv_blues)
+#'   rlum <- rescaler_lum(c(40, 70), pal_luv_blues)
 #'
 #'   # print for a preview
-#'   print(rbez)
+#'   print(rlum)
 #'
 #'   # evaluate
-#'   rbez(c(0, 0.5, 1))
+#'   rlum(c(0, 0.5, 1))
 #'
 #' @export
 #'
@@ -64,7 +65,7 @@ rescaler_x <- function(range) {
 #' @rdname rescaler_x
 #' @export
 #'
-rescaler_luminance <- function(range, pal_luv) {
+rescaler_lum <- function(range, pal_luv) {
 
   range_input <- root_luminance(range, pal_luv)
 

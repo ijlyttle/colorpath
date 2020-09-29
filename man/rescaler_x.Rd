@@ -2,15 +2,15 @@
 % Please edit documentation in R/rescaler.R
 \name{rescaler_x}
 \alias{rescaler_x}
-\alias{rescaler_luminance}
+\alias{rescaler_lum}
 \title{Rescaler functions}
 \usage{
 rescaler_x(range)
 
-rescaler_luminance(range, pal_luv)
+rescaler_lum(range, pal_luv)
 }
 \arguments{
-\item{range}{\code{numeric} values to correspond with \code{x = c(0, 1)}}
+\item{range}{\code{numeric} values, in \code{x} or in luminance, to correspond with \code{x = c(0, 1)}}
 
 \item{pal_luv}{\code{cpath_pal_luv}, palette function on which the
 luminance range will operate}
@@ -39,7 +39,7 @@ the colorpath. The Bézier function makes some optimization calculations,
 so it may take a few seconds to run.
 }
 \examples{
-  # Linear input-rescaler
+  # Input rescaler
   rlin <- rescaler_x(c(0.25, 0.75))
 
   # print for a preview
@@ -48,13 +48,14 @@ so it may take a few seconds to run.
   # evaluate
   rlin(c(0, 0.5, 1))
 
-  # Bezier rescaler
-  rbez <- rescaler_bezier(mat_luv_blues)
+  # Luminance rescaler
+  pal_luv_blues <- pal_luv_bezier(mat_luv_blues)
+  rlum <- rescaler_lum(c(40, 70), pal_luv_blues)
 
   # print for a preview
-  print(rbez)
+  print(rlum)
 
   # evaluate
-  rbez(c(0, 0.5, 1))
+  rlum(c(0, 0.5, 1))
 
 }
