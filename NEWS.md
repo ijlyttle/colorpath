@@ -2,6 +2,7 @@
 
 * Refactored (#1, continued):
 
+  - reanmed function `rescale_palette()` to `rescale_pal_luv()`.
   - renamed function `rescaler_linear_luminance()` to `rescaler_luminance()`.
   - renamed function `rescaler_linear_input()` to `rescaler_x()`.
   - renamed S3 class `cpath_palette_luv` to `cpath_pal_luv`.

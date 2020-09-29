@@ -14,14 +14,14 @@
 #'   rsc_reverse <- rescaler_x(c(1, 0))
 #'
 #'   # create reversed palette
-#'   pal_blues_reverse <- rescale_palette(pal_blues, rsc_reverse)
+#'   pal_blues_reverse <- rescale_pal_luv(pal_blues, rsc_reverse)
 #'
 #'   pal_blues(0)
 #'   pal_blues_reverse(1)
 #'
 #' @export
 #'
-rescale_palette <- function(pal_luv, rescaler) {
+rescale_pal_luv <- function(pal_luv, rescaler) {
 
   assertthat::assert_that(
     inherits(pal_luv, "cpath_pal_luv"),
