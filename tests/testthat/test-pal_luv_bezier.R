@@ -20,4 +20,7 @@ test_that("pal_luv_bezier() works", {
     mat_luv_out
   )
 
+  pb_rescaled <- pal_luv_bezier(mat_luv_blues, rescale_path = TRUE)
+
+  expect_s3_class(pb_rescaled, "cpath_pal_luv")
 })

@@ -1,8 +1,11 @@
 #' Create palette-function using Bézier spline
 #'
-#' Thus takes a `matrix` of LUV coordinates and returns a palette-function
-#' (that returns LUV values) based on a Bézier spline. You can get an `LUV`
-#' matrix using the function [as_mat_luv()].
+#' This takes a `matrix` of LUV control-points and returns a palette-function
+#' (that returns LUV values) based on a Bézier spline using those
+#' control-points.
+#'
+#' The default is to rescale the palette function so that it is perceptually
+#' uniform (in LUV space) using 21 points from the spline.
 #'
 #' @param mat_luv `matrix` of LUV coordinates, control-points for Bézier spline.
 #' @param rescale_path `logical` indicating to rescale the palette function to be

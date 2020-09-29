@@ -18,9 +18,13 @@ perceptually-uniform with respect to the input.}
 A function with S3 class \code{cpath_palette}.
 }
 \description{
-Thus takes a \code{matrix} of LUV coordinates and returns a palette-function
-(that returns LUV values) based on a Bézier spline. You can get an \code{LUV}
-matrix using the function \code{\link[=as_mat_luv]{as_mat_luv()}}.
+This takes a \code{matrix} of LUV control-points and returns a palette-function
+(that returns LUV values) based on a Bézier spline using those
+control-points.
+}
+\details{
+The default is to rescale the palette function so that it is perceptually
+uniform (in LUV space) using 21 points from the spline.
 }
 \examples{
  # create palette-function
