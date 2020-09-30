@@ -1,6 +1,6 @@
 Package: colorpath
 Title: Build Color Paths
-Version: 0.0.0.9007
+Version: 0.0.0.9008
 Authors@R: 
     person(given = "Ian J",
            family = "Lyttle",
@@ -24,7 +24,8 @@ Imports:
     farver,
     assertthat,
     glue,
-    stats
+    stats,
+    rlang
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

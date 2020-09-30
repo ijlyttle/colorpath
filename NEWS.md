@@ -1,5 +1,7 @@
 # colorpath 0.0.0 (development version)
 
+* Refactored to add constuctor for LUV palettes, store `mat_luv` control-points as attribute. (#19)
+
 * Refactored (#1, continued):
 
   - added arguments `rescale_path` and `n` to `pal_luv_bezier()`, rescales the palette to be perceptually uniform (in LUV space) with respect to the input. 
