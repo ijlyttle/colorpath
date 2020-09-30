@@ -36,7 +36,8 @@ pal_luv_bezier <- function(mat_luv, rescale_path = TRUE, n = 21) {
 
     mat
   }
-  .f <- structure(.f, class = "cpath_pal_luv")
+
+  .f <- new_pal_luv(.f, spec_luv = mat_luv)
 
   # if need be, rescale
   if (rescale_path) {

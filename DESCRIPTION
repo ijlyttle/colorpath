@@ -24,7 +24,8 @@ Imports:
     farver,
     assertthat,
     glue,
-    stats
+    stats,
+    rlang
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

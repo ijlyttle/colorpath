@@ -32,5 +32,6 @@ pal_luv_rescale <- function(pal_luv, rescaler) {
     pal_luv(rescaler(x))
   }
 
-  structure(.f, class = "cpath_pal_luv")
+  # keep existing spec_luv
+  new_pal_luv(.f, spec_luv = spec_luv(pal_luv))
 }
