@@ -26,6 +26,12 @@ df_hcl_blues <-
   print()
 ```
 
+Let's put a floor on chroma.
+
+```{r}
+df_hcl_blues[["c"]] <- pmax(df_hcl_blues[["c"]], 1.e-2)
+```
+
 Next, we create a matrix:
 
 ```{r}
@@ -41,7 +47,6 @@ And convert it to LUV format:
 mat_luv_blues <- 
   mat_hcl_blues %>%
   farver::convert_colour(from = "hcl", to = "luv") %>%
-  round(digits = 4) %>%
   print()
 ```
 

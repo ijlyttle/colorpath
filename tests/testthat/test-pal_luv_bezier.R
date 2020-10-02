@@ -17,7 +17,8 @@ test_that("pal_luv_bezier() works", {
 
   expect_equal(
     pb(c(0, 0.5, 1)),
-    mat_luv_out
+    mat_luv_out,
+    tolerance = 1.e-4
   )
 
   pb_rescaled <- pal_luv_bezier(mat_luv_blues, rescale_path = TRUE)

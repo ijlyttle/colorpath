@@ -59,7 +59,8 @@ test_that("root_luminance works", {
 
   expect_equal(
     root_luminance(c(25, 55, 85), palette = pal_blues),
-    c(0, 0.5, 1)
+    c(0, 0.5, 1),
+    tolerance = 1.e-6
   )
 
 })
@@ -71,8 +72,8 @@ test_that("rescaler_lum works", {
 
   expect_s3_class(rlum, "cpath_rescaler")
 
-  expect_identical(rlum(c(0, 1)), c(0, 0.5))
-  expect_identical(rlum2(c(0, 1)), c(0.5, 1))
+  expect_equal(rlum(c(0, 1)), c(0, 0.5), tolerance = 1.e-5)
+  expect_equal(rlum2(c(0, 1)), c(0.5, 1), tolerance = 1.e-5)
 
 })
 

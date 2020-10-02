@@ -91,6 +91,16 @@ root_luminance <- function(lum, palette) {
 
     .f <- f_root_luminance(.lum, palette)
 
+    # short-circuit ends
+    if (abs(.f(0)) < 1.e-5) {
+      return(0)
+    }
+
+    if (abs(.f(1)) < 1.e-5) {
+      return(1)
+    }
+
+    # extend range to ensure we get a crossing
     root_list <- stats::uniroot(.f, interval = c(0, 1))
 
     root_list[["root"]]

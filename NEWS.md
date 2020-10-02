@@ -1,5 +1,11 @@
 # colorpath 0.0.0 (development version)
 
+* Added function `plot_cl()` to plot chroma-lumuinance plane for a palette. (#15)
+
+* Added argument `chroma_min` (default 0.01) to `as_mat_luv()` to keep meaningful hue at low chroma. (#15)
+
+* Added function `data_hcl()` to get HCL data to visualize palettes. (#15)
+
 * Refactored to add constuctor for LUV palettes, store `mat_luv` control-points as attribute. (#19)
 
 * Refactored (#1, continued):
