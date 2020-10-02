@@ -1,0 +1,7 @@
+template:
+  params:
+    bootswatch: sandstone
+
+development:
+  mode: auto
+
