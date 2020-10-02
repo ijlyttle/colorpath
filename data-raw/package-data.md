@@ -33,6 +33,12 @@ df_hcl_blues <-
     ## 2   250    75    55
     ## 3   250     0    85
 
+Let’s put a floor on chroma.
+
+``` r
+df_hcl_blues[["c"]] <- pmax(df_hcl_blues[["c"]], 1.e-2)
+```
+
 Next, we create a matrix:
 
 ``` r
@@ -42,10 +48,10 @@ mat_hcl_blues <-
   print()
 ```
 
-    ##        h  c  l
-    ## [1,] 250  0 25
-    ## [2,] 250 75 55
-    ## [3,] 250  0 85
+    ##        h     c  l
+    ## [1,] 250  0.01 25
+    ## [2,] 250 75.00 55
+    ## [3,] 250  0.01 85
 
 And convert it to LUV format:
 
@@ -53,14 +59,13 @@ And convert it to LUV format:
 mat_luv_blues <- 
   mat_hcl_blues %>%
   farver::convert_colour(from = "hcl", to = "luv") %>%
-  round(digits = 4) %>%
   print()
 ```
 
-    ##       l        u        v
-    ## [1,] 25   0.0000   0.0000
-    ## [2,] 55 -25.6515 -70.4769
-    ## [3,] 85   0.0000   0.0000
+    ##       l             u             v
+    ## [1,] 25  -0.003423786  -0.009393968
+    ## [2,] 55 -25.651507450 -70.476945208
+    ## [3,] 85  -0.003432393  -0.009386866
 
 We want to write out the HCL data frame and the LUV matrix:
 

@@ -4,10 +4,12 @@
 \alias{as_mat_luv}
 \title{Convert to LUV matrix from HCL data frame}
 \usage{
-as_mat_luv(df_hcl)
+as_mat_luv(df_hcl, chroma_min = 0.01)
 }
 \arguments{
-\item{df_hcl}{\code{data.frame} with variables \code{h}, \code{c}, \code{l}}
+\item{df_hcl}{\code{data.frame} with variables \code{h}, \code{c}, \code{l}.}
+
+\item{chroma_min}{\code{numeric} minimum value for chroma, helps preserve hue.}
 }
 \value{
 \code{matrix} with columns, \code{l}, \code{u}, \code{v} and same number
