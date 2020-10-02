@@ -1,5 +1,7 @@
 # colorpath 0.0.0 (development version)
 
+* Added pkgdown site. (#22)
+
 * Added function `plot_cl()` to plot chroma-lumuinance plane for a palette. (#15)
 
 * Added argument `chroma_min` (default 0.01) to `as_mat_luv()` to keep meaningful hue at low chroma. (#15)
