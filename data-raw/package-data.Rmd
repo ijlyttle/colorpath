@@ -29,14 +29,15 @@ df_hcl_blues <-
 Let's put a floor on chroma.
 
 ```{r}
-df_hcl_blues[["c"]] <- pmax(df_hcl_blues[["c"]], 1.e-2)
+df_chroma <- df_hcl_blues
+df_chroma[["c"]] <- pmax(df_hcl_blues[["c"]], 1.e-2)
 ```
 
 Next, we create a matrix:
 
 ```{r}
 mat_hcl_blues <- 
-  df_hcl_blues %>%
+  df_chroma %>%
   as.matrix() %>% 
   print()
 ```

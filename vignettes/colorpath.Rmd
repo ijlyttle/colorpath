@@ -1,0 +1,176 @@
+---
+title: "colorpath"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{colorpath}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library("colorpath")
+library("tibble")
+```
+
+The goal of **colorpath** is to help you design sequential (and diverging) color palettes that are effective and perceptually uniform.
+
+At the moment, this vignette has an audience of one. As we get our legs under us, this vignette will become more-accessible.
+
+This package uses the idea of a *color path*; I use this term to describe a trajectory through LUV colorspace from which one could extract sequential palettes for each of light and dark mode. 
+This way, a light-mode palette and a dark-mode palette can look like they came from the same place.
+
+There are a few principles this package rests on:
+
+1. The HCL colorspace is a relatively intuitive way to describe colors.
+
+1. The LUV colorspace is approximately perceptually-uniform; i.e. the Euclidean distance between two colors in LUV space corresponds well with the perceptual difference between those colors.
+
+1. The Euclidean distance along a Bézier spline can be computed readily.
+
+## Usage
+
+The idea is to start with a data frame of HCL values - these will be coordinates of control-points for a Bézier spline.
+If you want to learn more about the HCL colorspace, the folks who develop the **colorspace** package offer a [comprehensive introduction](http://hclwizard.org), a [color-picker](http://hclwizard.org/hclcolorpicker/) app, as well as other apps.
+
+### Proscribe colors
+
+This package has a such a sample HCL dataset:
+
+```{r}
+df_hcl_blues
+```
+
+A few things to notice here:
+
+- there are three columns: `h`, `c`, and `l` for hue, chroma, and luminance
+
+- luminance goes from low to high
+
+- chroma begins and ends at zero, has a peak in the middle
+
+- hue is constant
+
+As you will see, this is not the most exciting set of blues. There should be more chroma.
+At some point a better demonstration set should be chosen, but it gets the job done for now.
+For example, there is no reason to have only three control points, and there is no reason you can't vary the hue. 
+That said, I think it is a good idea that, for a given "single-ish hue" color path, the hue should vary linearly with the luminance.
+s
+We can convert this data frame into an LUV matrix:
+
+```{r}
+mat_luv_blues <- as_mat_luv(df_hcl_blues)
+
+round(mat_luv_blues, 3)
+```
+
+The LUV space is a Cartesian form of the HCL space; HCL is a polar form of LUV. 
+If `chroma` is zero, we should expect `u` and `v` both to be zero; we can see that this is not the case here.
+This is because the function `as_mat_luv()` has an argument `chroma_min` whose default is `0.01`.
+
+This is a trick used to preserve the hue of a color if its chroma is zero; a color with chroma value of 0.01 is imperceptible from thE corresponding color with a chroma value of 0.
+
+Also, for convenience, `mat_luv_blues` is an exported dataset.
+
+### Simple path
+
+The coordinates-set `mat_luv_blues` represents a set of control points for a Bézier spline in LUV space. 
+
+Let's create the spline:
+
+```{r}
+path_blues <- pal_luv_bezier(mat_luv_blues, rescale_path = FALSE)
+
+path_blues
+```
+
+As you can see, this is a palette function. It takes a numeric input; however, instead of hex-codes, it returns LUV values:
+
+```{r}
+path_blues(c(0, 0.5, 1)) %>%
+  round(3)
+```
+
+We can create a ggplot to see what this path looks like in the chroma-luminance plane. 
+The plot function takes the palette function as an argument.
+
+```{r}
+plot_cl(path_blues)
+```
+
+In the plot, we see three things:
+
+- points in the palette
+- the control points for the Bézier spline
+- for each point plotted from the palette, the color with the maximum chroma, given the hue and luminance.
+
+One of the plot specifications is that the chroma axis be scaled proportionately to the luminance axis; we specify the aspect ratio to be one.
+
+When we created `path_blues`, `pal_luv_bezier()` used an option `rescale_path = FALSE`. 
+In the plot, you will see that the points in the palette are equally spaced in luminance. However, they are not equally spaced in terms of the distance along the path.  
+
+Underneath the hood, we use the [**bezier**](https://CRAN.R-project.org/package=bezier) package to calculate the splines. 
+It also has a function to calculate the distance along the path. 
+We can use this information to rescale the input to the palette function to be perceptually uniform, insofar as LUV space is perceptually uniform.
+
+### Rescaled path
+
+In `pal_luv_bezier()`, the default value for `rescale_path` is `TRUE`. 
+This invokes the distance calculation, which can take a few seconds, then rescales the function input:
+
+```{r}
+pal_blues_rescaled <- pal_luv_bezier(mat_luv_blues)
+
+plot_cl(pal_blues_rescaled, label_hue = TRUE)
+```
+
+You'll notice a couple of things: the palette points are equally-spaced along the color path, and there are now labels for the value of the hue for each control point. 
+These labels can be informative while developing a color path, but I can see how they might distract from a "finished product".
+
+## Path vs. Palette
+
+In my mind a color path contains palettes or parts of palettes - the idea would be, say for a corporate palette, to have a series of color paths, say a set of blues, oranges, and greens. From these paths sequential and diverging palettes could be composed from parts of these paths.
+
+### Sequential palette (light mode)
+
+In my mind, a sequential palette for light mode should have high luminance at the low end of the scale and low luminance at the high end of the scale. 
+
+We can make such a palette by applying a rescaler function to the path function. 
+One of the rescaler functions work using the luminance of a the path function - in essence, you specify the luminance values you want to form the ends of the color scale.
+
+```{r}
+# there is an opportunity to make this cleaner, I don't like to specify 
+#  pal_blues_rescaled twice
+rsc_light <- rescaler_lum(c(80, 40), pal_blues_rescaled)
+
+pal_blues_light <- pal_luv_rescale(pal_blues_rescaled, rsc_light)
+
+plot_cl(pal_blues_light)
+```
+
+### Sequential palette (dark mode)
+
+For dark mode, the low end of the scale should have colors with low luminance; the high end of the scale should have colors with high luminance:
+
+```{r}
+rsc_dark <- rescaler_lum(c(30, 70), pal_blues_rescaled)
+
+pal_blues_dark <- pal_luv_rescale(pal_blues_rescaled, rsc_dark)
+
+plot_cl(pal_blues_dark)
+```
+
+## Joining palettes
+
+### Diverging palette (light mode)
+
+### Diverging palette (dark mode)
+
+
+
