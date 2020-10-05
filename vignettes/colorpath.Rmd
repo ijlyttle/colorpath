@@ -160,9 +160,8 @@ plot_cl(pal_blues_light)
 For dark mode, the low end of the scale should have colors with low luminance; the high end of the scale should have colors with high luminance:
 
 ```{r}
-rsc_dark <- rescaler_lum(c(35, 80), pal_blues_rescaled)
-
-pal_blues_dark <- pal_luv_rescale(pal_blues_rescaled, rsc_dark)
+# there's a shortcut now: pal_luv_rescale_lum()
+pal_blues_dark <- pal_luv_rescale_lum(pal_blues_rescaled, c(35, 80))
 
 plot_cl(pal_blues_dark)
 ```
@@ -171,6 +170,23 @@ To use a sineramp, the input needs to be an integer, the output needs to be hex.
 
 ```{r}
 pal.sineramp(as_pal_disc(as_pal_hex(pal_blues_dark)))
+```
+
+Here's a bit more detail on `as_pal_disc()` and `as_pal_hex()`; thes eech take a palette function, and each return a palette function:
+
+```{r}
+n <- 6
+x <- seq(0, 1, length.out = 6)
+x
+
+# input x, output LUV
+pal_blues_dark(x)
+
+# input x, output hex
+as_pal_hex(pal_blues_dark)(x)
+
+# input n (number of colors), output hex
+as_pal_disc(as_pal_hex(pal_blues_dark))(n)
 ```
 
 At this point, I'm not terribly happy with the results. I do not perceive this to be as uniform as I hoped. Speculating:
