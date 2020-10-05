@@ -43,7 +43,7 @@ test_that("rescaler_x works", {
 
 test_that("f_root_luminance works", {
 
-  froot <- f_root_luminance(55, pal_blues)
+  froot <- f_root_luminance(60, pal_blues)
 
   expect_type(froot, "closure")
   expect_equal(
@@ -58,7 +58,7 @@ test_that("f_root_luminance works", {
 test_that("root_luminance works", {
 
   expect_equal(
-    root_luminance(c(25, 55, 85), palette = pal_blues),
+    root_luminance(c(30, 60, 90), palette = pal_blues),
     c(0, 0.5, 1),
     tolerance = 1.e-6
   )
@@ -67,8 +67,8 @@ test_that("root_luminance works", {
 
 test_that("rescaler_lum works", {
 
-  rlum <- rescaler_lum(c(25, 55), pal_blues)
-  rlum2 <- rescaler_lum(c(55, 85), pal_blues)
+  rlum <- rescaler_lum(c(30, 60), pal_blues)
+  rlum2 <- rescaler_lum(c(60, 90), pal_blues)
 
   expect_s3_class(rlum, "cpath_rescaler")
 
@@ -102,7 +102,7 @@ test_that("rescaler_bezier works", {
   expect_identical(
     rbez(c(0, 0.5, 1)),
     c(0, 0.5, 1),
-    tolerance = 2.e-4
+    tolerance = 1.e-3
   )
 
 })

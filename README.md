@@ -32,6 +32,15 @@ You can install the github version of colorpath from
 remotes::install_github("ijlyttle/colorpath")
 ```
 
+## Acknowledgments
+
+This package rests squarely on the foundation laid by the
+[**colorspace**
+package](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html),
+and was inspired by [Achim Zeilis’
+talk](https://www.youtube.com/watch?v=6bv2IAcNE_c) at UseR\! 2019 in
+Toulouse.
+
 ## Code of Conduct
 
 Please note that the colorpath project is released with a [Contributor

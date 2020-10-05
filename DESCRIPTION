@@ -32,9 +32,15 @@ Imports:
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
-    testthat (>= 2.99.0.9000)
+    testthat (>= 2.99.0.9000),
+    rmarkdown,
+    knitr,   
+    splattr (>= 0.0.0.9008),
+    pals
 Remotes: 
-    r-lib/testthat
+    r-lib/testthat,
+    ijlyttle/splattr
 Config/testthat/edition: 3    
 Depends: 
     R (>= 2.10)
+VignetteBuilder: knitr
