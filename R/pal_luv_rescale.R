@@ -4,6 +4,7 @@
 #'
 #' @param pal_luv  `function` with S3 class `"cpath_pal_luv"`
 #' @param rescaler `function` with S3 class `"cpath_rescaler"`
+#' @inheritParams rescaler_x
 #'
 #' @return `function` with S3 class `"cpath_pal_luv"`
 #' @examples
@@ -34,4 +35,25 @@ pal_luv_rescale <- function(pal_luv, rescaler) {
 
   # keep existing spec_luv
   new_pal_luv(.f, spec_luv = spec_luv(pal_luv))
+}
+
+#' @rdname pal_luv_rescale
+#' @export
+#'
+pal_luv_rescale_x <- function(pal_luv, range) {
+
+  rescaler <- rescaler_x(range)
+
+  pal_luv_rescale(pal_luv, rescaler)
+}
+
+
+#' @rdname pal_luv_rescale
+#' @export
+#'
+pal_luv_rescale_lum <- function(pal_luv, range) {
+
+  rescaler <- rescaler_lum(range, pal_luv)
+
+  pal_luv_rescale(pal_luv, rescaler)
 }
