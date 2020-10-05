@@ -1,5 +1,7 @@
 # colorpath 0.0.0 (development version)
 
+* Added functions `pal_luv_rescale_x()` and `pal_luv_rescale_lum()` to avoid creating rescaler functions explicitly. (#27)
+
 * Added pkgdown site. (#22)
 
 * Added function `plot_cl()` to plot chroma-lumuinance plane for a palette. (#15)
