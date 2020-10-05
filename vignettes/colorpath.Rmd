@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library("colorpath")
 library("tibble")
+library("pals")
 ```
 
 The goal of **colorpath** is to help you design sequential (and diverging) color palettes that are effective and perceptually uniform.
@@ -147,7 +148,7 @@ One of the rescaler functions work using the luminance of a the path function - 
 ```{r}
 # there is an opportunity to make this cleaner, I don't like to specify 
 #  pal_blues_rescaled twice
-rsc_light <- rescaler_lum(c(80, 40), pal_blues_rescaled)
+rsc_light <- rescaler_lum(c(85, 40), pal_blues_rescaled)
 
 pal_blues_light <- pal_luv_rescale(pal_blues_rescaled, rsc_light)
 
@@ -159,12 +160,29 @@ plot_cl(pal_blues_light)
 For dark mode, the low end of the scale should have colors with low luminance; the high end of the scale should have colors with high luminance:
 
 ```{r}
-rsc_dark <- rescaler_lum(c(30, 70), pal_blues_rescaled)
+rsc_dark <- rescaler_lum(c(35, 80), pal_blues_rescaled)
 
 pal_blues_dark <- pal_luv_rescale(pal_blues_rescaled, rsc_dark)
 
 plot_cl(pal_blues_dark)
 ```
+
+To use a sineramp, the input needs to be an integer, the output needs to be hex. We have functions for those.
+
+```{r}
+pal.sineramp(as_pal_disc(as_pal_hex(pal_blues_dark)))
+```
+
+At this point, I'm not terribly happy with the results. I do not perceive this to be as uniform as I hoped. Speculating:
+
+- The "curtain" seems washed out at both ends. I think this is due to the sharp chroma peak 
+- I am not as hopeful that individual palettes can be extracted from paths because I think we are asking too much of a path, especially because we are working with a luminance range of 60.
+- Perhaps this can still be a useful tool to create related palettes?
+
+Of course, I could have chosen a bad starting point and become discouraged.
+
+What I think (hope) this package still offers is a way to design a palette reproducibly, capturing your design intent as code or parameters.
+
 
 ## Joining palettes
 

@@ -19,9 +19,9 @@ First, let's create a data frame:
 df_hcl_blues <- 
   tribble(
      ~h,  ~c,  ~l,
-    250,   0,  25,
-    250,  75,  55,
-    250,   0,  85
+    250,   0,  30,
+    250, 150,  60,
+    250,   0,  90
   ) %>%
   print()
 ```
