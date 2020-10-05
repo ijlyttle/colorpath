@@ -2,14 +2,22 @@
 % Please edit documentation in R/pal_luv_rescale.R
 \name{pal_luv_rescale}
 \alias{pal_luv_rescale}
+\alias{pal_luv_rescale_x}
+\alias{pal_luv_rescale_lum}
 \title{Rescale LUV palette-function}
 \usage{
 pal_luv_rescale(pal_luv, rescaler)
+
+pal_luv_rescale_x(pal_luv, range)
+
+pal_luv_rescale_lum(pal_luv, range)
 }
 \arguments{
 \item{pal_luv}{\code{function} with S3 class \code{"cpath_pal_luv"}}
 
 \item{rescaler}{\code{function} with S3 class \code{"cpath_rescaler"}}
+
+\item{range}{\code{numeric} values, in \code{x} or in luminance, to correspond with \code{x = c(0, 1)}}
 }
 \value{
 \code{function} with S3 class \code{"cpath_pal_luv"}
