@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9009</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9010</span>
       </span>
     </div>
 
@@ -120,7 +120,11 @@
     <p>Rescale LUV palette function using a rescaler function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pal_luv_rescale</span><span class='op'>(</span><span class='va'>pal_luv</span>, <span class='va'>rescaler</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pal_luv_rescale</span><span class='op'>(</span><span class='va'>pal_luv</span>, <span class='va'>rescaler</span><span class='op'>)</span>
+
+<span class='fu'>pal_luv_rescale_x</span><span class='op'>(</span><span class='va'>pal_luv</span>, <span class='va'>range</span><span class='op'>)</span>
+
+<span class='fu'>pal_luv_rescale_lum</span><span class='op'>(</span><span class='va'>pal_luv</span>, <span class='va'>range</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,6 +136,10 @@
     <tr>
       <th>rescaler</th>
       <td><p><code>function</code> with S3 class <code>"cpath_rescaler"</code></p></td>
+    </tr>
+    <tr>
+      <th>range</th>
+      <td><p><code>numeric</code> values, in <code>x</code> or in luminance, to correspond with <code>x = c(0, 1)</code></p></td>
     </tr>
     </table>
 
