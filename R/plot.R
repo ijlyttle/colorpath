@@ -84,15 +84,15 @@ data_hcl <- function(pal_luv, n = 11) {
 
   # data frame
   df <- rbind(
-    df_hcl(mat_hcl_palette, type = "palette", use_hex = TRUE),
-    df_hcl(mat_hcl_maxchroma, type = "max chroma", use_hex = TRUE),
-    df_hcl(mat_hcl_control, type = "control point", use_hex = FALSE)
+    make_plot_data(mat_hcl_palette, type = "palette", use_hex = TRUE),
+    make_plot_data(mat_hcl_maxchroma, type = "max chroma", use_hex = TRUE),
+    make_plot_data(mat_hcl_control, type = "control point", use_hex = FALSE)
   )
 
   df
 }
 
-df_hcl <- function(mat_hcl, type, use_hex) {
+make_plot_data <- function(mat_hcl, type, use_hex) {
 
   hex <- "#777777"
   if (use_hex) {

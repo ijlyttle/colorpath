@@ -1,8 +1,8 @@
-test_that("df_hcl works", {
+test_that("make_plot_data works", {
 
   mat_hcl_blues <- farver::convert_colour(mat_luv_blues, from = "luv", to = "hcl")
 
-  df_hcl_blues <- df_hcl(mat_hcl_blues, type = "control point", use_hex = FALSE)
+  df_hcl_blues <- make_plot_data(mat_hcl_blues, type = "control point", use_hex = FALSE)
 
   expect_s3_class(df_hcl_blues, "tbl_df")
   expect_named(
