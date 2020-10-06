@@ -49,7 +49,7 @@ surface_hl <- function(range_hue, input_lum = c(0, 100)) {
     range_hue[2] <- range_hue[1]
   }
 
-  function(lum) {
+  f <- function(lum) {
 
     x <- (lum - input_lum[1]) / (input_lum[2] - input_lum[1])
 
@@ -57,6 +57,8 @@ surface_hl <- function(range_hue, input_lum = c(0, 100)) {
 
     hue %% 360
   }
+
+  structure(f, class = "cpath_surface_hl")
 }
 
 #' Create HCL data-frame using HL surface
@@ -86,3 +88,31 @@ df_hcl <- function(df_cl, surface_hl) {
     l = df_cl[["l"]]
   )
 }
+
+#' @export
+#'
+plot.cpath_surface_hl <- function(x, y = NULL, ...) {
+
+  df_cl <- tibble::tibble(c = c(30, 30), l = c(40, 60))
+
+  points <- points_hcl_surface(sfc = x)
+
+  print(points)
+
+  colorspace::hclplot(points, ...)
+
+  invisible(x)
+}
+
+points_hcl_surface <- function(sfc) {
+
+  df_cl <- tibble::tibble(c = c(30, 30), l = c(40, 60))
+
+  df_hcl <- df_hcl(df_cl, sfc)
+
+  hcl <- colorspace::polarLUV(L = df_hcl$l, C = df_hcl$c, H = df_hcl$h)
+
+  hcl
+}
+
+

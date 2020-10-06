@@ -31,4 +31,12 @@ each member between 0 and 1
 }
 
 There shall be a monotonic relationship between \code{x} and \code{y}.
+
+\strong{\code{cpath_surface_hl}}
+
+A function that:
+\itemize{
+\item takes a numeric input \code{lum} (vector, each memeber between 0 and 100)
+\item returns values for hue
+}
 }
