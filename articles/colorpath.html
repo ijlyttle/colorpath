@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9011</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9012</span>
       </span>
     </div>
 
@@ -249,6 +249,38 @@
 </ul>
 <p>Of course, I could have chosen a bad starting point and become discouraged.</p>
 <p>What I think (hope) this package still offers is a way to design a palette reproducibly, capturing your design intent as code or parameters.</p>
+<p>New set of ideas: let’s define a surface in within the gamut such that the hue is a monotonic function of luminance.</p>
+<p>We can create such a function.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">sfc_blues</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surface_hl.html">surface_hl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">240</span>, <span class="fl">260</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu">sfc_blues</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, by <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 240 244 248 252 256 260</span></pre></div>
+<p>We can plot what such a function looks like in the gamut:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_blues</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<p>Using this slice through the gamut, we can define an HCL data fram (then an LUV matrix) of control points using a data frame in CL, and a surface function:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">df_cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">50</span>, <span class="fl">80</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">150</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">df_hcl_blues_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">df_cl</span>, <span class="va">sfc_blues</span><span class="op">)</span>
+<span class="va">df_hcl_blues_new</span>
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;       h     c     l</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1   244     0    20</span>
+<span class="co">#&gt; 2   250   150    50</span>
+<span class="co">#&gt; 3   256     0    80</span>
+
+<span class="va">mat_luv_blues_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">df_hcl_blues_new</span><span class="op">)</span></pre></div>
+<p>Now you can create a palette:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="va">pal_blues_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="va">mat_luv_blues_new</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_new</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<p>Perhaps palettes in the same “family” need not be drawn from the same colorpath - just from the same surface.</p>
 </div>
 </div>
 <div id="joining-palettes" class="section level2">
