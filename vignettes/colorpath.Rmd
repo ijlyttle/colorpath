@@ -199,6 +199,43 @@ Of course, I could have chosen a bad starting point and become discouraged.
 
 What I think (hope) this package still offers is a way to design a palette reproducibly, capturing your design intent as code or parameters.
 
+New set of ideas: let's define a surface in within the gamut such that the hue is a monotonic function of luminance.
+
+We can create such a function.
+
+```{r}
+sfc_blues <- surface_hl(c(240, 260))
+
+sfc_blues(seq(0, 100, by = 20))
+```
+
+We can plot what such a function looks like in the gamut:
+
+```{r}
+plot_surface_hl(sfc_blues)
+```
+
+Using this slice through the gamut, we can define an HCL data fram (then an LUV matrix) of control points using a data frame in CL, and a surface function:
+
+```{r}
+df_cl <- tibble(l = c(20, 50, 80), c = c(0, 150, 0))
+
+df_hcl_blues_new <- df_hcl(df_cl, sfc_blues)
+df_hcl_blues_new
+
+mat_luv_blues_new <- as_mat_luv(df_hcl_blues_new)
+```
+
+Now you can create a palette:
+
+```{r}
+pal_blues_new <- pal_luv_bezier(mat_luv_blues_new)
+
+plot_cl(pal_blues_new)
+```
+
+Perhaps palettes in the same "family" need not be drawn from the same colorpath - just from the same surface.
+
 
 ## Joining palettes
 
