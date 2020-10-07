@@ -26,6 +26,13 @@
 #'
 #' There shall be a monotonic relationship between `x` and `y`.
 #'
+#' **`cpath_surface_hl`**
+#'
+#' A function that:
+#'
+#'  - takes a numeric input `lum` (vector, each memeber between 0 and 100)
+#'  - returns values for hue
+#'
 #' @name colorpath_S3_classes
 #'
 NULL

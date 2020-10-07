@@ -1,5 +1,7 @@
 # colorpath 0.0.0 (development version)
 
+* Added functions `data_surface_hl()`, `plot_surface_hl()` that work with hue-luminance surface functions. (#31)
+
 * Added functions `surface_hl() ` and `df_hcl()` to facilitate creating sets of consistent multi-hue palettes. (#29)
 
 * Added functions `pal_luv_rescale_x()` and `pal_luv_rescale_lum()` to avoid creating rescaler functions explicitly. (#27)

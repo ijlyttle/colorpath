@@ -4,12 +4,12 @@
 \alias{df_hcl}
 \title{Create HCL data-frame using HL surface}
 \usage{
-df_hcl(df_cl, surface_hl)
+df_hcl(df_cl, sfc)
 }
 \arguments{
 \item{df_cl}{\code{data.frame} with columns \code{c}, \code{l}.}
 
-\item{surface_hl}{\code{function} created using \code{surface_hl()}.}
+\item{sfc}{\code{function} created using \code{surface_hl()}.}
 }
 \value{
 \code{tibble} with columns \code{h}, \code{c}, \code{l}
