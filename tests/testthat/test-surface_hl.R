@@ -49,14 +49,58 @@ test_that("df_hcl() works", {
 
 })
 
-test_that("points_hcl_surface() works", {
+test_that("mat_chroma() works", {
 
-  hcl_multi <- points_hcl_surface(sfc_blues_multi)
+  hue <- 250
+  luminance <- 50
+  chroma_max <- 86.65
+  step <- 2
 
-  expect_s4_class(hcl_multi, "polarLUV")
+  n <- floor(chroma_max / 2)
 
-  expect_equal(hcl_multi@coords[, "H"], c(248, 252))
-  expect_equal(hcl_multi@coords[, "C"], c( 30,  30))
-  expect_equal(hcl_multi@coords[, "L"], c( 40,  60))
+  mat_cma <- mat_chroma(hue, luminance, chroma_max, step)
+
+  expect_type(mat_cma, "double")
+  expect_true(is.matrix(mat_cma))
+  expect_identical(dimnames(mat_cma), list(NULL, c("h", "c", "l")))
+
+  expect_identical(mat_cma[, "h"], rep(hue, n))
+  expect_identical(mat_cma[, "c"], seq(from = step / 2, by = step, length.out = n))
+  expect_identical(mat_cma[, "l"], rep(luminance, n))
 
 })
+
+test_that("mat_surface_hl() works", {
+
+  expect_error(mat_surface_hl("foo"), "does not inherit")
+
+  mat_sfc <- mat_surface_hl(sfc_blues_multi)
+
+  expect_type(mat_sfc, "double")
+  expect_true(is.matrix(mat_sfc))
+  expect_identical(dimnames(mat_sfc), list(NULL, c("h", "c", "l")))
+
+})
+
+test_that("data_surface_hl() works", {
+
+  expect_error(data_surface_hl("foo"), "does not inherit")
+
+  df_sfc <- data_surface_hl(sfc_blues_multi)
+
+  expect_s3_class(df_sfc, "tbl")
+  expect_named(df_sfc, c("h", "c", "l", "hex"))
+
+})
+
+
+test_that("plot_surface_hl() works", {
+
+  expect_error(plot_surface_hl("foo"), "does not inherit")
+
+  plot_sfc <- plot_surface_hl(sfc_blues_multi)
+
+  expect_s3_class(plot_sfc, "gg")
+
+})
+

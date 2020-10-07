@@ -28,7 +28,8 @@ Imports:
     rlang,
     tibble,
     colorspace,
-    ggplot2
+    ggplot2,
+    purrr
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
