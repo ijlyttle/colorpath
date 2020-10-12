@@ -24,6 +24,7 @@ plot_cl <- function(pal_luv, n = 11, label_hue = FALSE) {
     # path will show up only for the control points because
     #   the color is constant for the control points
     ggplot2::geom_path(linetype = 2, alpha = 0.5) +
+    ggplot2::xlim(0, NA) +
     ggplot2::ylim(0, 100) +
     ggplot2::scale_color_identity() +
     ggplot2::scale_shape_manual(
