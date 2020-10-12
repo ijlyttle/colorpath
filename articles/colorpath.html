@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9012</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9013</span>
       </span>
     </div>
 
@@ -258,7 +258,9 @@
 <span class="co">#&gt; [1] 240 244 248 252 256 260</span></pre></div>
 <p>We can plot what such a function looks like in the gamut:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_blues</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_blues</span><span class="op">)</span>
+<span class="co">#&gt; Scale for 'y' is already present. Adding another scale for 'y', which will</span>
+<span class="co">#&gt; replace the existing scale.</span></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 <p>Using this slice through the gamut, we can define an HCL data fram (then an LUV matrix) of control points using a data frame in CL, and a surface function:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
