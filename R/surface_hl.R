@@ -207,10 +207,10 @@ plot_surface_hl <- function(sfc, step = 0.5) {
     ) +
     ggplot2::geom_raster() +
     ggplot2::scale_y_continuous(
-      sec.axis = ggplot2::sec_axis(sfc, name = "hue")
+      sec.axis = ggplot2::sec_axis(sfc, name = "hue"),
+      limits = c(0, 100)
     ) +
     ggplot2::xlim(0, NA) +
-    ggplot2::ylim(0, 100) +
     ggplot2::scale_fill_identity() +
     ggplot2::labs(
       x = "chroma",
