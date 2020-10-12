@@ -1,6 +1,6 @@
 Package: colorpath
 Title: Build Color Paths
-Version: 0.0.0.9013
+Version: 0.0.0.9014
 Authors@R: 
     person(given = "Ian J",
            family = "Lyttle",
