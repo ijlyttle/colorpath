@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 library("colorpath")
 library("tibble")
 library("pals")
+library("splattr")
 ```
 
 The goal of **colorpath** is to help you design sequential (and diverging) color palettes that are effective and perceptually uniform.
@@ -172,7 +173,7 @@ To use a sineramp, the input needs to be an integer, the output needs to be hex.
 pal.sineramp(as_pal_disc(as_pal_hex(pal_blues_dark)))
 ```
 
-Here's a bit more detail on `as_pal_disc()` and `as_pal_hex()`; thes eech take a palette function, and each return a palette function:
+Here's a bit more detail on `as_pal_disc()` and `as_pal_hex()`; these each take a palette function, and each return a palette function:
 
 ```{r}
 n <- 6
@@ -314,7 +315,8 @@ In this package, we want to:
 
 ### Thoughts on continuous palettes
 
-Luminance propels everything. Chroma used to create a longer path. Be careful with hue because differences in hue are perceived differently by folks with color-vision deficiency.  
+Luminance propels everything. Chroma used to create a longer path. 
+Be careful with hue because differences in hue are perceived differently by folks with color-vision deficiency.  
 
 Dark mode. Comparing prominence vs. the background.
 
@@ -327,13 +329,15 @@ sfc_cyan <- surface_hl(192.2)
 sfc_blue <- surface_hl(265.9)
 ```
 
+We get warnings (from ggplot2) when we render these plots because the second y-axis has a uses the surface-functions which, in these cases, have a constant hue. 
+
 ```{r}
 plot_surface_hl(sfc_cyan)
 plot_surface_hl(sfc_blue)
 ```
 
 ```{r}
-sfc_multi_blue <- surface_hl(c(273, 215))
+sfc_multi_blue <- surface_hl(c(271, 215))
 plot_surface_hl(sfc_multi_blue)
 ```
 
@@ -349,8 +353,8 @@ dfcl_blues_light <-
       90.0,  30.0,
       75.0,  80.0,
       50.0,  80.0,
-      25.5,  50.0,
-      12.5,  30.0
+      30.0,  60.0,
+      20.0,  40.0
   )
 ```
 
@@ -361,7 +365,8 @@ dfhcl_blues_light
 ```
 
 ```{r}
-pal_blues_light <- pal_luv_bezier(as_mat_luv(dfhcl_blues_light), rescale = FALSE)
+pal_blues_light <- 
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_light), rescale = TRUE)
 
 plot_cl(pal_blues_light)
 ```
@@ -375,8 +380,153 @@ hcl <-
 sfc_multi_blue(hcl[, "l"])
 ```
 
-The two plots seem inconsistent. Even though the 
+The two plots seem inconsistent. 
+The spline does not respect the surface. It respects only the control points, which are on the surface.
 
+```{r}
+blues_light_discrete <- as_pal_disc(as_pal_hex(pal_blues_light))
+
+swatch(blues_light_discrete(11))
+
+pal.sineramp(blues_light_discrete)
+```
+
+Let's try a variation on the theme to create a half-palette for a diverging-palette:
+
+```{r}
+dfcl_blues_div_light <- 
+  tribble(
+      ~l,      ~c,
+      90.0,   0.0,
+      85.0,  50.0,
+      70.0,  80.0,
+      50.0,  80.0,
+      30.0,  60.0,
+      20.0,  40.0
+  )
+```
+
+```{r}
+dfhcl_blues_div_light <- df_hcl(dfcl_blues_div_light, sfc_multi_blue)
+
+dfhcl_blues_div_light
+```
+
+```{r}
+pal_blues_div_light <- 
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_div_light), rescale = TRUE)
+
+plot_cl(pal_blues_div_light)
+```
+
+```{r}
+blues_div_light_discrete <- as_pal_disc(as_pal_hex(pal_blues_div_light))
+
+swatch(blues_div_light_discrete(11))
+
+pal.sineramp(blues_div_light_discrete)
+```
+
+### Dark mode
+
+Here's my theory (and I'm sure it is not original): a sequential palette "move away" from the background color. 
+For light mode, it start more luminant and become less luminant. 
+For dark mode, it should start less luminant and become more luminant. 
+
+In essence, you want the scale to emphasize the "interesting" data by placing those colors as far away from the background as possible.
+
+Here, we assume that light mode has a white background (luminance 100), and that the dark-mode background has a luminance of 20.
+This has the effect of shortening the available-luminance range for dark mode (values under 20 are inaccessible).
+
+That said, let's look at what dark mode might look like here:
+
+```{r}
+dfcl_blues_dark <- 
+  tribble(
+      ~l,      ~c,
+      35.0,  30.0,
+      50.0,  80.0,
+      75.0,  80.0,
+      90.0,  30.0
+  )
+
+dfhcl_blues_dark <- df_hcl(dfcl_blues_dark, sfc_multi_blue)
+```
+
+```{r}
+pal_blues_dark <-
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_dark), rescale = TRUE)
+
+plot_cl(pal_blues_dark)
+```
+
+```{r}
+blues_dark_discrete <- as_pal_disc(as_pal_hex(pal_blues_dark))
+
+swatch(blues_dark_discrete(11), background = "#333", margin = 10)
+
+pal.sineramp(blues_dark_discrete)
+```
+
+
+```{r}
+dfcl_blues_div_dark <- 
+  tribble(
+      ~l,      ~c,
+      35.0,   0.0,
+      40.0,  40.0,
+      50.0,  80.0,
+      75.0,  80.0,
+      90.0,  30.0
+  )
+
+dfhcl_blues_div_dark <- df_hcl(dfcl_blues_div_dark, sfc_multi_blue)
+```
+
+```{r}
+pal_blues_div_dark <-
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_div_dark), rescale = TRUE)
+
+plot_cl(pal_blues_div_dark)
+```
+
+```{r}
+blues_div_dark_discrete <- as_pal_disc(as_pal_hex(pal_blues_div_dark))
+
+swatch(blues_div_dark_discrete(11), background = "#333", margin = 10)
+
+pal.sineramp(blues_div_dark_discrete)
+```
+
+A couple notes on the diverging palettes: 
+
+- To my eyes, the LUV space is not quite perceptually uniform.
+  The first few colors in this palette, near the greys, seem closer together than the lighter colors do.
+  
+- For an actual diverging palette, I think I would cut the palette off at luminance around 80, as a consideration for the other side of the palette (not yet seen). 
+  For example, I would not the light orange to appear too close to the light blue.  
+  
+There is a way to test this idea about perceptual uniformity:
+
+```{r}
+dx <- 0.1
+
+tmp <- farver::compare_colour(
+  from = pal_blues_div_dark(seq(0, 1, by = dx)),
+  from_space = "luv",
+  method = "cie2000"
+)
+
+print(tmp)
+```
+  
+The output is a bit cryptic - this demands its own function - we should read this along the first superdiagonal.
+
+```{r}
+diag(tmp[-nrow(tmp),-1])
+```
+
+This shows the "cie2000" perceptual-distance between adjacent colors. It does show a "lull" in the first part of the palette, although the leading value (~7.4) surprises me.
 
 ## Joining palettes
 
