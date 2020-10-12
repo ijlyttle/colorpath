@@ -37,9 +37,14 @@ remotes::install_github("ijlyttle/colorpath")
 This package rests squarely on the foundation laid by the
 [**colorspace**
 package](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html),
-and was inspired by [Achim Zeilis’
+and was inspired by [Achim Zeileis’
 talk](https://www.youtube.com/watch?v=6bv2IAcNE_c) at UseR\! 2019 in
 Toulouse.
+
+As well, a lot of inspiration is drawn from the design of the
+[matplotlib default
+colormaps](https://www.youtube.com/watch?v=xAoljeRJ3lU) presented at
+PyCon 2015.
 
 ## Code of Conduct
 
