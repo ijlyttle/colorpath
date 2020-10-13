@@ -498,7 +498,7 @@ swatch(blues_div_dark_discrete(11), background = "#333", margin = 10)
 pal.sineramp(blues_div_dark_discrete)
 ```
 
-A couple notes on the diverging palettes: 
+A couple notes on this diverging palette: 
 
 - To my eyes, the LUV space is not quite perceptually uniform.
   The first few colors in this palette, near the greys, seem closer together than the lighter colors do.
@@ -506,27 +506,46 @@ A couple notes on the diverging palettes:
 - For an actual diverging palette, I think I would cut the palette off at luminance around 80, as a consideration for the other side of the palette (not yet seen). 
   For example, I would not the light orange to appear too close to the light blue.  
   
-There is a way to test this idea about perceptual uniformity:
+There is a way to test this idea about perceptual uniformity.
+There is now a function in colorpath, `get_distance()` that given an LUV palette-function and a number of intervals, calculates the perceptual distance covered by each of the intervals.
 
 ```{r}
-dx <- 0.1
-
-tmp <- farver::compare_colour(
-  from = pal_blues_div_dark(seq(0, 1, by = dx)),
-  from_space = "luv",
-  method = "cie2000"
-)
-
-print(tmp)
-```
-  
-The output is a bit cryptic - this demands its own function - we should read this along the first superdiagonal.
-
-```{r}
-diag(tmp[-nrow(tmp),-1])
+get_distance(pal_blues_div_dark, n = 10)
 ```
 
-This shows the "cie2000" perceptual-distance between adjacent colors. It does show a "lull" in the first part of the palette, although the leading value (~7.4) surprises me.
+This shows the "cie2000" perceptual-distance between adjacent colors. 
+It does show a "lull" in the first part of the palette, although the leading value (~7.4) surprises me.
+
+I think we can solve one problem with another here. 
+We can use a Bézier spline only to define the luminance-chroma trajectory, then use the surface to define the hue according to the luminance. 
+Although colorspace offers a bunch of parameters to define a palette function, colorspace's math uses the parameters with the same separation; the hue is calculated independently from the chroma.
+
+By splining only on chroma and luminance, we lose effectiveness in the distance rescaling that the bezier package offers. However, using `get_distance()`, we could make our own rescaling - which may be more effective than Euclidean distance in LUV space.
+
+### Interim summary
+
+I think that defining surfaces can make our problem simpler because it separates our variables according to our concerns.
+
+We could define surfaces to represent palette families: greens, blues, etc. 
+We could define trajectories to represent palette type: light, light-diverging, dark, dark-diverging.
+
+Surfaces are chosen with a few factors in mind:
+
+- open up more chroma space
+- fidelity to an organization's brand
+- among singlish-hue surfaces, blues and oranges seem like default choices because of their contrast with each other, especially for folks with CVD 
+
+Trajectories are also chosen with a few factors in mind, all of them have to do with the background color for each of light and dark mode.
+All colors in all palettes should have luminance values at least 10-points different from the luminance of the background color (I choose 10 as an example, maybe the right value is 7). This means that if your dark-mode background has a luminance of 20, the minimum luminance for dark-mode palettes should be 30.
+
+- for light mode, assuming a background luminance of 100, we could start the a trajectory with luminance 90, then end with a luminance that need not respect the luminance considerations of dark mode, i.e. we could go down to luminance 20. 
+- for dark mode, we should start with a luminance at the luminance limit.
+- for non-diverging palettes, we could start a trajectory with a reasonable chroma - no need to be "too grey".
+- for diverging palettes, we need to start the trajectory with zero chroma, in order to respect the common point.
+- again for diverging palettes, the end of each arm should be not-too-far from the maximum chroma, as the chroma is what will drive the contrast between the two extrema of a "combined" diverging palette. 
+
+Perhaps a set of templates could be used for these trajectories, then adapted to the chroma peculiarities of each surface family.
+
 
 ## Joining palettes
 
