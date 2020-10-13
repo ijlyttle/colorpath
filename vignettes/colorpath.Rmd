@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 library("colorpath")
 library("tibble")
 library("pals")
+library("splattr")
 ```
 
 The goal of **colorpath** is to help you design sequential (and diverging) color palettes that are effective and perceptually uniform.
@@ -172,7 +173,7 @@ To use a sineramp, the input needs to be an integer, the output needs to be hex.
 pal.sineramp(as_pal_disc(as_pal_hex(pal_blues_dark)))
 ```
 
-Here's a bit more detail on `as_pal_disc()` and `as_pal_hex()`; thes eech take a palette function, and each return a palette function:
+Here's a bit more detail on `as_pal_disc()` and `as_pal_hex()`; these each take a palette function, and each return a palette function:
 
 ```{r}
 n <- 6
@@ -235,6 +236,315 @@ plot_cl(pal_blues_new)
 ```
 
 Perhaps palettes in the same "family" need not be drawn from the same colorpath - just from the same surface.
+
+## Surfaces
+
+This is an attempt to re-boot this vignette; once these sections are on their feet, they will start to "take over" the rest of the vignette.
+
+Maybe I should just try to start at the start. 
+Suffice to say that in its early form, these thoughts are not yet properly attributed. For me, it all starts with the colorspace package, and Achim Zeileis' talk at UseR!2019. 
+
+In day-to-day use, colors on a computer display are expressed using hex-codes, e.g. [`#663399`](https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416). 
+As you likely know, hex-codes express the color in terms of three color channels, or dimensions: red, green and blue. 
+These three dimensions form a **color space** called **sRGB**. A color space is a set of dimensions used to express colors.
+
+The set of all colors that can be expressed using sRGB is called the sRGB **gamut**. 
+It is a subset of the *visible* gamut, i.e. the set of all colors that can be perceived (generally) by the human eye. 
+Because we are concerned only with colors displayed on monitors, we concern ourselves with the sRGB gamut.
+
+Here's what the sRGB gamut looks like in the sRGB color space
+([source](https://commons.wikimedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_a.png)):
+
+```{r echo=FALSE, out.height=300, out.width=400, fig.cap='sRGB gamut in sRGB space, by Michael Horvath'}
+knitr::include_graphics("figs/srgb-gamut-srgb-space.png")
+```
+
+In this representation, the origin (RGB = 0, 0, 0) is the color black, and is hidden in the back corner. 
+The color white (RGB = 1, 1, 1) is the corner "nearest" us. 
+This is an [additive](https://en.wikipedia.org/wiki/Additive_color) color space: the primary colors: red, green, and blue, are at three of the vertices. 
+The secondary colors: cyan, magenta, and yellow, are at the three remaining vertices.
+
+This colorspace has a concrete representation - it's very easy for we humans to think of it as a cube. 
+But there's a problem with sRGB space, it's not **perceptually uniform**.
+Consider two different colors (this would be a great place for an example). 
+We can measure how far apart they are in a color space (using Euclidean distance); we can also make a judgment on how "differently" the two colors are perceived (by a human).
+If a color space is perceptually uniform, then the color-space distance between two colors in that space is proportional to the perceptual difference between the colors.
+The sRGB color space is not perceptually uniform.
+
+The reason we are concerned with perceptual uniformity is because a continuous color-palette maps numerical values to  colors. 
+We want to make sure that differences in color are interpreted as faithfully as possible as differences in value.
+
+There are color spaces that are more perceptually-uniform than sRGB. 
+Consider the HCL color space, named after its dimensions: hue, chroma, and luminance. 
+We can show the same set of colors, the sRGB gamut, in the HCL color space
+([source](https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELUV_color_space_isosurface.png)):
+
+```{r echo=FALSE, out.height=300, out.width=300, fig.cap='sRGB gamut in HCL space, by Michael Horvath and Christoph Lipka'}
+knitr::include_graphics("figs/srgb-gamut-hcl-space.png")
+```
+
+Here, we see a distorted view of the original cube. This can help us to define the terms:
+
+- Luminance describes how light or dark a color is; a lighter color has greater luminance. The domain of luminance is 0 to 100.
+
+- Chroma describes how colorful a color is; a grey has no chroma, a bright red has a lot of chroma. 
+The maximum value of chroma depends on the hue and the luminance, i.e. the distorted cube. 
+The largest value for chroma in the sRGB gamut is about 180 for a mid-luminant red.
+
+- Hue describes the particular color, e.g. a red vs. a green. 
+  It is cyclical; hue is expressed as an angle, in degrees.
+
+Hue, chroma, and luminance give us an intuitive and tangible way to describe color, using a color space where distance is reasonably proportional to human perception.  
+
+There is another color space we should introduce; it is identical to the HCL color space, except it uses Cartesian coordinates instead of polar coordinates. This is the LUV color space
+([source](https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELCHuv_color_space_isosurface.png)):
+
+```{r echo=FALSE, out.height=300, out.width=300, fig.cap='sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka'}
+knitr::include_graphics("figs/srgb-gamut-luv-space.png")
+```
+
+The concept of luminance is the same as with HCL.
+The coordinates U and V are the Cartesian correspondences to hue and chroma. 
+The LUV color space is less intuitive than the HCL color space, but it allows a straightforward calculation of Euclidean distance.
+
+In this package, we want to:
+
+- think and specify using the HCL color space.
+- calculate using the LUV color space.
+- express the colors using the sRGB color space (hex codes).
+
+### Thoughts on continuous palettes
+
+Luminance propels everything. Chroma used to create a longer path (larger color-range). 
+Be careful with hue because differences in hue are perceived differently by folks with color-vision deficiency.  
+
+Dark mode. Comparing prominence vs. the background.
+
+```{r}
+library("colorpath")
+```
+
+```{r}
+sfc_cyan <- surface_hl(192.2)
+sfc_blue <- surface_hl(265.9)
+```
+
+We get warnings (from ggplot2) when we render these plots because the second y-axis has a uses the surface-functions which, in these cases, have a constant hue. 
+
+```{r}
+plot_surface_hl(sfc_cyan)
+plot_surface_hl(sfc_blue)
+```
+
+```{r}
+sfc_multi_blue <- surface_hl(c(271, 215))
+plot_surface_hl(sfc_multi_blue)
+```
+
+Let's think about some trajectories to plot along this surface. 
+Want to think in terms of light mode and dark mode.
+
+In light mode, let's set our luminance ceiling to 90; in dark mode, let's set the luminance floor to 30.
+
+```{r}
+dfcl_blues_light <- 
+  tribble(
+      ~l,      ~c,
+      90.0,  30.0,
+      75.0,  80.0,
+      50.0,  80.0,
+      30.0,  60.0,
+      20.0,  40.0
+  )
+```
+
+```{r}
+dfhcl_blues_light <- df_hcl(dfcl_blues_light, sfc_multi_blue)
+
+dfhcl_blues_light
+```
+
+```{r}
+pal_blues_light <- 
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_light), rescale = TRUE)
+
+plot_cl(pal_blues_light)
+```
+
+```{r}
+hcl <- 
+  pal_blues_light(seq(0, 1, 0.1)) %>% 
+  farver::convert_colour(from = "luv", to = "hcl") %>%
+  print()
+
+sfc_multi_blue(hcl[, "l"])
+```
+
+The two plots seem inconsistent. 
+The spline does not respect the surface. It respects only the control points, which are on the surface.
+
+```{r}
+blues_light_discrete <- as_pal_disc(as_pal_hex(pal_blues_light))
+
+swatch(blues_light_discrete(11))
+
+pal.sineramp(blues_light_discrete)
+```
+
+Let's try a variation on the theme to create a half-palette for a diverging-palette:
+
+```{r}
+dfcl_blues_div_light <- 
+  tribble(
+      ~l,      ~c,
+      90.0,   0.0,
+      85.0,  50.0,
+      70.0,  80.0,
+      50.0,  80.0,
+      30.0,  60.0,
+      20.0,  40.0
+  )
+```
+
+```{r}
+dfhcl_blues_div_light <- df_hcl(dfcl_blues_div_light, sfc_multi_blue)
+
+dfhcl_blues_div_light
+```
+
+```{r}
+pal_blues_div_light <- 
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_div_light), rescale = TRUE)
+
+plot_cl(pal_blues_div_light)
+```
+
+```{r}
+blues_div_light_discrete <- as_pal_disc(as_pal_hex(pal_blues_div_light))
+
+swatch(blues_div_light_discrete(11))
+
+pal.sineramp(blues_div_light_discrete)
+```
+
+### Dark mode
+
+Here's my theory (and I'm sure it is not original): a sequential palette "move away" from the background color. 
+For light mode, it start more luminant and become less luminant. 
+For dark mode, it should start less luminant and become more luminant. 
+
+In essence, you want the scale to emphasize the "interesting" data by placing those colors as far away from the background as possible.
+
+Here, we assume that light mode has a white background (luminance 100), and that the dark-mode background has a luminance of 20.
+This has the effect of shortening the available-luminance range for dark mode (values under 20 are inaccessible).
+
+That said, let's look at what dark mode might look like here:
+
+```{r}
+dfcl_blues_dark <- 
+  tribble(
+      ~l,      ~c,
+      35.0,  30.0,
+      50.0,  80.0,
+      75.0,  80.0,
+      90.0,  30.0
+  )
+
+dfhcl_blues_dark <- df_hcl(dfcl_blues_dark, sfc_multi_blue)
+```
+
+```{r}
+pal_blues_dark <-
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_dark), rescale = TRUE)
+
+plot_cl(pal_blues_dark)
+```
+
+```{r}
+blues_dark_discrete <- as_pal_disc(as_pal_hex(pal_blues_dark))
+
+swatch(blues_dark_discrete(11), background = "#333", margin = 10)
+
+pal.sineramp(blues_dark_discrete)
+```
+
+
+```{r}
+dfcl_blues_div_dark <- 
+  tribble(
+      ~l,      ~c,
+      35.0,   0.0,
+      40.0,  40.0,
+      50.0,  80.0,
+      75.0,  80.0,
+      90.0,  30.0
+  )
+
+dfhcl_blues_div_dark <- df_hcl(dfcl_blues_div_dark, sfc_multi_blue)
+```
+
+```{r}
+pal_blues_div_dark <-
+  pal_luv_bezier(as_mat_luv(dfhcl_blues_div_dark), rescale = TRUE)
+
+plot_cl(pal_blues_div_dark)
+```
+
+```{r}
+blues_div_dark_discrete <- as_pal_disc(as_pal_hex(pal_blues_div_dark))
+
+swatch(blues_div_dark_discrete(11), background = "#333", margin = 10)
+
+pal.sineramp(blues_div_dark_discrete)
+```
+
+A couple notes on this diverging palette: 
+
+- To my eyes, the LUV space is not quite perceptually uniform.
+  The first few colors in this palette, near the greys, seem closer together than the lighter colors do.
+  
+- For an actual diverging palette, I think I would cut the palette off at luminance around 80, as a consideration for the other side of the palette (not yet seen). 
+  For example, I would not the light orange to appear too close to the light blue.  
+  
+There is a way to test this idea about perceptual uniformity.
+There is now a function in colorpath, `get_distance()` that given an LUV palette-function and a number of intervals, calculates the perceptual distance covered by each of the intervals.
+
+```{r}
+get_distance(pal_blues_div_dark, n = 10)
+```
+
+This shows the "cie2000" perceptual-distance between adjacent colors. 
+It does show a "lull" in the first part of the palette, although the leading value (~7.4) surprises me.
+
+I think we can solve one problem with another here. 
+We can use a Bézier spline only to define the luminance-chroma trajectory, then use the surface to define the hue according to the luminance. 
+Although colorspace offers a bunch of parameters to define a palette function, colorspace's math uses the parameters with the same separation; the hue is calculated independently from the chroma.
+
+By splining only on chroma and luminance, we lose effectiveness in the distance rescaling that the bezier package offers. However, using `get_distance()`, we could make our own rescaling - which may be more effective than Euclidean distance in LUV space.
+
+### Interim summary
+
+I think that defining surfaces can make our problem simpler because it separates our variables according to our concerns.
+
+We could define **surfaces** (hue as function of luminance) to represent palette families: greens, blues, etc. 
+We could define **trajectories** (in luminance and chroma) to represent palette type: light, light-diverging, dark, dark-diverging.
+
+Surfaces are chosen with a few factors in mind:
+
+- open up more chroma space
+- fidelity to an organization's brand
+- among singlish-hue surfaces, blues and oranges seem like default choices because of their contrast with each other, especially for folks with CVD 
+
+Trajectories are also chosen with a few factors in mind, all of them have to do with the background color for each of light and dark mode.
+All colors in all palettes should have luminance values at least 10-points different from the luminance of the background color (I choose 10 as an example, maybe the right value is 7). This means that if your dark-mode background has a luminance of 20, the minimum luminance for dark-mode palettes should be 30.
+
+- for light mode, assuming a background luminance of 100, we could start the a trajectory with luminance 90, then end with a luminance that need not respect the luminance considerations of dark mode, i.e. we could go down to luminance 20. 
+- for dark mode, we should start with a luminance at the luminance limit.
+- for non-diverging palettes, we could start a trajectory with a reasonable chroma - no need to be "too grey".
+- for diverging palettes, we need to start the trajectory with zero chroma, in order to respect the common point.
+- again for diverging palettes, the end of each arm should be not-too-far from the maximum chroma, as the chroma is what will drive the contrast between the two extrema of a "combined" diverging palette. 
+
+Perhaps a set of templates could be used for these trajectories, then adapted to the chroma peculiarities of each surface family.
 
 
 ## Joining palettes
