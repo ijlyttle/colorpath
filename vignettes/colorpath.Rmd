@@ -250,10 +250,10 @@ These three dimensions form a **color space** called **sRGB**. A color space is 
 
 The set of all colors that can be expressed using sRGB is called the sRGB **gamut**. 
 It is a subset of the *visible* gamut, i.e. the set of all colors that can be perceived (generally) by the human eye. 
-Because we are concerned with colors display on monitors, we concern ourselves with the sRGB gamut.
+Because we are concerned only with colors displayed on monitors, we concern ourselves with the sRGB gamut.
 
 Here's what the sRGB gamut looks like in the sRGB color space
-[[source](https://commons.wikimedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_a.png)]:
+([source](https://commons.wikimedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_a.png)):
 
 ```{r echo=FALSE, out.height=300, out.width=400, fig.cap='sRGB gamut in sRGB space, by Michael Horvath'}
 knitr::include_graphics("figs/srgb-gamut-srgb-space.png")
@@ -264,7 +264,7 @@ The color white (RGB = 1, 1, 1) is the corner "nearest" us.
 This is an [additive](https://en.wikipedia.org/wiki/Additive_color) color space: the primary colors: red, green, and blue, are at three of the vertices. 
 The secondary colors: cyan, magenta, and yellow, are at the three remaining vertices.
 
-This colorspace has a concrete representation - it's very easy for us humans to think of it as a cube. 
+This colorspace has a concrete representation - it's very easy for we humans to think of it as a cube. 
 But there's a problem with sRGB space, it's not **perceptually uniform**.
 Consider two different colors (this would be a great place for an example). 
 We can measure how far apart they are in a color space (using Euclidean distance); we can also make a judgment on how "differently" the two colors are perceived (by a human).
@@ -272,15 +272,15 @@ If a color space is perceptually uniform, then the color-space distance between 
 The sRGB color space is not perceptually uniform.
 
 The reason we are concerned with perceptual uniformity is because a continuous color-palette maps numerical values to  colors. 
-We want to make sure that differences in color are interpreted as accurately as possible as differences in value.
+We want to make sure that differences in color are interpreted as faithfully as possible as differences in value.
 
 There are color spaces that are more perceptually-uniform than sRGB. 
 Consider the HCL color space, named after its dimensions: hue, chroma, and luminance. 
 We can show the same set of colors, the sRGB gamut, in the HCL color space
-[[source](https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELUV_color_space_isosurface.png)]:
+([source](https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELUV_color_space_isosurface.png)):
 
 ```{r echo=FALSE, out.height=300, out.width=300, fig.cap='sRGB gamut in HCL space, by Michael Horvath and Christoph Lipka'}
-knitr::include_graphics("figs/srgb-gamut-luv-space.png")
+knitr::include_graphics("figs/srgb-gamut-hcl-space.png")
 ```
 
 Here, we see a distorted view of the original cube. This can help us to define the terms:
@@ -297,25 +297,25 @@ The largest value for chroma in the sRGB gamut is about 180 for a mid-luminant r
 Hue, chroma, and luminance give us an intuitive and tangible way to describe color, using a color space where distance is reasonably proportional to human perception.  
 
 There is another color space we should introduce; it is identical to the HCL color space, except it uses Cartesian coordinates instead of polar coordinates. This is the LUV color space
-[[source](https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELCHuv_color_space_isosurface.png)]:
+([source](https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELCHuv_color_space_isosurface.png)):
 
-```{r echo=FALSE, out.height=300, out.width=300, fig.cap='sRGB gamut in HCL space, by Michael Horvath and Christoph Lipka'}
-knitr::include_graphics("figs/srgb-gamut-hcl-space.png")
+```{r echo=FALSE, out.height=300, out.width=300, fig.cap='sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka'}
+knitr::include_graphics("figs/srgb-gamut-luv-space.png")
 ```
 
 The concept of luminance is the same as with HCL.
-The coordinates U and V are the Cartesian equivalent of H and C. 
+The coordinates U and V are the Cartesian correspondences to hue and chroma. 
 The LUV color space is less intuitive than the HCL color space, but it allows a straightforward calculation of Euclidean distance.
 
 In this package, we want to:
 
-- think and specify using the HCL color space
-- calculate using the LUV color space
-- express the colors using the sRGB color space (hex codes)
+- think and specify using the HCL color space.
+- calculate using the LUV color space.
+- express the colors using the sRGB color space (hex codes).
 
 ### Thoughts on continuous palettes
 
-Luminance propels everything. Chroma used to create a longer path. 
+Luminance propels everything. Chroma used to create a longer path (larger color-range). 
 Be careful with hue because differences in hue are perceived differently by folks with color-vision deficiency.  
 
 Dark mode. Comparing prominence vs. the background.
@@ -526,8 +526,8 @@ By splining only on chroma and luminance, we lose effectiveness in the distance 
 
 I think that defining surfaces can make our problem simpler because it separates our variables according to our concerns.
 
-We could define surfaces to represent palette families: greens, blues, etc. 
-We could define trajectories to represent palette type: light, light-diverging, dark, dark-diverging.
+We could define **surfaces** (hue as function of luminance) to represent palette families: greens, blues, etc. 
+We could define **trajectories** (in luminance and chroma) to represent palette type: light, light-diverging, dark, dark-diverging.
 
 Surfaces are chosen with a few factors in mind:
 
