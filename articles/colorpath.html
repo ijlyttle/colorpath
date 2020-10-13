@@ -70,7 +70,7 @@
 
       
 
-      </header><script src="colorpath_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="colorpath_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="colorpath_files/htmlwidgets-1.5.2/htmlwidgets.js"></script><script src="colorpath_files/splattr_swatch-0.0.3/swatch-lib.js"></script><script src="colorpath_files/splattr_swatch-binding-0.0.0.9008/splattr_swatch.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>colorpath</h1>
@@ -86,7 +86,8 @@
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath">"colorpath"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tibble.tidyverse.org/">"tibble"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://kwstat.github.io/pals/">"pals"</a></span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://kwstat.github.io/pals/">"pals"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/splattr">"splattr"</a></span><span class="op">)</span></pre></div>
 <p>The goal of <strong>colorpath</strong> is to help you design sequential (and diverging) color palettes that are effective and perceptually uniform.</p>
 <p>At the moment, this vignette has an audience of one. As we get our legs under us, this vignette will become more-accessible.</p>
 <p>This package uses the idea of a <em>color path</em>; I use this term to describe a trajectory through LUV colorspace from which one could extract sequential palettes for each of light and dark mode. This way, a light-mode palette and a dark-mode palette can look like they came from the same place.</p>
@@ -217,7 +218,7 @@
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
-<p>Here’s a bit more detail on <code><a href="../reference/as_pal_hex.html">as_pal_disc()</a></code> and <code><a href="../reference/as_pal_hex.html">as_pal_hex()</a></code>; thes eech take a palette function, and each return a palette function:</p>
+<p>Here’s a bit more detail on <code><a href="../reference/as_pal_hex.html">as_pal_disc()</a></code> and <code><a href="../reference/as_pal_hex.html">as_pal_hex()</a></code>; these each take a palette function, and each return a palette function:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">6</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
@@ -281,6 +282,272 @@
 <span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_new</span><span class="op">)</span></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <p>Perhaps palettes in the same “family” need not be drawn from the same colorpath - just from the same surface.</p>
+</div>
+</div>
+<div id="surfaces" class="section level2">
+<h2 class="hasAnchor">
+<a href="#surfaces" class="anchor"></a>Surfaces</h2>
+<p>This is an attempt to re-boot this vignette; once these sections are on their feet, they will start to “take over” the rest of the vignette.</p>
+<p>Maybe I should just try to start at the start. Suffice to say that in its early form, these thoughts are not yet properly attributed. For me, it all starts with the colorspace package, and Achim Zeileis’ talk at UseR!2019.</p>
+<p>In day-to-day use, colors on a computer display are expressed using hex-codes, e.g. <a href="https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416"><code>#663399</code></a>. As you likely know, hex-codes express the color in terms of three color channels, or dimensions: red, green and blue. These three dimensions form a <strong>color space</strong> called <strong>sRGB</strong>. A color space is a set of dimensions used to express colors.</p>
+<p>The set of all colors that can be expressed using sRGB is called the sRGB <strong>gamut</strong>. It is a subset of the <em>visible</em> gamut, i.e. the set of all colors that can be perceived (generally) by the human eye. Because we are concerned only with colors displayed on monitors, we concern ourselves with the sRGB gamut.</p>
+<p>Here’s what the sRGB gamut looks like in the sRGB color space (<a href="https://commons.wikimedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_a.png">source</a>):</p>
+<div class="figure">
+<img src="figs/srgb-gamut-srgb-space.png" alt="sRGB gamut in sRGB space, by Michael Horvath" width="400" height="300"><p class="caption">
+sRGB gamut in sRGB space, by Michael Horvath
+</p>
+</div>
+<p>In this representation, the origin (RGB = 0, 0, 0) is the color black, and is hidden in the back corner. The color white (RGB = 1, 1, 1) is the corner “nearest” us. This is an <a href="https://en.wikipedia.org/wiki/Additive_color">additive</a> color space: the primary colors: red, green, and blue, are at three of the vertices. The secondary colors: cyan, magenta, and yellow, are at the three remaining vertices.</p>
+<p>This colorspace has a concrete representation - it’s very easy for we humans to think of it as a cube. But there’s a problem with sRGB space, it’s not <strong>perceptually uniform</strong>. Consider two different colors (this would be a great place for an example). We can measure how far apart they are in a color space (using Euclidean distance); we can also make a judgment on how “differently” the two colors are perceived (by a human). If a color space is perceptually uniform, then the color-space distance between two colors in that space is proportional to the perceptual difference between the colors. The sRGB color space is not perceptually uniform.</p>
+<p>The reason we are concerned with perceptual uniformity is because a continuous color-palette maps numerical values to colors. We want to make sure that differences in color are interpreted as faithfully as possible as differences in value.</p>
+<p>There are color spaces that are more perceptually-uniform than sRGB. Consider the HCL color space, named after its dimensions: hue, chroma, and luminance. We can show the same set of colors, the sRGB gamut, in the HCL color space (<a href="https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELUV_color_space_isosurface.png">source</a>):</p>
+<div class="figure">
+<img src="figs/srgb-gamut-hcl-space.png" alt="sRGB gamut in HCL space, by Michael Horvath and Christoph Lipka" width="300" height="300"><p class="caption">
+sRGB gamut in HCL space, by Michael Horvath and Christoph Lipka
+</p>
+</div>
+<p>Here, we see a distorted view of the original cube. This can help us to define the terms:</p>
+<ul>
+<li><p>Luminance describes how light or dark a color is; a lighter color has greater luminance. The domain of luminance is 0 to 100.</p></li>
+<li><p>Chroma describes how colorful a color is; a grey has no chroma, a bright red has a lot of chroma. The maximum value of chroma depends on the hue and the luminance, i.e. the distorted cube. The largest value for chroma in the sRGB gamut is about 180 for a mid-luminant red.</p></li>
+<li><p>Hue describes the particular color, e.g. a red vs. a green. It is cyclical; hue is expressed as an angle, in degrees.</p></li>
+</ul>
+<p>Hue, chroma, and luminance give us an intuitive and tangible way to describe color, using a color space where distance is reasonably proportional to human perception.</p>
+<p>There is another color space we should introduce; it is identical to the HCL color space, except it uses Cartesian coordinates instead of polar coordinates. This is the LUV color space (<a href="https://commons.wikimedia.org/wiki/File:SRGB_gamut_within_CIELCHuv_color_space_isosurface.png">source</a>):</p>
+<div class="figure">
+<img src="figs/srgb-gamut-luv-space.png" alt="sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka" width="300" height="300"><p class="caption">
+sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
+</p>
+</div>
+<p>The concept of luminance is the same as with HCL. The coordinates U and V are the Cartesian correspondences to hue and chroma. The LUV color space is less intuitive than the HCL color space, but it allows a straightforward calculation of Euclidean distance.</p>
+<p>In this package, we want to:</p>
+<ul>
+<li>think and specify using the HCL color space.</li>
+<li>calculate using the LUV color space.</li>
+<li>express the colors using the sRGB color space (hex codes).</li>
+</ul>
+<div id="thoughts-on-continuous-palettes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#thoughts-on-continuous-palettes" class="anchor"></a>Thoughts on continuous palettes</h3>
+<p>Luminance propels everything. Chroma used to create a longer path (larger color-range). Be careful with hue because differences in hue are perceived differently by folks with color-vision deficiency.</p>
+<p>Dark mode. Comparing prominence vs. the background.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath">"colorpath"</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="va">sfc_cyan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surface_hl.html">surface_hl</a></span><span class="op">(</span><span class="fl">192.2</span><span class="op">)</span>
+<span class="va">sfc_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surface_hl.html">surface_hl</a></span><span class="op">(</span><span class="fl">265.9</span><span class="op">)</span></pre></div>
+<p>We get warnings (from ggplot2) when we render these plots because the second y-axis has a uses the surface-functions which, in these cases, have a constant hue.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_cyan</span><span class="op">)</span>
+<span class="co">#&gt; Warning in min(x): no non-missing arguments to min; returning Inf</span>
+<span class="co">#&gt; Warning in max(x): no non-missing arguments to max; returning -Inf</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_blue</span><span class="op">)</span>
+<span class="co">#&gt; Warning in min(x): no non-missing arguments to min; returning Inf</span>
+
+<span class="co">#&gt; Warning in min(x): no non-missing arguments to max; returning -Inf</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-21-2.png" width="700"></p>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="va">sfc_multi_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surface_hl.html">surface_hl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">271</span>, <span class="fl">215</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_multi_blue</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
+<p>Let’s think about some trajectories to plot along this surface. Want to think in terms of light mode and dark mode.</p>
+<p>In light mode, let’s set our luminance ceiling to 90; in dark mode, let’s set the luminance floor to 30.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="va">dfcl_blues_light</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+      <span class="op">~</span><span class="va">l</span>,      <span class="op">~</span><span class="va">c</span>,
+      <span class="fl">90.0</span>,  <span class="fl">30.0</span>,
+      <span class="fl">75.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">50.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">30.0</span>,  <span class="fl">60.0</span>,
+      <span class="fl">20.0</span>,  <span class="fl">40.0</span>
+  <span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="va">dfhcl_blues_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_light</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span>
+
+<span class="va">dfhcl_blues_light</span>
+<span class="co">#&gt; # A tibble: 5 x 3</span>
+<span class="co">#&gt;       h     c     l</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  221.    30    90</span>
+<span class="co">#&gt; 2  229     80    75</span>
+<span class="co">#&gt; 3  243     80    50</span>
+<span class="co">#&gt; 4  254.    60    30</span>
+<span class="co">#&gt; 5  260.    40    20</span></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="va">pal_blues_light</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">dfhcl_blues_light</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_light</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="va">hcl</span> <span class="op">&lt;-</span> 
+  <span class="fu">pal_blues_light</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">farver</span><span class="fu">::</span><span class="fu"><a href="https://farver.data-imaginist.com/reference/convert_colour.html">convert_colour</a></span><span class="op">(</span>from <span class="op">=</span> <span class="st">"luv"</span>, to <span class="op">=</span> <span class="st">"hcl"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt;              h        c        l</span>
+<span class="co">#&gt;  [1,] 220.6000 30.00000 90.00001</span>
+<span class="co">#&gt;  [2,] 224.5388 40.18375 86.43013</span>
+<span class="co">#&gt;  [3,] 227.7719 49.90009 81.82097</span>
+<span class="co">#&gt;  [4,] 230.9627 58.63841 75.79317</span>
+<span class="co">#&gt;  [5,] 234.4944 65.36962 67.96905</span>
+<span class="co">#&gt;  [6,] 238.4971 68.55648 58.56516</span>
+<span class="co">#&gt;  [7,] 242.7446 67.53435 48.85036</span>
+<span class="co">#&gt;  [8,] 247.0135 63.25123 39.93235</span>
+<span class="co">#&gt;  [9,] 251.2849 56.84308 32.12757</span>
+<span class="co">#&gt; [10,] 255.5890 48.97409 25.45842</span>
+<span class="co">#&gt; [11,] 259.8000 40.00000 20.00000</span>
+
+<span class="fu">sfc_multi_blue</span><span class="op">(</span><span class="va">hcl</span><span class="op">[</span>, <span class="st">"l"</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 220.6000 222.5991 225.1803 228.5558 232.9373 238.2035 243.6438 248.6379</span>
+<span class="co">#&gt;  [9] 253.0086 256.7433 259.8000</span></pre></div>
+<p>The two plots seem inconsistent. The spline does not respect the surface. It respects only the control points, which are on the surface.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="va">blues_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_light</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div id="htmlwidget-450a7891ac3dfa4e489c" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-450a7891ac3dfa4e489c">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb26"><pre class="downlit">
+
+<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_light_discrete</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-27-2.png" width="700"></p>
+<p>Let’s try a variation on the theme to create a half-palette for a diverging-palette:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="va">dfcl_blues_div_light</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+      <span class="op">~</span><span class="va">l</span>,      <span class="op">~</span><span class="va">c</span>,
+      <span class="fl">90.0</span>,   <span class="fl">0.0</span>,
+      <span class="fl">85.0</span>,  <span class="fl">50.0</span>,
+      <span class="fl">70.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">50.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">30.0</span>,  <span class="fl">60.0</span>,
+      <span class="fl">20.0</span>,  <span class="fl">40.0</span>
+  <span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="va">dfhcl_blues_div_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_div_light</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span>
+
+<span class="va">dfhcl_blues_div_light</span>
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;       h     c     l</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  221.     0    90</span>
+<span class="co">#&gt; 2  223.    50    85</span>
+<span class="co">#&gt; 3  232.    80    70</span>
+<span class="co">#&gt; 4  243     80    50</span>
+<span class="co">#&gt; 5  254.    60    30</span>
+<span class="co">#&gt; 6  260.    40    20</span></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit">
+<span class="va">pal_blues_div_light</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">dfhcl_blues_div_light</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_div_light</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-30-1.png" width="700"></p>
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="va">blues_div_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_light</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div id="htmlwidget-73b8b05c6ee166bcd564" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-73b8b05c6ee166bcd564">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb31"><pre class="downlit">
+
+<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_div_light_discrete</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-31-2.png" width="700"></p>
+</div>
+<div id="dark-mode" class="section level3">
+<h3 class="hasAnchor">
+<a href="#dark-mode" class="anchor"></a>Dark mode</h3>
+<p>Here’s my theory (and I’m sure it is not original): a sequential palette “move away” from the background color. For light mode, it start more luminant and become less luminant. For dark mode, it should start less luminant and become more luminant.</p>
+<p>In essence, you want the scale to emphasize the “interesting” data by placing those colors as far away from the background as possible.</p>
+<p>Here, we assume that light mode has a white background (luminance 100), and that the dark-mode background has a luminance of 20. This has the effect of shortening the available-luminance range for dark mode (values under 20 are inaccessible).</p>
+<p>That said, let’s look at what dark mode might look like here:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit">
+<span class="va">dfcl_blues_dark</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+      <span class="op">~</span><span class="va">l</span>,      <span class="op">~</span><span class="va">c</span>,
+      <span class="fl">35.0</span>,  <span class="fl">30.0</span>,
+      <span class="fl">50.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">75.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">90.0</span>,  <span class="fl">30.0</span>
+  <span class="op">)</span>
+
+<span class="va">dfhcl_blues_dark</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_dark</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit">
+<span class="va">pal_blues_dark</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">dfhcl_blues_dark</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-33-1.png" width="700"></p>
+<div class="sourceCode" id="cb34"><pre class="downlit">
+<span class="va">blues_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></pre></div>
+<div id="htmlwidget-14203e0bc00ae472274f" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-14203e0bc00ae472274f">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb35"><pre class="downlit">
+
+<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_dark_discrete</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-34-2.png" width="700"></p>
+<div class="sourceCode" id="cb36"><pre class="downlit">
+<span class="va">dfcl_blues_div_dark</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+      <span class="op">~</span><span class="va">l</span>,      <span class="op">~</span><span class="va">c</span>,
+      <span class="fl">35.0</span>,   <span class="fl">0.0</span>,
+      <span class="fl">40.0</span>,  <span class="fl">40.0</span>,
+      <span class="fl">50.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">75.0</span>,  <span class="fl">80.0</span>,
+      <span class="fl">90.0</span>,  <span class="fl">30.0</span>
+  <span class="op">)</span>
+
+<span class="va">dfhcl_blues_div_dark</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_div_dark</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit">
+<span class="va">pal_blues_div_dark</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">dfhcl_blues_div_dark</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-36-1.png" width="700"></p>
+<div class="sourceCode" id="cb38"><pre class="downlit">
+<span class="va">blues_div_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></pre></div>
+<div id="htmlwidget-10d7538a76419445710b" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-10d7538a76419445710b">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb39"><pre class="downlit">
+
+<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_div_dark_discrete</span><span class="op">)</span></pre></div>
+<p><img src="colorpath_files/figure-html/unnamed-chunk-37-2.png" width="700"></p>
+<p>A couple notes on this diverging palette:</p>
+<ul>
+<li><p>To my eyes, the LUV space is not quite perceptually uniform. The first few colors in this palette, near the greys, seem closer together than the lighter colors do.</p></li>
+<li><p>For an actual diverging palette, I think I would cut the palette off at luminance around 80, as a consideration for the other side of the palette (not yet seen). For example, I would not the light orange to appear too close to the light blue.</p></li>
+</ul>
+<p>There is a way to test this idea about perceptual uniformity. There is now a function in colorpath, <code><a href="../reference/get_distance.html">get_distance()</a></code> that given an LUV palette-function and a number of intervals, calculates the perceptual distance covered by each of the intervals.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit">
+<span class="fu"><a href="../reference/get_distance.html">get_distance</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 7.388427 5.372865 4.891737 5.406694 7.086043 9.265223 8.712178 5.940375</span>
+<span class="co">#&gt;  [9] 4.629859 4.328111</span></pre></div>
+<p>This shows the “cie2000” perceptual-distance between adjacent colors. It does show a “lull” in the first part of the palette, although the leading value (~7.4) surprises me.</p>
+<p>I think we can solve one problem with another here. We can use a Bézier spline only to define the luminance-chroma trajectory, then use the surface to define the hue according to the luminance. Although colorspace offers a bunch of parameters to define a palette function, colorspace’s math uses the parameters with the same separation; the hue is calculated independently from the chroma.</p>
+<p>By splining only on chroma and luminance, we lose effectiveness in the distance rescaling that the bezier package offers. However, using <code><a href="../reference/get_distance.html">get_distance()</a></code>, we could make our own rescaling - which may be more effective than Euclidean distance in LUV space.</p>
+</div>
+<div id="interim-summary" class="section level3">
+<h3 class="hasAnchor">
+<a href="#interim-summary" class="anchor"></a>Interim summary</h3>
+<p>I think that defining surfaces can make our problem simpler because it separates our variables according to our concerns.</p>
+<p>We could define <strong>surfaces</strong> (hue as function of luminance) to represent palette families: greens, blues, etc. We could define <strong>trajectories</strong> (in luminance and chroma) to represent palette type: light, light-diverging, dark, dark-diverging.</p>
+<p>Surfaces are chosen with a few factors in mind:</p>
+<ul>
+<li>open up more chroma space</li>
+<li>fidelity to an organization’s brand</li>
+<li>among singlish-hue surfaces, blues and oranges seem like default choices because of their contrast with each other, especially for folks with CVD</li>
+</ul>
+<p>Trajectories are also chosen with a few factors in mind, all of them have to do with the background color for each of light and dark mode. All colors in all palettes should have luminance values at least 10-points different from the luminance of the background color (I choose 10 as an example, maybe the right value is 7). This means that if your dark-mode background has a luminance of 20, the minimum luminance for dark-mode palettes should be 30.</p>
+<ul>
+<li>for light mode, assuming a background luminance of 100, we could start the a trajectory with luminance 90, then end with a luminance that need not respect the luminance considerations of dark mode, i.e. we could go down to luminance 20.</li>
+<li>for dark mode, we should start with a luminance at the luminance limit.</li>
+<li>for non-diverging palettes, we could start a trajectory with a reasonable chroma - no need to be “too grey”.</li>
+<li>for diverging palettes, we need to start the trajectory with zero chroma, in order to respect the common point.</li>
+<li>again for diverging palettes, the end of each arm should be not-too-far from the maximum chroma, as the chroma is what will drive the contrast between the two extrema of a “combined” diverging palette.</li>
+</ul>
+<p>Perhaps a set of templates could be used for these trajectories, then adapted to the chroma peculiarities of each surface family.</p>
 </div>
 </div>
 <div id="joining-palettes" class="section level2">
