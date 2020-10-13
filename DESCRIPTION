@@ -29,7 +29,8 @@ Imports:
     tibble,
     colorspace,
     ggplot2,
-    purrr
+    purrr,
+    utils
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

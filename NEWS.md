@@ -1,5 +1,7 @@
 # colorpath 0.0.0 (development version)
 
+* Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)
+
 * Added functions `data_surface_hl()`, `plot_surface_hl()` that work with hue-luminance surface functions. (#31)
 
 * Added functions `surface_hl() ` and `df_hcl()` to facilitate creating sets of consistent multi-hue palettes. (#29)
