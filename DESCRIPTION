@@ -1,6 +1,6 @@
 Package: colorpath
 Title: Build Color Paths
-Version: 0.0.0.9013
+Version: 0.0.0.9014
 Authors@R: 
     person(given = "Ian J",
            family = "Lyttle",
@@ -29,7 +29,8 @@ Imports:
     tibble,
     colorspace,
     ggplot2,
-    purrr
+    purrr,
+    utils
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
