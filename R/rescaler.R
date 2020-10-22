@@ -131,7 +131,7 @@ f_root_luminance <- function(lum, palette) {
 #'
 #' @inheritParams pal_luv_bezier
 #'
-#' @inherit rescaler_x
+#' @inherit rescaler_x return
 #'
 #' @keywords internal
 #' @export
@@ -157,6 +157,27 @@ rescaler_bezier <- function(mat_luv, n = 21) {
 
   structure(.f, class = "cpath_rescaler")
 }
+
+#' Perceptual-distance rescaler
+#'
+#' @inheritParams get_distance
+#' @param tolerance `numeric` convergence tolerance for distance calculation
+#'
+#' @inherit rescaler_x return
+#'
+#' @keywords internal
+#' @export
+#'
+rescaler_dist <- function(pal_luv, tolerance = 1.e-4, method = "cie2000", ...) {
+
+  interval <-
+    interval_distance(pal_luv, tolerance = tolerance, method = method, ...)
+
+  .f <- appxfn_distance(interval)
+
+  structure(.f, class = "cpath_rescaler")
+}
+
 
 #' @export
 #'

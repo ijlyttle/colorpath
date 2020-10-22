@@ -522,6 +522,38 @@ Although colorspace offers a bunch of parameters to define a palette function, c
 
 By splining only on chroma and luminance, we lose effectiveness in the distance rescaling that the bezier package offers. However, using `get_distance()`, we could make our own rescaling - which may be more effective than Euclidean distance in LUV space.
 
+Here's an experiment with perceptual-distance rescaling:
+
+```{r}
+rsc_dist <- rescaler_dist(pal_blues_div_dark)
+print(rsc_dist)
+```
+
+```{r}
+pal_blues_div_dark_rescaled <- pal_luv_rescale(pal_blues_div_dark, rsc_dist)
+get_distance(pal_blues_div_dark_rescaled, n = 10)
+```
+
+```{r}
+plot_cl(pal_blues_div_dark_rescaled)
+```
+
+```{r}
+blues_div_dark_rescaled_discrete <- as_pal_disc(as_pal_hex(pal_blues_div_dark_rescaled))
+
+swatch(blues_div_dark_rescaled_discrete(11), background = "#333", margin = 10)
+
+pal.sineramp(blues_div_dark_rescaled_discrete)
+```
+
+
+Let's consider the first three grey colors:
+
+```{r}
+blues_div_dark_discrete(11)[seq(3)]
+```
+
+
 ### Interim summary
 
 I think that defining surfaces can make our problem simpler because it separates our variables according to our concerns.
