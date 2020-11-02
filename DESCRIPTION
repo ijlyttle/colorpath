@@ -40,7 +40,6 @@ Suggests:
     splattr (>= 0.0.0.9008),
     pals
 Remotes: 
-    r-lib/testthat,
     ijlyttle/splattr
 Config/testthat/edition: 3    
 Depends: 
