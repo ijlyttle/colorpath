@@ -33,6 +33,12 @@
 #'  - takes a numeric input `lum` (vector, each memeber between 0 and 100)
 #'  - returns values for hue
 #'
+#' **`pth_mat`**
+#'
+#' A numeric matrix with three columns, and one row for each color.
+#'
+#'  - has an attribute `color_space` to identify which color space it uses.
+#'
 #' @name colorpath_S3_classes
 #'
 NULL

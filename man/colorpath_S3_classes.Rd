@@ -39,4 +39,11 @@ A function that:
 \item takes a numeric input \code{lum} (vector, each memeber between 0 and 100)
 \item returns values for hue
 }
+
+\strong{\code{pth_mat}}
+
+A numeric matrix with three columns, and one row for each color.
+\itemize{
+\item has an attribute \code{color_space} to identify which color space it uses.
+}
 }
