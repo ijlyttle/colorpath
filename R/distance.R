@@ -27,6 +27,11 @@ get_distance <- function(pal_luv, n = 20, method = "cie2000", ...) {
 }
 
 .get_distance <- function(pal_luv, n, method, ...) {
+  # dispatch on `method` here
+  .get_distance_farver(pal_luv = pal_luv, n = n, method = method, ...)
+}
+
+.get_distance_farver <- function(pal_luv, n, method, ...) {
 
   seq_all <- seq(0, 1, by = 1 / floor(n))
 
