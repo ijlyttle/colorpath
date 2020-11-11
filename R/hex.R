@@ -8,11 +8,11 @@
 #'
 #' @return `character`, six-character hex code.
 #' @examples
-#'   pth_as_hex("#11223344")
-#'   pth_as_hex("#AA1122")
+#'   pth_new_hex("#11223344")
+#'   pth_new_hex("#AA1122")
 #' @export
 #'
-pth_as_hex <- function(hex) {
+pth_new_hex <- function(hex) {
 
   assertthat::assert_that(
     all(is_hex_liberal(hex)),

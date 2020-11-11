@@ -11,8 +11,8 @@ test_that("as_hex() works", {
   expect_identical(as_hex(hex_good), hex_correct)
 })
 
-test_that("pth_as_hex() works", {
-  expect_identical(pth_as_hex(hex_good), hex_correct)
-  expect_error(pth_as_hex(hex_bad), "hex-code")
+test_that("pth_new_hex() works", {
+  expect_identical(pth_new_hex(hex_good), hex_correct)
+  expect_error(pth_new_hex(hex_bad), "hex-code")
 })
 
