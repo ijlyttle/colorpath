@@ -30,7 +30,8 @@ Imports:
     colorspace,
     ggplot2,
     purrr,
-    utils
+    utils,
+    colorio
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
@@ -41,6 +42,7 @@ Suggests:
     pals
 Remotes: 
     ijlyttle/splattr
+    ijlyttle/colorio
 Config/testthat/edition: 3    
 Depends: 
     R (>= 2.10)
