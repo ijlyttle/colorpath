@@ -1,3 +1,47 @@
+#' Coerce to hex-code
+#'
+#' @param color `character` or `matrix` with S3 class `pth_mat`, a
+#'   representation of a color.
+#' @param ..., other arguments as may be needed.
+#'
+#' @return `character` with S3 class `pth_hex`
+#' @examples
+#'   pth_to_hex("#663399")
+#'   pth_to_hex(c("#221133", "#442266", "#663399"))
+#' @export
+#'
+pth_to_hex <- function(color, ...) {
+  UseMethod("pth_to_hex")
+}
+
+#' @rdname pth_to_hex
+#' @export
+#'
+pth_to_hex.default <- function(color, ...) {
+  stop(
+    glue::glue("No method for class {class(color)}")
+  )
+}
+
+#' @rdname pth_to_hex
+#' @export
+#'
+pth_to_hex.pth_hex <- function(color, ...) {
+  # no op
+  color
+}
+
+#' @rdname pth_to_hex
+#' @export
+#'
+pth_to_hex.character <- function(color, ...) {
+  # coerce to pth_hex
+  color <- pth_new_hex(color)
+
+  pth_to_hex(color, ...)
+}
+
+
 #' Coerce to hex code
 #'
 #' Use to validate and coerce to character-based hex-codes.
@@ -21,7 +65,10 @@ pth_new_hex <- function(hex) {
 
   hex <- as_hex(hex)
 
-  return(hex)
+  structure(
+    hex,
+    class = "pth_hex"
+  )
 }
 
 # liberal - accepts 6 or 8 digits

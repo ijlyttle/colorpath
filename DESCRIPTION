@@ -35,7 +35,7 @@ Imports:
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
-    testthat (>= 2.99.0.9000),
+    testthat (>= 3.0),
     rmarkdown,
     knitr,   
     splattr (>= 0.0.0.9008),
