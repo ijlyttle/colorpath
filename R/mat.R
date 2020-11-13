@@ -6,7 +6,7 @@
 #' @param chroma_min `numeric` "trick" used to preserve the hue at zero chroma,
 #'   using insignificant decimal places.
 #'
-#' @return `matrix` with same dimension as `mat_polar` or `mat_cartesian`.
+#' @return `matrix` with same dimension as the input matrix.
 #' @examples
 #'   polar <- matrix(c(50, 0, 45), ncol = 3)
 #'   cart <- pth_to_cartesian(polar)
@@ -29,12 +29,15 @@ pth_to_cartesian <- function(mat_polar, chroma_min = 1.e-4) {
   hue <- to_radians(mat_polar[, 3])
 
   # new columns are lum, a, b
-  cbind(
+  mat <- cbind(
     lum,
     chr * cos(hue),
-    chr * sin(hue),
-    deparse.level = 0 # ignore labels
+    chr * sin(hue)
   )
+
+  dimnames(mat) <- NULL
+
+  mat
 }
 
 #' @rdname pth_to_cartesian
@@ -51,12 +54,16 @@ pth_to_polar <- function(mat_cartesian) {
   b <- mat_cartesian[, 3]
 
   # new columns are lum, chroma, hue
-  cbind(
+  mat <- cbind(
     lum,
     sqrt(a^2 + b^2),
     to_degrees(atan2(b, a)),
     deparse.level = 0 # ignore labels
   )
+
+  dimnames(mat) <- NULL
+
+  mat
 }
 
 to_radians <- function(deg) {
@@ -64,7 +71,7 @@ to_radians <- function(deg) {
 }
 
 to_degrees <- function(rad) {
-  rad * 180 / pi
+  (rad * 180 / pi + 360) %% 360
 }
 
 # is numeric, is matrix, and has three columns

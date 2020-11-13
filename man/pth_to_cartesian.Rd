@@ -19,7 +19,7 @@ using insignificant decimal places.}
 blue-yellow, green-red.}
 }
 \value{
-\code{matrix} with same dimension as \code{mat_polar} or \code{mat_cartesian}.
+\code{matrix} with same dimension as the input matrix.
 }
 \description{
 Convert between Cartesian and polar coordinates

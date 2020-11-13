@@ -1,4 +1,4 @@
-#' Coerce to hex-code
+#' Convert to hex code
 #'
 #' @param color `character` or `matrix` with S3 class `pth_mat`, a
 #'   representation of a color.
@@ -71,6 +71,13 @@ pth_new_hex <- function(hex) {
   )
 }
 
+pth_to_hex <- function(color, ...) {
+  xyz <- to_xyz100(color, ...)
+  hex <- farver::encode_colour(xyz, from = "xyz")
+
+  pth_new_hex(hex)
+}
+
 # liberal - accepts 6 or 8 digits
 is_hex_liberal <- function(x) {
   grepl("^#[A-Fa-f0-9]{2}{3,4}$", x)
@@ -82,4 +89,17 @@ as_hex <- function(x) {
   x <- tolower(x)
 
   x
+}
+
+#' @export
+#'
+to_xyz100.character <- function(color, ...) {
+  color <- pth_new_hex(color)
+  to_xyz100(color)
+}
+
+#' @export
+#'
+to_xyz100.pth_hex <- function(color, ...) {
+  farver::decode_colour(color, to = "xyz")
 }

@@ -1,3 +1,40 @@
+# colorpath 0.0.1 (development version)
+
+* Reworked the philosophy of this package so that we can consider a class of color spaces that I call Lab-100-class. 
+  These color spaces:
+  
+  - are described using dimensions luminance, blue-yellow, green-red.
+  - the value of black is `c(0, 0, 0)`; the value of white is `c(100, 0, 0)`.
+  - aspire to be perceptually uniform: the difference between colors scales with the Euclidean distance between colors.
+  - have polar-coordinate analogues using hue and chroma.
+  
+  Such color spaces impleneted here:
+  
+  - CIELAB
+  - CIELUV
+  - CAM02-UCS
+  - CAM16-UCS
+  - Jzazbz-100
+
+  New functions:
+  
+  - `pth_to_cartesian()`, `pth_to_polar()`: to convert back-and-forth among coordinate systems.
+    Note that `pth_to_cartesian()` has an argument `chroma_min`, used to preserve the hue where the chroma is zero.
+    This means that values where chroma is at or near zero are imputed with an imperceptably small chroma, allowing the
+    hue to be recovered when `pth_to_polar()` is used.
+  
+  - `pth_to_hex()`, `pth_new_hex()`: Convert to hex codes, or designate a character vector as hex codes.
+  
+  - `pth_to_cieluv()`, `pth_new_cieluv()`: Convert to matrix using CIELUV color space, or designate a matrix as using CIELUV.
+  
+  - `whitepoint_cie1931()`: Some of the color spaces need a reference white-point; this helper function provides the values. 
+    The default, `"D65"`, seems to be used widely. 
+  
+  The functions `pth_to_hex()`, `pth_to_cieluv()`, form a "boat" of sorts. 
+  You can pipe values from one such function to another; you will always be describing the same colors; i.e. you will not "fall out of the boat". 
+  However, the functions `pth_to_cartesian()` and `pth_to_polar()` take you "off the boat".
+  To get back "into the boat", you will need to use one of the `pth_new_()` functions.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)

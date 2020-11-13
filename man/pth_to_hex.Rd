@@ -5,15 +5,15 @@
 \alias{pth_to_hex.default}
 \alias{pth_to_hex.pth_hex}
 \alias{pth_to_hex.character}
-\title{Coerce to hex-code}
+\title{Convert to hex code}
 \usage{
 pth_to_hex(color, ...)
 
-\method{pth_to_hex}{default}(color, ...)
+pth_to_hex.default(color, ...)
 
-\method{pth_to_hex}{pth_hex}(color, ...)
+pth_to_hex.pth_hex(color, ...)
 
-\method{pth_to_hex}{character}(color, ...)
+pth_to_hex.character(color, ...)
 }
 \arguments{
 \item{color}{\code{character} or \code{matrix} with S3 class \code{pth_mat}, a
@@ -25,7 +25,7 @@ representation of a color.}
 \code{character} with S3 class \code{pth_hex}
 }
 \description{
-Coerce to hex-code
+Convert to hex code
 }
 \examples{
   pth_to_hex("#663399")
