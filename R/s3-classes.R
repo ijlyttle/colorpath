@@ -38,7 +38,12 @@
 #' A numeric matrix with:
 #'  - three columns, corresponding to luminance, blue-yellow, green-red.
 #'  - one row for each color.
-#'  - an additional class to idetnify the color space.
+#'  - an additional class to identify the color space.
+#'
+#' Associated classes:
+#'
+#' - **`pth_cielab`** uses CIELAB space.
+#' - **`pth_cieluv`** uses CIELUV space.
 #'
 #' **`pth_hex`**
 #'

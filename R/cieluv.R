@@ -24,7 +24,6 @@ pth_to_cieluv <- function(color, whitepoint = whitepoint_cie1931("D65"), ...) {
   pth_new_cieluv(mat, whitepoint = whitepoint)
 }
 
-
 #' @rdname pth_to_cieluv
 #' @export
 #'

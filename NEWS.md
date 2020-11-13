@@ -25,13 +25,18 @@
   
   - `pth_to_hex()`, `pth_new_hex()`: Convert to hex codes, or designate a character vector as hex codes.
   
-  - `pth_to_cieluv()`, `pth_new_cieluv()`: Convert to matrix using CIELUV color space, or designate a matrix as using CIELUV.
+  - Convert to matrix using a color space, or designate that a matrix uses a color space:
+  
+    - `pth_to_cielab()`, `pth_new_cielab()`: CIELAB
+  
+    - `pth_to_cieluv()`, `pth_new_cieluv()`: CIELUV
   
   - `whitepoint_cie1931()`: Some of the color spaces need a reference white-point; this helper function provides the values. 
     The default, `"D65"`, seems to be used widely. 
   
   The functions `pth_to_hex()`, `pth_to_cieluv()`, form a "boat" of sorts. 
-  You can pipe values from one such function to another; you will always be describing the same colors; i.e. you will not "fall out of the boat". 
+  You can pipe values from one such function to another; you will always be describing the same colors. 
+  i.e. you will not "fall out of the boat". 
   However, the functions `pth_to_cartesian()` and `pth_to_polar()` take you "off the boat".
   To get back "into the boat", you will need to use one of the `pth_new_()` functions.
   

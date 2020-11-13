@@ -46,7 +46,13 @@ A numeric matrix with:
 \itemize{
 \item three columns, corresponding to luminance, blue-yellow, green-red.
 \item one row for each color.
-\item an additional class to idetnify the color space.
+\item an additional class to identify the color space.
+}
+
+Associated classes:
+\itemize{
+\item \strong{\code{pth_cielab}} uses CIELAB space.
+\item \strong{\code{pth_cieluv}} uses CIELUV space.
 }
 
 \strong{\code{pth_hex}}
