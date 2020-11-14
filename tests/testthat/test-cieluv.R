@@ -1,5 +1,5 @@
 # standard whitepoint
-d65 <- whitepoint_cie1931("D65")
+d65 <- whitepoints_cie1931("D65")
 
 # point chosen to be approx 50, 50, 50 in xyz100
 luv_test <-

@@ -1,9 +1,6 @@
 #' Convert/coerce to CIELUV matrix
 #'
-#' @inheritParams pth_to_hex
-#' @param mat `double` `matrix` with three columns, one row for each color.
-#' @param whitepoint `double` `array` with one dimension, length three;
-#'   describes the whitepoint reference for the color space.
+#' @inheritParams pth_to_cielab
 #'
 #' @return `double` `matrix` with S3 classes `pth_cieluv` and `pth_mat`,
 #'   with three columns, one row for each color.
@@ -12,7 +9,7 @@
 #'   pth_new_cieluv(matrix(c(32.9, 13.0, -67.8), ncol = 3))
 #' @export
 #'
-pth_to_cieluv <- function(color, whitepoint = whitepoint_cie1931("D65"), ...) {
+pth_to_cieluv <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
   cieluv <- colorio$CIELUV(whitepoint = whitepoint)
@@ -27,7 +24,7 @@ pth_to_cieluv <- function(color, whitepoint = whitepoint_cie1931("D65"), ...) {
 #' @rdname pth_to_cieluv
 #' @export
 #'
-pth_new_cieluv <- function(mat, whitepoint = whitepoint_cie1931("D65"), ...) {
+pth_new_cieluv <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
   cieluv <- colorio$CIELUV(whitepoint = whitepoint)

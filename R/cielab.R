@@ -12,7 +12,7 @@
 #'   pth_new_cielab(matrix(c(32.9, 42.9, -47.1), ncol = 3))
 #' @export
 #'
-pth_to_cielab <- function(color, whitepoint = whitepoint_cie1931("D65"), ...) {
+pth_to_cielab <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
   cielab <- colorio$CIELAB(whitepoint = whitepoint)
@@ -27,7 +27,7 @@ pth_to_cielab <- function(color, whitepoint = whitepoint_cie1931("D65"), ...) {
 #' @rdname pth_to_cielab
 #' @export
 #'
-pth_new_cielab <- function(mat, whitepoint = whitepoint_cie1931("D65"), ...) {
+pth_new_cielab <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
   cielab <- colorio$CIELAB(whitepoint = whitepoint)

@@ -7,11 +7,11 @@
 #' @examples
 #'   # not run because it requires Python
 #'   if (FALSE) {
-#'     whitepoint_cie1931("D65")
+#'     whitepoints_cie1931("D65")
 #'   }
 #' @export
 #'
-whitepoint_cie1931 <- function(name) {
+whitepoints_cie1931 <- function(name) {
 
   names <- names(colorio$illuminants$whitepoints_cie1931)
 

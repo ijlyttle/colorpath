@@ -31,7 +31,7 @@
   
     - `pth_to_cieluv()`, `pth_new_cieluv()`: CIELUV
   
-  - `whitepoint_cie1931()`: Some of the color spaces need a reference white-point; this helper function provides the values. 
+  - `whitepoints_cie1931()`: Some of the color spaces need a reference white-point; this helper function provides the values. 
     The default, `"D65"`, seems to be used widely. 
   
   The functions `pth_to_hex()`, `pth_to_cieluv()`, form a "boat" of sorts. 

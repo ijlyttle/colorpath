@@ -5,9 +5,9 @@
 \alias{pth_new_cielab}
 \title{Convert/coerce to CIELAB matrix}
 \usage{
-pth_to_cielab(color, whitepoint = whitepoint_cie1931("D65"), ...)
+pth_to_cielab(color, whitepoint = whitepoints_cie1931("D65"))
 
-pth_new_cielab(mat, whitepoint = whitepoint_cie1931("D65"), ...)
+pth_new_cielab(mat, whitepoint = whitepoints_cie1931("D65"))
 }
 \arguments{
 \item{color}{\code{character} or \code{matrix} with S3 class \code{pth_mat}, a
@@ -15,8 +15,6 @@ representation of a color.}
 
 \item{whitepoint}{\code{double} \code{array} with one dimension, length three;
 describes the whitepoint reference for the color space.}
-
-\item{...}{other arguments as may be needed.}
 
 \item{mat}{\code{double} \code{matrix} with three columns, one row for each color.}
 }
