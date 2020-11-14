@@ -10,7 +10,7 @@
 #'   with three columns, one row for each color.
 #' @examples
 #'   pth_to_cam16ucs("#663399")
-#'   pth_new_cam16ucs(matrix(c(35.5, 13.4, -24.2), ncol = 3))
+#'   pth_new_cam16ucs(matrix(c(36.5, 18.4, -21.9), ncol = 3))
 #' @export
 #'
 pth_to_cam16ucs <- function(color, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
@@ -23,6 +23,7 @@ pth_to_cam16ucs <- function(color, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
       c = c,
       Y_b = Y_b,
       L_A = L_A,
+      exact_inversion = exact_inversion,
       whitepoint = whitepoint
     )
 

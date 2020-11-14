@@ -49,5 +49,5 @@ Convert/coerce to CAM16-UCS matrix
 }
 \examples{
   pth_to_cam16ucs("#663399")
-  pth_new_cam16ucs(matrix(c(35.5, 13.4, -24.2), ncol = 3))
+  pth_new_cam16ucs(matrix(c(36.5, 18.4, -21.9), ncol = 3))
 }

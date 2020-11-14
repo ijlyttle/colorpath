@@ -46,6 +46,7 @@
 #' - **`pth_cieluv`** uses CIELUV space.
 #' - **`pth_cam02ucs`** uses CAM02-UCS space.
 #' - **`pth_cam16ucs`** uses CAM16-UCS space.
+#' - **`pth_jzazbz100`** uses Jzabaz space, scaled to 100.
 #'
 #' **`pth_hex`**
 #'

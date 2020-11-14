@@ -31,7 +31,8 @@ Imports:
     ggplot2,
     purrr,
     utils,
-    colorio
+    colorio,
+    memoise
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

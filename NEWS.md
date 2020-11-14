@@ -4,7 +4,7 @@
   These color spaces:
   
   - are described using dimensions luminance, blue-yellow, green-red.
-  - the value of black is `c(0, 0, 0)`; the value of white is `c(100, 0, 0)`.
+  - the value of black is `c(0, 0, 0)`; the value of white is approximately `c(100, 0, 0)`.
   - aspire to be perceptually uniform: the difference between colors scales with the Euclidean distance between colors.
   - have polar-coordinate analogues using hue and chroma.
   
@@ -31,6 +31,12 @@
   
     - `pth_to_cieluv()`, `pth_new_cieluv()`: CIELUV
   
+    - `pth_to_cam02ucs()`, `pth_new_cam02ucs()`: CAM02-UCS
+
+    - `pth_to_cam16ucs()`, `pth_new_cam16ucs()`: CAM16-UCS
+
+    - `pth_to_jzazbz100()`, `pth_new_jzazbz100()`: Jzazbz, scaled to 100
+
   - `whitepoints_cie1931()`: Some of the color spaces need a reference white-point; this helper function provides the values. 
     The default, `"D65"`, seems to be used widely. 
   
