@@ -53,6 +53,8 @@ Associated classes:
 \itemize{
 \item \strong{\code{pth_cielab}} uses CIELAB space.
 \item \strong{\code{pth_cieluv}} uses CIELUV space.
+\item \strong{\code{pth_cam02ucs}} uses CAM02-UCS space.
+\item \strong{\code{pth_cam16ucs}} uses CAM16-UCS space.
 }
 
 \strong{\code{pth_hex}}
