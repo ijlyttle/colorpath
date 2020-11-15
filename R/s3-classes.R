@@ -20,7 +20,7 @@
 #'
 #' A function that:
 #'
-#'  - takes a numerical input `x` (vector, each member between 0 and 1)
+#'  - takes a numerical input `x` (vector, each value between 0 and 1)
 #'  - returns a rescaled numerical vector (call it `y`),
 #'    each member between 0 and 1
 #'
@@ -30,8 +30,27 @@
 #'
 #' A function that:
 #'
-#'  - takes a numeric input `lum` (vector, each memeber between 0 and 100)
-#'  - returns values for hue
+#'  - takes a numeric input `lum` (vector, each value between 0 and 100)
+#'  - returns values for hue (degrees)
+#'
+#' **`pth_mat`**
+#'
+#' A numeric matrix with:
+#'  - three columns, corresponding to luminance, blue-yellow, green-red.
+#'  - one row for each color.
+#'  - an additional class to identify the color space.
+#'
+#' Associated classes:
+#'
+#' - **`pth_cielab`** uses CIELAB space.
+#' - **`pth_cieluv`** uses CIELUV space.
+#' - **`pth_cam02ucs`** uses CAM02-UCS space.
+#' - **`pth_cam16ucs`** uses CAM16-UCS space.
+#' - **`pth_jzazbz100`** uses Jzabaz space, scaled to 100.
+#'
+#' **`pth_hex`**
+#'
+#' `character`, each with six-digit lower-case hex-code
 #'
 #' @name colorpath_S3_classes
 #'

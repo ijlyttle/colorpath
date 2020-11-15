@@ -25,7 +25,7 @@ except that \code{LUV} values are returned instead of hex-codes.
 
 A function that:
 \itemize{
-\item takes a numerical input \code{x} (vector, each member between 0 and 1)
+\item takes a numerical input \code{x} (vector, each value between 0 and 1)
 \item returns a rescaled numerical vector (call it \code{y}),
 each member between 0 and 1
 }
@@ -36,7 +36,29 @@ There shall be a monotonic relationship between \code{x} and \code{y}.
 
 A function that:
 \itemize{
-\item takes a numeric input \code{lum} (vector, each memeber between 0 and 100)
-\item returns values for hue
+\item takes a numeric input \code{lum} (vector, each value between 0 and 100)
+\item returns values for hue (degrees)
 }
+
+\strong{\code{pth_mat}}
+
+A numeric matrix with:
+\itemize{
+\item three columns, corresponding to luminance, blue-yellow, green-red.
+\item one row for each color.
+\item an additional class to identify the color space.
+}
+
+Associated classes:
+\itemize{
+\item \strong{\code{pth_cielab}} uses CIELAB space.
+\item \strong{\code{pth_cieluv}} uses CIELUV space.
+\item \strong{\code{pth_cam02ucs}} uses CAM02-UCS space.
+\item \strong{\code{pth_cam16ucs}} uses CAM16-UCS space.
+\item \strong{\code{pth_jzazbz100}} uses Jzabaz space, scaled to 100.
+}
+
+\strong{\code{pth_hex}}
+
+\code{character}, each with six-digit lower-case hex-code
 }
