@@ -39,7 +39,8 @@ Suggests:
     rmarkdown,
     knitr,   
     splattr (>= 0.0.0.9008),
-    pals
+    pals,
+    magrittr
 Remotes: 
     ijlyttle/splattr,
     ijlyttle/colorio

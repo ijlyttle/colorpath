@@ -46,6 +46,8 @@
   However, the functions `pth_to_cartesian()` and `pth_to_polar()` take you "off the boat".
   To get back "into the boat", you will need to use one of the `pth_new_()` functions.
   
+  - `pth_in_gamut()`: Indicates if a color is inside (not outside) the RGB gamut.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)

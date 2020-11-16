@@ -4,7 +4,7 @@
 #' @param mat_cartesian `matrix` with columns for luminance,
 #'   blue-yellow, green-red.
 #' @param chroma_min `numeric` "trick" used to preserve the hue at zero chroma,
-#'   using insignificant decimal places.
+#'   using a value small enough not to affect color-perception.
 #'
 #' @return `matrix` with same dimension as the input matrix.
 #' @examples
