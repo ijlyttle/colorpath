@@ -32,6 +32,13 @@ test_that("pth_to_cieluv works", {
   )
 })
 
+test_that("`[.pth_to_cieluv`() works", {
+  expect_identical(
+    luv_test,
+    luv_test[1, ]
+  )
+})
+
 test_that("get same result as farver", {
 
   ref <- "#663399"

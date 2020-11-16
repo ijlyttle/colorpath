@@ -31,3 +31,10 @@ test_that("pth_to_jzazbz100 works", {
     jab_test
   )
 })
+
+test_that("`[.pth_to_jzazbz100`() works", {
+  expect_identical(
+    jab_test,
+    jab_test[1, ]
+  )
+})

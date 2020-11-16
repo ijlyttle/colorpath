@@ -59,12 +59,16 @@ pth_new_cam16ucs <- function(mat, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
     )
 
   # save whitepoint as attribute
-  result <- structure(mat, class = c("pth_cam16ucs", "pth_mat"))
-  attr(result, "whitepoint") <- whitepoint
-  attr(result, "c") <- c
-  attr(result, "Y_b") <- Y_b
-  attr(result, "L_A") <- L_A
-  attr(result, "exact_inversion") <- exact_inversion
+  result <-
+    structure(
+      mat,
+      class = c("pth_cam16ucs", "pth_mat"),
+      c = c,
+      Y_b = Y_b,
+      L_A = L_A,
+      exact_inversion = exact_inversion,
+      whitepoint = whitepoint
+    )
 
   # attach labels
   result <- label_cols(result, cam16ucs$labels)
@@ -88,4 +92,20 @@ to_xyz100.pth_cam16ucs <- function(color, ...) {
   xyz100 <- t(cam16ucs$to_xyz100(t(color)))
 
   label_cols(xyz100, c("x", "y", "z"))
+}
+
+#' @export
+#'
+`[.pth_cam16ucs` <- function(x, i, ...) {
+
+  # we need this so that when we subset, the rest of the
+  # attributes "come along for the ride"
+  pth_new_cam16ucs(
+    NextMethod(drop = FALSE),
+    c = attr(x, "c"),
+    Y_b = attr(x, "Y_b"),
+    L_A = attr(x, "L_A"),
+    exact_inversion = attr(x, "exact_inversion"),
+    whitepoint = attr(x, "whitepoint")
+  )
 }

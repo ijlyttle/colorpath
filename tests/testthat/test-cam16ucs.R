@@ -43,3 +43,10 @@ test_that("pth_to_cam16ucs() works", {
     cam16_test
   )
 })
+
+test_that("`[.pth_to_cam16ucs`() works", {
+  expect_identical(
+    cam16_test,
+    cam16_test[1, ]
+  )
+})

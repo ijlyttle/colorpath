@@ -45,8 +45,12 @@ pth_new_jzazbz100 <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
   jzazbz100 <- colorio$JzAzBz(whitepoint = whitepoint)
 
   # save whitepoint as attribute
-  result <- structure(mat, class = c("pth_jzazbz100", "pth_mat"))
-  attr(result, "whitepoint") <- whitepoint
+  result <-
+    structure(
+      mat,
+      class = c("pth_jzazbz100", "pth_mat"),
+      whitepoint = whitepoint
+    )
 
   # attach labels
   result <- label_cols(result, jzazbz100$labels)
@@ -66,6 +70,18 @@ to_xyz100.pth_jzazbz100 <- function(color, ...) {
   xyz100 <- t(jzazbz100$to_xyz100(t(color)))
 
   label_cols(xyz100, c("x", "y", "z"))
+}
+
+#' @export
+#'
+`[.pth_jzazbz100` <- function(x, i, ...) {
+
+  # we need this so that when we subset, the rest of the
+  # attributes "come along for the ride"
+  pth_new_jzazbz100(
+    NextMethod(drop = FALSE),
+    whitepoint = attr(x, "whitepoint")
+  )
 }
 
 # we are going to scale using luminance only

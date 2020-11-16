@@ -30,8 +30,12 @@ pth_new_cieluv <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
   cieluv <- colorio$CIELUV(whitepoint = whitepoint)
 
   # save whitepoint as attribute
-  result <- structure(mat, class = c("pth_cieluv", "pth_mat"))
-  attr(result, "whitepoint") <- whitepoint
+  result <-
+    structure(
+      mat,
+      class = c("pth_cieluv", "pth_mat"),
+      whitepoint = whitepoint
+    )
 
   # attach labels
   result <- label_cols(result, cieluv$labels)
@@ -50,4 +54,15 @@ to_xyz100.pth_cieluv <- function(color, ...) {
   label_cols(xyz100, c("x", "y", "z"))
 }
 
+#' @export
+#'
+`[.pth_cieluv` <- function(x, i, ...) {
+
+  # we need this so that when we subset, the rest of the
+  # attributes "come along for the ride"
+  pth_new_cieluv(
+    NextMethod(drop = FALSE),
+    whitepoint = attr(x, "whitepoint")
+  )
+}
 
