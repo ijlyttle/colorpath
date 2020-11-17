@@ -78,6 +78,15 @@ to_xyz100.pth_jzazbz100 <- function(color, ...) {
 
   # we need this so that when we subset, the rest of the
   # attributes "come along for the ride"
+
+  # subset normally, don't drop dimensions
+  mat <- NextMethod(drop = FALSE)
+
+  # if we don't have three columns, no classes, no attributes
+  if (!identical(ncol(mat), 3L)) {
+    return(mat)
+  }
+
   pth_new_jzazbz100(
     NextMethod(drop = FALSE),
     whitepoint = attr(x, "whitepoint")

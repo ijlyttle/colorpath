@@ -47,6 +47,7 @@ A numeric matrix with:
 \item three columns, corresponding to luminance, blue-yellow, green-red.
 \item one row for each color.
 \item an additional class to identify the color space.
+\item subsetting will not \code{drop} dimensions.
 }
 
 Associated classes:

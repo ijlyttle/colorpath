@@ -5,9 +5,10 @@ Y_b <- 20
 L_A <- 64 / pi / 5
 
 # point chosen to be approx 50, 50, 50 in xyz100
+mat <- matrix(c(100, 0, 0), ncol = 3)
 cam02_test <-
   pth_new_cam02ucs(
-    matrix(c(100, 0, 0), ncol = 3),
+    mat,
     c = c,
     Y_b = Y_b,
     L_A = L_A,
@@ -42,8 +43,16 @@ test_that("pth_to_cam02ucs() works", {
 })
 
 test_that("`[.pth_to_cam02ucs`() works", {
+
   expect_identical(
     cam02_test,
     cam02_test[1, ]
   )
+
+  expect_equal(
+    cam02_test[ , 2:3],
+    mat[ , 2:3, drop = FALSE],
+    ignore_attr = TRUE
+  )
+
 })

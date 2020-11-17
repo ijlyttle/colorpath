@@ -43,10 +43,14 @@ pth_max_chroma <- function(mat) {
     return(NULL)
   }
 
-  # for loop it is, then
+  # for loop out of necessity
+  max_chroma <- rep(double(0), len)
   for (i in seq(len)) {
-
+    mat_local <- mat[i, ]
+    max_chroma[i] <- root_chroma(mat_local)
   }
+
+  max_chroma
 }
 
 #' Determine gamut-distance for a chroma, given a color
