@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert between Cartesian and polar coordinates — pth_to_cartesian • colorpath</title>
+<title>Determine maximum chroma — pth_max_chroma • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Convert between Cartesian and polar coordinates — pth_to_cartesian" />
-<meta property="og:description" content="Convert between Cartesian and polar coordinates" />
+<meta property="og:title" content="Determine maximum chroma — pth_max_chroma" />
+<meta property="og:description" content="The chroma is calculated given the color space used in mat." />
 
 
 <meta name="robots" content="noindex">
@@ -114,55 +114,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert between Cartesian and polar coordinates</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/mat.R'><code>R/mat.R</code></a></small>
-    <div class="hidden name"><code>pth_to_cartesian.Rd</code></div>
+    <h1>Determine maximum chroma</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/chroma.R'><code>R/chroma.R</code></a></small>
+    <div class="hidden name"><code>pth_max_chroma.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert between Cartesian and polar coordinates</p>
+    <p>The chroma is calculated given the color space used in <code>mat</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pth_to_cartesian</span><span class='op'>(</span><span class='va'>mat_polar</span>, chroma_min <span class='op'>=</span> <span class='fl'>1e-04</span><span class='op'>)</span>
-
-<span class='fu'>pth_to_polar</span><span class='op'>(</span><span class='va'>mat_cartesian</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pth_max_chroma</span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat_polar</th>
-      <td><p><code>matrix</code> with columns for luminance, chroma, hue.</p></td>
-    </tr>
-    <tr>
-      <th>chroma_min</th>
-      <td><p><code>numeric</code> "trick" used to preserve the hue at zero chroma,
-using a value small enough not to affect color-perception.</p></td>
-    </tr>
-    <tr>
-      <th>mat_cartesian</th>
-      <td><p><code>matrix</code> with columns for luminance,
-blue-yellow, green-red.</p></td>
+      <th>mat</th>
+      <td><p><code>double</code> <code>matrix</code> with three columns, one row for each color.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>matrix</code> with same dimension as the input matrix.</p>
+    <p><code>double</code> maximum chroma, one value for each row in <code>mat</code>.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  <span class='va'>polar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>45</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-  <span class='va'>cart</span> <span class='op'>&lt;-</span> <span class='fu'>pth_to_cartesian</span><span class='op'>(</span><span class='va'>polar</span><span class='op'>)</span>
-  <span class='va'>polar_new</span> <span class='op'>&lt;-</span> <span class='fu'>pth_to_polar</span><span class='op'>(</span><span class='va'>cart</span><span class='op'>)</span>
-  <span class='co'># notice the chroma value has an artificial floor</span>
-  <span class='co'># using an imperceptible (color) difference</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>polar</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;      [,1] [,2] [,3]
-#&gt; [1,]   50    0   45</div><div class='input'>  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cart</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;      [,1]         [,2]         [,3]
-#&gt; [1,]   50 7.071068e-05 7.071068e-05</div><div class='input'>  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>polar_new</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;      [,1]  [,2] [,3]
-#&gt; [1,]   50 1e-04   45</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
