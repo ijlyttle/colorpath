@@ -16,7 +16,7 @@
   - CAM16-UCS
   - Jzazbz-100
 
-  New functions:
+  New color-space functions (#44):
   
   - `pth_to_cartesian()`, `pth_to_polar()`: to convert back-and-forth among coordinate systems.
     Note that `pth_to_cartesian()` has an argument `chroma_min`, used to preserve the hue where the chroma is zero.
@@ -40,11 +40,17 @@
   - `whitepoints_cie1931()`: Some of the color spaces need a reference white-point; this helper function provides the values. 
     The default, `"D65"`, seems to be used widely. 
   
-  The functions `pth_to_hex()`, `pth_to_cieluv()`, form a "boat" of sorts. 
+  The functions `pth_to_hex()`, `pth_to_cieluv()`, etc., form a "boat" of sorts. 
   You can pipe values from one such function to another; you will always be describing the same colors. 
   i.e. you will not "fall out of the boat". 
   However, the functions `pth_to_cartesian()` and `pth_to_polar()` take you "off the boat".
   To get back "into the boat", you will need to use one of the `pth_new_()` functions.
+  
+  New gamut functions (#46):
+  
+  - `pth_in_gamut()`: Indicates if a color is inside (not outside) the RGB gamut.
+  - `pth_max_chroma()`: Return the maximum chroma for each color, expressed using its color space.
+  - `pth_clip_chroma()`: Return the colors, capping the chromas for out-of-gamut colors to their maximum chromas.
   
 # colorpath 0.0.0 (development version)
 

@@ -2,9 +2,11 @@
 d65 <- whitepoints_cie1931("D65")
 
 # point chosen to be approx 50, 50, 50 in xyz100
+mat <- matrix(c(76.06926, 6.777026, 4.439858), ncol = 3)
+
 lab_test <-
   pth_new_cielab(
-    matrix(c(76.06926, 6.777026, 4.439858), ncol = 3),
+    mat,
     whitepoint = d65
   )
 
@@ -30,6 +32,21 @@ test_that("pth_to_cielab works", {
     pth_to_cielab(lab_test),
     lab_test
   )
+})
+
+test_that("`[.pth_to_cielab`() works", {
+
+  expect_identical(
+    lab_test,
+    lab_test[1, ]
+  )
+
+  expect_equal(
+    lab_test[ , 2:3],
+    mat[ , 2:3, drop = FALSE],
+    ignore_attr = TRUE
+  )
+
 })
 
 test_that("get same result as farver", {

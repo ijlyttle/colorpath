@@ -16,6 +16,12 @@ pth_to_cieluv <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 
   # get values
   xyz <- to_xyz100(color)
+
+  # add some "fuzz" to origin to get around divide-by-zero error
+  # in Python code
+  is_origin <- rowSums(xyz) == 0 # detect origin
+  xyz[is_origin, 1] <- 1.e-10 # add fuzz
+
   mat <- t(cieluv$from_xyz100(t(xyz)))
 
   pth_new_cieluv(mat, whitepoint = whitepoint)
@@ -30,8 +36,12 @@ pth_new_cieluv <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
   cieluv <- colorio$CIELUV(whitepoint = whitepoint)
 
   # save whitepoint as attribute
-  result <- structure(mat, class = c("pth_cieluv", "pth_mat"))
-  attr(result, "whitepoint") <- whitepoint
+  result <-
+    structure(
+      mat,
+      class = c("pth_cieluv", "pth_mat"),
+      whitepoint = whitepoint
+    )
 
   # attach labels
   result <- label_cols(result, cieluv$labels)
@@ -45,9 +55,35 @@ to_xyz100.pth_cieluv <- function(color, ...) {
 
   cieluv <- colorio$CIELUV(whitepoint = attr(color, "whitepoint"))
 
+  # add some "fuzz" to origin to get around divide-by-zero error
+  # in Python code
+  is_origin <- color[, 1] == 0 # detect origin
+  color[is_origin, 1] <- 1.e-10 # add fuzz
+
   xyz100 <- t(cieluv$to_xyz100(t(color)))
 
   label_cols(xyz100, c("x", "y", "z"))
 }
 
+#' @export
+#'
+`[.pth_cieluv` <- function(x, i, ...) {
+
+  # we need this so that when we subset, the rest of the
+  # attributes "come along for the ride"
+
+  # subset normally, don't drop dimensions
+  mat <- NextMethod(drop = FALSE)
+
+  # if we don't have three columns, no classes, no attributes
+  if (!identical(ncol(mat), 3L)) {
+    return(mat)
+  }
+
+  # restore classes, other attributes
+  pth_new_cieluv(
+    mat,
+    whitepoint = attr(x, "whitepoint")
+  )
+}
 

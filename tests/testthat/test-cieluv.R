@@ -2,9 +2,10 @@
 d65 <- whitepoints_cie1931("D65")
 
 # point chosen to be approx 50, 50, 50 in xyz100
+mat <- matrix(c(76.0693, 12.5457, 5.2885), ncol = 3)
 luv_test <-
   pth_new_cieluv(
-    matrix(c(76.0693, 12.5457, 5.2885), ncol = 3),
+    mat,
     whitepoint = d65
   )
 
@@ -32,6 +33,21 @@ test_that("pth_to_cieluv works", {
   )
 })
 
+test_that("`[.pth_to_cieluv`() works", {
+
+  expect_identical(
+    luv_test,
+    luv_test[1, ]
+  )
+
+  expect_equal(
+    luv_test[ , 2:3],
+    mat[ , 2:3, drop = FALSE],
+    ignore_attr = TRUE
+  )
+
+})
+
 test_that("get same result as farver", {
 
   ref <- "#663399"
@@ -41,4 +57,23 @@ test_that("get same result as farver", {
     farver::decode_colour(ref, to = "luv", white = "D65"),
     ignore_attr = TRUE
   )
+})
+
+test_that("make sure origin translates", {
+
+  luv_origin <- pth_new_cieluv(matrix(c(0, 0, 0), ncol = 3))
+
+  expect_identical(
+    pth_to_cieluv("#000000"),
+    luv_origin
+  )
+
+  complex <- c("#663399", "#000000", "#FFFFFF")
+
+  expect_equal(
+    pth_to_cieluv(complex, d65),
+    farver::decode_colour(complex, to = "luv", white = "D65"),
+    ignore_attr = TRUE
+  )
+
 })

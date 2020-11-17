@@ -13,7 +13,7 @@ pth_to_polar(mat_cartesian)
 \item{mat_polar}{\code{matrix} with columns for luminance, chroma, hue.}
 
 \item{chroma_min}{\code{numeric} "trick" used to preserve the hue at zero chroma,
-using insignificant decimal places.}
+using a value small enough not to affect color-perception.}
 
 \item{mat_cartesian}{\code{matrix} with columns for luminance,
 blue-yellow, green-red.}

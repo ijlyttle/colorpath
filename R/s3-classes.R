@@ -39,6 +39,7 @@
 #'  - three columns, corresponding to luminance, blue-yellow, green-red.
 #'  - one row for each color.
 #'  - an additional class to identify the color space.
+#'  - subsetting will not `drop` dimensions.
 #'
 #' Associated classes:
 #'

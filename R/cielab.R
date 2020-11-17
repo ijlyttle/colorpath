@@ -33,8 +33,12 @@ pth_new_cielab <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
   cielab <- colorio$CIELAB(whitepoint = whitepoint)
 
   # save whitepoint as attribute
-  result <- structure(mat, class = c("pth_cielab", "pth_mat"))
-  attr(result, "whitepoint") <- whitepoint
+  result <-
+    structure(
+      mat,
+      class = c("pth_cielab", "pth_mat"),
+      whitepoint = whitepoint
+    )
 
   # attach labels
   result <- label_cols(result, cielab$labels)
@@ -52,3 +56,25 @@ to_xyz100.pth_cielab <- function(color, ...) {
 
   label_cols(xyz100, c("x", "y", "z"))
 }
+
+#' @export
+#'
+`[.pth_cielab` <- function(x, i, ...) {
+
+  # we need this so that when we subset, the rest of the
+  # attributes "come along for the ride"
+
+  # subset normally, don't drop dimensions
+  mat <- NextMethod(drop = FALSE)
+
+  # if we don't have three columns, no classes, no attributes
+  if (!identical(ncol(mat), 3L)) {
+    return(mat)
+  }
+
+  pth_new_cielab(
+    mat,
+    whitepoint = attr(x, "whitepoint")
+  )
+}
+
