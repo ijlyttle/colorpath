@@ -46,6 +46,10 @@ pth_in_gamut <- function(color) {
 #'
 pth_max_chroma <- function(mat) {
 
+  assertthat::assert_that(
+    inherits(mat, "pth_mat")
+  )
+
   len <- nrow(mat)
 
   if (identical(len, 0L)) {
@@ -97,6 +101,23 @@ pth_clip_chroma.pth_hex <- function(color, ...) {
   color
 }
 
+#' @export
+#'
+pth_clip_chroma.pth_mat <- function(color, ...) {
+
+  in_gamut <- pth_in_gamut(color)
+
+  # get chroma and mat chroma for all colors not in gamut
+  chroma <- pth_to_polar(color[!in_gamut, ])[, 2]
+  max_chroma <- pth_max_chroma(color[!in_gamut, ])
+
+  # desaturate colors not in gamut
+  ratio <- max_chroma / chroma
+  color[!in_gamut, 2:3] <- color[!in_gamut, 2:3] * ratio
+
+  color
+}
+
 #' Determine gamut-distance for a chroma, given a color
 #'
 #' @param chroma `numeric` value for chroma, expressed using color space
@@ -132,6 +153,13 @@ x_gamut_chroma <- function(chroma, mat) {
 #' @noRd
 #'
 root_chroma <- function(mat) {
+
+  # short-circuit the top and bottom of the gamut
+  lum <- mat[, 1]
+  tol <- 1.e-2
+  if (abs(lum) < tol || abs(100 - lum) < tol) {
+    return(0) # max_chroma is zero
+  }
 
   root <-
     stats::uniroot(

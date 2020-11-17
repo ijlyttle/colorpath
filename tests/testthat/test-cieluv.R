@@ -58,3 +58,22 @@ test_that("get same result as farver", {
     ignore_attr = TRUE
   )
 })
+
+test_that("make sure origin translates", {
+
+  luv_origin <- pth_new_cieluv(matrix(c(0, 0, 0), ncol = 3))
+
+  expect_identical(
+    pth_to_cieluv("#000000"),
+    luv_origin
+  )
+
+  complex <- c("#663399", "#000000", "#FFFFFF")
+
+  expect_equal(
+    pth_to_cieluv(complex, d65),
+    farver::decode_colour(complex, to = "luv", white = "D65"),
+    ignore_attr = TRUE
+  )
+
+})

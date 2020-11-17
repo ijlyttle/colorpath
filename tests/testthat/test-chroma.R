@@ -89,4 +89,30 @@ test_that("pth_clip_chroma() works", {
     pth_to_hex("#FFFFFF")
   )
 
+  luv_test <-
+    pth_to_cieluv(c("#000000", "#663399", "#ff1122", "#ff4500", "#ffffff"))
+
+  expect_equal(
+    pth_clip_chroma(luv_test),
+    luv_test,
+    tolerance = 0.1
+  )
+
+  # exceed chroma
+
+  # at gamut outer-surface
+  luv_test <-
+    pth_to_cieluv(c("#000000", "#ff1122", "#ff4500", "#ffffff"))
+
+  polar <- pth_to_polar(luv_test)
+  polar[, 2] <- polar[, 2] + 10 # go outside gamut
+
+  luv_new <- pth_new_cieluv(pth_to_cartesian(polar))
+
+  expect_equal(
+    pth_clip_chroma(luv_new),
+    luv_test,
+    tolerance = 0.1
+  )
+
 })

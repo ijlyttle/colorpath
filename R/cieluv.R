@@ -16,6 +16,12 @@ pth_to_cieluv <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 
   # get values
   xyz <- to_xyz100(color)
+
+  # add some "fuzz" to origin to get around divide-by-zero error
+  # in Python code
+  is_origin <- rowSums(xyz) == 0 # detect origin
+  xyz[is_origin, 1] <- 1.e-10 # add fuzz
+
   mat <- t(cieluv$from_xyz100(t(xyz)))
 
   pth_new_cieluv(mat, whitepoint = whitepoint)
@@ -48,6 +54,11 @@ pth_new_cieluv <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
 to_xyz100.pth_cieluv <- function(color, ...) {
 
   cieluv <- colorio$CIELUV(whitepoint = attr(color, "whitepoint"))
+
+  # add some "fuzz" to origin to get around divide-by-zero error
+  # in Python code
+  is_origin <- color[, 1] == 0 # detect origin
+  color[is_origin, 1] <- 1.e-10 # add fuzz
 
   xyz100 <- t(cieluv$to_xyz100(t(color)))
 
