@@ -38,6 +38,7 @@ test_that("x_gamut() works", {
 })
 
 test_that("pth_in_gamut() works", {
+
   expect_equal(
     pth_in_gamut(luv_gamut_test),
     c(FALSE, FALSE, FALSE, TRUE, TRUE, FALSE)
@@ -47,6 +48,45 @@ test_that("pth_in_gamut() works", {
     all(
       pth_in_gamut(c("#663399", "#000000", "#ffffff"))
     )
+  )
+
+})
+
+test_that("pth_max_chroma() works", {
+
+  # all of these are at the gamut outer-surface
+  hex <- c("#820076", "#ff8053", "#45a4ff")
+
+  expect_match_chroma <- function(hex, .f) {
+
+    mat <- .f(hex)
+    polar <- pth_to_polar(mat)
+    max_chroma <- polar[, 2]
+
+    # generate a guess that uses half the chroma
+    mat[, 2:3] <- mat[, 2:3] / 2
+
+    # try to recover original
+    max_chroma_calc <- pth_max_chroma(mat)
+
+    expect_equal(max_chroma_calc, max_chroma, tolerance = 0.1)
+  }
+
+  expect_match_chroma(hex, pth_to_cielab)
+  expect_match_chroma(hex, pth_to_cieluv)
+  expect_match_chroma(hex, pth_to_cam02ucs)
+  expect_match_chroma(hex, pth_to_cam16ucs)
+  expect_match_chroma(hex, pth_to_jzazbz100)
+
+})
+
+test_that("pth_clip_chroma() works", {
+
+  expect_error(pth_clip_chroma(3), "No method")
+
+  expect_identical(
+    pth_clip_chroma("#FFFFFF"),
+    pth_to_hex("#FFFFFF")
   )
 
 })

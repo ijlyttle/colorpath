@@ -35,6 +35,15 @@ pth_in_gamut <- function(color) {
   x_gamut(color) <= 0
 }
 
+#' Determine maximum chroma
+#'
+#' The chroma is calculated given the color space used in `mat`.
+#'
+#' @inheritParams pth_to_cielab
+#'
+#' @return `double` maximum chroma, one value for each row in `mat`.
+#' @export
+#'
 pth_max_chroma <- function(mat) {
 
   len <- nrow(mat)
@@ -51,6 +60,41 @@ pth_max_chroma <- function(mat) {
   }
 
   max_chroma
+}
+
+
+#' Modify color to bring inside RGB gamut
+#'
+#' @inheritParams pth_to_cielab
+#' @param ... other args (not used).
+#'
+#' @return Object of same type as `color`.
+#' @export
+#'
+pth_clip_chroma <- function(color, ...) {
+  UseMethod("pth_clip_chroma")
+}
+
+#' @export
+#'
+pth_clip_chroma.default <- function(color, ...) {
+  stop(
+    glue::glue("No method for class {class(color)}")
+  )
+}
+
+#' @export
+#'
+pth_clip_chroma.character <- function(color, ...) {
+  hex <- pth_to_hex(color)
+  pth_clip_chroma(hex)
+}
+
+#' @export
+#'
+pth_clip_chroma.pth_hex <- function(color, ...) {
+  # no-op
+  color
 }
 
 #' Determine gamut-distance for a chroma, given a color
