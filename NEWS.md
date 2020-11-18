@@ -49,8 +49,12 @@
   New gamut functions (#46):
   
   - `pth_in_gamut()`: Indicates if a color is inside (not outside) the RGB gamut.
-  - `pth_max_chroma()`: Return the maximum chroma for each color, expressed using its color space.
-  - `pth_clip_chroma()`: Return the colors, capping the chromas for out-of-gamut colors to their maximum chromas.
+  - `pth_max_chroma()`: Returns the maximum chroma for each color, expressed using its color space.
+  - `pth_clip_chroma()`: Returns the colors, capping the chromas for out-of-gamut colors to their maximum chromas.
+  
+  New functions to suport distance calculations (#48):
+  
+  - `pth_n_color()`: Returns the number of colors in a vector or matrix.
   
 # colorpath 0.0.0 (development version)
 
