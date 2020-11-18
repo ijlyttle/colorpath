@@ -2,9 +2,21 @@
 % Please edit documentation in R/n_color.R
 \name{pth_n_color}
 \alias{pth_n_color}
+\alias{pth_n_color.default}
+\alias{pth_n_color.character}
+\alias{pth_n_color.pth_hex}
+\alias{pth_n_color.pth_mat}
 \title{Number of colors}
 \usage{
 pth_n_color(color, ...)
+
+\method{pth_n_color}{default}(color, ...)
+
+\method{pth_n_color}{character}(color, ...)
+
+\method{pth_n_color}{pth_hex}(color, ...)
+
+\method{pth_n_color}{pth_mat}(color, ...)
 }
 \arguments{
 \item{color}{\code{character} or \code{matrix} with S3 class \code{pth_mat}, a

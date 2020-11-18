@@ -12,6 +12,7 @@ pth_n_color <- function(color, ...) {
   UseMethod("pth_n_color")
 }
 
+#' @rdname pth_n_color
 #' @export
 #'
 pth_n_color.default <- function(color, ...) {
@@ -20,6 +21,7 @@ pth_n_color.default <- function(color, ...) {
   )
 }
 
+#' @rdname pth_n_color
 #' @export
 #'
 pth_n_color.character <- function(color, ...) {
@@ -27,12 +29,14 @@ pth_n_color.character <- function(color, ...) {
   pth_n_color(hex)
 }
 
+#' @rdname pth_n_color
 #' @export
 #'
 pth_n_color.pth_hex <- function(color, ...) {
   length(color)
 }
 
+#' @rdname pth_n_color
 #' @export
 #'
 pth_n_color.pth_mat <- function(color, ...) {

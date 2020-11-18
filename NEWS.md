@@ -28,13 +28,9 @@
   - Convert to matrix using a color space, or designate that a matrix uses a color space:
   
     - `pth_to_cielab()`, `pth_new_cielab()`: CIELAB
-  
     - `pth_to_cieluv()`, `pth_new_cieluv()`: CIELUV
-  
     - `pth_to_cam02ucs()`, `pth_new_cam02ucs()`: CAM02-UCS
-
     - `pth_to_cam16ucs()`, `pth_new_cam16ucs()`: CAM16-UCS
-
     - `pth_to_jzazbz100()`, `pth_new_jzazbz100()`: Jzazbz, scaled to 100
 
   - `whitepoints_cie1931()`: Some of the color spaces need a reference white-point; this helper function provides the values. 
@@ -43,7 +39,7 @@
   The functions `pth_to_hex()`, `pth_to_cieluv()`, etc., form a "boat" of sorts. 
   You can pipe values from one such function to another; you will always be describing the same colors. 
   i.e. you will not "fall out of the boat". 
-  However, the functions `pth_to_cartesian()` and `pth_to_polar()` take you "off the boat".
+  However, the functions `pth_to_cartesian()` and `pth_to_polar()` kick you "out of the boat".
   To get back "into the boat", you will need to use one of the `pth_new_()` functions.
   
   New gamut functions (#46):
@@ -55,6 +51,7 @@
   New functions to suport distance calculations (#48):
   
   - `pth_n_color()`: Returns the number of colors in a vector or matrix.
+  - `pth_mat_replace_data()`: Returns a `pth_mat` with new data.
   
 # colorpath 0.0.0 (development version)
 
