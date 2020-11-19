@@ -1,3 +1,8 @@
+
+hex <- pth_new_hex(c("#000000", "#663399", "#ffffff"))
+luv <- pth_to_cieluv(hex)
+lab <- pth_to_cielab(hex)
+
 test_that("is_color() works", {
   expect_false(
     is_color(3)
@@ -13,9 +18,6 @@ test_that("is_color() works", {
 })
 
 test_that("get_colors() works", {
-
-  hex <- pth_new_hex(c("#000000", "#663399", "#ffffff"))
-  luv <- pth_to_cieluv(hex)
 
   hex_one <- head(hex, 1)
   luv_one <- head(luv, 1)
@@ -86,6 +88,26 @@ test_that("get_colors() works", {
   expect_error(
     get_colors(luv_two, luv_three),
     "not compatible"
+  )
+
+})
+
+
+test_that("get_transformer_default() works", {
+
+  expect_identical(
+    get_transformer_default(hex, hex),
+    pth_to_cieluv
+  )
+
+  expect_identical(
+    get_transformer_default(luv, luv),
+    identity
+  )
+
+  expect_identical(
+    get_transformer_default(luv, lab),
+    NULL
   )
 
 })

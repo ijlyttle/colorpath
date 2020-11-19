@@ -52,3 +52,41 @@ get_colors <- function(color_a, color_b) {
 is_color <- function(x) {
   is_mat(x) || all(is_hex_liberal(x))
 }
+
+
+#' Get default transformer-function
+#'
+#' @inheritParams get_colors
+#'
+#' Call this *after* get_colors() as it will take care of validating and
+#' coercing inputs.
+#'
+#' The point here is to return a default transformation-function
+#'
+#' - if `color_a` and `color_b` are both hex-codes, we use `pth_to_cieluv()`.
+#' - if `color_a` and `color_b` both use the same color space, we use `identity()`.
+#' - if `color_a` and `color_b` use different color spaces, return `NULL`.
+#'
+#' The calling function will have to throw an error if the transformer function
+#' ends up `NULL`.
+#'
+#' @return transformer `function`
+#'
+#' @noRd
+#'
+get_transformer_default <- function(color_a, color_b) {
+
+  if (!identical(class(color_a), class(color_b))) {
+    return(NULL)
+  }
+
+  if (inherits(color_a, "pth_hex")) {
+    return(pth_to_cieluv)
+  }
+
+  if (inherits(color_a, "pth_mat"))  {
+    return(identity)
+  }
+
+  NULL
+}
