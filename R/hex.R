@@ -103,3 +103,10 @@ to_xyz100.character <- function(color, ...) {
 to_xyz100.pth_hex <- function(color, ...) {
   farver::decode_colour(color, to = "xyz")
 }
+
+#' @export
+#'
+`[.pth_hex` <- function(x, i, ...) {
+
+  pth_new_hex(NextMethod())
+}

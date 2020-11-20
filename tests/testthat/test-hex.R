@@ -23,3 +23,12 @@ test_that("pth_to_hex() works", {
   expect_identical(pth_to_hex(hex_correct), hex_correct)
 })
 
+test_that("subsetting works", {
+
+  char <- c("#000000", "#663399", "#ffffff")
+  hex <- pth_new_hex(char)
+  hex_two <- pth_new_hex(char[1:2])
+
+  expect_identical(hex[1:2], hex_two)
+})
+
