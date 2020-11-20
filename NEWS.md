@@ -50,6 +50,8 @@
   
   New functions to suport distance calculations (#48):
   
+  - `pth_distance_euclid()`: Returns Euclidean distances between colors, given a color space. 
+  - `pth_distance_metric()`: Returns metric-based distances between colors.
   - `pth_n_color()`: Returns the number of colors in a vector or matrix.
   - `pth_mat_replace_data()`: Returns a `pth_mat` with new data.
   

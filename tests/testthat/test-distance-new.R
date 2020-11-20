@@ -28,6 +28,12 @@ test_that("get_colors() works", {
   hex_three <- pth_new_hex(rep(hex_one, 3))
   luv_three <- pth_to_cieluv(hex_three)
 
+  # coerce to pth_hex
+  expect_identical(
+    get_colors(unclass(hex), unclass(hex)),
+    list(color_a = hex, color_b = hex)
+  )
+
   # no-op
   expect_identical(
     get_colors(hex_one, hex_one),
@@ -92,7 +98,6 @@ test_that("get_colors() works", {
 
 })
 
-
 test_that("get_transformer_default() works", {
 
   expect_identical(
@@ -111,3 +116,48 @@ test_that("get_transformer_default() works", {
   )
 
 })
+
+test_that("distance functions work", {
+
+  # TODO: find some *actual* reference distances, perhaps use snapshot testing
+
+  # single set of colors
+  euclid_hex <- pth_distance_euclid(hex)
+  metric_hex <- pth_distance_metric(hex)
+
+  # output length is one less than input length
+  expect_length(euclid_hex, length(hex) - 1)
+  expect_length(metric_hex, length(hex) - 1)
+
+  # all distances are non-negative
+  expect_true(all(euclid_hex >= 0))
+  expect_true(all(metric_hex >= 0))
+
+  # pairwise comparison with self, distance is zero
+  expect_identical(
+    pth_distance_euclid(hex, hex),
+    rep(0, 3)
+  )
+
+  expect_identical(
+    pth_distance_metric(hex, hex),
+    rep(0, 3)
+  )
+
+  # compare with reference
+  euclid_hex <- pth_distance_euclid(hex, hex[1])
+  metric_hex <- pth_distance_metric(hex, hex[1])
+
+  # output length equals first-input length
+  expect_length(euclid_hex, length(hex))
+  expect_length(metric_hex, length(hex))
+
+  # all distances are non-negative
+  expect_true(all(euclid_hex >= 0))
+  expect_true(all(metric_hex >= 0))
+
+  # all distances are non-negative
+  expect_true(all(euclid_hex >= 0))
+  expect_true(all(metric_hex >= 0))
+})
+
