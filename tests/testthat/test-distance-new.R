@@ -159,5 +159,37 @@ test_that("distance functions work", {
   # all distances are non-negative
   expect_true(all(euclid_hex >= 0))
   expect_true(all(metric_hex >= 0))
+
+  # sanity checks:
+  #  we expect the distance between black and white to be about 100
+  hex_limits <- c("#000000", "#ffffff")
+
+  expect_euclid <- function(transformer) {
+    expect_equal(
+      pth_distance_euclid(hex_limits, transformer = transformer),
+      100,
+      tolerance = 3.e-4
+    )
+  }
+
+  expect_euclid(pth_to_cielab)
+  expect_euclid(pth_to_cieluv)
+  expect_euclid(pth_to_cam02ucs)
+  expect_euclid(pth_to_cam16ucs)
+  expect_euclid(pth_to_jzazbz100)
+
+  expect_metric <- function(method, value = 100) {
+    expect_equal(
+      pth_distance_metric(hex_limits, method = method),
+      value,
+      tolerance = 1.e-4
+    )
+  }
+
+  expect_metric("cie2000")
+  expect_metric("cie1976")
+  expect_metric("cie94")
+  expect_metric("cmc", 97.85)
+
 })
 
