@@ -57,8 +57,8 @@
   
   New functions to support palettes. A palette (function) returns a color for each given value between 0 and 1 (#50):
   
-  - (not yet) `pth_new_hue_surface()`: Returns a function (with S3 class `pth_hue_surface`) that, for each given luminance, returns a hue.
-  - (not yet) `pth_new_chroma_trajectory()`: Returns a function (with S3 class `pth_chroma_trajectory`) that, for each given x (between 0 and 1), returns a set of luminance and chroma; uses a Bézier curve under the hood.
+  - `pth_new_hue_surface()`: Returns a function (with S3 class `pth_hue_surface`) that, for each given luminance, returns a hue.
+  - `pth_new_chroma_trajectory()`: Returns a function (with S3 class `pth_chroma_trajectory`) that, for each given x (between 0 and 1), returns a set of luminance and chroma; uses a Bézier curve under the hood.
   
   - (not yet) `pth_new_palette()`: Returns a palette function (with S3 class `pth_palette`), given a hue-surface, chroma-trajectory, and a color space.
   - (not yet) `pth_new_palette_hex()`: Returns a palette function, given a vector of hex-codes and an optional tranformer-function.
