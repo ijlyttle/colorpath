@@ -13,6 +13,11 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://github.com/ijlyttle/colorpath/workflows/R-CMD-check/badge.svg)](https://github.com/ijlyttle/colorpath/actions)
 <!-- badges: end -->
 
+**Note**: on the off-chance that someone is reading this, as of
+late-2020 I am reworking the entire package. Functions that are part of
+the “new regime” begin with `pth_`; we can expect other functions to be
+removed in time.
+
 The goal of colorpath is to introduce as a level of abstraction above a
 color palette. It is thought that a set of palettes: categorical,
 sequential, and diverging, could be built using colors contained within

@@ -3,5 +3,5 @@ template:
     bootswatch: sandstone
 
 development:
-  mode: auto
+  mode: unreleased
 

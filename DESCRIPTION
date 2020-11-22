@@ -37,10 +37,11 @@ BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
     testthat (>= 3.0),
     rmarkdown,
-    knitr,   
+    knitr,
     splattr (>= 0.0.0.9008),
     pals,
-    magrittr
+    magrittr,
+    grDevices
 Remotes: 
     ijlyttle/splattr,
     ijlyttle/colorio

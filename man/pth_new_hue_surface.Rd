@@ -43,6 +43,10 @@ and \code{chroma} values. These serve as control points for a Bézier curve.
 It returns a function that given input values \verb{0 <= x <= 1}, returns
 a matrix with as many rows as input values; \code{lum} and \code{chroma} are the
 columns.
+
+One thing to keep in mind when designing a trajectory: although it is a good
+thing to keep the trajectory within the gamut, it is not necessary
+(or perhaps not even desirable) to keep the control points within the gamut.
 }
 \examples{
  # create surfaces
