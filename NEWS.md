@@ -70,6 +70,10 @@
   
   - `pth_palette_join()`: Returns a palette created by joining two palettes; useful for creating diverging scales.
   
+  - `pth_pal_input_discrete()`: Returns a palette-like function that takes an integer as an input, returns that many colors. 
+  In other words, turn a continuous palette-function into a discrete palette-function.
+  - `pth_pal_output_hex()`: Returns a palette-like function that returns a vector of hex-codes, rather than a matrix.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)
