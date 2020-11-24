@@ -68,6 +68,8 @@
   Uses the Euclidean distance of a color space.
   - `pth_palette_rescale_metric()`: Returns a rescaled palette, as above, but uses a metric to determine distance.
   
+  - (not yet) `pth_palette_join()`: Returns a palette created by joining two palettes; useful for creating diverging scales.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)

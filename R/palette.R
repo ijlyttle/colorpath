@@ -100,7 +100,7 @@ pth_new_palette_hex <- function(hex, transformer = pth_to_cieluv, ...) {
   structure(
     f,
     class = c("pth_palette_hex", "pth_palette"),
-    nodes = hex
+    nodes = list(hex)
   )
 }
 
