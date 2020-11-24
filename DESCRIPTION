@@ -31,7 +31,8 @@ Imports:
     ggplot2,
     purrr,
     utils,
-    colorio
+    colorio,
+    magrittr
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
@@ -40,7 +41,6 @@ Suggests:
     knitr,
     splattr (>= 0.0.0.9008),
     pals,
-    magrittr,
     grDevices
 Remotes: 
     ijlyttle/splattr,

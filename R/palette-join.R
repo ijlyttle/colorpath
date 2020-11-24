@@ -1,13 +1,44 @@
+#' Join palette functions
+#'
+#' Use this function to join two sequential palettes into a diverging palette.
+#'
+#' @param palette_low,palette_high `function` with S3 class `pth_palette`,
+#'   palettes to join. `palette_low` will be reversed; both palettes will be
+#'   rescaled then joined.
+#' @param ... other args (not used)
+#'
+#' @return `function` with S3 class `pth_palette`,
+#'   same as `palette_low`, `palette_high`.
+#' @examples
+#'  # both these palettes go from light grey to a darker color
+#'  pal_hex_blue <- pth_new_palette_hex(c("#e2e2e2", "#9cbaee", "#3c79c0"))
+#'  pal_hex_orange <- pth_new_palette_hex(c("#e2e2e2", "#e0af85", "#a66a00"))
+#'
+#'  # palette_low (in this case, blue) is reversed,
+#'  # putting the light grey in the middle
+#'  pal_hex_join <- pth_palette_join(pal_hex_blue, pal_hex_orange)
+#'
+#'  # recover the original hex codes
+#'  pal_hex_join(seq(0, 1, by = 0.25)) %>% pth_to_hex()
+#'
+#' @export
+#'
 pth_palette_join <- function(palette_low, palette_high, ...) {
   UseMethod("pth_palette_join")
 }
 
+#' @rdname pth_palette_join
+#' @export
+#'
 pth_palette_join.default <- function(palette_low, palette_high, ...) {
   stop(
-    glue::glue("No method for class {class(palette_low,)}")
+    glue::glue("No method for class {class(palette_low)}")
   )
 }
 
+#' @rdname pth_palette_join
+#' @export
+#'
 pth_palette_join.pth_palette_hex <- function(palette_low, palette_high, ...) {
 
   nodes_low  <- attr(palette_low, "nodes")
@@ -20,6 +51,9 @@ pth_palette_join.pth_palette_hex <- function(palette_low, palette_high, ...) {
   )
 }
 
+#' @rdname pth_palette_join
+#' @export
+#'
 pth_palette_join.pth_palette_path <- function(palette_low, palette_high, ...) {
 
   cp_low  <- attr(palette_low, "control_points")
@@ -56,7 +90,8 @@ palette_join <- function(palette_low, palette_high) {
     use_low <- (x <= 0.5)
     use_high <- (x > 0.5)
 
-    x_low  <- 2 * x[use_low]
+    # reverse the low palette
+    x_low  <- 2 * (0.5 - x[use_low])
     x_high <- 2 * (x[use_high] - 0.5)
 
     # start with blank matrix
@@ -67,8 +102,13 @@ palette_join <- function(palette_low, palette_high) {
       )
 
     # substitute low and high values
-    result[use_low, ] <- palette_low(x_low)
-    result[use_high, ] <- palette_low(x_high)
+    if (any(use_low)) {
+      result[use_low, ] <- palette_low(x_low)
+    }
+
+    if (any(use_high)) {
+      result[use_high, ] <- palette_high(x_high)
+    }
 
     result
   }
