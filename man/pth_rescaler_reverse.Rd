@@ -8,20 +8,24 @@
 \usage{
 pth_rescaler_reverse()
 
-pth_rescaler_euclid(palette, tolerance, transformer, non_luminance_weight, ...)
+pth_rescaler_euclid(palette, tolerance, non_luminance_weight, transformer, ...)
 
-pth_rescaler_metric(palette, tolerance, method)
+pth_rescaler_metric(
+  palette,
+  tolerance,
+  method = c("cie2000", "cie94", "cie1976", "cmc")
+)
 }
 \arguments{
 \item{palette}{\code{function} with S3 class \code{pth_palette}.}
 
 \item{tolerance}{\code{numeric} relative tolerance for distance calculations.}
 
-\item{transformer}{\code{function} used to transform the colors to the same
-color space, e.g. \link{pth_to_cieluv}.}
-
 \item{non_luminance_weight}{\code{numeric} used to "discount" the effects of
 chroma and hue in the distance calculation.}
+
+\item{transformer}{\code{function} used to transform the colors to the same
+color space, e.g. \link{pth_to_cieluv}.}
 
 \item{...}{additional arguments passed on to \code{transformer}.}
 

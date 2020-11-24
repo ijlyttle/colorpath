@@ -41,5 +41,15 @@ color space, e.g. \link{pth_to_cieluv}.}
 \code{function} with the same S3 classes as \code{palette}
 }
 \description{
-Rescale palette-function
+The purpose of these functions is to rescale the input to palette functions.
+Inputs to palette functions must be \verb{0 <= x <= 1}. A rescaler maps \code{x} to
+\verb{x'} such that \verb{0 <= x' <= 1}; a mapping function will be monotonic.
+
+\code{pth_palette_rescale_reverse()} reverses the input, so that \code{x} maps to
+\code{1 - x}.
+
+The other rescaling functions, \code{pth_palette_rescale_euclid()} and
+\code{pth_palette_rescale_metric()}, are used so to rescale a palette function
+such that a constant change in input, \code{x}, results in a constant change
+in color, for a given definition of "change in color".
 }

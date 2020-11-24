@@ -64,9 +64,9 @@
   - `pth_new_palette_hex()`: Returns a palette function, given a vector of hex-codes and an optional transformer-function.
   
   - `pth_palette_rescale_reverse()`: Returns a rescaled palette, following the same path but reversed.   
-  - (not yet) `pth_palette_rescale_euclid()`: Returns a rescaled palette, following the same path but stretched to become more preceptually-effective. 
+  - `pth_palette_rescale_euclid()`: Returns a rescaled palette, following the same path but stretched to become more preceptually-effective. 
   Uses the Euclidean distance of a color space.
-  - (not yet) `pth_palette_rescale_metric()`: Returns a rescaled palette, as above, but uses a metric to determine distance.
+  - `pth_palette_rescale_metric()`: Returns a rescaled palette, as above, but uses a metric to determine distance.
   
 # colorpath 0.0.0 (development version)
 
