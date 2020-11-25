@@ -73,7 +73,7 @@ function arguments and return values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9000</span>
       </span>
     </div>
 
@@ -141,7 +141,7 @@ and three columns: <code>l</code>, <code>u</code>, <code>v</code></p></li>
 except that <code>LUV</code> values are returned instead of hex-codes.</p>
 <p><strong><code>cpath_rescaler</code></strong></p>
 <p>A function that:</p><ul>
-<li><p>takes a numerical input <code>x</code> (vector, each member between 0 and 1)</p></li>
+<li><p>takes a numerical input <code>x</code> (vector, each value between 0 and 1)</p></li>
 <li><p>returns a rescaled numerical vector (call it <code>y</code>),
 each member between 0 and 1</p></li>
 </ul>
@@ -149,8 +149,34 @@ each member between 0 and 1</p></li>
 <p>There shall be a monotonic relationship between <code>x</code> and <code>y</code>.</p>
 <p><strong><code>cpath_surface_hl</code></strong></p>
 <p>A function that:</p><ul>
-<li><p>takes a numeric input <code>lum</code> (vector, each memeber between 0 and 100)</p></li>
-<li><p>returns values for hue</p></li>
+<li><p>takes a numeric input <code>lum</code> (vector, each value between 0 and 100)</p></li>
+<li><p>returns values for hue (degrees)</p></li>
+</ul>
+
+<p><strong><code>pth_mat</code></strong></p>
+<p>A numeric matrix with:</p><ul>
+<li><p>three columns, corresponding to luminance, blue-yellow, green-red.</p></li>
+<li><p>one row for each color.</p></li>
+<li><p>an additional class to identify the color space.</p></li>
+<li><p>subsetting will not <code>drop</code> dimensions.</p></li>
+</ul>
+
+<p>Associated classes:</p><ul>
+<li><p><strong><code>pth_cielab</code></strong> uses CIELAB space.</p></li>
+<li><p><strong><code>pth_cieluv</code></strong> uses CIELUV space.</p></li>
+<li><p><strong><code>pth_cam02ucs</code></strong> uses CAM02-UCS space.</p></li>
+<li><p><strong><code>pth_cam16ucs</code></strong> uses CAM16-UCS space.</p></li>
+<li><p><strong><code>pth_jzazbz100</code></strong> uses Jzabaz space, scaled to 100.</p></li>
+</ul>
+
+<p><strong><code>pth_hex</code></strong></p>
+<p><code>character</code>, each with six-digit lower-case hex-code</p>
+<p><strong><code>pth_palette</code></strong></p>
+<p>A function that, for each numeric input (<code>0 &lt;= x &lt;= 1</code>), returns a color in a
+given color space.</p>
+<p>Associated classes:</p><ul>
+<li><p><strong><code>pth_palette_hex</code></strong> built using hex codes.</p></li>
+<li><p><strong><code>pth_palette_path</code></strong> built using a path in the color space.</p></li>
 </ul>
 
 
