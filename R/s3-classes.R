@@ -53,6 +53,16 @@
 #'
 #' `character`, each with six-digit lower-case hex-code
 #'
+#' **`pth_palette`**
+#'
+#' A function that, for each numeric input (`0 <= x <= 1`), returns a color in a
+#' given color space.
+#'
+#' Associated classes:
+#'
+#' - **`pth_palette_hex`** built using hex codes.
+#' - **`pth_palette_path`** built using a path in the color space.
+#'
 #' @name colorpath_S3_classes
 #'
 NULL

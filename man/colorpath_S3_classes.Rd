@@ -62,4 +62,15 @@ Associated classes:
 \strong{\code{pth_hex}}
 
 \code{character}, each with six-digit lower-case hex-code
+
+\strong{\code{pth_palette}}
+
+A function that, for each numeric input (\verb{0 <= x <= 1}), returns a color in a
+given color space.
+
+Associated classes:
+\itemize{
+\item \strong{\code{pth_palette_hex}} built using hex codes.
+\item \strong{\code{pth_palette_path}} built using a path in the color space.
+}
 }

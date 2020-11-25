@@ -55,6 +55,25 @@
   - `pth_n_color()`: Returns the number of colors in a vector or matrix.
   - `pth_mat_replace_data()`: Returns a `pth_mat` with new data.
   
+  New functions to support palettes. A palette (function) returns a color for each given value between 0 and 1 (#50):
+  
+  - `pth_new_hue_surface()`: Returns a function (with S3 class `pth_hue_surface`) that, for each given luminance, returns a hue.
+  - `pth_new_chroma_trajectory()`: Returns a function (with S3 class `pth_chroma_trajectory`) that, for each given x (between 0 and 1), returns a set of luminance and chroma; uses a Bézier curve under the hood.
+  
+  - `pth_new_palette()`: Returns a palette function (with S3 class `pth_palette`), given a hue-surface, chroma-trajectory, and a color space.
+  - `pth_new_palette_hex()`: Returns a palette function, given a vector of hex-codes and an optional transformer-function.
+  
+  - `pth_palette_rescale_reverse()`: Returns a rescaled palette, following the same path but reversed.   
+  - `pth_palette_rescale_euclid()`: Returns a rescaled palette, following the same path but stretched to become more preceptually-effective. 
+  Uses the Euclidean distance of a color space.
+  - `pth_palette_rescale_metric()`: Returns a rescaled palette, as above, but uses a metric to determine distance.
+  
+  - `pth_palette_join()`: Returns a palette created by joining two palettes; useful for creating diverging scales.
+  
+  - `pth_pal_input_discrete()`: Returns a palette-like function that takes an integer as an input, returns that many colors. 
+  In other words, turn a continuous palette-function into a discrete palette-function.
+  - `pth_pal_output_hex()`: Returns a palette-like function that returns a vector of hex-codes, rather than a matrix.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)
