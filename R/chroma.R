@@ -166,7 +166,7 @@ x_gamut_chroma <- function(chroma, mat) {
 #'
 #' @noRd
 #'
-root_chroma <- function(mat) {
+root_chroma <- memoise::memoise(function(mat) {
 
   # short-circuit the top and bottom of the gamut
   lum <- mat[, 1]
@@ -184,4 +184,4 @@ root_chroma <- function(mat) {
     )
 
   root$root
-}
+})

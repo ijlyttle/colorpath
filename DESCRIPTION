@@ -33,7 +33,8 @@ Imports:
     utils,
     colorio,
     magrittr,
-    progress
+    progress,
+    memoise
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 
