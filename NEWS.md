@@ -74,6 +74,9 @@
   In other words, turn a continuous palette-function into a discrete palette-function.
   - `pth_pal_output_hex()`: Returns a palette-like function that returns a vector of hex-codes, rather than a matrix.
   
+  - `pth_data_surface_raster()`: Returns a data frame to use for a raster plot of a hue surface.
+  - `pth_plot_surface()`: Returns a ggplot of a hue surface.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)

@@ -32,7 +32,8 @@ Imports:
     purrr,
     utils,
     colorio,
-    magrittr
+    magrittr,
+    progress
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

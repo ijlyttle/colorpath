@@ -14,12 +14,18 @@ x_gamut <- function(color) {
 
   # positive outside of 0 <= x <= 255
   .f <- function(x) {
-    abs(x - 127.5) - 127.5
+    result <- abs(x - 127.5) - 127.5
+
+    result[is.na(result) | is.nan(result)] <- 1
+
+    result
   }
 
   x <- .f(rgb)
 
-  pmax(x[, 1], x[, 2], x[, 3])
+  result <- pmax(x[, 1], x[, 2], x[, 3])
+
+  result
 }
 
 #' Determine if color is in RGB gamut
@@ -58,9 +64,17 @@ pth_max_chroma <- function(mat) {
 
   # for loop out of necessity
   max_chroma <- rep(double(0), len)
+  if (interactive()) {
+    pb <- progress::progress_bar$new(total = len)
+    pb$message("Calculating maximum chroma")
+  }
   for (i in seq(len)) {
     mat_local <- mat[i, ]
     max_chroma[i] <- root_chroma(mat_local)
+
+    if (interactive()) {
+      pb$tick()
+    }
   }
 
   max_chroma
@@ -156,7 +170,7 @@ root_chroma <- function(mat) {
 
   # short-circuit the top and bottom of the gamut
   lum <- mat[, 1]
-  tol <- 1.e-2
+  tol <- 0.9
   if (abs(lum) < tol || abs(100 - lum) < tol) {
     return(0) # max_chroma is zero
   }
@@ -164,7 +178,7 @@ root_chroma <- function(mat) {
   root <-
     stats::uniroot(
       x_gamut_chroma,
-      interval = c(0, 200),
+      interval = c(0, 20),
       mat = mat,
       extendInt = "yes"
     )

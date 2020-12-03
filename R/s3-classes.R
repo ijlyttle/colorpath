@@ -63,6 +63,23 @@
 #' - **`pth_palette_hex`** built using hex codes.
 #' - **`pth_palette_path`** built using a path in the color space.
 #'
+#'
+#' **`pth_hue_surface`**
+#'
+#' A function that:
+#'
+#'  - takes a numeric input `lum` (vector, each value between 0 and 100)
+#'  - returns values for hue (degrees)
+#'
+#'
+#' -**`pth_chroma_trajectory`**
+#'
+#' A function that:
+#'
+#'  - takes a numeric input `x` (vector, each value between 0 and 1)
+#'  - returns matrix with as many rows as values for `x`,
+#'    columns for luminance, chroma
+#'
 #' @name colorpath_S3_classes
 #'
 NULL

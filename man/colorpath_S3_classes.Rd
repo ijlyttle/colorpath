@@ -73,4 +73,21 @@ Associated classes:
 \item \strong{\code{pth_palette_hex}} built using hex codes.
 \item \strong{\code{pth_palette_path}} built using a path in the color space.
 }
+
+\strong{\code{pth_hue_surface}}
+
+A function that:
+\itemize{
+\item takes a numeric input \code{lum} (vector, each value between 0 and 100)
+\item returns values for hue (degrees)
+}
+
+-\strong{\code{pth_chroma_trajectory}}
+
+A function that:
+\itemize{
+\item takes a numeric input \code{x} (vector, each value between 0 and 1)
+\item returns matrix with as many rows as values for \code{x},
+columns for luminance, chroma
+}
 }
