@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>S3 classes — colorpath_S3_classes • colorpath</title>
+<title>Dataset for hue surfaces — pth_data_surface_raster • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="S3 classes — colorpath_S3_classes" />
-<meta property="og:description" content="This package uses S3 classes to help clarify expectations for
-function arguments and return values." />
+<meta property="og:title" content="Dataset for hue surfaces — pth_data_surface_raster" />
+<meta property="og:description" content="The calculation is a somewhat slow - at the &quot;root&quot; of the speed problem
+is the calculation of the maximum chroma. In the future, we could imagine
+providing a lookup table, as colorspace does, to speed things up." />
 
 
 
@@ -115,83 +116,49 @@ function arguments and return values." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>S3 classes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/s3-classes.R'><code>R/s3-classes.R</code></a></small>
-    <div class="hidden name"><code>colorpath_S3_classes.Rd</code></div>
+    <h1>Dataset for hue surfaces</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/plot-data.R'><code>R/plot-data.R</code></a></small>
+    <div class="hidden name"><code>pth_data_surface_raster.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This package uses S3 classes to help clarify expectations for
-function arguments and return values.</p>
+    <p>The calculation is a somewhat slow - at the "root" of the speed problem
+is the calculation of the maximum chroma. In the future, we could imagine
+providing a lookup table, as colorspace does, to speed things up.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+<span class='co'># S3 method for pth_palette_path</span>
+<span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
-    <p><strong><code>cpath_pal_luv</code></strong></p>
-<p>A function that:</p><ul>
-<li><p>takes a vector numeric argument <code>x</code>, each value expected to be
-between 0 and 1</p></li>
-<li><p>returns a matrix with a row for each value of <code>x</code>,
-and three columns: <code>l</code>, <code>u</code>, <code>v</code></p></li>
-</ul>
+<span class='co'># S3 method for pth_hue_surface</span>
+<span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, constructor <span class='op'>=</span> <span class='va'>pth_new_cieluv</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
-<p>Philosophically, this acts just like a continuous-palette function,
-except that <code>LUV</code> values are returned instead of hex-codes.</p>
-<p><strong><code>cpath_rescaler</code></strong></p>
-<p>A function that:</p><ul>
-<li><p>takes a numerical input <code>x</code> (vector, each value between 0 and 1)</p></li>
-<li><p>returns a rescaled numerical vector (call it <code>y</code>),
-each member between 0 and 1</p></li>
-</ul>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p><code>function</code> with S3 class <code>pth_palette_path</code> or <code>pth_hue_surface</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other arguments passed on to <code>constructor</code></p></td>
+    </tr>
+    <tr>
+      <th>constructor</th>
+      <td><p><code>function</code> that constructs a <code>pth_mat</code>, used to
+identify the color space for the output matrix.</p></td>
+    </tr>
+    </table>
 
-<p>There shall be a monotonic relationship between <code>x</code> and <code>y</code>.</p>
-<p><strong><code>cpath_surface_hl</code></strong></p>
-<p>A function that:</p><ul>
-<li><p>takes a numeric input <code>lum</code> (vector, each value between 0 and 100)</p></li>
-<li><p>returns values for hue (degrees)</p></li>
-</ul>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-<p><strong><code>pth_mat</code></strong></p>
-<p>A numeric matrix with:</p><ul>
-<li><p>three columns, corresponding to luminance, blue-yellow, green-red.</p></li>
-<li><p>one row for each color.</p></li>
-<li><p>an additional class to identify the color space.</p></li>
-<li><p>subsetting will not <code>drop</code> dimensions.</p></li>
-</ul>
-
-<p>Associated classes:</p><ul>
-<li><p><strong><code>pth_cielab</code></strong> uses CIELAB space.</p></li>
-<li><p><strong><code>pth_cieluv</code></strong> uses CIELUV space.</p></li>
-<li><p><strong><code>pth_cam02ucs</code></strong> uses CAM02-UCS space.</p></li>
-<li><p><strong><code>pth_cam16ucs</code></strong> uses CAM16-UCS space.</p></li>
-<li><p><strong><code>pth_jzazbz100</code></strong> uses Jzabaz space, scaled to 100.</p></li>
-</ul>
-
-<p><strong><code>pth_hex</code></strong></p>
-<p><code>character</code>, each with six-digit lower-case hex-code</p>
-<p><strong><code>pth_palette</code></strong></p>
-<p>A function that, for each numeric input (<code>0 &lt;= x &lt;= 1</code>), returns a color in a
-given color space.</p>
-<p>Associated classes:</p><ul>
-<li><p><strong><code>pth_palette_hex</code></strong> built using hex codes.</p></li>
-<li><p><strong><code>pth_palette_path</code></strong> built using a path in the color space.</p></li>
-</ul>
-
-<p><strong><code>pth_hue_surface</code></strong></p>
-<p>A function that:</p><ul>
-<li><p>takes a numeric input <code>lum</code> (vector, each value between 0 and 100)</p></li>
-<li><p>returns values for hue (degrees)</p></li>
-</ul>
-
-<p>-<strong><code>pth_chroma_trajectory</code></strong></p>
-<p>A function that:</p><ul>
-<li><p>takes a numeric input <code>x</code> (vector, each value between 0 and 1)</p></li>
-<li><p>returns matrix with as many rows as values for <code>x</code>,
-columns for luminance, chroma</p></li>
-</ul>
-
+    <p><code>tibble</code> with columns <code>luminance</code>, <code>chroma</code>, <code>hue</code>, <code>hex</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
