@@ -15,6 +15,9 @@ expect_snapshot_plot <- function(name, code) {
   # Other packages might affect results
   skip_if_not_installed("ggplot2", "2.0.0")
 
+  # don't run on CI
+  skip_on_ci()
+
   filename <- tempfile(fileext = ".png")
 
   suppressMessages(
