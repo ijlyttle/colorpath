@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot hue-surfaces — pth_plot_surface • colorpath</title>
+<title>Dataset for trajectories — pth_data_control_points • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot hue-surfaces — pth_plot_surface" />
-<meta property="og:description" content="The calculation is a somewhat slow - at the &quot;root&quot; of the speed problem
-is the calculation of the maximum chroma. In the future, we could imagine
-providing a lookup table, as colorspace does, to speed things up." />
+<meta property="og:title" content="Dataset for trajectories — pth_data_control_points" />
+<meta property="og:description" content="Dataset for trajectories" />
 
 
 
@@ -116,57 +114,43 @@ providing a lookup table, as colorspace does, to speed things up." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot hue-surfaces</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/plot-new.R'><code>R/plot-new.R</code></a></small>
-    <div class="hidden name"><code>pth_plot_surface.Rd</code></div>
+    <h1>Dataset for trajectories</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/plot-data.R'><code>R/plot-data.R</code></a></small>
+    <div class="hidden name"><code>pth_data_control_points.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The calculation is a somewhat slow - at the "root" of the speed problem
-is the calculation of the maximum chroma. In the future, we could imagine
-providing a lookup table, as colorspace does, to speed things up.</p>
+    <p>Dataset for trajectories</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pth_plot_surface</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>pth_data_control_points</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>pth_plot_surface</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>pth_data_control_points</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='co'># S3 method for data.frame</span>
-<span class='fu'>pth_plot_surface</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='co'># S3 method for pth_hue_surface</span>
-<span class='fu'>pth_plot_surface</span><span class='op'>(</span><span class='va'>x</span>, step <span class='op'>=</span> <span class='fl'>0.5</span>, constructor <span class='op'>=</span> <span class='va'>pth_new_cieluv</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='co'># S3 method for pth_chroma_trajectory</span>
+<span class='fu'>pth_data_control_points</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for pth_palette_path</span>
-<span class='fu'>pth_plot_surface</span><span class='op'>(</span><span class='va'>x</span>, step <span class='op'>=</span> <span class='fl'>0.5</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>pth_data_control_points</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code>function</code> with S3 class <code>pth_palette_path</code> or <code>pth_hue_surface</code>,
-or <code>data.frame</code> with columns <code>luminance</code>, <code>chroma</code>, <code>hue</code>, <code>hex</code></p></td>
+      <td><p><code>function</code> with S3 class <code>pth_chroma_trajectory</code> or
+<code>pth_palette_path</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed on to <code>constructor</code></p></td>
-    </tr>
-    <tr>
-      <th>step</th>
-      <td><p><code>numeric</code> size of step in luminance and chroma.</p></td>
-    </tr>
-    <tr>
-      <th>constructor</th>
-      <td><p><code>function</code> that constructs a <code>pth_mat</code>, used to
-identify the color space for the output matrix.</p></td>
+      <td><p>other arguments (not used).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>tibble</code> with columns <code>luminance</code>, <code>chroma</code>, <code>hue</code>, <code>hex</code></p>
+    <p><code>tibble</code> with columns <code>luminance</code>, <code>chroma</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

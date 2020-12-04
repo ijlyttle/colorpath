@@ -133,21 +133,25 @@ providing a lookup table, as colorspace does, to speed things up.</p>
 <span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for pth_palette_path</span>
-<span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, step <span class='op'>=</span> <span class='fl'>0.5</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for pth_hue_surface</span>
-<span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, constructor <span class='op'>=</span> <span class='va'>pth_new_cieluv</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>pth_data_surface_raster</span><span class='op'>(</span><span class='va'>x</span>, step <span class='op'>=</span> <span class='fl'>0.5</span>, constructor <span class='op'>=</span> <span class='va'>pth_new_cieluv</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code>function</code> with S3 class <code>pth_palette_path</code> or <code>pth_hue_surface</code></p></td>
+      <td><p><code>function</code> with S3 class <code>pth_palette_path</code> or <code>pth_hue_surface</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed on to <code>constructor</code></p></td>
+      <td><p>other arguments passed on to <code>constructor</code>.</p></td>
+    </tr>
+    <tr>
+      <th>step</th>
+      <td><p><code>numeric</code> size of step in luminance and chroma.</p></td>
     </tr>
     <tr>
       <th>constructor</th>
