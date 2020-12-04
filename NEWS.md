@@ -77,6 +77,8 @@
   - `pth_data_surface_raster()`: Returns a data frame to use for a raster plot of a hue surface.
   - `pth_plot_surface()`: Returns a ggplot of a hue surface.
   
+  - `pth_data_control_points()`: Returns a data frame for the control points of a trajectory.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)

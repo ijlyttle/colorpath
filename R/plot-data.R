@@ -4,9 +4,10 @@
 #' is the calculation of the maximum chroma. In the future, we could imagine
 #' providing a lookup table, as colorspace does, to speed things up.
 #'
-#' @param x `function` with S3 class `pth_palette_path` or `pth_hue_surface`
+#' @param x `function` with S3 class `pth_palette_path` or `pth_hue_surface`.
+#' @param step `numeric` size of step in luminance and chroma.
 #' @inheritParams pth_new_palette_path
-#' @param ... other arguments passed on to `constructor`
+#' @param ... other arguments passed on to `constructor`.
 #'
 #' @return `tibble` with columns `luminance`, `chroma`, `hue`, `hex`
 #'
@@ -25,11 +26,10 @@ pth_data_surface_raster.default <- function(x, ...) {
   )
 }
 
-
 #' @rdname pth_data_surface_raster
 #' @export
 #'
-pth_data_surface_raster.pth_palette_path <- function(x, ...) {
+pth_data_surface_raster.pth_palette_path <- function(x, step = 0.5, ...) {
 
   pal <- x
 
@@ -40,7 +40,7 @@ pth_data_surface_raster.pth_palette_path <- function(x, ...) {
   mat_example <- pal(0)
 
   list_df <-
-    purrr::map(list_sfc, tibble_surface, example = mat_example, step = 0.5)
+    purrr::map(list_sfc, tibble_surface, example = mat_example, step = step)
 
   # diverging
   if (length(list_df) > 1) {
@@ -54,12 +54,14 @@ pth_data_surface_raster.pth_palette_path <- function(x, ...) {
 #' @rdname pth_data_surface_raster
 #' @export
 #'
-pth_data_surface_raster.pth_hue_surface <- function(x, constructor = pth_new_cieluv, ...) {
+pth_data_surface_raster.pth_hue_surface <- function(x, step = 0.5,
+                                                    constructor = pth_new_cieluv,
+                                                    ...) {
 
   sfc <- x
   mat_example <- constructor(matrix(c(0, 0, 0), ncol = 3), ...)
 
-  tibble_surface(sfc, example = mat_example, step = 0.5)
+  tibble_surface(sfc, example = mat_example, step = step)
 }
 
 #' Create matrix for HL surface
@@ -166,5 +168,61 @@ tibble_surface <- function(sfc, example, step) {
     chroma = mat_polar[, 2],
     hue = mat_polar[, 3],
     hex = pth_to_hex(mat_cart)
+  )
+}
+
+#' Dataset for trajectories
+#'
+#' @param x `function` with S3 class `pth_chroma_trajectory` or
+#'  `pth_palette_path`.
+#' @param ... other arguments (not used).
+#'
+#' @return `tibble` with columns `luminance`, `chroma`
+#'
+#' @export
+#'
+pth_data_control_points <- function(x, ...) {
+  UseMethod("pth_data_control_points")
+}
+
+#' @rdname pth_data_control_points
+#' @export
+#'
+pth_data_control_points.default <- function(x, ...) {
+  stop(
+    glue::glue("No method for class {class(x)}")
+  )
+}
+
+#' @rdname pth_data_control_points
+#' @export
+#'
+pth_data_control_points.pth_chroma_trajectory <- function(x, ...) {
+
+  mat <- attr(x, "control_points")
+  tibble_control_points(mat)
+}
+
+#' @rdname pth_data_control_points
+#' @export
+#'
+pth_data_control_points.pth_palette_path <- function(x, ...) {
+
+  list_mat <- attr(x, "control_points")
+  list_df <- purrr::map(list_mat, tibble_control_points)
+
+  # diverging
+  if (length(list_df) > 1) {
+    # negate the chroma for the first set
+    list_df[[1]][["chroma"]] <- -list_df[[1]][["chroma"]]
+  }
+
+  do.call(rbind, list_df)
+}
+
+tibble_control_points <- function(mat) {
+  tibble::tibble(
+    luminance = mat[, 1],
+    chroma = mat[, 2]
   )
 }

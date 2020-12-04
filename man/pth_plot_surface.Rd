@@ -14,15 +14,17 @@ pth_plot_surface(x, ...)
 
 \method{pth_plot_surface}{data.frame}(x, ...)
 
-\method{pth_plot_surface}{pth_hue_surface}(x, constructor = pth_new_cieluv, ...)
+\method{pth_plot_surface}{pth_hue_surface}(x, step = 0.5, constructor = pth_new_cieluv, ...)
 
-\method{pth_plot_surface}{pth_palette_path}(x, ...)
+\method{pth_plot_surface}{pth_palette_path}(x, step = 0.5, ...)
 }
 \arguments{
 \item{x}{\code{function} with S3 class \code{pth_palette_path} or \code{pth_hue_surface},
 or \code{data.frame} with columns \code{luminance}, \code{chroma}, \code{hue}, \code{hex}}
 
 \item{...}{other arguments passed on to \code{constructor}}
+
+\item{step}{\code{numeric} size of step in luminance and chroma.}
 
 \item{constructor}{\code{function} that constructs a \code{pth_mat}, used to
 identify the color space for the output matrix.}

@@ -62,9 +62,13 @@ pth_palette_join.pth_palette_path <- function(palette_low, palette_high, ...) {
   surf_low  <- attr(palette_low, "surface")
   surf_high <- attr(palette_high, "surface")
 
+  # reverse order of control points
+  ord <- seq_len(nrow(cp_low[[1]]))
+  cp_low[[1]] <- cp_low[[1]][rev(ord), ]
+
   structure(
     palette_join(palette_low, palette_high),
-    class = c("pth_palette_hex", "pth_palette"),
+    class = c("pth_palette_path", "pth_palette"),
     control_points = c(cp_low, cp_high),
     surface = c(surf_low, surf_high)
   )

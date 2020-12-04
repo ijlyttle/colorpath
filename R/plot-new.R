@@ -7,6 +7,7 @@
 #' @param x `function` with S3 class `pth_palette_path` or `pth_hue_surface`,
 #'  or `data.frame` with columns `luminance`, `chroma`, `hue`, `hex`
 #' @inheritParams pth_new_palette_path
+#' @inheritParams pth_data_surface_raster
 #' @param ... other arguments passed on to `constructor`
 #'
 #' @return `tibble` with columns `luminance`, `chroma`, `hue`, `hex`
@@ -36,18 +37,19 @@ pth_plot_surface.data.frame <- function(x, ...) {
 #' @rdname pth_plot_surface
 #' @export
 #'
-pth_plot_surface.pth_hue_surface <- function(x, constructor = pth_new_cieluv,
+pth_plot_surface.pth_hue_surface <- function(x, step = 0.5,
+                                             constructor = pth_new_cieluv,
                                              ...) {
-  data <- pth_data_surface_raster(x, constructor, ...)
-  pth_plot_surface(data)
+  data <- pth_data_surface_raster(x, step, constructor, ...)
+  plot_surface(data)
 }
 
 #' @rdname pth_plot_surface
 #' @export
 #'
-pth_plot_surface.pth_palette_path <- function(x, ...) {
-  data <- pth_data_surface_raster(x, ...)
-  pth_plot_surface(data)
+pth_plot_surface.pth_palette_path <- function(x, step = 0.5, ...) {
+  data <- pth_data_surface_raster(x, step, ...)
+  plot_surface(data)
 }
 
 plot_surface <- function(data) {

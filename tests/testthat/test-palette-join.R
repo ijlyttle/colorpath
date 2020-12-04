@@ -99,7 +99,11 @@ test_that("pth_palette_join() works", {
   )
 
   # attributes
-  expect_s3_class(pal_join_hex, c("pth_palette_hex", "pth_palette"))
+  expect_s3_class(
+    pal_join_hex,
+    c("pth_palette_hex", "pth_palette"),
+    exact = TRUE
+  )
   expect_identical(
     attr(pal_join_hex, "nodes"),
     list(hex_blue, hex_orange)
@@ -126,11 +130,20 @@ test_that("pth_palette_join() works", {
   )
 
   # attributes
-  expect_s3_class(pal_join_path, c("pth_palette_path", "pth_palette"))
+  expect_s3_class(
+    pal_join_path,
+    c("pth_palette_path", "pth_palette"),
+    exact = TRUE
+  )
+
+  # reverse the order of the control points for the first palette
+  rev_blue <- attr(pal_path_blue, "control_points")[[1]]
+  rev_blue <- rev_blue[rev(seq_len(nrow(rev_blue))), ]
+
   expect_identical(
     attr(pal_join_path, "control_points"),
     c(
-      attr(pal_path_blue, "control_points"),
+      list(rev_blue),
       attr(pal_path_orange, "control_points")
     )
   )

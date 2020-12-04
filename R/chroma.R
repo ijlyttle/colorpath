@@ -66,7 +66,6 @@ pth_max_chroma <- function(mat) {
   max_chroma <- rep(double(0), len)
   if (interactive()) {
     pb <- progress::progress_bar$new(total = len)
-    pb$message("Calculating maximum chroma")
   }
   for (i in seq(len)) {
     mat_local <- mat[i, ]
