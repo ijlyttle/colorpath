@@ -48,3 +48,15 @@ test_that("pth_plot_surface() works", {
   )
 
 })
+
+test_that("layers work", {
+
+  step <- 10
+
+  expect_snapshot_plot(
+    "palette_div",
+    pth_plot_surface(pal_div, step = step) +
+      pth_layer_control_points(pal_div) +
+      pth_layer_palette(pal_div)
+  )
+})
