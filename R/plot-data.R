@@ -169,9 +169,9 @@ tibble_lchhex <- function(mat_cart) {
 
   # return tibble
   tibble::tibble(
-    luminance = mat_polar[, 1],
-    chroma = mat_polar[, 2],
-    hue = mat_polar[, 3],
+    luminance = round(mat_polar[, 1], 6),
+    chroma = round(mat_polar[, 2], 6),
+    hue = round(mat_polar[, 3], 6),
     hex = pth_to_hex(mat_cart)
   )
 }
@@ -238,7 +238,7 @@ tibble_control_points <- function(mat) {
 #' @param n `numeric` number of colors.
 #' @param ... other arguments (not used).
 #'
-#' @return `tibble` with columns `luminance`, `chroma`
+#' @return `tibble` with columns `luminance`, `chroma`, `hue`, `hex`
 #'
 #' @export
 #'

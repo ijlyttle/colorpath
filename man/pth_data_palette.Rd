@@ -20,7 +20,7 @@ pth_data_palette(palette, ...)
 \item{n}{\code{numeric} number of colors.}
 }
 \value{
-\code{tibble} with columns \code{luminance}, \code{chroma}
+\code{tibble} with columns \code{luminance}, \code{chroma}, \code{hue}, \code{hex}
 }
 \description{
 Dataset for palette
