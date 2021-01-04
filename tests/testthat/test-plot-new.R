@@ -15,6 +15,9 @@ expect_snapshot_plot <- function(name, code) {
   # Other packages might affect results
   skip_if_not_installed("ggplot2", "2.0.0")
 
+  # don't run on CI
+  skip_on_ci()
+
   filename <- tempfile(fileext = ".png")
 
   suppressMessages(
@@ -44,4 +47,16 @@ test_that("pth_plot_surface() works", {
     pth_plot_surface(pal_div, step = step)
   )
 
+})
+
+test_that("layers work", {
+
+  step <- 10
+
+  expect_snapshot_plot(
+    "palette_div",
+    pth_plot_surface(pal_div, step = step) +
+      pth_layer_control_points(pal_div) +
+      pth_layer_palette(pal_div)
+  )
 })

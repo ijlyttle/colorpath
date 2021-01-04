@@ -159,14 +159,19 @@ tibble_surface <- function(sfc, example, step) {
   # get cartesian surface
   mat_cart <- mat_surface(sfc, example, step)
 
+  tibble_lchhex(mat_cart)
+}
+
+tibble_lchhex <- function(mat_cart) {
+
   # convert to polar
   mat_polar <- pth_to_polar(mat_cart)
 
   # return tibble
   tibble::tibble(
-    luminance = mat_polar[, 1],
-    chroma = mat_polar[, 2],
-    hue = mat_polar[, 3],
+    luminance = round(mat_polar[, 1], 6),
+    chroma = round(mat_polar[, 2], 6),
+    hue = round(mat_polar[, 3], 6),
     hex = pth_to_hex(mat_cart)
   )
 }
@@ -226,3 +231,57 @@ tibble_control_points <- function(mat) {
     chroma = mat[, 2]
   )
 }
+
+#' Dataset for palette
+#'
+#' @param palette `function` with S3 class `pth_palette`
+#' @param n `numeric` number of colors.
+#' @param ... other arguments (not used).
+#'
+#' @return `tibble` with columns `luminance`, `chroma`, `hue`, `hex`
+#'
+#' @export
+#'
+pth_data_palette <- function(palette, ...) {
+  UseMethod("pth_data_palette")
+}
+
+#' @rdname pth_data_palette
+#' @export
+#'
+pth_data_palette.default <- function(palette, ...) {
+  stop(
+    glue::glue("No method for class {class(palette)}")
+  )
+}
+
+#' @rdname pth_data_palette
+#' @export
+#'
+pth_data_palette.pth_palette <- function(palette, n = 10, ...) {
+
+  x <- seq(0, 1, length.out = n)
+  mat_cart <- palette(x)
+
+  mat_polar <- tibble_lchhex(mat_cart)
+
+  if (is_diverging(palette)) {
+    first_half <- seq(1, floor(n / 2))
+    mat_polar$chroma[first_half] <- -mat_polar$chroma[first_half]
+  }
+
+  mat_polar
+}
+
+is_diverging <- function(palette) {
+
+  # uses luminance heuristic
+
+  x <- c(0, 0.5, 1)
+  lum <- palette(x)[, 1]
+
+  # does direction of luminance change?
+  sign(lum[2] - lum[1]) != sign(lum[3] - lum[2])
+}
+
+

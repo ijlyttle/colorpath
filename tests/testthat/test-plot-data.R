@@ -77,3 +77,21 @@ test_that("pth_data_control_points() works", {
     rbind(df_traj_rev, df_traj)
   )
 })
+
+test_that("pth_data_palette() works", {
+
+  expect_error(
+    pth_data_palette("foo"),
+    "No method"
+  )
+
+  df_blue <- pth_data_palette(pal_blue)
+
+  # check class, column-names
+  expect_s3_class(df_blue, "data.frame")
+  expect_named(
+    df_blue,
+    c("luminance", "chroma", "hue", "hex")
+  )
+
+})

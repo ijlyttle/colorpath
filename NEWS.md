@@ -75,9 +75,14 @@
   - `pth_pal_output_hex()`: Returns a palette-like function that returns a vector of hex-codes, rather than a matrix.
   
   - `pth_data_surface_raster()`: Returns a data frame to use for a raster plot of a hue surface.
-  - `pth_plot_surface()`: Returns a ggplot of a hue surface.
-  
   - `pth_data_control_points()`: Returns a data frame for the control points of a trajectory.
+  - `pth_data_palette()`: Returns a data frame for the points in a palette, expressed using polar coordinates.
+  
+  - `pth_plot_surface()`: Returns a ggplot of a hue surface.
+  - `pth_layer_control_points()`: Returns a ggplot layer for control points.
+  - `pth_layer_palette()`: Returns a ggplot layer for palette points.
+
+  - `pth_plot_palette()`: Returns a ggplot for a palette function.
   
 # colorpath 0.0.0 (development version)
 
