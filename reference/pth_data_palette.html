@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Determine gamut-distance for a chroma, given a color — x_gamut_chroma • colorpath</title>
+<title>Dataset for palette — pth_data_palette • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Determine gamut-distance for a chroma, given a color — x_gamut_chroma" />
-<meta property="og:description" content="Determine gamut-distance for a chroma, given a color" />
+<meta property="og:title" content="Dataset for palette — pth_data_palette" />
+<meta property="og:description" content="Dataset for palette" />
 
 
 
@@ -114,31 +114,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Determine gamut-distance for a chroma, given a color</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/chroma.R'><code>R/chroma.R</code></a></small>
-    <div class="hidden name"><code>x_gamut_chroma.Rd</code></div>
+    <h1>Dataset for palette</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/plot-data.R'><code>R/plot-data.R</code></a></small>
+    <div class="hidden name"><code>pth_data_palette.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Determine gamut-distance for a chroma, given a color</p>
+    <p>Dataset for palette</p>
     </div>
 
-    <pre class="usage"><span class='fu'>x_gamut_chroma</span><span class='op'>(</span><span class='va'>chroma</span>, <span class='va'>mat</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pth_data_palette</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_data_palette</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_palette</span>
+<span class='fu'>pth_data_palette</span><span class='op'>(</span><span class='va'>palette</span>, n <span class='op'>=</span> <span class='fl'>10</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>chroma</th>
-      <td><p><code>numeric</code> value for chroma, expressed using color space
-for <code>mat</code>.</p></td>
+      <th>palette</th>
+      <td><p><code>function</code> with S3 class <code>pth_palette</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other arguments (not used).</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p><code>numeric</code> number of colors.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>double</code> indicating "distance" from gamut surface,
-negative indicates inside gamut.</p>
+    <p><code>tibble</code> with columns <code>luminance</code>, <code>chroma</code>, <code>hue</code>, <code>hex</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

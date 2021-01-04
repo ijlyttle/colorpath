@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Determine gamut-distance for a chroma, given a color — x_gamut_chroma • colorpath</title>
+<title>Layer for control points — pth_layer_control_points • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Determine gamut-distance for a chroma, given a color — x_gamut_chroma" />
-<meta property="og:description" content="Determine gamut-distance for a chroma, given a color" />
+<meta property="og:title" content="Layer for control points — pth_layer_control_points" />
+<meta property="og:description" content="Layer for control points" />
 
 
 
@@ -114,31 +114,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Determine gamut-distance for a chroma, given a color</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/chroma.R'><code>R/chroma.R</code></a></small>
-    <div class="hidden name"><code>x_gamut_chroma.Rd</code></div>
+    <h1>Layer for control points</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/plot-new.R'><code>R/plot-new.R</code></a></small>
+    <div class="hidden name"><code>pth_layer_control_points.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Determine gamut-distance for a chroma, given a color</p>
+    <p>Layer for control points</p>
     </div>
 
-    <pre class="usage"><span class='fu'>x_gamut_chroma</span><span class='op'>(</span><span class='va'>chroma</span>, <span class='va'>mat</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pth_layer_control_points</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_layer_control_points</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>pth_layer_control_points</span><span class='op'>(</span><span class='va'>x</span>, color_light <span class='op'>=</span> <span class='st'>"grey67"</span>, color_dark <span class='op'>=</span> <span class='st'>"grey33"</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_chroma_trajectory</span>
+<span class='fu'>pth_layer_control_points</span><span class='op'>(</span><span class='va'>x</span>, color_light <span class='op'>=</span> <span class='st'>"grey67"</span>, color_dark <span class='op'>=</span> <span class='st'>"grey33"</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_palette_path</span>
+<span class='fu'>pth_layer_control_points</span><span class='op'>(</span><span class='va'>x</span>, color_light <span class='op'>=</span> <span class='st'>"grey67"</span>, color_dark <span class='op'>=</span> <span class='st'>"grey33"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>chroma</th>
-      <td><p><code>numeric</code> value for chroma, expressed using color space
-for <code>mat</code>.</p></td>
+      <th>x</th>
+      <td><p><code>data.frame</code> or <code>function</code> with S3 class <code>pth_chroma_trajectory</code> or
+<code>pth_palette_path</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other args (not used)</p></td>
+    </tr>
+    <tr>
+      <th>color_light, color_dark</th>
+      <td><p><code>character</code> R colors to use for symbols
+and lines.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>double</code> indicating "distance" from gamut surface,
-negative indicates inside gamut.</p>
+    <p><code>list</code> of ggplot2 geoms.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
