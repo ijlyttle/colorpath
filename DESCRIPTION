@@ -43,7 +43,8 @@ Suggests:
     knitr,
     splattr (>= 0.0.0.9008),
     pals,
-    grDevices
+    grDevices,
+    thematic
 Remotes: 
     ijlyttle/splattr,
     ijlyttle/colorio
