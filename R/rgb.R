@@ -38,6 +38,14 @@ to_rgb.pth_mat <- function(color, ...) {
   xyz100_to_rgb255(xyz100)
 }
 
+#' @export
+#'
+to_xyz100.pth_srgb255 <- function(color, ...) {
+
+  # srgb255 == srgb == farver::rgb
+  rgb255_to_xyz100(color)
+}
+
 # internal functions for RGB <-> XYZ
 rgb255_to_xyz100 <- function(rgb255) {
 

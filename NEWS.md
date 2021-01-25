@@ -84,6 +84,10 @@
 
   - `pth_plot_palette()`: Returns a ggplot for a palette function.
   
+New functions to support visualizing the sRGB gamut (also other colorsets) in polar coordinates, including color-vision deficiency (#59):
+
+  - `pth_mat_gamut()`: Returns representation of sRGB gamut in a given color space.
+  
 # colorpath 0.0.0 (development version)
 
 * Added function `get_distance()` to calculate perceptual distances on a palette-function. (#38)

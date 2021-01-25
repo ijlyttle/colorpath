@@ -24,7 +24,7 @@ pth_rescaler_metric(
 \item{non_luminance_weight}{\code{numeric} used to "discount" the effects of
 chroma and hue in the distance calculation.}
 
-\item{transformer}{\code{function} used to transform the colors to the same
+\item{transformer}{\code{function} used to transform the colors to new
 color space, e.g. \link{pth_to_cieluv}.}
 
 \item{...}{additional arguments passed on to \code{transformer}.}

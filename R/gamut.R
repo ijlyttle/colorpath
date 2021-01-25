@@ -1,10 +1,35 @@
-pth_data_gamut <- function(n_point = 5, transformer = pth_to_cieluv) {
+#' Get colors on sRGB grid
+#'
+#' @inheritParams pth_distance_euclid
+#' @param n_point `integer` number of points along a dimension
+#' @param set `character` indicates the geometry to which to limit the points
+#'   on the gamut.
+#'
+#' @return `matrix` with S3 class `pth_mat`.
+#' @export
+#'
+pth_mat_gamut <- function(n_point = 5, transformer = pth_to_cieluv,
+                          set = c("edge", "vertex", "surface", "all")) {
 
+  # validate
+  assertthat::assert_that(
+    assertthat::is.number(n_point),
+    n_point >= 0
+  )
 
+  set <- match.arg(set)
+
+  srgb255 <-
+    structure(
+      srgb255_gamut(n_point = n_point, set = set),
+      class = c("pth_srgb255", "pth_mat")
+    )
+
+  transformer(srgb255)
 }
 
 # returns matrix with r g b
-srgb_gamut <- function(n_point, set = c("edge", "vertex", "surface", "all")) {
+srgb255_gamut <- function(n_point, set = c("edge", "vertex", "surface", "all")) {
 
   assertthat::assert_that(
     assertthat::is.number(n_point),
@@ -13,6 +38,7 @@ srgb_gamut <- function(n_point, set = c("edge", "vertex", "surface", "all")) {
 
   set <- match.arg(set)
 
+  # number of dimensions that have to be at the limits to qualify
   n_dim_match <- c(all = 0, surface = 1, edge = 2, vertex = 3)
 
   vec <- seq(0, 255, length.out = n_point)
@@ -31,5 +57,7 @@ srgb_gamut <- function(n_point, set = c("edge", "vertex", "surface", "all")) {
     n_dim_minmax(x) >= n_dim_match[[set]]
   }
 
-  grid_full[is_match(grid_full), ]
+  grid_filtered <- grid_full[is_match(grid_full), ]
+
+  as.matrix(grid_filtered, rownames.force = FALSE)
 }
