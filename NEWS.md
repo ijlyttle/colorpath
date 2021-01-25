@@ -87,6 +87,7 @@
 New functions to support visualizing the sRGB gamut (also other colorsets) in polar coordinates, including color-vision deficiency (#59):
 
   - `pth_mat_gamut()`: Returns representation of sRGB gamut in a given color space.
+  - `pth_cvd_grid()`, `pth_cvd_grid_full()`: Helpers to return tibble for possibities for color-vision deficiency and severity.
   
 # colorpath 0.0.0 (development version)
 
