@@ -96,10 +96,12 @@
 New functions to support visualizing the sRGB gamut (also other colorsets) in polar coordinates, including color-vision deficiency (\#59):
 
 -   `pth_mat_gamut()`: Returns representation of sRGB gamut in a given color space.
--   `pth_cvd_grid()`, `pth_cvd_grid_full()`, `pth_cvd_grid_none()`: Helpers to return tibble for possibilities for color-vision deficiency and severity.
--   `pth_transformer()`: Returns a function to transform to the colorspace of the object that generated it.
--   `pth_plot_polar()`: Returns a ggplot of colors in the chroma-hue plane, using polar coordinates.
 
+-   `pth_cvd_grid()`, `pth_cvd_grid_full()`, `pth_cvd_grid_none()`: Helpers to return tibble for possibilities for color-vision deficiency and severity.
+
+-   `pth_transformer()`: Returns a function to transform to the colorspace of the object that generated it.
+
+-   `pth_plot_polar()`: Returns a ggplot of colors in the chroma-hue plane, using polar coordinates.
 
 -   Added function `get_distance()` to calculate perceptual distances on a palette-function.
     (\#38)
