@@ -1,3 +1,14 @@
+# internal (at least for now)
+pth_new_srgb255 <- function(mat) {
+
+    # TODO: input validation
+
+    structure(
+      mat,
+      class = c("pth_srgb255", "pth_mat")
+    )
+}
+
 #' Convert to rgb
 #'
 #' Note that we are exporting the S3 methods, but not the generic.
@@ -76,3 +87,4 @@ xyz100_to_rgb255 <- function(xyz100) {
 
   rgb255
 }
+

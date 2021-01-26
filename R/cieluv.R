@@ -40,16 +40,27 @@ pth_new_cieluv <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
     structure(
       mat,
       class = c("pth_cieluv", "pth_mat"),
-      whitepoint = whitepoint,
-      transformer = function(color) {
-        pth_to_cieluv(color, whitepoint = whitepoint)
-      }
+      whitepoint = whitepoint
     )
 
   # attach labels
   result <- label_cols(result, cieluv$labels)
 
   result
+}
+
+#' @rdname pth_transformer
+#' @export
+#'
+pth_transformer.pth_cieluv <- function(mat, ...) {
+
+  function(color) {
+    pth_to_cieluv(
+      color,
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
 }
 
 #' @export

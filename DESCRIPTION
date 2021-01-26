@@ -34,7 +34,8 @@ Imports:
     colorio,
     magrittr (>= 2.0.1),
     progress,
-    memoise
+    memoise,
+    tidyr
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

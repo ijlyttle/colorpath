@@ -1,3 +1,5 @@
+hex <- "#663399"
+
 test_that("pth_cvd_grid() works", {
 
   # input
@@ -55,7 +57,7 @@ test_that("rgb_cvd", {
     result <- rgb_cvd(mat_rgb, condition, severity)
 
     if (identical(condition, "none")) {
-      expect_identical(result, mat_rgb)
+      expect_identical(result, pth_new_srgb255(mat_rgb))
       return(NULL)
     }
 
@@ -73,6 +75,7 @@ test_that("rgb_cvd", {
     # use colorspace function to make cvd transformation
     expectation <- trans(t(mat_rgb), severity) %>% t()
     dimnames(expectation) <- list(NULL, c("r", "g", "b"))
+    expectation <- pth_new_srgb255(expectation)
 
     # check
     expect_identical(result, expectation)
@@ -84,5 +87,19 @@ test_that("rgb_cvd", {
   expect_cvd(test_rgb, "deutan", 0.55)
   expect_cvd(test_rgb, "protan", 0.55)
   expect_cvd(test_rgb, "tritan", 0.55)
+
+})
+
+test_that("mat_cvd() works", {
+
+  # will test only the identity here because other cvd transformations
+  #  already tested by rgb_cvd()
+
+  mat_luv <- pth_to_cieluv(hex)
+
+  expect_equal(
+    mat_cvd(mat_luv, "none", 1),
+    mat_luv
+  )
 
 })

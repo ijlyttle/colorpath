@@ -31,12 +31,11 @@ test_that("pth_new_cam02ucs() works", {
 test_that("transformer works", {
 
   cam02_test_hex <- pth_to_cam02ucs(hex)
-  transformer <- attr(cam02_test_hex, "transformer")
+  transformer <- pth_transformer(cam02_test_hex)
 
   expect_identical(
     cam02_test_hex,
-    transformer(hex),
-    ignore_attr = TRUE
+    transformer(hex)
   )
 })
 

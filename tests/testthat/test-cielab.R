@@ -22,12 +22,11 @@ test_that("pth_new_cielab works", {
 test_that("transformer works", {
 
   lab_test_hex <- pth_to_cielab(hex)
-  transformer <- attr(lab_test_hex, "transformer")
+  transformer <- pth_transformer(lab_test_hex)
 
   expect_identical(
     lab_test_hex,
-    transformer(hex),
-    ignore_attr = TRUE
+    transformer(hex)
   )
 })
 

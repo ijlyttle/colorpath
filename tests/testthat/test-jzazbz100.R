@@ -23,12 +23,11 @@ test_that("pth_new_jzazbz100 works", {
 test_that("transformer works", {
 
   jab_test_hex <- pth_to_cam16ucs(hex)
-  transformer <- attr(jab_test_hex, "transformer")
+  transformer <- pth_transformer(jab_test_hex)
 
   expect_identical(
     jab_test_hex,
-    transformer(hex),
-    ignore_attr = TRUE
+    transformer(hex)
   )
 })
 

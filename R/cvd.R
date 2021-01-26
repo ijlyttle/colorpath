@@ -98,12 +98,34 @@ pth_data_cvd.pth_mat <- function(x, cvd = pth_cvd_grid(), ...) {
 
   together <-
     tibble::tibble(
-      condition = cvd$condition,
+      condition = as.character(cvd$condition),
       severity = cvd$severity,
-      pth_mat = list(x)
+      mat = list(x)
     )
 
-  together
+  together$new <- purrr::pmap(together, mat_cvd)
+  together$data <- purrr::map(together$new, tibble_lchhex)
+
+  together$mat <- NULL
+  together$new <- NULL
+
+  result <- tidyr::unnest(together, cols = "data")
+
+  result
+}
+
+mat_cvd <- function(mat, condition, severity, ...) {
+
+  # function to put the output into the same color space as the input
+  transformer <- pth_transformer(mat)
+
+  mat_cvd <-
+    mat %>%
+    to_rgb() %>%
+    rgb_cvd(condition, severity) %>%
+    transformer()
+
+  mat_cvd
 }
 
 rgb_cvd <- function(mat_rgb,
@@ -120,7 +142,7 @@ rgb_cvd <- function(mat_rgb,
 
   # if condition is "none", no-op
   if (identical(condition, "none")) {
-    return(mat_rgb)
+    return(pth_new_srgb255(mat_rgb))
   }
 
   # get cvd transformation matrix
@@ -144,5 +166,5 @@ rgb_cvd <- function(mat_rgb,
   # add names
   dimnames(result) <- list(NULL, c("r", "g", "b"))
 
-  result
+  pth_new_srgb255(result)
 }

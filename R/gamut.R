@@ -19,11 +19,7 @@ pth_mat_gamut <- function(n_point = 5, transformer = pth_to_cieluv,
 
   set <- match.arg(set)
 
-  srgb255 <-
-    structure(
-      srgb255_gamut(n_point = n_point, set = set),
-      class = c("pth_srgb255", "pth_mat")
-    )
+  srgb255 <- pth_new_srgb255(srgb255_gamut(n_point = n_point, set = set))
 
   transformer(srgb255)
 }
