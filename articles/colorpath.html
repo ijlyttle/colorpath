@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9001</span>
       </span>
     </div>
 
@@ -408,13 +408,13 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <code class="sourceCode R"><span class="va">blues_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-6e6003db0c4bc7c4fbf7" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6e6003db0c4bc7c4fbf7">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_light_discrete</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-66cdb5c0020ba62885a1" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-66cdb5c0020ba62885a1">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
+
+pal.sineramp(blues_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-27-2.png" width="700"></p>
 <p>Let’s try a variation on the theme to create a half-palette for a diverging-palette:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfcl_blues_div_light</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
       <span class="op">~</span><span class="va">l</span>,      <span class="op">~</span><span class="va">c</span>,
@@ -425,7 +425,7 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
       <span class="fl">30.0</span>,  <span class="fl">60.0</span>,
       <span class="fl">20.0</span>,  <span class="fl">40.0</span>
   <span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfhcl_blues_div_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_div_light</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span>
 
 <span class="va">dfhcl_blues_div_light</span>
@@ -438,20 +438,20 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <span class="co">#&gt; 4  243     80    50</span>
 <span class="co">#&gt; 5  254.    60    30</span>
 <span class="co">#&gt; 6  260.    40    20</span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pal_blues_div_light</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">dfhcl_blues_div_light</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_div_light</span><span class="op">)</span></code></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-30-1.png" width="700"></p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blues_div_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-dfe98478151a9ef5c290" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dfe98478151a9ef5c290">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_div_light_discrete</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-9e6c64f8ef11109e1b2c" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9e6c64f8ef11109e1b2c">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
+
+pal.sineramp(blues_div_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-31-2.png" width="700"></p>
 </div>
 <div id="dark-mode" class="section level3">
@@ -461,7 +461,7 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <p>In essence, you want the scale to emphasize the “interesting” data by placing those colors as far away from the background as possible.</p>
 <p>Here, we assume that light mode has a white background (luminance 100), and that the dark-mode background has a luminance of 20. This has the effect of shortening the available-luminance range for dark mode (values under 20 are inaccessible).</p>
 <p>That said, let’s look at what dark mode might look like here:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfcl_blues_dark</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
       <span class="op">~</span><span class="va">l</span>,      <span class="op">~</span><span class="va">c</span>,
@@ -472,22 +472,22 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
   <span class="op">)</span>
 
 <span class="va">dfhcl_blues_dark</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_dark</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pal_blues_dark</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">dfhcl_blues_dark</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span></code></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-33-1.png" width="700"></p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blues_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-d6249329cf9c6c604cff" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d6249329cf9c6c604cff">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_dark_discrete</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-b1168ff5380d54256b1b" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b1168ff5380d54256b1b">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
+
+pal.sineramp(blues_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-34-2.png" width="700"></p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dfcl_blues_div_dark</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
       <span class="op">~</span><span class="va">l</span>,      <span class="op">~</span><span class="va">c</span>,
@@ -499,20 +499,20 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
   <span class="op">)</span>
 
 <span class="va">dfhcl_blues_div_dark</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_div_dark</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pal_blues_div_dark</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="../reference/pal_luv_bezier.html">pal_luv_bezier</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">dfhcl_blues_div_dark</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plot_cl.html">plot_cl</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span><span class="op">)</span></code></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-36-1.png" width="700"></p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blues_div_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-d57f6830860104f56458" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d57f6830860104f56458">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="http://kwstat.github.io/pals/reference/pal.sineramp.html">pal.sineramp</a></span><span class="op">(</span><span class="va">blues_div_dark_discrete</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-ccd728a3618d9145cac7" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ccd728a3618d9145cac7">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
+
+pal.sineramp(blues_div_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-37-2.png" width="700"></p>
 <p>A couple notes on this diverging palette:</p>
 <ul>
@@ -520,7 +520,7 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <li><p>For an actual diverging palette, I think I would cut the palette off at luminance around 80, as a consideration for the other side of the palette (not yet seen). For example, I would not the light orange to appear too close to the light blue.</p></li>
 </ul>
 <p>There is a way to test this idea about perceptual uniformity. There is now a function in colorpath, <code><a href="../reference/get_distance.html">get_distance()</a></code> that given an LUV palette-function and a number of intervals, calculates the perceptual distance covered by each of the intervals.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_distance.html">get_distance</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt;  [1] 7.388427 5.372865 4.891737 5.406694 7.086043 9.265223 8.712178 5.940375</span>
 <span class="co">#&gt;  [9] 4.629859 4.328111</span></code></pre></div>

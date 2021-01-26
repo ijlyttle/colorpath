@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9001</span>
       </span>
     </div>
 
@@ -185,7 +185,8 @@
 <li><p><code><a href="../reference/pth_new_hue_surface.html">pth_new_chroma_trajectory()</a></code>: Returns a function (with S3 class <code>pth_chroma_trajectory</code>) that, for each given x (between 0 and 1), returns a set of luminance and chroma; uses a Bézier curve under the hood.</p></li>
 <li><p><code>pth_new_palette()</code>: Returns a palette function (with S3 class <code>pth_palette</code>), given a hue-surface, chroma-trajectory, and a color space.</p></li>
 <li><p><code><a href="../reference/pth_new_palette_path.html">pth_new_palette_hex()</a></code>: Returns a palette function, given a vector of hex-codes and an optional transformer-function.</p></li>
-<li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_reverse()</a></code>: Returns a rescaled palette, following the same path but reversed.<br></p></li>
+<li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_reverse()</a></code>: Returns a rescaled palette, following the same path but reversed.
+</p></li>
 <li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_euclid()</a></code>: Returns a rescaled palette, following the same path but stretched to become more preceptually-effective. Uses the Euclidean distance of a color space.</p></li>
 <li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_metric()</a></code>: Returns a rescaled palette, as above, but uses a metric to determine distance.</p></li>
 <li><p><code><a href="../reference/pth_palette_join.html">pth_palette_join()</a></code>: Returns a palette created by joining two palettes; useful for creating diverging scales.</p></li>
@@ -200,6 +201,17 @@
 <li><p><code><a href="../reference/pth_plot_palette.html">pth_plot_palette()</a></code>: Returns a ggplot for a palette function.</p></li>
 </ul>
 </li>
+</ul>
+<p>New functions to support visualizing the sRGB gamut (also other colorsets) in polar coordinates, including color-vision deficiency (<a href='https://github.com/ijlyttle/colorpath/issues/59'>#59</a>):</p>
+<ul>
+<li>
+<code><a href="../reference/pth_mat_gamut.html">pth_mat_gamut()</a></code>: Returns representation of sRGB gamut in a given color space.</li>
+<li>
+<code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid()</a></code>, <code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full()</a></code>, <code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_none()</a></code>: Helpers to return tibble for possibilities for color-vision deficiency and severity.</li>
+<li>
+<code><a href="../reference/pth_transformer.pth_cam02ucs.html">pth_transformer()</a></code>: Returns a function to transform to the colorspace of the object that generated it.</li>
+<li>
+<code><a href="../reference/pth_plot_polar.html">pth_plot_polar()</a></code>: Returns a ggplot of colors in the chroma-hue plane, using polar coordinates.</li>
 </ul>
 </div>
     <div id="colorpath-000-development-version" class="section level1">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rescale palette-function — pth_palette_rescale_reverse • colorpath</title>
+<title>Color data in CVD context — pth_data_cvd • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,16 +39,8 @@
 
 
 
-<meta property="og:title" content="Rescale palette-function — pth_palette_rescale_reverse" />
-<meta property="og:description" content="The purpose of these functions is to rescale the input to palette functions.
-Inputs to palette functions must be 0 &amp;lt;= x &amp;lt;= 1. A rescaler maps x to
-x' such that 0 &amp;lt;= x' &amp;lt;= 1; a mapping function will be monotonic.
-pth_palette_rescale_reverse() reverses the input, so that x maps to
-1 - x.
-The other rescaling functions, pth_palette_rescale_euclid() and
-pth_palette_rescale_metric(), are used so to rescale a palette function
-such that a constant change in input, x, results in a constant change
-in color, for a given definition of &quot;change in color&quot;." />
+<meta property="og:title" content="Color data in CVD context — pth_data_cvd" />
+<meta property="og:description" content="Generate versions of colors using color-vision deficiency simulation." />
 
 
 
@@ -122,54 +114,44 @@ in color, for a given definition of &quot;change in color&quot;." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rescale palette-function</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/palette-rescale.R'><code>R/palette-rescale.R</code></a></small>
-    <div class="hidden name"><code>pth_palette_rescale_reverse.Rd</code></div>
+    <h1>Color data in CVD context</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/cvd.R'><code>R/cvd.R</code></a></small>
+    <div class="hidden name"><code>pth_data_cvd.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The purpose of these functions is to rescale the input to palette functions.
-Inputs to palette functions must be <code>0 &lt;= x &lt;= 1</code>. A rescaler maps <code>x</code> to
-<code>x'</code> such that <code>0 &lt;= x' &lt;= 1</code>; a mapping function will be monotonic.</p>
-<p><code>pth_palette_rescale_reverse()</code> reverses the input, so that <code>x</code> maps to
-<code>1 - x</code>.</p>
-<p>The other rescaling functions, <code>pth_palette_rescale_euclid()</code> and
-<code>pth_palette_rescale_metric()</code>, are used so to rescale a palette function
-such that a constant change in input, <code>x</code>, results in a constant change
-in color, for a given definition of "change in color".</p>
+    <p>Generate versions of colors using color-vision deficiency simulation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pth_palette_rescale_reverse</span><span class='op'>(</span><span class='va'>palette</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>pth_data_cvd</span><span class='op'>(</span><span class='va'>x</span>, cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>pth_palette_rescale_euclid</span><span class='op'>(</span>
-  <span class='va'>palette</span>,
-  tolerance <span class='op'>=</span> <span class='fl'>1e-04</span>,
-  non_luminance_weight <span class='op'>=</span> <span class='fl'>1</span>,
-  transformer <span class='op'>=</span> <span class='va'>identity</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span>
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_data_cvd</span><span class='op'>(</span><span class='va'>x</span>, cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>pth_palette_rescale_metric</span><span class='op'>(</span>
-  <span class='va'>palette</span>,
-  tolerance <span class='op'>=</span> <span class='fl'>1e-04</span>,
-  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cie2000"</span>, <span class='st'>"cie94"</span>, <span class='st'>"cie1976"</span>, <span class='st'>"cmc"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='co'># S3 method for character</span>
+<span class='fu'>pth_data_cvd</span><span class='op'>(</span><span class='va'>x</span>, cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid</a></span><span class='op'>(</span><span class='op'>)</span>, transformer <span class='op'>=</span> <span class='va'>pth_to_cieluv</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_palette</span>
+<span class='fu'>pth_data_cvd</span><span class='op'>(</span><span class='va'>x</span>, cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid</a></span><span class='op'>(</span><span class='op'>)</span>, n_point <span class='op'>=</span> <span class='fl'>11</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_mat</span>
+<span class='fu'>pth_data_cvd</span><span class='op'>(</span><span class='va'>x</span>, cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>palette</th>
-      <td><p><code>function</code> with S3 class <code>pth_palette</code>.</p></td>
+      <th>x</th>
+      <td><p><code>character</code>, <code>pth_mat</code>, or <code>pth_palette</code>: a means to express color</p></td>
     </tr>
     <tr>
-      <th>tolerance</th>
-      <td><p><code>numeric</code> relative tolerance for distance calculations.</p></td>
+      <th>cvd</th>
+      <td><p><code>tbl_df</code> with columns <code>condition</code>, <code>severity</code>;
+see <code><a href='pth_cvd_grid.html'>pth_cvd_grid()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>non_luminance_weight</th>
-      <td><p><code>numeric</code> used to "discount" the effects of
-chroma and hue in the distance calculation.</p></td>
+      <th>...</th>
+      <td><p>other args, not used.</p></td>
     </tr>
     <tr>
       <th>transformer</th>
@@ -177,18 +159,15 @@ chroma and hue in the distance calculation.</p></td>
 color space, e.g. <a href='pth_to_cieluv.html'>pth_to_cieluv</a>.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>additional arguments passed on to <code>transformer</code>.</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p><code>character</code> metric used by <code><a href='https://farver.data-imaginist.com/reference/compare_colour.html'>farver::compare_colour()</a></code>.</p></td>
+      <th>n_point</th>
+      <td><p><code>integer</code> number of points from the palette.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>function</code> with the same S3 classes as <code>palette</code></p>
+    <p><code>tibble</code> with columns <code>"condition"</code>, <code>"severity"</code>,
+<code>"index_color"</code>, <code>"luminance"</code>, <code>"chroma"</code>, <code>"hue"</code>, <code>"hex"</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
