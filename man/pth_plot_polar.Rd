@@ -41,8 +41,17 @@ color space, e.g. \link{pth_to_cieluv}.}
 \item{n_point}{\code{integer} number of points from the palette.}
 }
 \value{
-Object with S3 classes \code{"gg"}, \code{"ggplot"}; i.e. a ggplot
+Object with S3 classes \code{"gg"}, \code{"ggplot"}; i.e. a ggplot.
 }
 \description{
-Polar plot
+This can be useful in identifying issues arising from color-vision
+deficiency. You can provide a \code{data.frame} that has columns
+\code{luminance}, \code{chroma}, \code{hue}, \code{hex} - or you can provide an object
+that can be coerced into that form using \code{\link[=pth_data_cvd]{pth_data_cvd()}}: a \code{pth_mat},
+\code{pth_palette}, or hex-code \code{character}.
+}
+\details{
+If you provide the \code{cvd} argument anything other than the simplest case,
+you will have to add faceting. You will have to do this yourself;
+the operative columns are \code{condition} and \code{severity}.
 }

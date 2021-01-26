@@ -1,10 +1,20 @@
 #' Polar plot
 #'
+#' This can be useful in identifying issues arising from color-vision
+#' deficiency. You can provide a `data.frame` that has columns
+#' `luminance`, `chroma`, `hue`, `hex` - or you can provide an object
+#' that can be coerced into that form using [pth_data_cvd()]: a `pth_mat`,
+#' `pth_palette`, or hex-code `character`.
+#'
+#' If you provide the `cvd` argument anything other than the simplest case,
+#' you will have to add faceting. You will have to do this yourself;
+#' the operative columns are `condition` and `severity`.
+#'
 #' @param data object coercible to `data.frame` with columns
 #'   `luminance`, `chroma`, `hue`, `hex`.
 #' @inheritParams pth_data_cvd
 #'
-#' @return Object with S3 classes `"gg"`, `"ggplot"`; i.e. a ggplot
+#' @return Object with S3 classes `"gg"`, `"ggplot"`; i.e. a ggplot.
 #' @export
 #'
 pth_plot_polar <- function(data, ...) {
@@ -19,7 +29,6 @@ pth_plot_polar.default <- function(data, ...) {
     glue::glue("No method for class {class(data)}")
   )
 }
-
 
 #' @rdname pth_plot_polar
 #' @export
