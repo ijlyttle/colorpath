@@ -3,6 +3,7 @@
 \name{pth_cvd_grid}
 \alias{pth_cvd_grid}
 \alias{pth_cvd_grid_full}
+\alias{pth_cvd_grid_none}
 \title{Color-vision deficiency grid}
 \usage{
 pth_cvd_grid(condition = c("none", "deutan", "protan", "tritan"), severity = 1)
@@ -11,6 +12,8 @@ pth_cvd_grid_full(
   condition = c("deutan", "protan", "tritan"),
   severity = c(0, 0.33, 0.67, 1)
 )
+
+pth_cvd_grid_none(condition = "none", severity = 0)
 }
 \arguments{
 \item{condition}{\code{character} one or more color-vision deficiency conditions;

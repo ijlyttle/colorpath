@@ -22,7 +22,9 @@ test_that("pth_cvd_grid() works", {
   )
   expect_identical(unique(cvd_grid$severity), severity)
 
-  # pth_cvd_grid_full is syntactic sugar
+  # pth_cvd_grid_full, pth_cvd_grid_none are syntactic sugar
+  expect_s3_class(pth_cvd_grid_full(), "tbl_df")
+  expect_s3_class(pth_cvd_grid_none(), "tbl_df")
 
 })
 
@@ -110,7 +112,7 @@ test_that("pth_data_cvd() works", {
   hex <- c("#112233", "#663399")
   condition <- c("none", "deutan", "protan", "tritan")
   severity <- c(0, 0.5, 1)
-  grid <- pth_cvd_grid_full(condition, severity)
+  grid <- pth_cvd_grid(condition, severity)
 
   cvd <- pth_data_cvd(hex, grid)
 
@@ -124,6 +126,7 @@ test_that("pth_data_cvd() works", {
     nrow(cvd),
     length(hex) * length(condition) * length(severity)
   )
+  expect_s3_class(cvd$condition, "factor")
 
   # correctness
   rgb_cvd <- function(condition, severity, index_color, hex_old, ...) {

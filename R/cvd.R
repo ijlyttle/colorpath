@@ -36,6 +36,14 @@ pth_cvd_grid_full <- function(condition = c("deutan", "protan", "tritan"),
   pth_cvd_grid(condition = condition, severity = severity)
 }
 
+#' @rdname pth_cvd_grid
+#' @export
+#'
+pth_cvd_grid_none <- function(condition = "none", severity = 0) {
+
+  pth_cvd_grid(condition = condition, severity = severity)
+}
+
 #' Color data in CVD context
 #'
 #' Generate versions of colors using color-vision deficiency simulation.
@@ -113,6 +121,13 @@ pth_data_cvd.pth_mat <- function(x, cvd = pth_cvd_grid(), ...) {
   together$new <- NULL
 
   result <- tidyr::unnest(together, cols = "data")
+
+  # make condition a factor
+  result$condition <-
+    factor(
+      result$condition,
+      levels = c("none", "deutan", "protan", "tritan")
+    )
 
   result
 }
