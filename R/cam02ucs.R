@@ -56,7 +56,10 @@ pth_new_cam02ucs <- function(mat, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
       c = c,
       Y_b = Y_b,
       L_A = L_A,
-      whitepoint = whitepoint
+      whitepoint = whitepoint,
+      transformer = function(color) {
+        pth_to_cam02ucs(color, c = c, Y_b = Y_b, L_A = L_A, whitepoint = whitepoint)
+      }
     )
 
   # attach labels

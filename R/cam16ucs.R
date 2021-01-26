@@ -67,7 +67,17 @@ pth_new_cam16ucs <- function(mat, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
       Y_b = Y_b,
       L_A = L_A,
       exact_inversion = exact_inversion,
-      whitepoint = whitepoint
+      whitepoint = whitepoint,
+      transformer = function(color) {
+        pth_to_cam16ucs(
+          color,
+          c = c,
+          Y_b = Y_b,
+          L_A = L_A,
+          exact_inversion = exact_inversion,
+          whitepoint = whitepoint
+        )
+      }
     )
 
   # attach labels

@@ -1,6 +1,8 @@
 # standard whitepoint
 d65 <- whitepoints_cie1931("D65")
 
+hex <- "#663399"
+
 # point chosen to be approx 50, 50, 50 in xyz100
 mat <- matrix(c(75.47733, 5.471956, 4.499812), ncol = 3)
 jab_test <-
@@ -17,6 +19,19 @@ test_that("pth_new_jzazbz100 works", {
   expect_identical(dimnames(jab_test), list(NULL, c("J_z", "a_z", "b_z")))
 })
 
+
+test_that("transformer works", {
+
+  jab_test_hex <- pth_to_cam16ucs(hex)
+  transformer <- attr(jab_test_hex, "transformer")
+
+  expect_identical(
+    jab_test_hex,
+    transformer(hex),
+    ignore_attr = TRUE
+  )
+})
+
 test_that("to_xyz100 works", {
   expect_equal(
     to_xyz100(jab_test),
@@ -29,7 +44,8 @@ test_that("to_xyz100 works", {
 test_that("pth_to_jzazbz100 works", {
   expect_equal(
     pth_to_jzazbz100(jab_test),
-    jab_test
+    jab_test,
+    ignore_attr = TRUE
   )
 })
 
@@ -37,7 +53,8 @@ test_that("`[.pth_to_jzazbz100`() works", {
 
   expect_identical(
     jab_test,
-    jab_test[1, ]
+    jab_test[1, ],
+    ignore_attr = TRUE
   )
 
   expect_equal(

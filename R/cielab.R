@@ -37,7 +37,10 @@ pth_new_cielab <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
     structure(
       mat,
       class = c("pth_cielab", "pth_mat"),
-      whitepoint = whitepoint
+      whitepoint = whitepoint,
+      transformer = function(color) {
+        pth_to_cielab(color, whitepoint = whitepoint)
+      }
     )
 
   # attach labels

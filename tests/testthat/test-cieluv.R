@@ -1,5 +1,6 @@
 # standard whitepoint
 d65 <- whitepoints_cie1931("D65")
+hex <- "#663399"
 
 # point chosen to be approx 50, 50, 50 in xyz100
 mat <- matrix(c(76.0693, 12.5457, 5.2885), ncol = 3)
@@ -17,6 +18,18 @@ test_that("pth_new_cieluv works", {
   expect_identical(dimnames(luv_test), list(NULL, c("L*", "u*", "v*")))
 })
 
+test_that("transformer works", {
+
+  luv_test_hex <- pth_to_cieluv(hex)
+  transformer <- attr(luv_test_hex, "transformer")
+
+  expect_identical(
+    luv_test_hex,
+    transformer(hex),
+    ignore_attr = TRUE
+  )
+})
+
 test_that("to_xyz100 works", {
   expect_equal(
     to_xyz100(luv_test),
@@ -29,7 +42,8 @@ test_that("to_xyz100 works", {
 test_that("pth_to_cieluv works", {
   expect_equal(
     pth_to_cieluv(luv_test),
-    luv_test
+    luv_test,
+    ignore_attr = TRUE
   )
 })
 
@@ -37,7 +51,8 @@ test_that("`[.pth_to_cieluv`() works", {
 
   expect_identical(
     luv_test,
-    luv_test[1, ]
+    luv_test[1, ],
+    ignore_attr = TRUE
   )
 
   expect_equal(
@@ -55,7 +70,8 @@ test_that("get same result as farver", {
   expect_equal(
     pth_to_cieluv(ref, d65),
     farver::decode_colour(ref, to = "luv", white = "D65"),
-    ignore_attr = TRUE
+    ignore_attr = TRUE,
+    tolerance = 0.01
   )
 })
 
@@ -65,7 +81,8 @@ test_that("make sure origin translates", {
 
   expect_identical(
     pth_to_cieluv("#000000"),
-    luv_origin
+    luv_origin,
+    ignore_attr = TRUE
   )
 
   complex <- c("#663399", "#000000", "#FFFFFF")
@@ -73,7 +90,8 @@ test_that("make sure origin translates", {
   expect_equal(
     pth_to_cieluv(complex, d65),
     farver::decode_colour(complex, to = "luv", white = "D65"),
-    ignore_attr = TRUE
+    ignore_attr = TRUE,
+    tolerance = 0.01
   )
 
 })

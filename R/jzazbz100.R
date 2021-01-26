@@ -49,7 +49,10 @@ pth_new_jzazbz100 <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
     structure(
       mat,
       class = c("pth_jzazbz100", "pth_mat"),
-      whitepoint = whitepoint
+      whitepoint = whitepoint,
+      transformer = function(color) {
+        pth_to_jzazbz100(color, whitepoint = whitepoint)
+      }
     )
 
   # attach labels

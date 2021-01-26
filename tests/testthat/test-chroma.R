@@ -112,7 +112,8 @@ test_that("pth_clip_chroma() works", {
   expect_equal(
     pth_clip_chroma(luv_new),
     luv_test,
-    tolerance = 0.1
+    tolerance = 0.1,
+    ignore_attr = TRUE
   )
 
 })

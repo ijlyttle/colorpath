@@ -5,15 +5,15 @@
 \alias{pth_cvd_grid_full}
 \title{Color-vision deficiency grid}
 \usage{
-pth_cvd_grid(cvd = c("none", "deutan", "protan", "tritan"), severity = 1)
+pth_cvd_grid(condition = c("none", "deutan", "protan", "tritan"), severity = 1)
 
 pth_cvd_grid_full(
-  cvd = c("deutan", "protan", "tritan"),
+  condition = c("deutan", "protan", "tritan"),
   severity = c(0, 0.33, 0.67, 1)
 )
 }
 \arguments{
-\item{cvd}{\code{character} one or more color-vision deficiency conditions;
+\item{condition}{\code{character} one or more color-vision deficiency conditions;
 legal values: \code{"none"}, \code{"deutan"}, \code{"protan"}, \code{"tritan"}.}
 
 \item{severity}{\code{double} one or more values of severity for a given
