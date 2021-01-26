@@ -23,7 +23,7 @@ pth_distance_metric(
 \item{color_a, color_b}{Objects that can be coerced into colors,
 i.e. \code{pth_hex} or \code{pth_mat}.}
 
-\item{transformer}{\code{function} used to transform the colors to the same
+\item{transformer}{\code{function} used to transform the colors to new
 color space, e.g. \link{pth_to_cieluv}.}
 
 \item{non_luminance_weight}{\code{numeric} used to "discount" the effects of

@@ -1,5 +1,6 @@
 # standard whitepoint
 d65 <- whitepoints_cie1931("D65")
+hex <- "#663399"
 
 # point chosen to be approx 50, 50, 50 in xyz100
 mat <- matrix(c(76.06926, 6.777026, 4.439858), ncol = 3)
@@ -18,6 +19,17 @@ test_that("pth_new_cielab works", {
   expect_identical(dimnames(lab_test), list(NULL, c("L*", "a*", "b*")))
 })
 
+test_that("transformer works", {
+
+  lab_test_hex <- pth_to_cielab(hex)
+  transformer <- pth_transformer(lab_test_hex)
+
+  expect_identical(
+    lab_test_hex,
+    transformer(hex)
+  )
+})
+
 test_that("to_xyz100 works", {
   expect_equal(
     to_xyz100(lab_test),
@@ -30,7 +42,8 @@ test_that("to_xyz100 works", {
 test_that("pth_to_cielab works", {
   expect_equal(
     pth_to_cielab(lab_test),
-    lab_test
+    lab_test,
+    ignore_attr = TRUE
   )
 })
 
@@ -38,7 +51,8 @@ test_that("`[.pth_to_cielab`() works", {
 
   expect_identical(
     lab_test,
-    lab_test[1, ]
+    lab_test[1, ],
+    ignore_attr = TRUE
   )
 
   expect_equal(
@@ -56,6 +70,7 @@ test_that("get same result as farver", {
   expect_equal(
     pth_to_cielab(ref, d65),
     farver::decode_colour(ref, to = "lab", white = "D65"),
+    tolerance = 0.02,
     ignore_attr = TRUE
   )
 })

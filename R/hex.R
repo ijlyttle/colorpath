@@ -65,6 +65,11 @@ pth_new_hex <- function(hex) {
 
   hex <- as_hex(hex)
 
+  pth_hex(hex)
+}
+
+# non-validating constructor
+pth_hex <- function(hex) {
   structure(
     hex,
     class = "pth_hex"
@@ -107,6 +112,5 @@ to_xyz100.pth_hex <- function(color, ...) {
 #' @export
 #'
 `[.pth_hex` <- function(x, i, ...) {
-
-  pth_new_hex(NextMethod())
+  pth_hex(NextMethod())
 }

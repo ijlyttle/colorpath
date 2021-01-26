@@ -58,6 +58,20 @@ pth_new_jzazbz100 <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
   result
 }
 
+#' @rdname pth_transformer
+#' @export
+#'
+pth_transformer.pth_jzazbz100 <- function(mat, ...) {
+
+  function(color) {
+    pth_to_jzazbz100(
+      color,
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
+}
+
 #' @export
 #'
 to_xyz100.pth_jzazbz100 <- function(color, ...) {

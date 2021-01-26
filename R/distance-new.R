@@ -55,7 +55,7 @@
 #'
 #' @param color_a,color_b Objects that can be coerced into colors,
 #'   i.e. `pth_hex` or `pth_mat`.
-#' @param transformer `function` used to transform the colors to the same
+#' @param transformer `function` used to transform the colors to new
 #'   color space, e.g. [pth_to_cieluv].
 #' @param non_luminance_weight `numeric` used to "discount" the effects of
 #'   chroma and hue in the distance calculation.

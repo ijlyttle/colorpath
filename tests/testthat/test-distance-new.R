@@ -75,13 +75,15 @@ test_that("get_colors() works", {
   # we repeat color_b
   expect_identical(
     get_colors(luv, luv_one),
-    list(color_a = luv, color_b = luv_three)
+    list(color_a = luv, color_b = luv_three),
+    ignore_attr = TRUE
   )
 
   # we stagger color_a
   expect_identical(
     get_colors(luv, NULL),
-    list(color_a = head(luv, -1), color_b = tail(luv, -1))
+    list(color_a = head(luv, -1), color_b = tail(luv, -1)),
+    ignore_attr = TRUE
   )
 
   # no-op
