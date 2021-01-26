@@ -38,6 +38,8 @@ pth_cvd_grid_full <- function(condition = c("deutan", "protan", "tritan"),
 
 #' Color data in CVD context
 #'
+#' Generate versions of colors using color-vision deficiency simulation.
+#'
 #' @inheritParams pth_distance_euclid
 #' @param x `character`, `pth_mat`, or `pth_palette`: a means to express color
 #' @param cvd `tbl_df` with columns `condition`, `severity`;
@@ -45,8 +47,9 @@ pth_cvd_grid_full <- function(condition = c("deutan", "protan", "tritan"),
 #' @param n_point `integer` number of points from the palette.
 #' @param ... other args, not used.
 #'
-#' @return `tibble` with columns `"luminance"`, `"chroma"`, `"hue"`, `"hex"`,
-#'  `"condition"`, `"severity"`
+#' @return `tibble` with columns `"condition"`, `"severity"`,
+#'  `"index_color"`, `"luminance"`, `"chroma"`, `"hue"`, `"hex"`
+#'
 #' @export
 #'
 pth_data_cvd <- function(x, cvd = pth_cvd_grid(), ...) {
@@ -104,7 +107,7 @@ pth_data_cvd.pth_mat <- function(x, cvd = pth_cvd_grid(), ...) {
     )
 
   together$new <- purrr::pmap(together, mat_cvd)
-  together$data <- purrr::map(together$new, tibble_lchhex)
+  together$data <- purrr::map(together$new, tibble_lchhex_index)
 
   together$mat <- NULL
   together$new <- NULL
@@ -114,6 +117,8 @@ pth_data_cvd.pth_mat <- function(x, cvd = pth_cvd_grid(), ...) {
   result
 }
 
+# this could be the start of a way to modify a palette function to
+# give its output in CVD.
 mat_cvd <- function(mat, condition, severity, ...) {
 
   # function to put the output into the same color space as the input

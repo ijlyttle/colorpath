@@ -103,3 +103,50 @@ test_that("mat_cvd() works", {
   )
 
 })
+
+test_that("pth_data_cvd() works", {
+
+  # inputs
+  hex <- c("#112233", "#663399")
+  condition <- c("none", "deutan", "protan", "tritan")
+  severity <- c(0, 0.5, 1)
+  grid <- pth_cvd_grid_full(condition, severity)
+
+  cvd <- pth_data_cvd(hex, grid)
+
+  # nature of output
+  expect_s3_class(cvd, "tbl_df")
+  expect_named(
+    cvd,
+    c("condition", "severity", "index_color", "luminance", "chroma", "hue", "hex")
+  )
+  expect_identical(
+    nrow(cvd),
+    length(hex) * length(condition) * length(severity)
+  )
+
+  # correctness
+  rgb_cvd <- function(condition, severity, index_color, hex_old, ...) {
+
+    xform <- list(
+      none = function(col, severity) { col },
+      deutan = colorspace::deutan,
+      protan = colorspace::protan,
+      tritan = colorspace::tritan
+    )
+
+    hex_new <- xform[[condition]](hex_old[index_color], severity)
+
+    hex_new
+  }
+
+  hex_ref <- purrr::pmap(cvd, rgb_cvd, hex_old = hex) %>% unlist()
+  hex_calc <- cvd$hex
+
+  # we get rounding errors in all the transformations
+  # - we want to make sure that the largest difference is 1
+  expect_true(
+    max(abs(to_rgb(hex_ref) - to_rgb(hex_calc))) <= 1
+  )
+
+})
