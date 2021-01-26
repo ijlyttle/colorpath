@@ -15,7 +15,8 @@ test_that("pth_mat_replace_data() works", {
 
   expect_identical(
     pth_mat_replace_data(luv_test, luv_new),
-    luv_new
+    luv_new,
+    ignore_attr = TRUE
   )
 
 })

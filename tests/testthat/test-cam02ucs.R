@@ -4,6 +4,8 @@ c <- 0.69
 Y_b <- 20
 L_A <- 64 / pi / 5
 
+hex <- "#663399"
+
 # point chosen to be approx 50, 50, 50 in xyz100
 mat <- matrix(c(100, 0, 0), ncol = 3)
 cam02_test <-
@@ -26,6 +28,17 @@ test_that("pth_new_cam02ucs() works", {
   expect_identical(dimnames(cam02_test), list(NULL, c("J'", "a'", "b'")))
 })
 
+test_that("transformer works", {
+
+  cam02_test_hex <- pth_to_cam02ucs(hex)
+  transformer <- pth_transformer(cam02_test_hex)
+
+  expect_identical(
+    cam02_test_hex,
+    transformer(hex)
+  )
+})
+
 test_that("to_xyz100() works", {
   expect_equal(
     to_xyz100(cam02_test),
@@ -38,7 +51,8 @@ test_that("to_xyz100() works", {
 test_that("pth_to_cam02ucs() works", {
   expect_equal(
     pth_to_cam02ucs(cam02_test),
-    cam02_test
+    cam02_test,
+    ignore_attr = TRUE
   )
 })
 
@@ -46,7 +60,8 @@ test_that("`[.pth_to_cam02ucs`() works", {
 
   expect_identical(
     cam02_test,
-    cam02_test[1, ]
+    cam02_test[1, ],
+    ignore_attr = TRUE
   )
 
   expect_equal(

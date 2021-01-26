@@ -46,6 +46,20 @@ pth_new_cielab <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
   result
 }
 
+#' @rdname pth_transformer
+#' @export
+#'
+pth_transformer.pth_cielab <- function(mat, ...) {
+
+  function(color) {
+    pth_to_cielab(
+      color,
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
+}
+
 #' @export
 #'
 to_xyz100.pth_cielab <- function(color, ...) {

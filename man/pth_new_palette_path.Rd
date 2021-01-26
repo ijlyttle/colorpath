@@ -23,7 +23,7 @@ identify the color space for the output matrix.}
 
 \item{hex}{\code{character} that can be coerced to a six-digit hex code.}
 
-\item{transformer}{\code{function} used to transform the colors to the same
+\item{transformer}{\code{function} used to transform the colors to new
 color space, e.g. \link{pth_to_cieluv}.}
 }
 \value{

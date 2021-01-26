@@ -1,6 +1,6 @@
 Package: colorpath
 Title: Build Color Paths
-Version: 0.0.1.9000
+Version: 0.0.1.9001
 Authors@R: 
     person(given = "Ian J",
            family = "Lyttle",
@@ -32,9 +32,10 @@ Imports:
     purrr,
     utils,
     colorio,
-    magrittr,
+    magrittr (>= 2.0.1),
     progress,
-    memoise
+    memoise,
+    tidyr
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

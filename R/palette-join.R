@@ -76,15 +76,21 @@ pth_palette_join.pth_palette_path <- function(palette_low, palette_high, ...) {
 
 palette_join <- function(palette_low, palette_high) {
 
+  # check that these palettes use the same color space
   assertthat::assert_that(
     identical(class(palette_low), class(palette_high))
   )
 
-  # check that these palettes use the same color space and attributes
+
   test_low <- palette_low(0)
   test_high <- palette_high(0)
+  # we can't compare the transformer because their environments
+  #  will not be the same
   assertthat::assert_that(
-    identical(attributes(test_low), attributes(test_high))
+    identical(
+      attributes(test_low)[names(attributes(test_low)) != "transformer"],
+      attributes(test_high)[names(attributes(test_high)) != "transformer"]
+    )
   )
 
   # TODO: some clever code to match the two palettes automatically

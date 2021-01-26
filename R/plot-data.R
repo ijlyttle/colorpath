@@ -176,6 +176,15 @@ tibble_lchhex <- function(mat_cart) {
   )
 }
 
+tibble_lchhex_index <- function(mat_cart) {
+
+  lchhex <- tibble_lchhex(mat_cart)
+
+  lchhex$index_color <- seq_along(lchhex$hex)
+
+  lchhex[, c("index_color", "luminance", "chroma", "hue", "hex")]
+}
+
 #' Dataset for trajectories
 #'
 #' @param x `function` with S3 class `pth_chroma_trajectory` or
