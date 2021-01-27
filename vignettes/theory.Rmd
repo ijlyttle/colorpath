@@ -1,8 +1,8 @@
 ---
-title: "Color Scales and Color Spaces"
+title: "Theory for Color Scales"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Color Scales - Color Spaces}
+  %\VignetteIndexEntry{Theory for Color Scales}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: references.bib
