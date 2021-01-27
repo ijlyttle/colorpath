@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   colorpath: colorpath.html
-last_built: 2021-01-26T23:37Z
+  theory: theory.html
+last_built: 2021-01-27T14:59Z
 

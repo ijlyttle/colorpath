@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9002</span>
       </span>
     </div>
 
@@ -88,6 +88,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/theory.html">Theory for Color Scales</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -204,20 +216,10 @@
 </ul>
 <p>New functions to support visualizing the sRGB gamut (also other colorsets) in polar coordinates, including color-vision deficiency (<a href='https://github.com/ijlyttle/colorpath/issues/59'>#59</a>):</p>
 <ul>
-<li>
-<code><a href="../reference/pth_mat_gamut.html">pth_mat_gamut()</a></code>: Returns representation of sRGB gamut in a given color space.</li>
-<li>
-<code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid()</a></code>, <code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full()</a></code>, <code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_none()</a></code>: Helpers to return tibble for possibilities for color-vision deficiency and severity.</li>
-<li>
-<code><a href="../reference/pth_transformer.pth_cam02ucs.html">pth_transformer()</a></code>: Returns a function to transform to the colorspace of the object that generated it.</li>
-<li>
-<code><a href="../reference/pth_plot_polar.html">pth_plot_polar()</a></code>: Returns a ggplot of colors in the chroma-hue plane, using polar coordinates.</li>
-</ul>
-</div>
-    <div id="colorpath-000-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0">
-<a href="#colorpath-000-development-version" class="anchor"></a>colorpath 0.0.0 (development version)</h1>
-<ul>
+<li><p><code><a href="../reference/pth_mat_gamut.html">pth_mat_gamut()</a></code>: Returns representation of sRGB gamut in a given color space.</p></li>
+<li><p><code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid()</a></code>, <code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full()</a></code>, <code><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_none()</a></code>: Helpers to return tibble for possibilities for color-vision deficiency and severity.</p></li>
+<li><p><code><a href="../reference/pth_transformer.pth_cam02ucs.html">pth_transformer()</a></code>: Returns a function to transform to the colorspace of the object that generated it.</p></li>
+<li><p><code><a href="../reference/pth_plot_polar.html">pth_plot_polar()</a></code>: Returns a ggplot of colors in the chroma-hue plane, using polar coordinates.</p></li>
 <li><p>Added function <code><a href="../reference/get_distance.html">get_distance()</a></code> to calculate perceptual distances on a palette-function. (<a href='https://github.com/ijlyttle/colorpath/issues/38'>#38</a>)</p></li>
 <li><p>Added functions <code><a href="../reference/data_surface_hl.html">data_surface_hl()</a></code>, <code><a href="../reference/plot_surface_hl.html">plot_surface_hl()</a></code> that work with hue-luminance surface functions. (<a href='https://github.com/ijlyttle/colorpath/issues/31'>#31</a>)</p></li>
 <li><p>Added functions <code><a href="../reference/surface_hl.html">surface_hl()</a></code> and <code><a href="../reference/df_hcl.html">df_hcl()</a></code> to facilitate creating sets of consistent multi-hue palettes. (<a href='https://github.com/ijlyttle/colorpath/issues/29'>#29</a>)</p></li>
