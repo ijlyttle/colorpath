@@ -1,6 +1,6 @@
 Package: colorpath
 Title: Build Color Paths
-Version: 0.0.1.9001
+Version: 0.0.1.9002
 Authors@R: 
     person(given = "Ian J",
            family = "Lyttle",
@@ -44,7 +44,8 @@ Suggests:
     knitr,
     splattr (>= 0.0.0.9008),
     pals,
-    grDevices
+    grDevices,
+    thematic
 Remotes: 
     ijlyttle/splattr,
     ijlyttle/colorio
