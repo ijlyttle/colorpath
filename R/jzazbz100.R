@@ -71,6 +71,19 @@ pth_transformer.pth_jzazbz100 <- function(mat, ...) {
   }
 
 }
+#' @rdname pth_creator
+#' @export
+#'
+pth_creator.pth_jzazbz100 <- function(mat, ...) {
+
+  function(mat_new) {
+    pth_new_jzazbz100(
+      mat_new,
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
+}
 
 #' @export
 #'

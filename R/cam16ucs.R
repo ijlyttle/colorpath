@@ -94,6 +94,24 @@ pth_transformer.pth_cam16ucs <- function(mat, ...) {
 
 }
 
+#' @rdname pth_creator
+#' @export
+#'
+pth_creator.pth_cam16ucs <- function(mat, ...) {
+
+  function(mat_new) {
+    pth_new_cam16ucs(
+      mat_new,
+      c = attr(mat, "c"),
+      Y_b = attr(mat, "Y_b"),
+      L_A = attr(mat, "L_A"),
+      exact_inversion = attr(mat, "exact_inversion"),
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
+}
+
 #' @export
 #'
 to_xyz100.pth_cam16ucs <- function(color, ...) {

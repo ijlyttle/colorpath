@@ -82,6 +82,23 @@ pth_transformer.pth_cam02ucs <- function(mat, ...) {
 
 }
 
+#' @rdname pth_creator
+#' @export
+#'
+pth_creator.pth_cam02ucs <- function(mat, ...) {
+
+  function(mat_new) {
+    pth_new_cam02ucs(
+      mat_new,
+      c = attr(mat, "c"),
+      Y_b = attr(mat, "Y_b"),
+      L_A = attr(mat, "L_A"),
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
+}
+
 #' @export
 #'
 to_xyz100.pth_cam02ucs <- function(color, ...) {

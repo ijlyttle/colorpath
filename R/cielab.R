@@ -60,6 +60,20 @@ pth_transformer.pth_cielab <- function(mat, ...) {
 
 }
 
+#' @rdname pth_creator
+#' @export
+#'
+pth_creator.pth_cielab <- function(mat, ...) {
+
+  function(mat_new) {
+    pth_new_cielab(
+      mat_new,
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
+}
+
 #' @export
 #'
 to_xyz100.pth_cielab <- function(color, ...) {
