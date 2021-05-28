@@ -39,6 +39,16 @@ test_that("transformer works", {
   )
 })
 
+test_that("creator works", {
+
+  creator <- pth_creator(cam02_test)
+
+  expect_identical(
+    cam02_test,
+    creator(mat)
+  )
+})
+
 test_that("to_xyz100() works", {
   expect_equal(
     to_xyz100(cam02_test),
@@ -51,8 +61,7 @@ test_that("to_xyz100() works", {
 test_that("pth_to_cam02ucs() works", {
   expect_equal(
     pth_to_cam02ucs(cam02_test),
-    cam02_test,
-    ignore_attr = TRUE
+    cam02_test
   )
 })
 
@@ -60,8 +69,7 @@ test_that("`[.pth_to_cam02ucs`() works", {
 
   expect_identical(
     cam02_test,
-    cam02_test[1, ],
-    ignore_attr = TRUE
+    cam02_test[1, ]
   )
 
   expect_equal(
