@@ -10,6 +10,9 @@ pth_creator <- function(mat, ...) {
   UseMethod("pth_creator")
 }
 
+#' @rdname pth_creator
+#' @export
+#'
 pth_creator.default <- function(mat, ...) {
   stop(
     glue::glue("No method for class {class(mat)}")

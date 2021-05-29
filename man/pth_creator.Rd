@@ -7,6 +7,7 @@
 \alias{pth_creator.pth_cielab}
 \alias{pth_creator.pth_cieluv}
 \alias{pth_creator}
+\alias{pth_creator.default}
 \alias{pth_creator.pth_jzazbz100}
 \title{Extract creator function}
 \usage{
@@ -19,6 +20,8 @@
 \method{pth_creator}{pth_cieluv}(mat, ...)
 
 pth_creator(mat, ...)
+
+\method{pth_creator}{default}(mat, ...)
 
 \method{pth_creator}{pth_jzazbz100}(mat, ...)
 }
