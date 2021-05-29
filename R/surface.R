@@ -79,7 +79,7 @@ pth_new_surface.pth_mat <- function(colors, route = c("short", "long"),
   # create function for maximum chroma
 
   # create dummy colors
-  max_chr_luminance <- seq(0, 1, length.out = n_step + 1)
+  max_chr_luminance <- seq(0, 100, length.out = n_step + 1)
   max_chr_chroma <- rep(20, n_step + 1)
   max_chr_hue <- fn_hue(max_chr_luminance)
 
@@ -93,11 +93,22 @@ pth_new_surface.pth_mat <- function(colors, route = c("short", "long"),
 
   mat_cart <- pth_to_cartesian(mat_polar)
 
+  # put these coordinates into its color space
+  mat_space <- pth_creator(colors)(mat_cart)
+
+  # get max chroma for each of these colors
+  max_chroma <- pth_max_chroma(mat_space)
+
+  fn_max_chroma <-
+    stats::approxfun(max_chr_luminance, max_chroma, yleft = 0, yright = 0)
 
   # return structure (hue function, max-chroma function, colors)
   structure(
-    fn_hue = fn_hue,
-    colors = colors,
+    list(
+      fn_hue = fn_hue,
+      fn_max_chroma = fn_max_chroma,
+      colors = colors
+    ),
     class = ("pth_surface")
   )
 }
