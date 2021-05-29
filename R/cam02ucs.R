@@ -116,27 +116,3 @@ to_xyz100.pth_cam02ucs <- function(color, ...) {
 
   label_cols(xyz100, c("x", "y", "z"))
 }
-
-#' @export
-#'
-`[.pth_cam02ucs` <- function(x, i, ...) {
-
-  # we need this so that when we subset, the rest of the
-  # attributes "come along for the ride"
-
-  # subset normally, don't drop dimensions
-  mat <- NextMethod(drop = FALSE)
-
-  # if we don't have three columns, no classes, no attributes
-  if (!identical(ncol(mat), 3L)) {
-    return(mat)
-  }
-
-  pth_new_cam02ucs(
-    mat,
-    c = attr(x, "c"),
-    Y_b = attr(x, "Y_b"),
-    L_A = attr(x, "L_A"),
-    whitepoint = attr(x, "whitepoint")
-  )
-}

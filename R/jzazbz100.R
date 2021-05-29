@@ -99,27 +99,6 @@ to_xyz100.pth_jzazbz100 <- function(color, ...) {
   label_cols(xyz100, c("x", "y", "z"))
 }
 
-#' @export
-#'
-`[.pth_jzazbz100` <- function(x, i, ...) {
-
-  # we need this so that when we subset, the rest of the
-  # attributes "come along for the ride"
-
-  # subset normally, don't drop dimensions
-  mat <- NextMethod(drop = FALSE)
-
-  # if we don't have three columns, no classes, no attributes
-  if (!identical(ncol(mat), 3L)) {
-    return(mat)
-  }
-
-  pth_new_jzazbz100(
-    NextMethod(drop = FALSE),
-    whitepoint = attr(x, "whitepoint")
-  )
-}
-
 # we are going to scale using luminance only
 jzazbz_scale100 <- function(whitepoint = whitepoints_cie1931("D65")) {
 
