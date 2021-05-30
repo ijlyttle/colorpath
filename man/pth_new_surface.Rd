@@ -4,6 +4,7 @@
 \alias{pth_new_surface}
 \alias{pth_new_surface.default}
 \alias{pth_new_surface.character}
+\alias{pth_new_surface.pth_mat}
 \title{Create luminance-hue surface}
 \usage{
 pth_new_surface(colors, route = c("short", "long"), n_step = 30, ...)
@@ -17,6 +18,8 @@ pth_new_surface(colors, route = c("short", "long"), n_step = 30, ...)
   transformer = pth_to_cieluv,
   ...
 )
+
+\method{pth_new_surface}{pth_mat}(colors, route = c("short", "long"), n_step = 30, ...)
 }
 \arguments{
 \item{colors}{\code{character} hex-codes, or matrix with object with

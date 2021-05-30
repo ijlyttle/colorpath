@@ -42,6 +42,10 @@ pth_new_surface.character <- function(colors, route = c("short", "long"),
   pth_new_surface(mat, route = route, ...)
 }
 
+
+#' @rdname pth_new_surface
+#' @export
+#'
 pth_new_surface.pth_mat <- function(colors, route = c("short", "long"),
                                     n_step = 30, ...) {
 
