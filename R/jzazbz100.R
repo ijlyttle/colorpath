@@ -27,7 +27,7 @@ pth_to_jzazbz100 <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 pth_to_jzazbz <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
-  jzazbz <- colorio$JzAzBz(whitepoint = whitepoint)
+  jzazbz <- colorio$cs$JzAzBz(whitepoint = whitepoint)
 
   # get values
   xyz <- to_xyz100(color)
@@ -42,7 +42,7 @@ pth_to_jzazbz <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 pth_new_jzazbz100 <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
-  jzazbz100 <- colorio$JzAzBz(whitepoint = whitepoint)
+  jzazbz100 <- colorio$cs$JzAzBz(whitepoint = whitepoint)
 
   # save whitepoint as attribute
   result <-
@@ -76,7 +76,7 @@ pth_transformer.pth_jzazbz100 <- function(mat, ...) {
 #'
 to_xyz100.pth_jzazbz100 <- function(color, ...) {
 
-  jzazbz100 <- colorio$JzAzBz(whitepoint = attr(color, "whitepoint"))
+  jzazbz100 <- colorio$cs$JzAzBz(whitepoint = attr(color, "whitepoint"))
 
   # unscale color
   color <- color / jzazbz_scale100(whitepoint = whitepoints_cie1931("D65"))

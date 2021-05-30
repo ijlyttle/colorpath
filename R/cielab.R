@@ -15,7 +15,7 @@
 pth_to_cielab <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
-  cielab <- colorio$CIELAB(whitepoint = whitepoint)
+  cielab <- colorio$cs$CIELAB(whitepoint = whitepoint)
 
   # get values
   xyz <- to_xyz100(color)
@@ -30,7 +30,7 @@ pth_to_cielab <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 pth_new_cielab <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
-  cielab <- colorio$CIELAB(whitepoint = whitepoint)
+  cielab <- colorio$cs$CIELAB(whitepoint = whitepoint)
 
   # save whitepoint as attribute
   result <-
@@ -64,7 +64,7 @@ pth_transformer.pth_cielab <- function(mat, ...) {
 #'
 to_xyz100.pth_cielab <- function(color, ...) {
 
-  cielab <- colorio$CIELAB(whitepoint = attr(color, "whitepoint"))
+  cielab <- colorio$cs$CIELAB(whitepoint = attr(color, "whitepoint"))
 
   xyz100 <- t(cielab$to_xyz100(t(color)))
 

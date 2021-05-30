@@ -17,7 +17,7 @@ pth_to_cam02ucs <- function(color, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
 
   # establish color space
   cam02ucs <-
-    colorio$CAM02(
+    colorio$cs$CAM02(
       variant = "UCS",
       c = c,
       Y_b = Y_b,
@@ -40,7 +40,7 @@ pth_new_cam02ucs <- function(mat, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
 
   # establish color space
   cam02ucs <-
-    colorio$CAM02(
+    colorio$cs$CAM02(
       variant = "UCS",
       c = c,
       Y_b = Y_b,
@@ -87,7 +87,7 @@ pth_transformer.pth_cam02ucs <- function(mat, ...) {
 to_xyz100.pth_cam02ucs <- function(color, ...) {
 
   cam02ucs <-
-    colorio$CAM02(
+    colorio$cs$CAM02(
       variant = "UCS",
       c = attr(color, "c"),
       Y_b = attr(color, "Y_b"),

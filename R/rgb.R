@@ -60,12 +60,12 @@ to_xyz100.pth_srgb255 <- function(color, ...) {
 # internal functions for RGB <-> XYZ
 rgb255_to_xyz100 <- function(rgb255) {
 
-  srgb_space <- colorio$SrgbLinear()
+  srgb_space <- colorio$cs$SrgbLinear()
 
   xyz100 <-
     t(
       srgb_space$to_xyz100(
-        srgb_space$from_srgb255(t(rgb255))
+        srgb_space$from_rgb255(t(rgb255))
       )
     )
 
@@ -74,11 +74,11 @@ rgb255_to_xyz100 <- function(rgb255) {
 
 xyz100_to_rgb255 <- function(xyz100) {
 
-  srgb_space <- colorio$SrgbLinear()
+  srgb_space <- colorio$cs$SrgbLinear()
 
   rgb255 <-
     t(
-      srgb_space$to_srgb255(
+      srgb_space$to_rgb255(
         srgb_space$from_xyz100(t(xyz100))
       )
     )

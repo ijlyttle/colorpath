@@ -16,7 +16,10 @@ test_that("pth_new_jzazbz100 works", {
   expect_true(is.matrix(jab_test))
   expect_identical(ncol(jab_test), 3L)
   expect_identical(attr(jab_test, "whitepoint"), d65)
-  expect_identical(dimnames(jab_test), list(NULL, c("J_z", "a_z", "b_z")))
+  expect_equal(
+    dimnames(jab_test), list(NULL, c("J_z", "a_z", "b_z")),
+    ignore_attr = TRUE
+  )
 })
 
 
