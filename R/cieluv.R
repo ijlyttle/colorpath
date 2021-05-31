@@ -12,7 +12,7 @@
 pth_to_cieluv <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
-  cieluv <- colorio$CIELUV(whitepoint = whitepoint)
+  cieluv <- colorio$cs$CIELUV(whitepoint = whitepoint)
 
   # get values
   xyz <- to_xyz100(color)
@@ -33,7 +33,7 @@ pth_to_cieluv <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 pth_new_cieluv <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
 
   # establish color space
-  cieluv <- colorio$CIELUV(whitepoint = whitepoint)
+  cieluv <- colorio$cs$CIELUV(whitepoint = whitepoint)
 
   # save whitepoint as attribute
   result <-
@@ -67,7 +67,7 @@ pth_transformer.pth_cieluv <- function(mat, ...) {
 #'
 to_xyz100.pth_cieluv <- function(color, ...) {
 
-  cieluv <- colorio$CIELUV(whitepoint = attr(color, "whitepoint"))
+  cieluv <- colorio$cs$CIELUV(whitepoint = attr(color, "whitepoint"))
 
   # add some "fuzz" to origin to get around divide-by-zero error
   # in Python code

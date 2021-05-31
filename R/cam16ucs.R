@@ -19,7 +19,7 @@ pth_to_cam16ucs <- function(color, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
 
   # establish color space
   cam16ucs <-
-    colorio$CAM16UCS(
+    colorio$cs$CAM16UCS(
       c = c,
       Y_b = Y_b,
       L_A = L_A,
@@ -50,7 +50,7 @@ pth_new_cam16ucs <- function(mat, c = 0.69, Y_b = 20, L_A = 64 / pi / 5,
 
   # establish color space
   cam16ucs <-
-    colorio$CAM16UCS(
+    colorio$cs$CAM16UCS(
       c = c,
       Y_b = Y_b,
       L_A = L_A,
@@ -99,7 +99,7 @@ pth_transformer.pth_cam16ucs <- function(mat, ...) {
 to_xyz100.pth_cam16ucs <- function(color, ...) {
 
   cam16ucs <-
-    colorio$CAM16UCS(
+    colorio$cs$CAM16UCS(
       c = attr(color, "c"),
       Y_b = attr(color, "Y_b"),
       L_A = attr(color, "L_A"),

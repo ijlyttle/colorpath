@@ -45,7 +45,8 @@ Suggests:
     splattr (>= 0.0.0.9008),
     pals,
     grDevices,
-    thematic
+    thematic,
+    withr
 Remotes: 
     ijlyttle/splattr,
     ijlyttle/colorio

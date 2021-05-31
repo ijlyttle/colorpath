@@ -1,5 +1,8 @@
 # colorpath 0.0.1 (development version)
 
+-   Add function `check_colorio()` to make sure that Python colorio meets minimum version.
+    (\#66)
+
 -   Reworked the philosophy of this package so that we can consider a class of color spaces that I call Lab-100-class.
     These color spaces:
 
@@ -8,7 +11,7 @@
     -   aspire to be perceptually uniform: the difference between colors scales with the Euclidean distance between colors.
     -   have polar-coordinate analogues using hue and chroma.
 
-    Such color spaces impleneted here:
+    Such color spaces implemented here:
 
     -   CIELAB
     -   CIELUV

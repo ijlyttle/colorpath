@@ -1,6 +1,6 @@
 library("magrittr")
 
-luv_space <- colorio$CIELUV(whitepoint = whitepoints_cie1931("D65"))
+luv_space <- colorio$cs$CIELUV(whitepoint = whitepoints_cie1931("D65"))
 
 # this is painful
 luv_gamut_test <-
