@@ -50,7 +50,7 @@
     -   `pth_max_chroma()`: Returns the maximum chroma for each color, expressed using its color space.
     -   `pth_clip_chroma()`: Returns the colors, capping the chromas for out-of-gamut colors to their maximum chromas.
 
-    New functions to suport distance calculations (\#48):
+    New functions to support distance calculations (\#48):
 
     -   `pth_distance_euclid()`: Returns Euclidean distances between colors, given a color space.
     -   `pth_distance_metric()`: Returns metric-based distances between colors.
@@ -70,7 +70,7 @@
 
     -   `pth_palette_rescale_reverse()`: Returns a rescaled palette, following the same path but reversed.\
 
-    -   `pth_palette_rescale_euclid()`: Returns a rescaled palette, following the same path but stretched to become more preceptually-effective.
+    -   `pth_palette_rescale_euclid()`: Returns a rescaled palette, following the same path but stretched to become more perceptually-effective.
         Uses the Euclidean distance of a color space.
 
     -   `pth_palette_rescale_metric()`: Returns a rescaled palette, as above, but uses a metric to determine distance.
@@ -123,7 +123,7 @@ New functions to support visualizing the sRGB gamut (also other colorsets) in po
 
 -   Added `print()` method for `cpath_pal_luv`.
 
--   Added function `plot_cl()` to plot chroma-lumuinance plane for a palette.
+-   Added function `plot_cl()` to plot chroma-luminance plane for a palette.
     (\#15)
 
 -   Added argument `chroma_min` (default 0.01) to `as_mat_luv()` to keep meaningful hue at low chroma.
@@ -132,7 +132,7 @@ New functions to support visualizing the sRGB gamut (also other colorsets) in po
 -   Added function `data_hcl()` to get HCL data to visualize palettes.
     (\#15)
 
--   Refactored to add constuctor for LUV palettes, store `mat_luv` control-points as attribute.
+-   Refactored to add constructor for LUV palettes, store `mat_luv` control-points as attribute.
     (\#19)
 
 -   Refactored (\#1, continued):
@@ -140,7 +140,7 @@ New functions to support visualizing the sRGB gamut (also other colorsets) in po
     -   added arguments `rescale_path` and `n` to `pal_luv_bezier()`, rescales the palette to be perceptually uniform (in LUV space) with respect to the input.
     -   made `rescaler_bezier()` an internal function.
     -   renamed function `palette_bezier()` to `pal_luv_bezier()`; added argument `rescale_path`, defaults `TRUE`, to indicate to rescale the input according to the path length in LUV space.
-    -   reanmed function `rescale_palette()` to `rescale_pal_luv()`.
+    -   renamed function `rescale_palette()` to `rescale_pal_luv()`.
     -   renamed function `rescaler_linear_luminance()` to `rescaler_lum()`.
     -   renamed function `rescaler_linear_input()` to `rescaler_x()`.
     -   renamed S3 class `cpath_palette_luv` to `cpath_pal_luv`.
