@@ -181,7 +181,7 @@
 <li>
 <code><a href="../reference/pth_clip_chroma.html">pth_clip_chroma()</a></code>: Returns the colors, capping the chromas for out-of-gamut colors to their maximum chromas.</li>
 </ul>
-<p>New functions to suport distance calculations (<a href='https://github.com/ijlyttle/colorpath/issues/48'>#48</a>):</p>
+<p>New functions to support distance calculations (<a href='https://github.com/ijlyttle/colorpath/issues/48'>#48</a>):</p>
 <ul>
 <li>
 <code><a href="../reference/pth_distance_euclid.html">pth_distance_euclid()</a></code>: Returns Euclidean distances between colors, given a color space.</li>
@@ -200,7 +200,7 @@
 <li><p><code><a href="../reference/pth_new_palette_path.html">pth_new_palette_hex()</a></code>: Returns a palette function, given a vector of hex-codes and an optional transformer-function.</p></li>
 <li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_reverse()</a></code>: Returns a rescaled palette, following the same path but reversed.
 </p></li>
-<li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_euclid()</a></code>: Returns a rescaled palette, following the same path but stretched to become more preceptually-effective. Uses the Euclidean distance of a color space.</p></li>
+<li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_euclid()</a></code>: Returns a rescaled palette, following the same path but stretched to become more perceptually-effective. Uses the Euclidean distance of a color space.</p></li>
 <li><p><code><a href="../reference/pth_palette_rescale_reverse.html">pth_palette_rescale_metric()</a></code>: Returns a rescaled palette, as above, but uses a metric to determine distance.</p></li>
 <li><p><code><a href="../reference/pth_palette_join.html">pth_palette_join()</a></code>: Returns a palette created by joining two palettes; useful for creating diverging scales.</p></li>
 <li><p><code><a href="../reference/pth_pal_input_discrete.html">pth_pal_input_discrete()</a></code>: Returns a palette-like function that takes an integer as an input, returns that many colors. In other words, turn a continuous palette-function into a discrete palette-function.</p></li>
@@ -227,17 +227,17 @@
 <li><p>Added functions <code><a href="../reference/pal_luv_rescale.html">pal_luv_rescale_x()</a></code> and <code><a href="../reference/pal_luv_rescale.html">pal_luv_rescale_lum()</a></code> to avoid creating rescaler functions explicitly. (<a href='https://github.com/ijlyttle/colorpath/issues/27'>#27</a>)</p></li>
 <li><p>Added pkgdown site. (<a href='https://github.com/ijlyttle/colorpath/issues/22'>#22</a>)</p></li>
 <li><p>Added <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> method for <code>cpath_pal_luv</code>.</p></li>
-<li><p>Added function <code><a href="../reference/plot_cl.html">plot_cl()</a></code> to plot chroma-lumuinance plane for a palette. (<a href='https://github.com/ijlyttle/colorpath/issues/15'>#15</a>)</p></li>
+<li><p>Added function <code><a href="../reference/plot_cl.html">plot_cl()</a></code> to plot chroma-luminance plane for a palette. (<a href='https://github.com/ijlyttle/colorpath/issues/15'>#15</a>)</p></li>
 <li><p>Added argument <code>chroma_min</code> (default 0.01) to <code><a href="../reference/as_mat_luv.html">as_mat_luv()</a></code> to keep meaningful hue at low chroma. (<a href='https://github.com/ijlyttle/colorpath/issues/15'>#15</a>)</p></li>
 <li><p>Added function <code><a href="../reference/data_hcl.html">data_hcl()</a></code> to get HCL data to visualize palettes. (<a href='https://github.com/ijlyttle/colorpath/issues/15'>#15</a>)</p></li>
-<li><p>Refactored to add constuctor for LUV palettes, store <code>mat_luv</code> control-points as attribute. (<a href='https://github.com/ijlyttle/colorpath/issues/19'>#19</a>)</p></li>
+<li><p>Refactored to add constructor for LUV palettes, store <code>mat_luv</code> control-points as attribute. (<a href='https://github.com/ijlyttle/colorpath/issues/19'>#19</a>)</p></li>
 <li>
 <p>Refactored (<a href='https://github.com/ijlyttle/colorpath/issues/1'>#1</a>, continued):</p>
 <ul>
 <li>added arguments <code>rescale_path</code> and <code>n</code> to <code><a href="../reference/pal_luv_bezier.html">pal_luv_bezier()</a></code>, rescales the palette to be perceptually uniform (in LUV space) with respect to the input.</li>
 <li>made <code><a href="../reference/rescaler_bezier.html">rescaler_bezier()</a></code> an internal function.</li>
 <li>renamed function <code>palette_bezier()</code> to <code><a href="../reference/pal_luv_bezier.html">pal_luv_bezier()</a></code>; added argument <code>rescale_path</code>, defaults <code>TRUE</code>, to indicate to rescale the input according to the path length in LUV space.</li>
-<li>reanmed function <code>rescale_palette()</code> to <code>rescale_pal_luv()</code>.</li>
+<li>renamed function <code>rescale_palette()</code> to <code>rescale_pal_luv()</code>.</li>
 <li>renamed function <code>rescaler_linear_luminance()</code> to <code><a href="../reference/rescaler_x.html">rescaler_lum()</a></code>.</li>
 <li>renamed function <code>rescaler_linear_input()</code> to <code><a href="../reference/rescaler_x.html">rescaler_x()</a></code>.</li>
 <li>renamed S3 class <code>cpath_palette_luv</code> to <code>cpath_pal_luv</code>.</li>
