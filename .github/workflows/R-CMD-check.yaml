@@ -81,13 +81,15 @@ jobs:
         run: |
           Rscript -e "try(reticulate::py_config())"
           Rscript -e "try(colorio::check_colorio(quiet = FALSE))"
-          Rscript -e "Sys.setenv(RETICULATE_PYTHON = reticulate::conda_python(envname = "r-reticulate"))"
+          Rscript -e "Sys.setenv(RETICULATE_PYTHON = reticulate::conda_python(envname = 'r-reticulate'))"
           Rscript -e "print(Sys.getenv('RETICULATE_PYTHON'))"
 
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+        run: |
+          print(Sys.getenv('RETICULATE_PYTHON'))
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
