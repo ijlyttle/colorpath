@@ -67,7 +67,6 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-        # remove install_github() call when reticulate 1.17 on CRAN
       - name: Install Python
         run: |
           Rscript -e "try(reticulate::install_miniconda())"
@@ -81,14 +80,11 @@ jobs:
         run: |
           Rscript -e "try(reticulate::py_config())"
           Rscript -e "try(colorio::check_colorio(quiet = FALSE))"
-          Rscript -e "print(reticulate::conda_python(envname = 'r-reticulate'))"
 
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
-          reticulate::py_config()
-          colorio::check_colorio(quiet = FALSE)
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
