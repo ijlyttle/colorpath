@@ -81,7 +81,8 @@ jobs:
         run: |
           Rscript -e "try(reticulate::py_config())"
           Rscript -e "try(colorio::check_colorio(quiet = FALSE))"
-          export RETICULATE_PYTHON=`Rscript -e 'cat(reticulate::conda_python(envname = "r-reticulate"))'`
+          Rscript -e "Sys.setenv(RETICULATE_PYTHON = reticulate::conda_python(envname = "r-reticulate"))"
+          Rscript -e "print(Sys.getenv('RETICULATE_PYTHON'))"
 
       - name: Check
         env:
