@@ -9,21 +9,29 @@
 #'
 x_gamut <- function(color) {
 
-  rgb <- to_rgb(color)
-  dimnames(rgb) <- NULL
+  # sometimes, out-of-gamut throws an error. instead of an error, we give a value.
+  result <- 100
 
-  # positive outside of 0 <= x <= 255
-  .f <- function(x) {
-    result <- abs(x - 127.5) - 127.5
+  try(
+    {
+      rgb <- to_rgb(color)
+      dimnames(rgb) <- NULL
 
-    result[is.na(result) | is.nan(result)] <- 1
+      # positive outside of 0 <= x <= 255
+      .f <- function(x) {
+        result <- abs(x - 127.5) - 127.5
 
-    result
-  }
+        result[is.na(result) | is.nan(result)] <- 1
 
-  x <- .f(rgb)
+        result
+      }
 
-  result <- pmax(x[, 1], x[, 2], x[, 3])
+      x <- .f(rgb)
+
+      result <- pmax(x[, 1], x[, 2], x[, 3])
+    },
+    silent = TRUE
+  )
 
   result
 }

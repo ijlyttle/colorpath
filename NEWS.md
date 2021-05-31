@@ -1,5 +1,8 @@
 # colorpath 0.0.1 (development version)
 
+-   Modify max-chroma calculation to avoid out-of-gamut errors.
+    (\#69)
+
 -   Add function `check_colorio()` to make sure that Python colorio meets minimum version.
     (\#66)
 

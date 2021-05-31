@@ -84,7 +84,7 @@ pth_new_surface.pth_mat <- function(colors, route = c("short", "long"),
 
   # create dummy colors
   max_chr_luminance <- seq(0, 100, length.out = n_step + 1)
-  max_chr_chroma <- rep(20, n_step + 1)
+  max_chr_chroma <- rep(1, n_step + 1)
   max_chr_hue <- fn_hue(max_chr_luminance)
 
   # create matrix for dummy colors
