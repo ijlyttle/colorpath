@@ -15,6 +15,8 @@ colorio <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
+  loadNamespace("colorio")
+
   print("here")
   vers <- colorio::colorio_version()
   print(vers)
