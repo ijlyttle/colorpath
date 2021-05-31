@@ -15,9 +15,9 @@ colorio <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
-  colorio <<- colorio::colorio
-
+  print("here")
   vers <- colorio::colorio_version()
+  print(vers)
   vers_req <- "0.7.3"
 
   if (utils::compareVersion(vers, vers_req) < 0) {
@@ -28,4 +28,7 @@ colorio <- NULL
       )
     )
   }
+
+  colorio <<- colorio::colorio
+
 }
