@@ -15,21 +15,21 @@ colorio <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
-  loadNamespace("colorio")
-
-  print("here")
-  vers <- colorio::colorio_version()
-  print(vers)
-  vers_req <- "0.7.3"
-
-  if (utils::compareVersion(vers, vers_req) < 0) {
-    warning(
-      glue::glue(
-        "Current colorio version is {vers}; {vers_req} is required. ",
-        "Use colorio::install_colorio()."
-      )
-    )
-  }
+  # loadNamespace("colorio")
+  #
+  # print("here")
+  # vers <- colorio::colorio_version()
+  # print(vers)
+  # vers_req <- "0.7.3"
+  #
+  # if (utils::compareVersion(vers, vers_req) < 0) {
+  #   warning(
+  #     glue::glue(
+  #       "Current colorio version is {vers}; {vers_req} is required. ",
+  #       "Use colorio::install_colorio()."
+  #     )
+  #   )
+  # }
 
   colorio <<- colorio::colorio
 
