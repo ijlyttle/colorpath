@@ -15,7 +15,10 @@ test_that("pth_new_cieluv works", {
   expect_true(is.matrix(luv_test))
   expect_identical(ncol(luv_test), 3L)
   expect_identical(attr(luv_test, "whitepoint"), d65)
-  expect_identical(dimnames(luv_test), list(NULL, c("L*", "u*", "v*")))
+  expect_equal(
+    dimnames(luv_test), list(NULL, c("L*", "u*", "v*")),
+    ignore_attr = TRUE
+  )
 })
 
 test_that("transformer works", {

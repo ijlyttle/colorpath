@@ -28,7 +28,10 @@ test_that("pth_new_cam16ucs() works", {
   expect_identical(attr(cam16_test, "L_A"), L_A)
   expect_identical(attr(cam16_test, "exact_inversion"), exact_inversion)
   expect_identical(attr(cam16_test, "whitepoint"), d65)
-  expect_identical(dimnames(cam16_test), list(NULL, c("J'", "a'", "b'")))
+  expect_equal(
+    dimnames(cam16_test), list(NULL, c("J'", "a'", "b'")),
+    ignore_attr = TRUE
+  )
 })
 
 test_that("transformer works", {
