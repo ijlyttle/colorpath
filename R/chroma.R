@@ -165,22 +165,39 @@ x_gamut_chroma <- function(chroma, mat) {
 #'
 #' @noRd
 #'
-root_chroma <- memoise::memoise(function(mat) {
+root_chroma <- memoise::memoise(function(mat, tol = 0.1) {
 
   # short-circuit the top and bottom of the gamut
   lum <- mat[, 1]
-  tol <- 0.9
-  if (abs(lum) < tol || abs(100 - lum) < tol) {
+  tol_lum <- 0.9
+  if (abs(lum) < tol_lum || abs(100 - lum) < tol_lum) {
     return(0) # max_chroma is zero
   }
 
   root <-
     stats::uniroot(
       x_gamut_chroma,
-      interval = c(0, 20),
+      interval = chroma_interval(),
       mat = mat,
-      extendInt = "yes"
+      extendInt = "yes",
+      tol = tol
     )
 
-  root$root
+  result <- root$root
+
+  options(colorpath.max.chroma = result)
+
+  result
 })
+
+chroma_interval <- function(default = c(0, 1)) {
+
+  # use option to find the last value calculated
+  last_value <- getOption("colorpath.max.chroma", 0)
+
+  if (last_value < 1) {
+    return(default)
+  }
+
+  last_value * c(0.9, 1.1)
+}

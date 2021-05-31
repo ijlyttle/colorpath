@@ -63,6 +63,20 @@ pth_transformer.pth_cieluv <- function(mat, ...) {
 
 }
 
+#' @rdname pth_creator
+#' @export
+#'
+pth_creator.pth_cieluv <- function(mat, ...) {
+
+  function(mat_new) {
+    pth_new_cieluv(
+      mat_new,
+      whitepoint = attr(mat, "whitepoint")
+    )
+  }
+
+}
+
 #' @export
 #'
 to_xyz100.pth_cieluv <- function(color, ...) {
@@ -77,27 +91,5 @@ to_xyz100.pth_cieluv <- function(color, ...) {
   xyz100 <- t(cieluv$to_xyz100(t(color)))
 
   label_cols(xyz100, c("x", "y", "z"))
-}
-
-#' @export
-#'
-`[.pth_cieluv` <- function(x, i, ...) {
-
-  # we need this so that when we subset, the rest of the
-  # attributes "come along for the ride"
-
-  # subset normally, don't drop dimensions
-  mat <- NextMethod(drop = FALSE)
-
-  # if we don't have three columns, no classes, no attributes
-  if (!identical(ncol(mat), 3L)) {
-    return(mat)
-  }
-
-  # restore classes, other attributes
-  pth_new_cieluv(
-    mat,
-    whitepoint = attr(x, "whitepoint")
-  )
 }
 

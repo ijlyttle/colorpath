@@ -34,6 +34,16 @@ test_that("transformer works", {
   )
 })
 
+test_that("creator works", {
+
+  creator <- pth_creator(jab_test)
+
+  expect_identical(
+    jab_test,
+    creator(mat)
+  )
+})
+
 test_that("to_xyz100 works", {
   expect_equal(
     to_xyz100(jab_test),
@@ -46,8 +56,7 @@ test_that("to_xyz100 works", {
 test_that("pth_to_jzazbz100 works", {
   expect_equal(
     pth_to_jzazbz100(jab_test),
-    jab_test,
-    ignore_attr = TRUE
+    jab_test
   )
 })
 
@@ -55,8 +64,7 @@ test_that("`[.pth_to_jzazbz100`() works", {
 
   expect_identical(
     jab_test,
-    jab_test[1, ],
-    ignore_attr = TRUE
+    jab_test[1, ]
   )
 
   expect_equal(

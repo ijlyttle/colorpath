@@ -32,6 +32,14 @@ test_that("transformer works", {
   )
 })
 
+test_that("creator works", {
+
+  creator <- pth_creator(luv_test)
+
+  expect_identical(creator(mat), luv_test)
+
+})
+
 test_that("to_xyz100 works", {
   expect_equal(
     to_xyz100(luv_test),
@@ -44,8 +52,7 @@ test_that("to_xyz100 works", {
 test_that("pth_to_cieluv works", {
   expect_equal(
     pth_to_cieluv(luv_test),
-    luv_test,
-    ignore_attr = TRUE
+    luv_test
   )
 })
 
@@ -53,8 +60,7 @@ test_that("`[.pth_to_cieluv`() works", {
 
   expect_identical(
     luv_test,
-    luv_test[1, ],
-    ignore_attr = TRUE
+    luv_test[1, ]
   )
 
   expect_equal(
