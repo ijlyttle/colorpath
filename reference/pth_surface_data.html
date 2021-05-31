@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create LUV palette-function using Bézier spline — pal_luv_bezier • colorpath</title>
+<title>Dataset for surfaces — pth_surface_data • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Create LUV palette-function using Bézier spline — pal_luv_bezier" />
-<meta property="og:description" content="This takes a matrix of LUV control-points and returns a palette-function
-(that returns LUV values) based on a Bézier spline using those
-control-points." />
+<meta property="og:title" content="Dataset for surfaces — pth_surface_data" />
+<meta property="og:description" content="Dataset for surfaces" />
 
 
 
@@ -128,56 +126,44 @@ control-points." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create LUV palette-function using Bézier spline</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/pal_luv_bezier.R'><code>R/pal_luv_bezier.R</code></a></small>
-    <div class="hidden name"><code>pal_luv_bezier.Rd</code></div>
+    <h1>Dataset for surfaces</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/surface-data.R'><code>R/surface-data.R</code></a></small>
+    <div class="hidden name"><code>pth_surface_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This takes a <code>matrix</code> of LUV control-points and returns a palette-function
-(that returns LUV values) based on a Bézier spline using those
-control-points.</p>
+    <p>Dataset for surfaces</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pal_luv_bezier</span><span class='op'>(</span><span class='va'>mat_luv</span>, rescale_path <span class='op'>=</span> <span class='cn'>TRUE</span>, n <span class='op'>=</span> <span class='fl'>21</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pth_surface_data</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_surface_data</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_surface</span>
+<span class='fu'>pth_surface_data</span><span class='op'>(</span><span class='va'>x</span>, step <span class='op'>=</span> <span class='fl'>0.5</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat_luv</th>
-      <td><p><code>matrix</code> of LUV coordinates, control-points for Bézier spline.</p></td>
+      <th>x</th>
+      <td><p><code>object</code> with S3 class <code>pth_surface</code>.</p></td>
     </tr>
     <tr>
-      <th>rescale_path</th>
-      <td><p><code>logical</code> indicating to rescale the palette function to be
-perceptually-uniform with respect to the input.</p></td>
+      <th>...</th>
+      <td><p>other args, not used.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p><code>numeric</code> if <code>rescale_path</code>, number of equally-spaced Bézier points to calculate.</p></td>
+      <th>step</th>
+      <td><p><code>numeric</code> size of step in luminance and chroma.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A function with S3 class <code>cpath_palette</code>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p><code>tibble</code> with columns <code>luminance</code>, <code>chroma</code>, <code>hue</code>, <code>hex</code>.</p>
 
-    <p>The default is to rescale the palette function so that it is perceptually
-uniform (in LUV space) using 21 points from the spline.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='co'># create palette-function</span>
- <span class='va'>pb</span> <span class='op'>&lt;-</span> <span class='fu'>pal_luv_bezier</span><span class='op'>(</span><span class='va'>mat_luv_blues</span><span class='op'>)</span>
-
- <span class='co'># evaluate</span>
- <span class='fu'>pb</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0.5</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;             l             u             v
-#&gt; [1,] 30.00000  -0.003424503  -0.009393376
-#&gt; [2,] 60.01002 -25.653215465 -70.481635374
-#&gt; [3,] 90.00000  -0.003433110  -0.009386274</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
