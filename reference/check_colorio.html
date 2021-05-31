@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create HCL data-frame using HL surface — df_hcl • colorpath</title>
+<title>Check colorio — check_colorio • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create HCL data-frame using HL surface — df_hcl" />
-<meta property="og:description" content="Create HCL data-frame using HL surface" />
+<meta property="og:title" content="Check colorio — check_colorio" />
+<meta property="og:description" content="Check colorio" />
 
 
 
@@ -126,45 +126,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create HCL data-frame using HL surface</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/surface_hl.R'><code>R/surface_hl.R</code></a></small>
-    <div class="hidden name"><code>df_hcl.Rd</code></div>
+    <h1>Check colorio</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/colorio-package.R'><code>R/colorio-package.R</code></a></small>
+    <div class="hidden name"><code>check_colorio.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create HCL data-frame using HL surface</p>
+    <p>Check colorio</p>
     </div>
 
-    <pre class="usage"><span class='fu'>df_hcl</span><span class='op'>(</span><span class='va'>df_cl</span>, <span class='va'>sfc</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>check_colorio</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df_cl</th>
-      <td><p><code>data.frame</code> with columns <code>c</code>, <code>l</code>.</p></td>
-    </tr>
-    <tr>
-      <th>sfc</th>
-      <td><p><code>function</code> created using <code><a href='surface_hl.html'>surface_hl()</a></code>.</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>tibble</code> with columns <code>h</code>, <code>c</code>, <code>l</code></p>
+    <p>Invisible NULL, called for side effects.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  <span class='va'>sfc_blues_multi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='surface_hl.html'>surface_hl</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>240</span>, <span class='fl'>260</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='va'>df_cl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>l <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>50</span>, <span class='fl'>80</span><span class='op'>)</span>, c <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>150</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-
-  <span class='fu'>df_hcl</span><span class='op'>(</span><span class='va'>df_cl</span>, <span class='va'>sfc_blues_multi</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 3</span>
-#&gt;       h     c     l
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span>   244     0    20
-#&gt; <span style='color: #BCBCBC;'>2</span>   250   150    50
-#&gt; <span style='color: #BCBCBC;'>3</span>   256     0    80</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
