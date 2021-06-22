@@ -1,5 +1,5 @@
 ---
-title: "Using Color Surfaces to Create an Identity"
+title: "Using Color Surfaces to Incorporate an Identity"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{surfaces}
@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r opts, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -15,5 +15,78 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(colorpath)
+library("colorpath")
 ```
+
+One goal of this package is to help you design sets of categorical and quantitative palettes that are consistent amongst themselves.
+
+We propose a mechanism for this, what this package calls a *surface*.
+
+## Single-hue surface
+
+At it's simplest, a surface is the set of all colors (in a given color space) with a given hue. 
+Let's consider a dark-blue hue in the Jzazbz color-space:
+
+```{r sfc_blue}
+sfc_blue <- pth_new_surface("#0000FF", transformer = pth_to_jzazbz100)
+```
+
+It takes a few seconds for the surface to be computed; it is calculating values for maximum chroma. 
+Here's a plot of the result:
+
+```{r sfc_blue-plot}
+pth_plot_surface(sfc_blue)
+```
+
+This surface is a slice of the RGB gamut for the Jzazbz color-space (scaled here to 100) where the hue is fixed to the hue of `#0000FF`.
+
+We can make a similar surface for cyan (`#00FFFF`):
+
+```{r sfc_cyan}
+sfc_cyan <- pth_new_surface("#00FFFF", transformer = pth_to_jzazbz100)
+pth_plot_surface(sfc_cyan)
+```
+
+We notice a couple of things here:
+
+- the maximum chroma for blue is at a low luminance.
+- the maximum chroma for cyan is at a high luminance.
+
+## Multi-hue surfaces
+
+We can create a surface that captures both these maxima:
+
+```{r sfc_cyan_blue}
+sfc_cyan_blue <- pth_new_surface(c("#00FFFF", "#0000FF"), transformer = pth_to_jzazbz100)
+pth_plot_surface(sfc_cyan_blue)
+```
+
+This shows another aspect of surfaces: using the given color-space, hue is a linear function of luminance. 
+This was also the case for the single-hue surfaces.
+
+Also note that you can define surfaces using hex-codes.
+This could be useful if you are designing a set of palettes for an organization, you can design surfaces using the hex-codes of existing brand-colors.
+
+When you create a surface using hex-codes, you have to specify the color-space to be used; provide a `transformer` function such as `pth_to_jzazbz100`, without the parentheses.
+
+There are couple other arguments to `pth_new_surface()`:
+
+- use `n_step` to specify the number of steps, in luminance, to use in calculating the maximum chroma. 
+  The max-chroma is calculated *once*, as the surface is being created; a much quicker approximation-function is used thereafter.
+  
+- use `route` to specify if the variation of hue - to we take the `"short"` (default) or `"long"` route around the unit circle?
+  The `"long"` value may be useful if you are designing a surface to build a viridis-like or inferno-like palette.
+
+You can see that the surface `sfc_blue_cyan` starts to look "purple" for values of luminance below around 40. 
+We can make the surface more "blue" at the low end by choosing a different dark blue, in this case `"#000077"`:
+  
+```{r sfc_cyan_blue_clipped}
+sfc_cyan_blue_clipped <- pth_new_surface(c("#00FFFF", "#000077"), transformer = pth_to_jzazbz100)
+pth_plot_surface(sfc_cyan_blue_clipped)
+```  
+
+This surface looks more "blue" top-to-bottom.
+
+## Incorporating an Itendtity
+  
+
