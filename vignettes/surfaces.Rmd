@@ -78,15 +78,44 @@ There are couple other arguments to `pth_new_surface()`:
   The `"long"` value may be useful if you are designing a surface to build a viridis-like or inferno-like palette.
 
 You can see that the surface `sfc_blue_cyan` starts to look "purple" for values of luminance below around 40. 
-We can make the surface more "blue" at the low end by choosing a different dark blue, in this case `"#000077"`:
+We can make the surface more "blue" at the low end by choosing a different dark blue, in this case `"#000099"`:
   
 ```{r sfc_cyan_blue_clipped}
-sfc_cyan_blue_clipped <- pth_new_surface(c("#00FFFF", "#000077"), transformer = pth_to_jzazbz100)
+sfc_cyan_blue_clipped <- pth_new_surface(c("#00FFFF", "#000099"), transformer = pth_to_jzazbz100)
 pth_plot_surface(sfc_cyan_blue_clipped)
 ```  
 
 This surface looks more "blue" top-to-bottom.
 
-## Incorporating an Itendtity
-  
+## Incorporating an Identity
+
+My suggestion for a set of palettes is to specify four surfaces. In this case, I'll choose:
+
+- a set of blues
+- a set of oranges
+- a set of greens
+- a set of purples
+
+We'll also look at how these surfaces behave when we simulate color-vision deficiency.
+
+
+```{r sfc_blues}
+sfc_blues <- pth_new_surface(c("#42B4E6", "#0087CD"), transformer = pth_to_jzazbz100)
+pth_plot_surface(sfc_blues)
+``` 
+```{r sfc_oranges}
+sfc_oranges <- pth_new_surface(c("#E47F00", "#702407"), transformer = pth_to_jzazbz100)
+pth_plot_surface(sfc_oranges)
+```    
+
+```{r sfc_greens}
+sfc_greens <- pth_new_surface(c("#007626", "#70E07C"), transformer = pth_to_jzazbz100)
+pth_plot_surface(sfc_greens)
+```
+
+
+```{r sfc_purples}
+sfc_purples <- pth_new_surface(c("#3D1152", "#C530FF"), transformer = pth_to_jzazbz100)
+pth_plot_surface(sfc_purples)
+```
 
