@@ -103,10 +103,15 @@ We'll also look at how these surfaces behave when we simulate color-vision defic
 sfc_blues <- pth_new_surface(c("#42B4E6", "#0087CD"), transformer = pth_to_jzazbz100)
 pth_plot_surface(sfc_blues)
 ``` 
+
+With the oranges, I added a redder-orange with lower luminance to add some chroma to the lower "half" of the luminance range.
+
 ```{r sfc_oranges}
 sfc_oranges <- pth_new_surface(c("#E47F00", "#702407"), transformer = pth_to_jzazbz100)
 pth_plot_surface(sfc_oranges)
-```    
+``` 
+
+
 
 ```{r sfc_greens}
 sfc_greens <- pth_new_surface(c("#007626", "#70E07C"), transformer = pth_to_jzazbz100)
