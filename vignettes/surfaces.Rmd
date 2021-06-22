@@ -1,0 +1,19 @@
+---
+title: "Using Color Surfaces to Create an Identity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{surfaces}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(colorpath)
+```
