@@ -33,7 +33,15 @@ pth_plot_surface.default <- function(x, ...) {
 pth_plot_surface.data.frame <- function(x, ...) {
   plot_surface(x)
 }
-#
+
+#' @rdname pth_plot_surface
+#' @export
+#'
+pth_plot_surface.pth_surface <- function(x, step = 0.5, ...) {
+  data <- pth_surface_data(x, step = step)
+  plot_surface(data)
+}
+
 #' @rdname pth_plot_surface
 #' @export
 #'
