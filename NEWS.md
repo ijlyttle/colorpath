@@ -1,5 +1,8 @@
 # colorpath 0.0.1 (development version)
 
+-   Add new way to specify surfaces: `pth_new_surface()`, along with `pth_surface_data()`, and a `pth_surface` generic for `pth_plot_surface()`.
+    (\#63, \#75)
+
 -   Modify max-chroma calculation to avoid out-of-gamut errors.
     (\#69)
 
@@ -26,7 +29,7 @@
 
     -   `pth_to_cartesian()`, `pth_to_polar()`: to convert back-and-forth among coordinate systems.
         Note that `pth_to_cartesian()` has an argument `chroma_min`, used to preserve the hue where the chroma is zero.
-        This means that values where chroma is at or near zero are imputed with an imperceptably small chroma, allowing the hue to be recovered when `pth_to_polar()` is used.
+        This means that values where chroma is at or near zero are imputed with an imperceptibly small chroma, allowing the hue to be recovered when `pth_to_polar()` is used.
 
     -   `pth_to_hex()`, `pth_new_hex()`: Convert to hex codes, or designate a character vector as hex codes.
 
