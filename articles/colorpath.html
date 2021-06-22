@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9004</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9005</span>
       </span>
     </div>
 
@@ -350,15 +350,10 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <span class="va">sfc_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surface_hl.html">surface_hl</a></span><span class="op">(</span><span class="fl">265.9</span><span class="op">)</span></code></pre></div>
 <p>We get warnings (from ggplot2) when we render these plots because the second y-axis has a uses the surface-functions which, in these cases, have a constant hue.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_cyan</span><span class="op">)</span>
-<span class="co">#&gt; Warning in min(x): no non-missing arguments to min; returning Inf</span>
-<span class="co">#&gt; Warning in max(x): no non-missing arguments to max; returning -Inf</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_cyan</span><span class="op">)</span></code></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_blue</span><span class="op">)</span>
-<span class="co">#&gt; Warning in min(x): no non-missing arguments to min; returning Inf</span>
-
-<span class="co">#&gt; Warning in min(x): no non-missing arguments to max; returning -Inf</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/plot_surface_hl.html">plot_surface_hl</a></span><span class="op">(</span><span class="va">sfc_blue</span><span class="op">)</span></code></pre></div>
 <p><img src="colorpath_files/figure-html/unnamed-chunk-21-2.png" width="700"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sfc_multi_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/surface_hl.html">surface_hl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">271</span>, <span class="fl">215</span><span class="op">)</span><span class="op">)</span>
@@ -420,8 +415,8 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <code class="sourceCode R"><span class="va">blues_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-827a90aaf7a173dce109" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-827a90aaf7a173dce109">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c10da062cb65a54569f7" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c10da062cb65a54569f7">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-27-2.png" width="700"></p>
@@ -460,8 +455,8 @@ pal.sineramp(blues_light_discrete)
 <code class="sourceCode R"><span class="va">blues_div_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-59a6a3d0a4a4b6a123f0" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-59a6a3d0a4a4b6a123f0">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d950e3b35ff1a0a47003" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d950e3b35ff1a0a47003">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_div_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-31-2.png" width="700"></p>
@@ -494,8 +489,8 @@ pal.sineramp(blues_div_light_discrete)
 <code class="sourceCode R"><span class="va">blues_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-8607008695cc86bcb25b" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8607008695cc86bcb25b">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8098d96c1611535362b4" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8098d96c1611535362b4">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-34-2.png" width="700"></p>
@@ -521,8 +516,8 @@ pal.sineramp(blues_dark_discrete)
 <code class="sourceCode R"><span class="va">blues_div_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-85667698803c061cd6e2" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-85667698803c061cd6e2">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b8695de77fba514137d5" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b8695de77fba514137d5">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_div_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-37-2.png" width="700"></p>

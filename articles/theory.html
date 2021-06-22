@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9004</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9005</span>
       </span>
     </div>
 
@@ -125,10 +125,10 @@
 <li><p><strong>diverging</strong>: same goal as sequential scales, but there is a reference value (maybe zero); we want to communicate clearly how a value compares with the reference value</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/swatchplot.html">swatchplot</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span>
   categorical <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/thematic/reference/okabe_ito.html">okabe_ito</a></span><span class="op">(</span><span class="op">)</span>,
-  sequential <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/hcl_palettes.html">sequential_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"blues"</span><span class="op">)</span><span class="op">)</span>,
-  diverging <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/hcl_palettes.html">diverging_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"Blue-Red 3"</span><span class="op">)</span><span class="op">)</span>
+  sequential <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/hcl_palettes.html">sequential_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"blues"</span><span class="op">)</span><span class="op">)</span>,
+  diverging <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/hcl_palettes.html">diverging_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"Blue-Red 3"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="theory_files/figure-html/categorical-1.png" width="768"></p>
 <p>Color scales may have additional constraints:</p>
@@ -168,7 +168,7 @@ sRGB gamut in sRGB space, by Michael Horvath
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://withr.r-lib.org/reference/with_par.html">with_par</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">blue_cyan_green</span>, off <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
+  <span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">blue_cyan_green</span>, off <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="theory_files/figure-html/blue_cyan_green-display-1.png" width="220.8"></p>
 <p>To my eyes, there is a much bigger perceptual difference between blue and cyan than there is between cyan and green.</p>
@@ -270,7 +270,7 @@ sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 <span class="op">}</span>
 
 <span class="va">swatchplot_dark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">x</span>, border <span class="op">=</span> <span class="st">"#3B3B3B"</span>, sborder <span class="op">=</span> <span class="st">"#3B3B3B"</span>, <span class="va">...</span><span class="op">)</span>
+  <span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">x</span>, border <span class="op">=</span> <span class="st">"#3B3B3B"</span>, sborder <span class="op">=</span> <span class="st">"#3B3B3B"</span>, <span class="va">...</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>With the proliferation of mobile devices, often used in low-light environments, dark-mode is becoming more-and-more popular. The difficulty with dark-mode is that it has different rules for color scales than has light mode, and I am still trying to figure out which rules have changed.</p>
 <p>There’s a few of rules that (I think) I have sorted out:</p>
@@ -286,7 +286,7 @@ sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 <code class="sourceCode R"><span class="va">hex_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#326193"</span>, <span class="st">"#2F91E5"</span>, <span class="st">"#61B9FF"</span>, <span class="st">"#B2D5FF"</span>, <span class="st">"#E2E2E2"</span>, 
                <span class="st">"#FFC6A7"</span>, <span class="st">"#FF9D55"</span>, <span class="st">"#CE7729"</span>, <span class="st">"#87512B"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/colorspace/man/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">hex_light</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">hex_light</span><span class="op">)</span></code></pre></div>
 <p><img src="theory_files/figure-html/div-light-1.png" width="768"></p>
 <p>Here’s what it could look like for dark-mode:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">

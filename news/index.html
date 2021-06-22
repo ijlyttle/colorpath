@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9004</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9005</span>
       </span>
     </div>
 
@@ -133,6 +133,7 @@
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#colorpath-001-development-version" class="anchor"></a>colorpath 0.0.1 (development version)</h1>
 <ul>
+<li><p>Add new way to specify surfaces: <code><a href="../reference/pth_new_surface.html">pth_new_surface()</a></code>, along with <code><a href="../reference/pth_surface_data.html">pth_surface_data()</a></code>, and a <code>pth_surface</code> generic for <code><a href="../reference/pth_plot_surface.html">pth_plot_surface()</a></code>. (<a href='https://github.com/ijlyttle/colorpath/issues/63'>#63</a>, <a href='https://github.com/ijlyttle/colorpath/issues/75'>#75</a>)</p></li>
 <li><p>Modify max-chroma calculation to avoid out-of-gamut errors. (<a href='https://github.com/ijlyttle/colorpath/issues/69'>#69</a>)</p></li>
 <li><p>Add function <code><a href="../reference/check_colorio.html">check_colorio()</a></code> to make sure that Python colorio meets minimum version. (<a href='https://github.com/ijlyttle/colorpath/issues/66'>#66</a>)</p></li>
 <li>
@@ -153,7 +154,7 @@
 </ul>
 <p>New color-space functions (<a href='https://github.com/ijlyttle/colorpath/issues/44'>#44</a>):</p>
 <ul>
-<li><p><code><a href="../reference/pth_to_cartesian.html">pth_to_cartesian()</a></code>, <code><a href="../reference/pth_to_cartesian.html">pth_to_polar()</a></code>: to convert back-and-forth among coordinate systems. Note that <code><a href="../reference/pth_to_cartesian.html">pth_to_cartesian()</a></code> has an argument <code>chroma_min</code>, used to preserve the hue where the chroma is zero. This means that values where chroma is at or near zero are imputed with an imperceptably small chroma, allowing the hue to be recovered when <code><a href="../reference/pth_to_cartesian.html">pth_to_polar()</a></code> is used.</p></li>
+<li><p><code><a href="../reference/pth_to_cartesian.html">pth_to_cartesian()</a></code>, <code><a href="../reference/pth_to_cartesian.html">pth_to_polar()</a></code>: to convert back-and-forth among coordinate systems. Note that <code><a href="../reference/pth_to_cartesian.html">pth_to_cartesian()</a></code> has an argument <code>chroma_min</code>, used to preserve the hue where the chroma is zero. This means that values where chroma is at or near zero are imputed with an imperceptibly small chroma, allowing the hue to be recovered when <code><a href="../reference/pth_to_cartesian.html">pth_to_polar()</a></code> is used.</p></li>
 <li><p><code><a href="../reference/pth_to_hex.html">pth_to_hex()</a></code>, <code><a href="../reference/pth_new_hex.html">pth_new_hex()</a></code>: Convert to hex codes, or designate a character vector as hex codes.</p></li>
 <li>
 <p>Convert to matrix using a color space, or designate that a matrix uses a color space:</p>
