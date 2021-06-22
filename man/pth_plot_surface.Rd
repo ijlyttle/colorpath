@@ -4,6 +4,7 @@
 \alias{pth_plot_surface}
 \alias{pth_plot_surface.default}
 \alias{pth_plot_surface.data.frame}
+\alias{pth_plot_surface.pth_surface}
 \alias{pth_plot_surface.pth_hue_surface}
 \alias{pth_plot_surface.pth_palette_path}
 \title{Plot hue-surfaces}
@@ -13,6 +14,8 @@ pth_plot_surface(x, ...)
 \method{pth_plot_surface}{default}(x, ...)
 
 \method{pth_plot_surface}{data.frame}(x, ...)
+
+\method{pth_plot_surface}{pth_surface}(x, step = 0.5, ...)
 
 \method{pth_plot_surface}{pth_hue_surface}(x, step = 0.5, constructor = pth_new_cieluv, ...)
 
