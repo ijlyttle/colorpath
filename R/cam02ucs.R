@@ -116,3 +116,9 @@ to_xyz100.pth_cam02ucs <- function(color, ...) {
 
   label_cols(xyz100, c("x", "y", "z"))
 }
+
+#' @export
+#'
+pth_colorspace_name.pth_cam02ucs <- function(x, ...) {
+  "CAM02-UCS"
+}

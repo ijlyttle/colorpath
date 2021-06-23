@@ -108,4 +108,8 @@ jzazbz_scale100 <- function(whitepoint = whitepoints_cie1931("D65")) {
   100 / white[[1]]
 }
 
-
+#' @export
+#'
+pth_colorspace_name.pth_jzazbz100 <- function(x, ...) {
+  "Jzazbz (scaled to 100)"
+}

@@ -93,3 +93,9 @@ to_xyz100.pth_cieluv <- function(color, ...) {
   label_cols(xyz100, c("x", "y", "z"))
 }
 
+#' @export
+#'
+pth_colorspace_name.pth_cieluv <- function(x, ...) {
+  "CIELUV"
+}
+
