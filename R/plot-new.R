@@ -39,7 +39,11 @@ pth_plot_surface.data.frame <- function(x, ...) {
 #'
 pth_plot_surface.pth_surface <- function(x, step = 0.5, ...) {
   data <- pth_surface_data(x, step = step)
-  plot_surface(data, fn_hue = x$fn_hue)
+
+  plot_surface(data, fn_hue = x$fn_hue) +
+    ggplot2::labs(
+      subtitle = glue::glue("Color space: {pth_colorspace_name(x)}")
+    )
 }
 
 #' @rdname pth_plot_surface
