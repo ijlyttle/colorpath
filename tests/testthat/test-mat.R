@@ -46,3 +46,21 @@ test_that("pth_to_polar() works", {
     polar_nonzero
   )
 })
+
+
+test_that("rbind() works", {
+
+  blue_luv <- pth_to_cieluv("#0000FF")
+  blue_lab <- pth_to_cielab("#0000FF")
+
+  # mismatched color spaces
+  expect_error(rbind(blue_luv, blue_lab))
+
+  blues <- rbind(blue_luv, blue_luv)
+
+  expect_s3_class(blues, class(blue_luv))
+  expect_identical(dim(blues), c(2L, 3L))
+  expect_equal(blues[1, ], blue_luv)
+  expect_equal(blues[2, ], blue_luv)
+
+})
