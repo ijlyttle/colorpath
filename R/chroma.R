@@ -209,3 +209,45 @@ chroma_interval <- function(default = c(0, 1)) {
 
   last_value * c(0.9, 1.1)
 }
+
+
+#' Get colors with maximum chroma
+#'
+#' @param x `object` to consider.
+#' @param n_step coercible to `integer`, number of steps to take in luminance.
+#' @param ... other args, not used.
+#'
+#' @return `pth_mat`
+#'
+#' @export
+#'
+pth_mat_max_chroma <- function(x, ...) {
+  UseMethod("pth_mat_max_chroma")
+}
+
+#' @rdname pth_mat_max_chroma
+#' @export
+#'
+pth_mat_max_chroma.default <- function(x, ...) {
+  stop(
+    glue::glue("No method for class {class(x)}")
+  )
+}
+
+#' @rdname pth_mat_max_chroma
+#' @export
+#'
+pth_mat_max_chroma.pth_surface <- function(x, n_step = 20, ...) {
+
+  # calculate coordinates
+  lum <- seq(0, 100, length.out = n_step + 1)
+  chr <- x$fn_max_chroma(lum)
+  hue <- x$fn_hue(lum)
+
+  # convert to matrices
+  mat_polar <- matrix(data = c(lum, chr, hue), ncol = 3, byrow = FALSE)
+  mat_cartesian <- pth_to_cartesian(mat_polar, chroma_min = 0)
+
+  # put into color space
+  pth_creator(x$colors)(mat_cartesian)
+}

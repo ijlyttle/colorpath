@@ -117,3 +117,8 @@ test_that("pth_clip_chroma() works", {
   )
 
 })
+
+test_that("pth_max_max_chroma() works", {
+  blues <- pth_new_surface("#0000FF")
+  expect_snapshot(pth_mat_max_chroma(blues))
+})
