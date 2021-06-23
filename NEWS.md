@@ -1,5 +1,10 @@
 # colorpath 0.0.1 (development version)
 
+-   Add function `pth_mat_max_chroma()` to generate max-chroma colors.
+    Implemented for `pth_surface`.
+    Also implement `rbind()` for `pth_mat`.
+    (\#80)
+
 -   Add function `pth_colorspace_name()` to get human-readable name for color space of a set of colors, a surface, or a palette.
     (\#78)
 

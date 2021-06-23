@@ -79,3 +79,34 @@ is_mat <- function(mat) {
   is.numeric(mat) && is.matrix(mat) && identical(ncol(mat), 3L)
 }
 
+#' @export
+#'
+rbind.pth_mat <- function(..., deparse,level = 1) {
+
+  # make sure all the classes are the same
+  mats <- list(...)
+
+  # maybe this isn't needed, but it makes me feel better
+  if (length(mats) < 1) {
+    return(NULL)
+  }
+
+  # make sure these all have the same classes
+  classes <- purrr::map(mats, class)
+  same_as_first <- purrr::map_lgl(classes, identical, classes[[1]])
+  all_same <- all(same_as_first)
+
+  if (!all_same) {
+    stop("rbind works on pth_mat only if all classes are identical")
+  }
+
+  # strip classes then rbind matrices
+  mats_no_classes <- purrr::map(mats, unclass)
+  result <- do.call(rbind, mats_no_classes)
+
+  # create pth_mat
+  result <- pth_creator(mats[[1]])(result)
+
+  result
+}
+
