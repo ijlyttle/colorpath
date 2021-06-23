@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 ```{r setup}
 library("colorpath")
 library("purrr")
+library("ggplot2")
+library("glue")
 ```
 
 One goal of this package is to help you design sets of categorical and quantitative palettes that are consistent amongst themselves.
@@ -88,7 +90,7 @@ pth_plot_surface(sfc_cyan_blue_clipped)
 
 This surface looks more "blue" top-to-bottom.
 
-## Incorporating an Identity
+## Incorporating an identity
 
 My suggestion for a set of palettes is to specify four surfaces. In this case, I'll choose:
 
@@ -112,6 +114,10 @@ colors <- list(
 surfaces <- purrr::map(colors, pth_new_surface, transformer = pth_to_jzazbz100)
 ```
 
+Here are the surfaces.
+
+I restrained the blues:
+
 ```{r sfc_blues}
 pth_plot_surface(surfaces$blues)
 ``` 
@@ -122,6 +128,8 @@ With the oranges, I added a redder-orange with lower luminance to add some chrom
 pth_plot_surface(surfaces$oranges)
 ``` 
 
+Whereas the blues and oranges are multi-hue the greens and purples are more single-hue:
+
 ```{r sfc_greens}
 pth_plot_surface(surfaces$greens)
 ```
@@ -131,8 +139,13 @@ pth_plot_surface(surfaces$greens)
 pth_plot_surface(surfaces$purples)
 ```
 
-## Color-Vision Deficiency
+## Color-vision deficiency
 
+The idea is that all the colors used in a set of categorical and quantitative palettes would be found on these surfaces.
+It could be useful to see how these surfaces interact with each other under simulated color-vision deficiency (CVD).
+
+Our first step is to generate lots of colors. 
+Here, for each of our surfaces, we are generating (in this case 21) colors at the maximum-chroma, distributed evenly along the luminance domain.
 
 ```{r mat_surfaces}
 mat_surfaces <- 
@@ -140,3 +153,33 @@ mat_surfaces <-
   map(pth_mat_max_chroma) %>%
   reduce(rbind)
 ```
+
+Next, we can plot these colors in polar coordinates, using `pth_plot_polar()`:
+
+```{r plot-mat_surfaces}
+pth_plot_polar(mat_surfaces, cvd = pth_cvd_grid_full()) +
+  facet_grid(
+    rows = vars(condition), 
+    cols = vars(severity),
+    labeller = labeller(severity = label_both)
+  ) +
+  ggtitle(
+    label = "Outer (chroma) edge of surfaces, simulating color-vision deficiency",
+    subtitle = glue("Color space: {pth_colorspace_name(mat_surfaces)}")
+  )
+```
+
+This is a facetted plot.
+Each row shows a given type of color-vision deficiency (deutan is most prevalent); each column shows a certain severity.
+
+We are plotting points that lie on the most-chromatic part of each surface; this can give us an idea of how that surface behaves within the color space.
+We can use this mental-model as a guide to untangle color "collisions" in CVD.
+Keep in mind that the points are equally-spaced in luminance, the luminance considered in the non-CVD case.
+
+In each case, the color space collapses from three to (almost) two dimensions. 
+However, in each case, blues are always opposite to oranges; greens are always opposite to purples.
+
+## Next steps
+
+We will use these surfaces as the bases for categorical and quantitative palettes, for both light mode and dark mode.
+Our design constraints will also include the background color we will use for both light mode and dark mode.
