@@ -1,5 +1,8 @@
 # colorpath 0.0.1 (development version)
 
+-   Add function `pth_colorspace_name()` to get human-readable name for color space of a set of colors, a surface, or a palette.
+    (\#78)
+
 -   Add new way to specify surfaces: `pth_new_surface()`, along with `pth_surface_data()`, and a `pth_surface` generic for `pth_plot_surface()`.
     (\#63, \#75)
 
