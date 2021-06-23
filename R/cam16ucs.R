@@ -130,3 +130,8 @@ to_xyz100.pth_cam16ucs <- function(color, ...) {
   label_cols(xyz100, c("x", "y", "z"))
 }
 
+#' @export
+#'
+pth_colorspace_name.pth_cam16ucs <- function(x, ...) {
+  "CAM16-UCS"
+}

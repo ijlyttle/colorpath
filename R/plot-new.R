@@ -39,7 +39,7 @@ pth_plot_surface.data.frame <- function(x, ...) {
 #'
 pth_plot_surface.pth_surface <- function(x, step = 0.5, ...) {
   data <- pth_surface_data(x, step = step)
-  plot_surface(data)
+  plot_surface(data, fn_hue = x$fn_hue)
 }
 
 #' @rdname pth_plot_surface
@@ -60,7 +60,12 @@ pth_plot_surface.pth_palette_path <- function(x, step = 0.5, ...) {
   plot_surface(data)
 }
 
-plot_surface <- function(data) {
+plot_surface <- function(data, fn_hue = NULL) {
+
+  sec_axis_hue <- ggplot2::waiver()
+  if (is.function(fn_hue)) {
+    sec_axis_hue <- ggplot2::sec_axis(fn_hue, name = "hue")
+  }
 
   g <-
     ggplot2::ggplot(
@@ -69,8 +74,8 @@ plot_surface <- function(data) {
     ) +
     ggplot2::geom_raster(ggplot2::aes_string(fill = "hex")) +
     ggplot2::scale_x_continuous(labels = abs) +
+    ggplot2::scale_y_continuous(limits = c(0, 100), sec.axis = sec_axis_hue) +
     ggplot2::scale_fill_identity() +
-    ggplot2::ylim(c(0, 100)) +
     ggplot2::labs(
       x = "chroma",
       y = "luminance"
