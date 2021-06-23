@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get HCL data — data_hcl • colorpath</title>
+<title>Get colors with maximum chroma — pth_mat_max_chroma • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Get HCL data — data_hcl" />
-<meta property="og:description" content="This is in support of plots to show chroma-luminance plane and
-hue-chroma plane." />
+<meta property="og:title" content="Get colors with maximum chroma — pth_mat_max_chroma" />
+<meta property="og:description" content="Get colors with maximum chroma" />
 
 
 
@@ -127,35 +126,43 @@ hue-chroma plane." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get HCL data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/plot.R'><code>R/plot.R</code></a></small>
-    <div class="hidden name"><code>data_hcl.Rd</code></div>
+    <h1>Get colors with maximum chroma</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/chroma.R'><code>R/chroma.R</code></a></small>
+    <div class="hidden name"><code>pth_mat_max_chroma.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is in support of plots to show chroma-luminance plane and
-hue-chroma plane.</p>
+    <p>Get colors with maximum chroma</p>
     </div>
 
-    <pre class="usage"><span class='fu'>data_hcl</span><span class='op'>(</span><span class='va'>pal_luv</span>, n <span class='op'>=</span> <span class='fl'>11</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pth_mat_max_chroma</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_mat_max_chroma</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_surface</span>
+<span class='fu'>pth_mat_max_chroma</span><span class='op'>(</span><span class='va'>x</span>, n_step <span class='op'>=</span> <span class='fl'>20</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pal_luv</th>
-      <td><p><code>function</code> with S3 class <code>"cpath_pal_luv"</code></p></td>
+      <th>x</th>
+      <td><p><code>object</code> to consider.</p></td>
     </tr>
     <tr>
-      <th>n, </th>
-      <td><p><code>integer</code> number of points to generate for the palette</p></td>
+      <th>...</th>
+      <td><p>other args, not used.</p></td>
+    </tr>
+    <tr>
+      <th>n_step</th>
+      <td><p>coercible to <code>integer</code>, number of steps to take in luminance.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with variables <code>type</code>, <code>hex</code>, <code>hue</code>, <code>chroma</code>,
-<code>luminance</code>.</p>
+    <p><code>pth_mat</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
