@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library("colorpath")
+library("purrr")
 ```
 
 One goal of this package is to help you design sets of categorical and quantitative palettes that are consistent amongst themselves.
@@ -98,29 +99,44 @@ My suggestion for a set of palettes is to specify four surfaces. In this case, I
 
 We'll also look at how these surfaces behave when we simulate color-vision deficiency.
 
+```{r}
+colors <- list(
+  blues = c("#42B4E6", "#0087CD"),
+  oranges = c("#E47F00", "#702407"),
+  greens = c("#007626", "#70E07C"),
+  purples = c("#3D1152", "#C530FF")
+)
+```
+
+```{r surfaces}
+surfaces <- purrr::map(colors, pth_new_surface, transformer = pth_to_jzazbz100)
+```
 
 ```{r sfc_blues}
-sfc_blues <- pth_new_surface(c("#42B4E6", "#0087CD"), transformer = pth_to_jzazbz100)
-pth_plot_surface(sfc_blues)
+pth_plot_surface(surfaces$blues)
 ``` 
 
 With the oranges, I added a redder-orange with lower luminance to add some chroma to the lower "half" of the luminance range.
 
 ```{r sfc_oranges}
-sfc_oranges <- pth_new_surface(c("#E47F00", "#702407"), transformer = pth_to_jzazbz100)
-pth_plot_surface(sfc_oranges)
+pth_plot_surface(surfaces$oranges)
 ``` 
 
-
-
 ```{r sfc_greens}
-sfc_greens <- pth_new_surface(c("#007626", "#70E07C"), transformer = pth_to_jzazbz100)
-pth_plot_surface(sfc_greens)
+pth_plot_surface(surfaces$greens)
 ```
 
 
 ```{r sfc_purples}
-sfc_purples <- pth_new_surface(c("#3D1152", "#C530FF"), transformer = pth_to_jzazbz100)
-pth_plot_surface(sfc_purples)
+pth_plot_surface(surfaces$purples)
 ```
 
+## Color-Vision Deficiency
+
+
+```{r mat_surfaces}
+mat_surfaces <- 
+  surfaces %>%
+  map(pth_mat_max_chroma) %>%
+  reduce(rbind)
+```
