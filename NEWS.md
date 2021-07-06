@@ -1,5 +1,8 @@
 # colorpath 0.0.1 (development version)
 
+-   Modify the data frame returned `pth_data_cvd()` to contain a column `hex_original`, rather than `index_color`.
+    (\#82)
+
 -   Add function `pth_mat_max_chroma()` to generate max-chroma colors.
     Implemented for `pth_surface`.
     Also implement `rbind()` for `pth_mat`.

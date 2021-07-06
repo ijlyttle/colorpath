@@ -32,8 +32,8 @@ color space, e.g. \link{pth_to_cieluv}.}
 \item{n_point}{\code{integer} number of points from the palette.}
 }
 \value{
-\code{tibble} with columns \code{"condition"}, \code{"severity"},
-\code{"index_color"}, \code{"luminance"}, \code{"chroma"}, \code{"hue"}, \code{"hex"}
+\code{tibble} with columns \code{"hex_original"}, \code{"condition"}, \code{"severity"},
+\code{"luminance"}, \code{"chroma"}, \code{"hue"}, \code{"hex"}.
 }
 \description{
 Generate versions of colors using color-vision deficiency simulation.
