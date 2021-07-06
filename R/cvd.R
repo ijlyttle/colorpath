@@ -55,8 +55,8 @@ pth_cvd_grid_none <- function(condition = "none", severity = 0) {
 #' @param n_point `integer` number of points from the palette.
 #' @param ... other args, not used.
 #'
-#' @return `tibble` with columns `"condition"`, `"severity"`,
-#'  `"index_color"`, `"luminance"`, `"chroma"`, `"hue"`, `"hex"`
+#' @return `tibble` with columns `"hex_original"`, `"condition"`, `"severity"`,
+#'   `"luminance"`, `"chroma"`, `"hue"`, `"hex"`.
 #'
 #' @export
 #'
@@ -111,16 +111,17 @@ pth_data_cvd.pth_mat <- function(x, cvd = pth_cvd_grid(), ...) {
     tibble::tibble(
       condition = as.character(cvd$condition),
       severity = cvd$severity,
-      mat = list(x)
+      hex_original = list(pth_to_hex(x)), # uses a list so that it's recycled
+      mat = list(x) # wraps matrix up in a list so that it's recycled
     )
 
   together$new <- purrr::pmap(together, mat_cvd)
-  together$data <- purrr::map(together$new, tibble_lchhex_index)
+  together$data <- purrr::map(together$new, tibble_lchhex)
 
   together$mat <- NULL
   together$new <- NULL
 
-  result <- tidyr::unnest(together, cols = "data")
+  result <- tidyr::unnest(together, cols = c("data", "hex_original"))
 
   # make condition a factor
   result$condition <-

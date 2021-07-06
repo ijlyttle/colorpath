@@ -120,7 +120,7 @@ test_that("pth_data_cvd() works", {
   expect_s3_class(cvd, "tbl_df")
   expect_named(
     cvd,
-    c("condition", "severity", "index_color", "luminance", "chroma", "hue", "hex")
+    c("condition", "severity", "hex_original", "luminance", "chroma", "hue", "hex")
   )
   expect_identical(
     nrow(cvd),
@@ -129,7 +129,7 @@ test_that("pth_data_cvd() works", {
   expect_s3_class(cvd$condition, "factor")
 
   # correctness
-  rgb_cvd <- function(condition, severity, index_color, hex_old, ...) {
+  rgb_cvd <- function(condition, severity, hex_original, ...) {
 
     xform <- list(
       none = function(col, severity) { col },
@@ -138,7 +138,7 @@ test_that("pth_data_cvd() works", {
       tritan = colorspace::tritan
     )
 
-    hex_new <- xform[[condition]](hex_old[index_color], severity)
+    hex_new <- xform[[condition]](hex_original, severity)
 
     hex_new
   }
