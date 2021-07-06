@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9007</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9008</span>
       </span>
     </div>
 
@@ -136,6 +136,7 @@
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#colorpath-001-development-version" class="anchor"></a>colorpath 0.0.1 (development version)</h1>
 <ul>
+<li><p>Modify the data frame returned <code><a href="../reference/pth_data_cvd.html">pth_data_cvd()</a></code> to contain a column <code>hex_original</code>, rather than <code>index_color</code>. (<a href='https://github.com/ijlyttle/colorpath/issues/82'>#82</a>)</p></li>
 <li><p>Add function <code><a href="../reference/pth_mat_max_chroma.html">pth_mat_max_chroma()</a></code> to generate max-chroma colors. Implemented for <code>pth_surface</code>. Also implement <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> for <code>pth_mat</code>. (<a href='https://github.com/ijlyttle/colorpath/issues/80'>#80</a>)</p></li>
 <li><p>Add function <code><a href="../reference/pth_colorspace_name.html">pth_colorspace_name()</a></code> to get human-readable name for color space of a set of colors, a surface, or a palette. (<a href='https://github.com/ijlyttle/colorpath/issues/78'>#78</a>)</p></li>
 <li><p>Add new way to specify surfaces: <code><a href="../reference/pth_new_surface.html">pth_new_surface()</a></code>, along with <code><a href="../reference/pth_surface_data.html">pth_surface_data()</a></code>, and a <code>pth_surface</code> generic for <code><a href="../reference/pth_plot_surface.html">pth_plot_surface()</a></code>. (<a href='https://github.com/ijlyttle/colorpath/issues/63'>#63</a>, <a href='https://github.com/ijlyttle/colorpath/issues/75'>#75</a>)</p></li>
