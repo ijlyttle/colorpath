@@ -15,5 +15,229 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(colorpath)
+library("colorpath")
+library("purrr")
+library("glue")
+library("ggplot2")
+library("tibble")
 ```
+
+The goal of this vignette is to show a way of building a categorical color-palette:
+
+  - eight colors
+  - paired (four sets of two)
+  - designed to be useful under color-vision deficiency
+  
+We will use the four surfaces introduced in the [surfaces](surfaces.html) vignette.
+
+```{r surfaces}
+# TODO: find a more-robust way to keep this in sync.
+colors <- list(
+  blues = c("#42B4E6", "#0087CD"),
+  oranges = c("#E47F00", "#702407"),
+  greens = c("#007626", "#70E07C"),
+  purples = c("#3D1152", "#C530FF")
+)
+
+surfaces <- purrr::map(colors, pth_new_surface, transformer = pth_to_jzazbz100)
+```
+
+We can look at how the outer edge of these surfaces "collapse" under color-vision deficiency:
+
+```{r mat_surfaces}
+mat_surfaces <- 
+  surfaces %>%
+  map(pth_mat_max_chroma) %>%
+  reduce(rbind)
+```
+
+Next, we can plot these colors in polar coordinates, using `pth_plot_polar()`:
+
+```{r plot-mat_surfaces}
+pth_plot_polar(mat_surfaces, cvd = pth_cvd_grid_full()) +
+  facet_grid(
+    rows = vars(condition), 
+    cols = vars(severity),
+    labeller = labeller(severity = label_both)
+  ) +
+  ggtitle(
+    label = "Outer (chroma) edge of surfaces, simulating color-vision deficiency",
+    subtitle = glue("Color space: {pth_colorspace_name(mat_surfaces)}")
+  )
+```
+
+I am going to propose a design frameowrk, based on deuteranopia, because:
+
+- deuteranopia (green deficiency) is the predominant form of color-vision deficiency.
+- it manifests itself similarly to protanopia.
+- tritanopia still seems to leave some variation in hue.
+
+In short, I propose to choose:
+
+- two blues and two purples in such a way that these colors do not collide under deuteranopia.
+- two greens and two oranges, also not to collide under deuteranopia.
+
+It is clear that under full deuteranopia, for blues and purples, there is no variation in hue. 
+Therefore, we will have to make things different using luminance and chroma.
+
+```{r blues-purples-01}
+blues_purples_first <-
+  tribble(
+        ~name, ~luminance, ~saturation,
+      "blues",       80.0,        1.00, 
+    "purples",       65.0,        1.00, 
+    "purples",       45.0,        1.00, 
+      "blues",       30.0,        1.00
+  )
+```
+
+```{r function-cat}
+# look at making this function a part of the package...
+get_color_cat <- function(surface, luminance, saturation = 1) {
+  
+  chroma <- surface$fn_max_chroma(luminance) * saturation
+  hue <- surface$fn_hue(luminance)
+  
+  mat_polar <- matrix(c(luminance, chroma, hue), ncol = 3)
+  mat_cartesian <- colorpath::pth_to_cartesian(mat_polar)
+  
+  color <- colorpath::pth_creator(surface$colors)(mat_cartesian)
+  
+  color
+}
+
+get_color_cat_surfaces <- function(name, luminance, saturation = 1) {
+  get_color_cat(surfaces[[name]], luminance, saturation)
+}
+```
+
+```{r}
+blues_purples_mat <- 
+  pmap(blues_purples_first, get_color_cat_surfaces) %>%
+  reduce(rbind)
+```
+
+
+```{r}
+blues_purples_cvd <-
+  pth_data_cvd(
+    blues_purples_mat, 
+    cvd = pth_cvd_grid(
+      condition = c("deutan", "protan"), 
+      severity = seq(0, 1, 0.1)
+    )
+  )
+```
+
+```{r}
+cat_plot <- function(mat) {
+ 
+  keep <- function(x) {
+    keep <- x$severity == max(x$severity)
+    x[keep, ]
+  }
+
+  ggplot2::ggplot(mat, aes(x = chroma, y = luminance)) +
+    ggplot2::geom_point(aes(color = hex, shape = factor(hex_original)), size = 4) + 
+    ggplot2::geom_point(data = keep, shape = 3, color = "black", size = 4) +
+    ggplot2::geom_point(data = keep, shape = 4, color = "white", size = 4) +
+    ggplot2::facet_wrap(facets = "condition") +
+    ggplot2::scale_color_identity() +
+    ggplot2::scale_shape_manual(values = c(15, 16, 17, 18), guide = NULL) + 
+    ggplot2::coord_fixed(ratio = 1, xlim = c(0, NA), ylim = c(0, 100)) +
+    ggplot2::theme_bw() + 
+    ggplot2::labs(
+      title = "Colors under color-vision deficency of varying severity",
+      subtitle = "Cross-marks indicate maximum severity"
+    ) 
+}
+
+cat_plot(blues_purples_cvd)
+```
+
+Here, we can see the measures we can take to keep these four colors more separated. 
+We can see that, according to the color-vision deficiency models, the colors with the purple hue drop in luminance (and increase in chroma) as the severity increases.
+
+With this in mind, we can choose the "original" colors to improve the separation at maximum severity.
+
+```{r blues-purples-02}
+blues_purples_second <-
+  tribble(
+        ~name, ~luminance, ~saturation,
+      "blues",       75.0,        0.90, 
+    "purples",       60.0,        0.80, 
+    "purples",       35.0,        1.00, 
+      "blues",       45.0,        1.00
+  )
+```
+
+```{r}
+blues_purples_mat_second <- 
+  pmap(blues_purples_second, get_color_cat_surfaces) %>%
+  reduce(rbind)
+```
+
+
+```{r}
+blues_purples_cvd_second <-
+  pth_data_cvd(
+    blues_purples_mat_second, 
+    cvd = pth_cvd_grid(
+      condition = c("deutan", "protan"), 
+      severity = seq(0, 1, 0.1)
+    )
+  )
+```
+
+```{r}
+cat_plot(blues_purples_cvd_second)
+```
+
+We can do the same thing with greens and oranges:
+
+```{r greens_oranges}
+greens_oranges <-
+  tribble(
+        ~name, ~luminance, ~saturation,
+     "greens",       70.0,        0.65, 
+    "oranges",       55.0,        1.00, 
+    "oranges",       35.0,        1.00, 
+     "greens",       45.0,        1.00
+  )
+```
+
+```{r}
+greens_oranges_mat <- 
+  pmap(greens_oranges, get_color_cat_surfaces) %>%
+  reduce(rbind)
+```
+
+
+```{r}
+greens_oranges_cvd <-
+  pth_data_cvd(
+    greens_oranges_mat, 
+    cvd = pth_cvd_grid(
+      condition = c("deutan", "protan"), 
+      severity = seq(0, 1, 0.1)
+    )
+  )
+```
+
+```{r}
+cat_plot(greens_oranges_cvd)
+```
+
+Let's get these colors together:
+
+```{r}
+categorical_hex <- 
+  rbind(blues_purples_mat_second, greens_oranges_mat) %>%
+  `[`(c(4, 6, 3, 5, 1, 7, 2, 8), ) %>%
+  pth_to_hex
+
+colorspace::swatchplot(categorical_hex, cvd = TRUE)
+```
+
+
+
