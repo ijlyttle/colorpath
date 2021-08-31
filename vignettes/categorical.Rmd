@@ -164,8 +164,8 @@ With this in mind, we can choose the "original" colors to improve the separation
 blues_purples_second <-
   tribble(
         ~name, ~luminance, ~saturation,
-      "blues",       75.0,        0.90, 
-    "purples",       60.0,        0.80, 
+      "blues",       75.0,        0.75, 
+    "purples",       65.0,        0.77, 
     "purples",       35.0,        1.00, 
       "blues",       45.0,        1.00
   )
@@ -199,10 +199,10 @@ We can do the same thing with greens and oranges:
 greens_oranges <-
   tribble(
         ~name, ~luminance, ~saturation,
-     "greens",       70.0,        0.65, 
-    "oranges",       55.0,        1.00, 
-    "oranges",       35.0,        1.00, 
-     "greens",       45.0,        1.00
+     "greens",       65.0,        0.65, 
+    "oranges",       65.0,        0.90, 
+    "oranges",       30.0,        1.00, 
+     "greens",       40.0,        0.80
   )
 ```
 
@@ -239,5 +239,24 @@ categorical_hex <-
 colorspace::swatchplot(categorical_hex, cvd = TRUE)
 ```
 
+We need a function that, given a set of colors (hex or mat), returns a data frame with variables:
 
+- hex_original_a
+- hex_original_b
+- cvd
+- severity
+- hex_a
+- hex_b
+- distance
 
+```r
+# suggests
+pth_distance_color_euclid(color_a, color_b, cvd, transformer, non_luminance_weight, ...)
+pth_distance_color_metric(color_a, color_b, cvd, method, ...)
+
+pth_distance_cat_euclid(color, cvd, transformer, non_luminance_weight, ...)
+pth_distance_cat_metric(color, cvd, method, ...)
+
+pth_distance_qnt_euclid(palette, n_step, cvd, transformer, non_luminance_weight, ...)
+pth_distance_qnt_metric(palette, n_step, cvd, method, ...)
+```
