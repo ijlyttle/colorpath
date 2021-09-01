@@ -3,7 +3,6 @@ d65 <- whitepoints_cie1931("D65")
 c <- 0.69
 Y_b <- 20
 L_A <- 64 / pi / 5
-exact_inversion <- TRUE
 
 hex <- "#663399"
 
@@ -15,7 +14,6 @@ cam16_test <-
     c = c,
     Y_b = Y_b,
     L_A = L_A,
-    exact_inversion = exact_inversion,
     whitepoint = d65
   )
 
@@ -26,7 +24,6 @@ test_that("pth_new_cam16ucs() works", {
   expect_identical(attr(cam16_test, "c"), c)
   expect_identical(attr(cam16_test, "Y_b"), Y_b)
   expect_identical(attr(cam16_test, "L_A"), L_A)
-  expect_identical(attr(cam16_test, "exact_inversion"), exact_inversion)
   expect_identical(attr(cam16_test, "whitepoint"), d65)
   expect_equal(
     dimnames(cam16_test), list(NULL, c("J'", "a'", "b'")),

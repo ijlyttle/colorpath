@@ -5,16 +5,13 @@
 \alias{pth_new_jzazbz100}
 \title{Convert/coerce to JzAzBz-100 matrix}
 \usage{
-pth_to_jzazbz100(color, whitepoint = whitepoints_cie1931("D65"))
+pth_to_jzazbz100(color)
 
-pth_new_jzazbz100(mat, whitepoint = whitepoints_cie1931("D65"))
+pth_new_jzazbz100(mat)
 }
 \arguments{
 \item{color}{\code{character} or \code{matrix} with S3 class \code{pth_mat}, a
 representation of a color.}
-
-\item{whitepoint}{\code{double} \code{array} with one dimension, length three;
-describes the whitepoint reference for the color space.}
 
 \item{mat}{\code{double} \code{matrix} with three columns, one row for each color.}
 }
