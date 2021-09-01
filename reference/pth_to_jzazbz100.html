@@ -73,7 +73,7 @@ https://github.com/nschloe/colorio/issues/41#issuecomment-519983981." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9008</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9009</span>
       </span>
     </div>
 
@@ -140,9 +140,9 @@ https://github.com/nschloe/colorio/issues/41#issuecomment-519983981." />
 https://github.com/nschloe/colorio/issues/41#issuecomment-519983981.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pth_to_jzazbz100</span><span class='op'>(</span><span class='va'>color</span>, whitepoint <span class='op'>=</span> <span class='fu'><a href='whitepoints_cie1931.html'>whitepoints_cie1931</a></span><span class='op'>(</span><span class='st'>"D65"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>pth_to_jzazbz100</span><span class='op'>(</span><span class='va'>color</span><span class='op'>)</span>
 
-<span class='fu'>pth_new_jzazbz100</span><span class='op'>(</span><span class='va'>mat</span>, whitepoint <span class='op'>=</span> <span class='fu'><a href='whitepoints_cie1931.html'>whitepoints_cie1931</a></span><span class='op'>(</span><span class='st'>"D65"</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'>pth_new_jzazbz100</span><span class='op'>(</span><span class='va'>mat</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,11 +151,6 @@ https://github.com/nschloe/colorio/issues/41#issuecomment-519983981.</p>
       <th>color</th>
       <td><p><code>character</code> or <code>matrix</code> with S3 class <code>pth_mat</code>, a
 representation of a color.</p></td>
-    </tr>
-    <tr>
-      <th>whitepoint</th>
-      <td><p><code>double</code> <code>array</code> with one dimension, length three;
-describes the whitepoint reference for the color space.</p></td>
     </tr>
     <tr>
       <th>mat</th>
@@ -173,16 +168,12 @@ with three columns, one row for each color.</p>
 </div><div class='output co'>#&gt;           J_z      a_z       b_z
 #&gt; [1,] 36.34207 15.27107 -42.64039
 #&gt; attr(,"class")
-#&gt; [1] "pth_jzazbz100" "pth_mat"      
-#&gt; attr(,"whitepoint")
-#&gt; [1]  95.047 100.000 108.883</div><div class='input'>  <span class='fu'>pth_new_jzazbz100</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>36.3</span>, <span class='fl'>15</span>,<span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>42.6</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; [1] "pth_jzazbz100" "pth_mat"      </div><div class='input'>  <span class='fu'>pth_new_jzazbz100</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>36.3</span>, <span class='fl'>15</span>,<span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>42.6</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: data length [4] is not a sub-multiple or multiple of the number of columns [3]</span></div><div class='output co'>#&gt;       J_z   a_z  b_z
 #&gt; [1,] 36.3   3.0 36.3
 #&gt; [2,] 15.0 -42.6 15.0
 #&gt; attr(,"class")
-#&gt; [1] "pth_jzazbz100" "pth_mat"      
-#&gt; attr(,"whitepoint")
-#&gt; [1]  95.047 100.000 108.883</div></pre>
+#&gt; [1] "pth_jzazbz100" "pth_mat"      </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

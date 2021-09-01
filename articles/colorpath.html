@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9008</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9009</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@
 <p>This package has a such a sample HCL dataset:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_hcl_blues</span>
-<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt; # A tibble: 3 × 3</span>
 <span class="co">#&gt;       h     c     l</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1   250     0    30</span>
@@ -282,7 +282,7 @@
 
 <span class="va">df_hcl_blues_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">df_cl</span>, <span class="va">sfc_blues</span><span class="op">)</span>
 <span class="va">df_hcl_blues_new</span>
-<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt; # A tibble: 3 × 3</span>
 <span class="co">#&gt;       h     c     l</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1   244     0    20</span>
@@ -378,7 +378,7 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <code class="sourceCode R"><span class="va">dfhcl_blues_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_light</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span>
 
 <span class="va">dfhcl_blues_light</span>
-<span class="co">#&gt; # A tibble: 5 x 3</span>
+<span class="co">#&gt; # A tibble: 5 × 3</span>
 <span class="co">#&gt;       h     c     l</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1  221.    30    90</span>
@@ -418,8 +418,8 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <code class="sourceCode R"><span class="va">blues_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-2f65e8debff4e6eb6c43" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2f65e8debff4e6eb6c43">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f7d00dbaa1841ef6c11d" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f7d00dbaa1841ef6c11d">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-27-2.png" width="700"></p>
@@ -439,7 +439,7 @@ pal.sineramp(blues_light_discrete)
 <code class="sourceCode R"><span class="va">dfhcl_blues_div_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_hcl.html">df_hcl</a></span><span class="op">(</span><span class="va">dfcl_blues_div_light</span>, <span class="va">sfc_multi_blue</span><span class="op">)</span>
 
 <span class="va">dfhcl_blues_div_light</span>
-<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt; # A tibble: 6 × 3</span>
 <span class="co">#&gt;       h     c     l</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1  221.     0    90</span>
@@ -458,8 +458,8 @@ pal.sineramp(blues_light_discrete)
 <code class="sourceCode R"><span class="va">blues_div_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-91c23bc4db298e638a56" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-91c23bc4db298e638a56">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4b952783cf27c06c41f9" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4b952783cf27c06c41f9">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_div_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-31-2.png" width="700"></p>
@@ -492,8 +492,8 @@ pal.sineramp(blues_div_light_discrete)
 <code class="sourceCode R"><span class="va">blues_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-82a9e48c2f0ae968d9c9" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-82a9e48c2f0ae968d9c9">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d809a24aa1476f9d7985" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d809a24aa1476f9d7985">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-34-2.png" width="700"></p>
@@ -519,8 +519,8 @@ pal.sineramp(blues_dark_discrete)
 <code class="sourceCode R"><span class="va">blues_div_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-7ebc048654e6cac0f6a1" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7ebc048654e6cac0f6a1">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1c807ae5d006a30c8c34" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1c807ae5d006a30c8c34">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
 
 pal.sineramp(blues_div_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-37-2.png" width="700"></p>
