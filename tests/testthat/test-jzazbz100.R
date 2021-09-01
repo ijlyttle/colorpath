@@ -1,21 +1,16 @@
-# standard whitepoint
-d65 <- whitepoints_cie1931("D65")
-
 hex <- "#663399"
 
 # point chosen to be approx 50, 50, 50 in xyz100
 mat <- matrix(c(75.47733, 5.471956, 4.499812), ncol = 3)
 jab_test <-
   pth_new_jzazbz100(
-    mat,
-    whitepoint = d65
+    mat
   )
 
 test_that("pth_new_jzazbz100 works", {
   expect_s3_class(jab_test, c("pth_jzazbz100", "pth_mat"))
   expect_true(is.matrix(jab_test))
   expect_identical(ncol(jab_test), 3L)
-  expect_identical(attr(jab_test, "whitepoint"), d65)
   expect_equal(
     dimnames(jab_test), list(NULL, c("J_z", "a_z", "b_z")),
     ignore_attr = TRUE

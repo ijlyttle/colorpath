@@ -12,22 +12,22 @@
 #'   pth_new_jzazbz100(matrix(c(36.3, 15,3, -42.6), ncol = 3))
 #' @export
 #'
-pth_to_jzazbz100 <- function(color, whitepoint = whitepoints_cie1931("D65")) {
+pth_to_jzazbz100 <- function(color) {
 
   # use internal function
-  mat <- pth_to_jzazbz(color, whitepoint = whitepoint)
+  mat <- pth_to_jzazbz(color)
 
   # scale values
-  mat <- mat * jzazbz_scale100(whitepoint = whitepoints_cie1931("D65"))
+  mat <- mat * jzazbz_scale100()
 
-  pth_new_jzazbz100(mat, whitepoint = whitepoint)
+  pth_new_jzazbz100(mat)
 }
 
 # internal function
-pth_to_jzazbz <- function(color, whitepoint = whitepoints_cie1931("D65")) {
+pth_to_jzazbz <- function(color) {
 
   # establish color space
-  jzazbz <- colorio$cs$JzAzBz(whitepoint = whitepoint)
+  jzazbz <- colorio$cs$JzAzBz()
 
   # get values
   xyz <- to_xyz100(color)
@@ -39,17 +39,15 @@ pth_to_jzazbz <- function(color, whitepoint = whitepoints_cie1931("D65")) {
 #' @rdname pth_to_jzazbz100
 #' @export
 #'
-pth_new_jzazbz100 <- function(mat, whitepoint = whitepoints_cie1931("D65")) {
+pth_new_jzazbz100 <- function(mat) {
 
   # establish color space
-  jzazbz100 <- colorio$cs$JzAzBz(whitepoint = whitepoint)
+  jzazbz100 <- colorio$cs$JzAzBz()
 
-  # save whitepoint as attribute
   result <-
     structure(
       mat,
-      class = c("pth_jzazbz100", "pth_mat"),
-      whitepoint = whitepoint
+      class = c("pth_jzazbz100", "pth_mat")
     )
 
   # attach labels
@@ -65,8 +63,7 @@ pth_transformer.pth_jzazbz100 <- function(mat, ...) {
 
   function(color) {
     pth_to_jzazbz100(
-      color,
-      whitepoint = attr(mat, "whitepoint")
+      color
     )
   }
 
@@ -78,8 +75,7 @@ pth_creator.pth_jzazbz100 <- function(mat, ...) {
 
   function(mat_new) {
     pth_new_jzazbz100(
-      mat_new,
-      whitepoint = attr(mat, "whitepoint")
+      mat_new
     )
   }
 
@@ -89,10 +85,10 @@ pth_creator.pth_jzazbz100 <- function(mat, ...) {
 #'
 to_xyz100.pth_jzazbz100 <- function(color, ...) {
 
-  jzazbz100 <- colorio$cs$JzAzBz(whitepoint = attr(color, "whitepoint"))
+  jzazbz100 <- colorio$cs$JzAzBz()
 
   # unscale color
-  color <- color / jzazbz_scale100(whitepoint = whitepoints_cie1931("D65"))
+  color <- color / jzazbz_scale100()
 
   xyz100 <- t(jzazbz100$to_xyz100(t(color)))
 
@@ -100,7 +96,7 @@ to_xyz100.pth_jzazbz100 <- function(color, ...) {
 }
 
 # we are going to scale using luminance only
-jzazbz_scale100 <- function(whitepoint = whitepoints_cie1931("D65")) {
+jzazbz_scale100 <- function() {
 
   white <- pth_to_jzazbz("#FFFFFF")
   # black is at the origin
