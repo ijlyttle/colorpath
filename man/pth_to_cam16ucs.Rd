@@ -10,7 +10,6 @@ pth_to_cam16ucs(
   c = 0.69,
   Y_b = 20,
   L_A = 64/pi/5,
-  exact_inversion = TRUE,
   whitepoint = whitepoints_cie1931("D65")
 )
 
@@ -19,7 +18,6 @@ pth_new_cam16ucs(
   c = 0.69,
   Y_b = 20,
   L_A = 64/pi/5,
-  exact_inversion = TRUE,
   whitepoint = whitepoints_cie1931("D65")
 )
 }
@@ -32,8 +30,6 @@ representation of a color.}
 \item{Y_b}{\code{numeric} background luminance.}
 
 \item{L_A}{\code{numeric} luminance of the adapting field (cd/m^2).}
-
-\item{exact_inversion}{\code{logical} indicates to use exact inversion.}
 
 \item{whitepoint}{\code{double} \code{array} with one dimension, length three;
 describes the whitepoint reference for the color space.}
