@@ -4,6 +4,7 @@
 \alias{pth_cvd_grid}
 \alias{pth_cvd_grid_full}
 \alias{pth_cvd_grid_none}
+\alias{pth_cvd_grid_severity}
 \title{Color-vision deficiency grid}
 \usage{
 pth_cvd_grid(condition = c("none", "deutan", "protan", "tritan"), severity = 1)
@@ -14,6 +15,8 @@ pth_cvd_grid_full(
 )
 
 pth_cvd_grid_none(condition = "none", severity = 0)
+
+pth_cvd_grid_severity(severity = 1)
 }
 \arguments{
 \item{condition}{\code{character} one or more color-vision deficiency conditions;
@@ -28,4 +31,9 @@ condition; legal values from 0 to 1.}
 \description{
 Helper function to generate grid for color-vision deficiency (CVD)
 possibilities.
+}
+\examples{
+  pth_cvd_grid_none()
+  pth_cvd_grid_full()
+  pth_cvd_grid_severity(0.9)
 }

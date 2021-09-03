@@ -9,6 +9,10 @@
 #'  condition; legal values from 0 to 1.
 #'
 #' @return `tbl_df` with columns `cvd` (factor), `severity` (double)
+#' @examples
+#'   pth_cvd_grid_none()
+#'   pth_cvd_grid_full()
+#'   pth_cvd_grid_severity(0.9)
 #' @export
 #'
 pth_cvd_grid <- function(condition = c("none", "deutan", "protan", "tritan"),
@@ -42,6 +46,21 @@ pth_cvd_grid_full <- function(condition = c("deutan", "protan", "tritan"),
 pth_cvd_grid_none <- function(condition = "none", severity = 0) {
 
   pth_cvd_grid(condition = condition, severity = severity)
+}
+
+#' @rdname pth_cvd_grid
+#' @export
+#'
+pth_cvd_grid_severity <- function(severity = 1) {
+
+  result <-
+    rbind(
+      pth_cvd_grid_none(),
+      pth_cvd_grid_full(severity = severity)
+    )
+
+
+  tibble::as_tibble(result)
 }
 
 #' Color data in CVD context
