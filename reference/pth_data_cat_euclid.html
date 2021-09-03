@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Modify color to bring inside RGB gamut — pth_clip_chroma • colorpath</title>
+<title>Get color distances within palette — pth_data_cat_euclid • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="Modify color to bring inside RGB gamut — pth_clip_chroma" />
-<meta property="og:description" content="Modify color to bring inside RGB gamut" />
+<meta property="og:title" content="Get color distances within palette — pth_data_cat_euclid" />
+<meta property="og:description" content="You can evaluate distance for categorial palettes (_cat functions), or for
+quantitative functions (_qnt functions). You can evaluate using Euclidean
+distance in a color space (_euclid functions), or using a metic
+(_metric functions)." />
 
 
 
@@ -129,34 +132,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Modify color to bring inside RGB gamut</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/chroma.R'><code>R/chroma.R</code></a></small>
-    <div class="hidden name"><code>pth_clip_chroma.Rd</code></div>
+    <h1>Get color distances within palette</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/distance-palette.R'><code>R/distance-palette.R</code></a></small>
+    <div class="hidden name"><code>pth_data_cat_euclid.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Modify color to bring inside RGB gamut</p>
+    <p>You can evaluate distance for categorial palettes (<code>_cat</code> functions), or for
+quantitative functions (<code>_qnt</code> functions). You can evaluate using Euclidean
+distance in a color space (<code>_euclid</code> functions), or using a metic
+(<code>_metric</code> functions).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pth_clip_chroma</span><span class='op'>(</span><span class='va'>color</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pth_data_cat_euclid</span><span class='op'>(</span><span class='va'>color</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>pth_data_cat_metric</span><span class='op'>(</span><span class='va'>color</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>pth_data_qnt_euclid</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>pth_data_qnt_metric</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>color</th>
-      <td><p><code>character</code> or <code>matrix</code> with S3 class <code>pth_mat</code>, a
-representation of a color.</p></td>
+      <td><p>Object that can be coerced into colors,
+i.e. <code>pth_hex</code> or <code>pth_mat</code>. Used for categorical palettes.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other args (not used).</p></td>
+      <td><p>additional arguments passed on to <code>transformer</code>.</p></td>
+    </tr>
+    <tr>
+      <th>palette</th>
+      <td><p><code>function</code> with S3 class <code>pth_palette</code>. Used for quantitative
+palettes.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of same type as <code>color</code>.</p>
+    <p><code>tbl_df</code> with columns:</p><dl>
+<dt>hex_original_a</dt><dd><p><code>character</code> hex-code of original color.</p></dd>
+<dt>hex_original_b</dt><dd><p><code>character</code> hex-code of original color.</p></dd>
+<dt>cvd</dt><dd><p><code>character</code> type of color-vision deficiency.</p></dd>
+<dt>severity</dt><dd><p><code>numeric</code> indicates severity using scale 0-1.</p></dd>
+<dt>hex_a</dt><dd><p><code>character</code> hex-code of color under CVD.</p></dd>
+<dt>hex_b</dt><dd><p><code>character</code> hex-code of color under CVD.</p></dd>
+<dt>distance</dt><dd><p><code>numeric</code> perceptual distance between colors</p></dd>
+
+</dl><p>Each row describes an interaction between two colors in a palette.
+For a categorical palette  (<code>_cat</code> functions), each color in the palette is
+compared with all the colors in the palette; for <code>n</code> colors, a tibble
+with <code>n^2</code> rows is returned.
+For a quantitative palette (<code>_qnt</code> functions), the palette is discretized;
+each color is compared with its neighbors. A data frame with <code>n_step</code> rows is
+returned.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
