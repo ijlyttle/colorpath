@@ -20,6 +20,8 @@ library("purrr")
 library("glue")
 library("ggplot2")
 library("tibble")
+library("dplyr")
+library("scales")
 ```
 
 The goal of this vignette is to show a way of building a categorical color-palette:
@@ -231,32 +233,55 @@ cat_plot(greens_oranges_cvd)
 Let's get these colors together:
 
 ```{r}
-categorical_hex <- 
+categorical_mat <- 
   rbind(blues_purples_mat_second, greens_oranges_mat) %>%
-  `[`(c(4, 6, 3, 5, 1, 7, 2, 8), ) %>%
-  pth_to_hex
+  `[`(c(4, 6, 3, 5, 1, 7, 2, 8), )
+
+categorical_hex <- pth_to_hex(categorical_mat)
 
 colorspace::swatchplot(categorical_hex, cvd = TRUE)
 ```
 
-We need a function that, given a set of colors (hex or mat), returns a data frame with variables:
-
-- hex_original_a
-- hex_original_b
-- cvd
-- severity
-- hex_a
-- hex_b
-- distance
-
-```r
-# suggests
-pth_distance_color_euclid(color_a, color_b, cvd, transformer, non_luminance_weight, ...)
-pth_distance_color_metric(color_a, color_b, cvd, method, ...)
-
-pth_distance_cat_euclid(color, cvd, transformer, non_luminance_weight, ...)
-pth_distance_cat_metric(color, cvd, method, ...)
-
-pth_distance_qnt_euclid(palette, n_step, cvd, transformer, non_luminance_weight, ...)
-pth_distance_qnt_metric(palette, n_step, cvd, method, ...)
+```{r}
+show_col(categorical_hex)
 ```
+
+Our next task is to see the performance of the categorical palette, defined as the minimum distance between colors under CVD.
+
+```{r}
+categorical_performance <- 
+  categorical_mat %>%
+  pth_data_cat_euclid() %>%
+  filter(hex_original_a < hex_original_b) %>%
+  group_by(condition) %>%
+  arrange(distance, .by_group = TRUE) %>% 
+  slice_head(n = 3) %>%
+  print()
+```
+
+Finally, let's look at the highest and lowest luminance values for each condition. 
+The motivation is that we want to stay away from the background color for both light mode and dark mode.
+
+```{r}
+categorical_cvd <- 
+  categorical_mat %>%
+  pth_data_cvd(pth_cvd_grid_severity(1)) %>%
+  group_by(condition)
+
+categorical_cvd %>%
+  arrange(luminance, .by_group = TRUE) %>%
+  slice_head(n = 2) %>%
+  print()
+```
+
+We can see that the `#7b2600` color may be problematic in dark-mode. 
+We need to be mindful that we have adquate separation from the luminance of the background.
+
+```{r}
+categorical_cvd %>%
+  arrange(desc(luminance), .by_group = TRUE) %>%
+  slice_head(n = 2) %>%
+  print()
+```
+
+It looks like we are OK with light mode - in fact, this suggests the possibilty of using disctinct light-mode and dark-mode palettes.

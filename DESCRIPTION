@@ -46,7 +46,8 @@ Suggests:
     pals,
     grDevices,
     thematic,
-    withr
+    withr,
+    dplyr
 Remotes: 
     ijlyttle/splattr,
     ijlyttle/colorio

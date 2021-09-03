@@ -99,6 +99,18 @@ pth_data_cvd.character <- function(x, cvd = pth_cvd_grid(),
                                    transformer = pth_to_cieluv, ...) {
 
   # get data in pth_mat form
+  pth_hex <- pth_to_hex(x)
+
+  pth_data_cvd(pth_hex, cvd = cvd, transformer = transformer, ...)
+}
+
+#' @rdname pth_data_cvd
+#' @export
+#'
+pth_data_cvd.pth_hex <- function(x, cvd = pth_cvd_grid(),
+                                   transformer = pth_to_cieluv, ...) {
+
+  # get data in pth_mat form
   pth_mat <- transformer(x)
 
   pth_data_cvd(pth_mat, cvd = cvd, ...)

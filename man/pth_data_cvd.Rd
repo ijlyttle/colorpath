@@ -4,6 +4,7 @@
 \alias{pth_data_cvd}
 \alias{pth_data_cvd.default}
 \alias{pth_data_cvd.character}
+\alias{pth_data_cvd.pth_hex}
 \alias{pth_data_cvd.pth_palette}
 \alias{pth_data_cvd.pth_mat}
 \title{Color data in CVD context}
@@ -13,6 +14,8 @@ pth_data_cvd(x, cvd = pth_cvd_grid(), ...)
 \method{pth_data_cvd}{default}(x, cvd = pth_cvd_grid(), ...)
 
 \method{pth_data_cvd}{character}(x, cvd = pth_cvd_grid(), transformer = pth_to_cieluv, ...)
+
+\method{pth_data_cvd}{pth_hex}(x, cvd = pth_cvd_grid(), transformer = pth_to_cieluv, ...)
 
 \method{pth_data_cvd}{pth_palette}(x, cvd = pth_cvd_grid(), n_point = 11, ...)
 
