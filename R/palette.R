@@ -43,6 +43,11 @@ pth_new_palette_path <- function(trajectory, surface) {
 
     # use trajectory and surface to get polar coordinates
     lum_chroma <- trajectory(x)
+
+    # correct for max_chroma
+    lum_chroma[, 2] <-
+      pmin(lum_chroma[, 2], surface$fn_max_chroma(lum_chroma[, 1]))
+
     hue <- surface$fn_hue(lum_chroma[, 1])
     polar <- cbind(lum_chroma, hue)
 

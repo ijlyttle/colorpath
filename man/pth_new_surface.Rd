@@ -45,9 +45,11 @@ Used if \code{colors} are hex-codes.}
 }
 \value{
 \describe{
-\item{\code{pth_new_surface()}}{\code{function} with S3 class \code{pth_surface}:
-for each given value of luminance \verb{0 <= lum <= 100}, returns a value for
-hue \verb{0 <= hue < 360}.}
+\item{\code{pth_new_surface()}}{\code{list} with S3 class \code{pth_surface}, elements:
+\code{fn_hue()}: for each given value of luminance \verb{0 <= lum <= 100},
+returns a value for hue (degrees),
+\code{fn_max_chroma()}: for each given value of luminance \verb{0 <= lum <= 100},
+returns a value for maximum chroma.}
 \item{\code{pth_new_trajectory()}}{\code{function} with S3 class
 \code{pth_trajectory}: for each given value \verb{0 <= x <= 1}, returns a
 set of luminance and chroma values as a matrix.}

@@ -92,3 +92,23 @@ Looks good, but let's see this in the color space:
 pth_plot_palette(pal_blues_light_grey)
 ```
 
+Let's try an orange:
+
+
+```{r}
+pal_oranges_light_grey <- 
+  pth_new_palette_path(traj_light_grey, surfaces$oranges) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+seq(0, 1, length.out = 11) %>%
+  pal_oranges_light_grey() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
+```
+
+
+
+```{r}
+pth_plot_palette(pal_oranges_light_grey)
+```

@@ -58,3 +58,26 @@ test_that("layers work", {
       pth_layer_palette(pal_div)
   )
 })
+
+test_that("we are correcting using chroma", {
+
+  sfc_oranges <- pth_new_surface(
+    c("#E47F00", "#702407"),
+    transformer = pth_to_jzazbz100
+  )
+
+  traj_light_grey <-
+    pth_new_trajectory(
+      lum = c(90, 75, 60, 35, 20),
+      chroma = c(0, 40, 50, 50, 40)
+    )
+
+  pal_oranges_light_grey <-
+    pth_new_palette_path(traj_light_grey, sfc_oranges) %>%
+    pth_palette_rescale_euclid(non_luminance_weight = 0.5)
+
+  expect_snapshot_plot(
+    "palette_chroma_cap",
+    pth_plot_palette(pal_oranges_light_grey, step = step)
+  )
+})

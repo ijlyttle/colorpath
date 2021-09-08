@@ -35,9 +35,11 @@
 #' @param chroma `numeric` values for chroma, `0 <= chroma`.
 #'
 #' @return \describe{
-#'   \item{`pth_new_surface()`}{`function` with S3 class `pth_surface`:
-#'     for each given value of luminance `0 <= lum <= 100`, returns a value for
-#'     hue `0 <= hue < 360`.}
+#'   \item{`pth_new_surface()`}{`list` with S3 class `pth_surface`, elements:
+#'     `fn_hue()`: for each given value of luminance `0 <= lum <= 100`,
+#'        returns a value for hue (degrees),
+#'     `fn_max_chroma()`: for each given value of luminance `0 <= lum <= 100`,
+#'        returns a value for maximum chroma.}
 #'   \item{`pth_new_trajectory()`}{`function` with S3 class
 #'     `pth_trajectory`: for each given value `0 <= x <= 1`, returns a
 #'     set of luminance and chroma values as a matrix.}
