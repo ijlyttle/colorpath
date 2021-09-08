@@ -1,10 +1,10 @@
-sfc_blue <- pth_new_hue_surface(250)
-sfc_orange <- pth_new_hue_surface(35)
+sfc_blue <- pth_new_surface(c("#00FFFF", "#0000FF"))
+sfc_orange <- pth_new_surface("#E5813D")
 
 traj_chroma <- c(0, 80, 20)
 traj_lum <- c(80, 50, 20)
 
-traj <- pth_new_chroma_trajectory(chroma = traj_chroma, lum = traj_lum)
+traj <- pth_new_trajectory(chroma = traj_chroma, lum = traj_lum)
 
 pal_blue <- pth_new_palette_path(traj, sfc_blue)
 pal_orange <- pth_new_palette_path(traj, sfc_orange)

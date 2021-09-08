@@ -4,7 +4,7 @@
 #' is the calculation of the maximum chroma. In the future, we could imagine
 #' providing a lookup table, as colorspace does, to speed things up.
 #'
-#' @param x `function` with S3 class `pth_palette_path` or `pth_hue_surface`.
+#' @param x `function` with S3 class `pth_palette_path` or `pth_surface`.
 #' @param step `numeric` size of step in luminance and chroma.
 #' @inheritParams pth_new_palette_path
 #' @param ... other arguments passed on to `constructor`.
@@ -54,9 +54,9 @@ pth_data_surface_raster.pth_palette_path <- function(x, step = 0.5, ...) {
 #' @rdname pth_data_surface_raster
 #' @export
 #'
-pth_data_surface_raster.pth_hue_surface <- function(x, step = 0.5,
-                                                    constructor = pth_new_cieluv,
-                                                    ...) {
+pth_data_surface_raster.pth_surface <- function(x, step = 0.5,
+                                                constructor = pth_new_cieluv,
+                                                ...) {
 
   sfc <- x
   mat_example <- constructor(matrix(c(0, 0, 0), ncol = 3), ...)
@@ -66,7 +66,7 @@ pth_data_surface_raster.pth_hue_surface <- function(x, step = 0.5,
 
 #' Create matrix for HL surface
 #'
-#' @param sfc `function` with S3 class `pth_hue_surface`
+#' @param sfc `function` with S3 class `pth_surface`
 #' @param mat_example matrix with S3 class `pth_mat`, example of
 #'   the color space to use
 #' @param step `numeric` size of step in luminance and chroma
@@ -79,7 +79,7 @@ pth_data_surface_raster.pth_hue_surface <- function(x, step = 0.5,
 mat_surface <- function(sfc, mat_example, step) {
 
   assertthat::assert_that(
-    inherits(sfc, "pth_hue_surface"),
+    inherits(sfc, "pth_surface"),
     inherits(mat_example, "pth_mat"),
     assertthat::is.number(step)
   )
@@ -178,7 +178,7 @@ tibble_lchhex <- function(mat_cart) {
 
 #' Dataset for trajectories
 #'
-#' @param x `function` with S3 class `pth_chroma_trajectory` or
+#' @param x `function` with S3 class `pth_trajectory` or
 #'  `pth_palette_path`.
 #' @param ... other arguments (not used).
 #'
@@ -202,7 +202,7 @@ pth_data_control_points.default <- function(x, ...) {
 #' @rdname pth_data_control_points
 #' @export
 #'
-pth_data_control_points.pth_chroma_trajectory <- function(x, ...) {
+pth_data_control_points.pth_trajectory <- function(x, ...) {
 
   mat <- attr(x, "control_points")
   tibble_control_points(mat)

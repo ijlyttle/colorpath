@@ -1,0 +1,94 @@
+---
+title: "quantitative"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{quantitative}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library("colorpath")
+library("patchwork")
+library("purrr")
+library("ggplot2")
+```
+
+The goal of this vignette is to show how to build quantitative palettes:
+
+ - sequential, single (singlish) hue
+ - sequential, multi hue
+ - diverging
+ 
+We want to build off the surfaces defined in [the surfaces vignette](surfaces.html). 
+
+```{r surfaces}
+# TODO: find a more-robust way to keep this in sync.
+colors <- list(
+  blues = c("#42B4E6", "#0087CD"),
+  oranges = c("#E47F00", "#702407"),
+  greens = c("#007626", "#70E07C"),
+  purples = c("#3D1152", "#C530FF")
+)
+
+surfaces <- map(colors, pth_new_surface, transformer = pth_to_jzazbz100)
+```
+First, let's look again at our surfaces:
+
+```{r}
+surfaces %>%
+  map(pth_plot_surface) %>%
+  wrap_plots()
+```
+
+We need to settle on background colors: 
+
+ - light mode: 100% luminance
+ - dark mode: 10% luminance
+
+```{r background}
+background <- list(
+  light = pth_to_jzazbz100("#FFFFFF"),
+  dark = pth_new_jzazbz100(matrix(c(10, 0, 0), ncol = 3))
+)
+
+map_chr(background, pth_to_hex)
+```
+
+For each surface, we will build palettes for light-mode and dark-mode - two of each:
+
+Let's create a sample trajectory, then use it for blues:
+
+```{r}
+traj_light_grey <- 
+  pth_new_trajectory(
+    lum = c(90, 75, 60, 45, 20), 
+    chroma = c(0, 40, 50, 50, 40)
+  )
+```
+
+```{r}
+pal_blues_light_grey <- 
+  pth_new_palette_path(traj_light_grey, surfaces$blues) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+seq(0, 1, length.out = 11) %>%
+  pal_blues_light_grey() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
+```
+
+Looks good, but let's see this in the color space:
+
+```{r}
+pth_plot_palette(pal_blues_light_grey)
+```
+

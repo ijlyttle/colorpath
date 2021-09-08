@@ -47,7 +47,9 @@ Suggests:
     grDevices,
     thematic,
     withr,
-    dplyr
+    dplyr,
+    patchwork,
+    scales
 Remotes: 
     ijlyttle/splattr,
     ijlyttle/colorio

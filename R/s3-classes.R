@@ -64,7 +64,7 @@
 #' - **`pth_palette_path`** built using a path in the color space.
 #'
 #'
-#' **`pth_hue_surface`**
+#' **`pth_surface`**
 #'
 #' A function that:
 #'
@@ -72,7 +72,7 @@
 #'  - returns values for hue (degrees)
 #'
 #'
-#' -**`pth_chroma_trajectory`**
+#' -**`pth_trajectory`**
 #'
 #' A function that:
 #'

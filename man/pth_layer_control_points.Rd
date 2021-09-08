@@ -4,7 +4,7 @@
 \alias{pth_layer_control_points}
 \alias{pth_layer_control_points.default}
 \alias{pth_layer_control_points.data.frame}
-\alias{pth_layer_control_points.pth_chroma_trajectory}
+\alias{pth_layer_control_points.pth_trajectory}
 \alias{pth_layer_control_points.pth_palette_path}
 \title{Layer for control points}
 \usage{
@@ -14,12 +14,12 @@ pth_layer_control_points(x, ...)
 
 \method{pth_layer_control_points}{data.frame}(x, color_light = "grey67", color_dark = "grey33", ...)
 
-\method{pth_layer_control_points}{pth_chroma_trajectory}(x, color_light = "grey67", color_dark = "grey33", ...)
+\method{pth_layer_control_points}{pth_trajectory}(x, color_light = "grey67", color_dark = "grey33", ...)
 
 \method{pth_layer_control_points}{pth_palette_path}(x, color_light = "grey67", color_dark = "grey33", ...)
 }
 \arguments{
-\item{x}{\code{data.frame} or \code{function} with S3 class \code{pth_chroma_trajectory} or
+\item{x}{\code{data.frame} or \code{function} with S3 class \code{pth_trajectory} or
 \code{pth_palette_path}}
 
 \item{...}{other args (not used)}
