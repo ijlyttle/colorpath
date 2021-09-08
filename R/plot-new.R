@@ -6,9 +6,8 @@
 #'
 #' @param x `function` with S3 class `pth_palette_path` or `pth_surface`,
 #'  or `data.frame` with columns `luminance`, `chroma`, `hue`, `hex`
-#' @inheritParams pth_new_palette_path
-#' @inheritParams pth_data_surface_raster
-#' @param ... other arguments passed on to `constructor`
+#' @param step `numeric` size of step in luminance and chroma.
+#' @param ... addtional arguments, not used.
 #'
 #' @return `tibble` with columns `luminance`, `chroma`, `hue`, `hex`
 #'
@@ -50,8 +49,26 @@ pth_plot_surface.pth_surface <- function(x, step = 0.5, ...) {
 #' @export
 #'
 pth_plot_surface.pth_palette_path <- function(x, step = 0.5, ...) {
-  sfc <- attr(x, "surface")[[1]] # TODO: why is this wrapped in a list?
-  pth_plot_surface(sfc, step = step, ...)
+
+  # `x` is wrapped in a list so that we can join palettes
+  list_sfc <- attr(x, "surface")
+
+  if (identical(length(list_sfc), 1L)) {
+    result <- pth_plot_surface(list_sfc[[1]], step = step, ...)
+  }
+
+  if (identical(length(list_sfc), 2L)) {
+
+    data_one <- pth_surface_data(list_sfc[[1]], step = step)
+    data_two <- pth_surface_data(list_sfc[[2]], step = step)
+
+    # negate the chroma for the first set
+    data_one[["chroma"]] <- -data_one[["chroma"]]
+
+    result <- pth_plot_surface(rbind(data_one, data_two), step = step, ...)
+  }
+
+  result
 }
 
 plot_surface <- function(data, fn_hue = NULL) {

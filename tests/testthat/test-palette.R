@@ -2,12 +2,11 @@ library("magrittr")
 
 test_that("pth_new_palette_path() works", {
 
-  hue <- 225
-  sfc_blues_single <- pth_new_hue_surface(hue)
+  sfc_blues_single <- pth_new_surface("#0000FF")
 
-  chroma <- c(0, 100, 0)
   lum <- c(20, 50, 80)
-  traj <- pth_new_chroma_trajectory(chroma, lum)
+  chroma <- c(0, 100, 0)
+  traj <- pth_new_trajectory(lum, chroma)
 
   # validate inputs
   expect_error(
@@ -27,36 +26,13 @@ test_that("pth_new_palette_path() works", {
 
   # test palettes
   palette <-
-    pth_new_palette_path(traj, sfc_blues_single, constructor = pth_new_cieluv)
+    pth_new_palette_path(traj, sfc_blues_single)
 
   expect_type(palette, "closure")
   expect_s3_class(palette, c("pth_palette_path", "pth_palette"))
 
   luv <- palette(c(0, 0.5, 1))
-
   expect_s3_class(luv, c("pth_cieluv", "pth_mat"))
-
-  # placeholder for u,v
-  uv <- sqrt(0.5) * chroma / 2
-  expect_equal(
-    luv,
-    matrix(c(20, 50, 80, -uv, -uv), ncol = 3, byrow = FALSE),
-    tolerance = 1.e-5,
-    ignore_attr = TRUE
-  )
-
-  # make sure we have preserved the hue
-  sfc_blues_multi <- pth_new_hue_surface(c(225, 270))
-
-  palette_multi <- pth_new_palette_path(traj, sfc_blues_multi)
-
-  cart <- palette_multi(seq(0, 1, by = 0.1))
-  polar <- pth_to_polar(cart)
-
-  expect_equal(
-    sfc_blues_multi(polar[, 1]), # calculate hue using surface
-    polar[, 3] # hue from palette
-  )
 
 })
 

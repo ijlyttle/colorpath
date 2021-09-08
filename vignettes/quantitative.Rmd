@@ -69,7 +69,7 @@ Let's create a sample trajectory, then use it for blues:
 ```{r}
 traj_light_grey <- 
   pth_new_trajectory(
-    lum = c(90, 75, 60, 45, 20), 
+    lum = c(90, 75, 60, 35, 20), 
     chroma = c(0, 40, 50, 50, 40)
   )
 ```

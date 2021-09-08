@@ -4,20 +4,22 @@ hex_orange <- c("#e2e2e2", "#e0af85", "#a66a00")  %>% pth_to_hex()
 pal_hex_blue <- pth_new_palette_hex(hex_blue)
 pal_hex_orange <- pth_new_palette_hex(hex_orange)
 
-sfc_blue <- pth_new_hue_surface(250)
-sfc_orange <- pth_new_hue_surface(45)
+sfc_blue <- pth_new_surface("#9cbaee")
+sfc_orange <- pth_new_surface("#e0af85")
+
+sfc_blue_lab <- pth_new_surface("#9cbaee", transformer = pth_to_cielab)
 
 traj <-
-  pth_new_chroma_trajectory(
-    chroma = c(0, 75, 75, 50),
-    lum = c(90, 70, 50, 35)
+  pth_new_trajectory(
+    lum = c(90, 70, 50, 35),
+    chroma = c(0, 75, 75, 50)
   )
 
 pal_path_blue <- pth_new_palette_path(traj, sfc_blue)
 pal_path_orange <- pth_new_palette_path(traj, sfc_orange)
 
 pal_path_blue_lab <-
-  pth_new_palette_path(traj, sfc_blue, constructor = pth_new_cielab)
+  pth_new_palette_path(traj, sfc_blue_lab)
 
 test_that("internal palette_join() works", {
 
@@ -28,6 +30,7 @@ test_that("internal palette_join() works", {
   )
 
   # error if palette-functions use non-identical color spaces
+  # TODO: better error message
   expect_error(
     palette_join(pal_path_blue, pal_path_blue_lab),
     "attributes\\(test_low\\)"

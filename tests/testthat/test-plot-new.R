@@ -1,5 +1,5 @@
-sfc_blue <- pth_new_surface(c("#00FFFF", "#0000FF"))
-sfc_orange <- pth_new_surface("#E5813D")
+sfc_blue <- pth_new_surface(c("#42B4E6", "#0087CD"))
+sfc_orange <- pth_new_surface(c("#E47F00", "#702407"))
 
 traj_chroma <- c(0, 80, 20)
 traj_lum <- c(80, 50, 20)
@@ -10,6 +10,8 @@ pal_blue <- pth_new_palette_path(traj, sfc_blue)
 pal_orange <- pth_new_palette_path(traj, sfc_orange)
 
 pal_div <- pth_palette_join(pal_blue, pal_orange)
+
+step <- 0.5
 
 expect_snapshot_plot <- function(name, code) {
   # Other packages might affect results
@@ -30,8 +32,6 @@ expect_snapshot_plot <- function(name, code) {
 
 test_that("pth_plot_surface() works", {
 
-  step <- 20
-
   expect_error(
     pth_plot_surface("foo"),
     "No method"
@@ -50,8 +50,6 @@ test_that("pth_plot_surface() works", {
 })
 
 test_that("layers work", {
-
-  step <- 10
 
   expect_snapshot_plot(
     "palette_div",

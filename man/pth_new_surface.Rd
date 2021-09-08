@@ -22,7 +22,7 @@ pth_new_surface(colors, route = c("short", "long"), n_step = 30, ...)
 
 \method{pth_new_surface}{pth_mat}(colors, route = c("short", "long"), n_step = 30, ...)
 
-pth_new_trajectory(chroma, lum)
+pth_new_trajectory(lum, chroma)
 }
 \arguments{
 \item{colors}{\code{character} hex-codes, or matrix with object with
@@ -39,9 +39,9 @@ luminance domain to calculate maximum chroma.}
 \item{transformer}{\code{function} used to transform to a color space.
 Used if \code{colors} are hex-codes.}
 
-\item{chroma}{\code{numeric} values for chroma, \code{0 <= chroma}.}
-
 \item{lum}{\code{numeric} values for luminance, \verb{0 <= lum <= 100}.}
+
+\item{chroma}{\code{numeric} values for chroma, \code{0 <= chroma}.}
 }
 \value{
 \describe{
@@ -79,9 +79,9 @@ thing to keep the trajectory within the gamut, it is not necessary
  sfc <- pth_new_surface(c("#0000FF", "#00FFFF"))
 
  # get hue using luminance
- sfc(c(0, 50, 100))
+ sfc$fn_hue(c(0, 50, 100))
 
- # ger maximum-chroma using luminance
+ # get maximum-chroma using luminance
  sfc$fn_max_chroma(c(0, 50, 100))
 
  # create a trajectory

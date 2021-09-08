@@ -22,7 +22,7 @@ pth_plot_surface(x, ...)
 \item{x}{\code{function} with S3 class \code{pth_palette_path} or \code{pth_surface},
 or \code{data.frame} with columns \code{luminance}, \code{chroma}, \code{hue}, \code{hex}}
 
-\item{...}{other arguments passed on to \code{constructor}}
+\item{...}{addtional arguments, not used.}
 
 \item{step}{\code{numeric} size of step in luminance and chroma.}
 }

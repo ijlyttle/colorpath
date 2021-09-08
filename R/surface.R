@@ -48,9 +48,9 @@
 #'  sfc <- pth_new_surface(c("#0000FF", "#00FFFF"))
 #'
 #'  # get hue using luminance
-#'  sfc(c(0, 50, 100))
+#'  sfc$fn_hue(c(0, 50, 100))
 #'
-#'  # ger maximum-chroma using luminance
+#'  # get maximum-chroma using luminance
 #'  sfc$fn_max_chroma(c(0, 50, 100))
 #'
 #'  # create a trajectory
