@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9011</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9012</span>
       </span>
     </div>
 
@@ -242,7 +242,6 @@
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
 <span class="va">x</span>
 <span class="co">#&gt; [1] 0.0 0.2 0.4 0.6 0.8 1.0</span>
-
 <span class="co"># input x, output LUV</span>
 <span class="fu">pal_blues_dark</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="co">#&gt;             l          u         v</span>
@@ -252,11 +251,9 @@
 <span class="co">#&gt; [4,] 60.29520 -25.650735 -70.47482</span>
 <span class="co">#&gt; [5,] 73.14525 -20.728530 -56.95116</span>
 <span class="co">#&gt; [6,] 79.99949 -14.253904 -39.16226</span>
-
 <span class="co"># input x, output hex</span>
 <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="co">#&gt; [1] "#45536C" "#41608C" "#3F72B0" "#5993DF" "#8EB5F4" "#AFC7F4"</span>
-
 <span class="co"># input n (number of colors), output hex</span>
 <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
 <span class="co">#&gt; [1] "#45536C" "#41608C" "#3F72B0" "#5993DF" "#8EB5F4" "#AFC7F4"</span></code></pre></div>
@@ -291,7 +288,6 @@
 <span class="co">#&gt; 1   244     0    20</span>
 <span class="co">#&gt; 2   250   150    50</span>
 <span class="co">#&gt; 3   256     0    80</span>
-
 <span class="va">mat_luv_blues_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_mat_luv.html">as_mat_luv</a></span><span class="op">(</span><span class="va">df_hcl_blues_new</span><span class="op">)</span></code></pre></div>
 <p>Now you can create a palette:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -412,7 +408,6 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <span class="co">#&gt;  [9,] 251.2849 56.84308 32.12757</span>
 <span class="co">#&gt; [10,] 255.5890 48.97409 25.45842</span>
 <span class="co">#&gt; [11,] 259.8000 40.00000 20.00000</span>
-
 <span class="fu">sfc_multi_blue</span><span class="op">(</span><span class="va">hcl</span><span class="op">[</span>, <span class="st">"l"</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt;  [1] 220.6000 222.5991 225.1803 228.5558 232.9373 238.2035 243.6438 248.6379</span>
 <span class="co">#&gt;  [9] 253.0086 256.7433 259.8000</span></code></pre></div>
@@ -421,9 +416,8 @@ sRGB gamut in LUV space, by Michael Horvath and Christoph Lipka
 <code class="sourceCode R"><span class="va">blues_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-4a3bdfba1c1d5647b179" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4a3bdfba1c1d5647b179">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
-
+<div id="htmlwidget-7561407f2124c1b7c14f" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7561407f2124c1b7c14f">{"x":{"colors":["#BEE9FB","#A7E1FB","#8DD5F8","#70C5F1","#4EAFE3","#2A95CF","#077AB8","#0062A0","#074D8A","#143B76","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
 pal.sineramp(blues_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-27-2.png" width="700"></p>
 <p>Let’s try a variation on the theme to create a half-palette for a diverging-palette:</p>
@@ -461,9 +455,8 @@ pal.sineramp(blues_light_discrete)
 <code class="sourceCode R"><span class="va">blues_div_light_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_light</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_light_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-5ba2ce4c0a98126cdf39" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5ba2ce4c0a98126cdf39">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
-
+<div id="htmlwidget-42ceea4a8297748a5f6e" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-42ceea4a8297748a5f6e">{"x":{"colors":["#E2E2E2","#CFE0EA","#B9DBEE","#9FD3F0","#7FC5ED","#58B0E2","#2C93CC","#0172B0","#015693","#123F7A","#1B2D63"],"height":40,"dx":10,"margin":0,"background":null},"evals":[],"jsHooks":[]}</script>
 pal.sineramp(blues_div_light_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-31-2.png" width="700"></p>
 </div>
@@ -495,9 +488,8 @@ pal.sineramp(blues_div_light_discrete)
 <code class="sourceCode R"><span class="va">blues_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-b4e32a96fce3c45a3b4c" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4e32a96fce3c45a3b4c">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
-
+<div id="htmlwidget-c20afa1208ab65fcc313" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c20afa1208ab65fcc313">{"x":{"colors":["#405373","#3B5C84","#346795","#2C75A9","#2888BF","#38A0D7","#58B8E9","#77CAF4","#92D8F9","#A9E2FC","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
 pal.sineramp(blues_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-34-2.png" width="700"></p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
@@ -522,9 +514,8 @@ pal.sineramp(blues_dark_discrete)
 <code class="sourceCode R"><span class="va">blues_div_dark_discrete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/as_pal_hex.html">as_pal_disc</a></span><span class="op">(</span><span class="fu"><a href="../reference/as_pal_hex.html">as_pal_hex</a></span><span class="op">(</span><span class="va">pal_blues_div_dark</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/splattr/man/swatch.html">swatch</a></span><span class="op">(</span><span class="fu">blues_div_dark_discrete</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span>, background <span class="op">=</span> <span class="st">"#333"</span>, margin <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-fce0015d3522ee433e1d" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fce0015d3522ee433e1d">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
-
+<div id="htmlwidget-f5004059f2ff9a2ccf5a" style="width:700px;height:432.632880098888px;" class="splattr_swatch html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f5004059f2ff9a2ccf5a">{"x":{"colors":["#525252","#4F5764","#4A5D76","#446689","#3C729E","#3584B7","#3E9FD4","#63BDEB","#86D1F7","#A4DFFB","#BEE9FB"],"height":40,"dx":10,"margin":10,"background":"#333"},"evals":[],"jsHooks":[]}</script>
 pal.sineramp(blues_div_dark_discrete)
 <p><img src="colorpath_files/figure-html/unnamed-chunk-37-2.png" width="700"></p>
 <p>A couple notes on this diverging palette:</p>
