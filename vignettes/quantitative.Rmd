@@ -69,8 +69,8 @@ Let's create a sample trajectory, then use it for blues:
 ```{r}
 traj_light_grey <- 
   pth_new_trajectory(
-    lum = c(90, 75, 60, 35, 20), 
-    chroma = c(0, 40, 50, 50, 40)
+    lum = c(90, 75, 60, 40, 20), 
+    chroma = c(0, 40, 50, 50, 33)
   )
 ```
 
@@ -108,7 +108,178 @@ seq(0, 1, length.out = 11) %>%
 ```
 
 
-
 ```{r}
 pth_plot_palette(pal_oranges_light_grey)
+```
+
+We can join the palettes:
+
+```{r}
+pal_buor_light <- pth_palette_join(pal_blues_light_grey, pal_oranges_light_grey)
+
+seq(0, 1, length.out = 11) %>%
+  pal_buor_light() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
+```
+
+```{r}
+pth_plot_palette(pal_buor_light)
+```
+
+Let's imagine what this looks like for dark-mode. 
+The idea in dark-mode will be for a diverging palette to meet at a dark grey, then open "up" instead of "down".
+
+```{r}
+traj_dark_grey <- 
+  pth_new_trajectory(
+    lum = c(20, 30, 50, 75, 90), 
+    chroma = c(0, 45, 55, 50, 18)
+  )
+```
+
+```{r}
+pal_blues_dark_grey <- 
+  pth_new_palette_path(traj_dark_grey, surfaces$blues) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+seq(0, 1, length.out = 11) %>%
+  pal_blues_dark_grey() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
+```
+
+
+```{r}
+pth_plot_palette(pal_blues_dark_grey)
+```
+
+
+
+```{r}
+pal_oranges_dark_grey <- 
+  pth_new_palette_path(traj_dark_grey, surfaces$oranges) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+seq(0, 1, length.out = 11) %>%
+  pal_oranges_dark_grey() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
+```
+
+```{r}
+pth_plot_palette(pal_oranges_dark_grey)
+```
+
+```{r}
+pal_buor_dark <- pth_palette_join(pal_blues_dark_grey, pal_oranges_dark_grey)
+
+seq(0, 1, length.out = 11) %>%
+  pal_buor_dark() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
+```
+
+```{r}
+pth_plot_palette(pal_buor_dark)
+```
+
+We would also want a "chromatic" variant that does not end at a grey:
+
+```{r}
+traj_light_chrom <- 
+  pth_new_trajectory(
+    lum = c(90, 75, 60, 40, 20), 
+    chroma = c(18, 40, 50, 50, 20)
+  )
+```
+
+```{r}
+pal_blues_light_chrom <- 
+  pth_new_palette_path(traj_light_chrom, surfaces$blues) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+pth_plot_palette(pal_blues_light_chrom)
+```
+
+```{r}
+pal_oranges_light_chrom <- 
+  pth_new_palette_path(traj_light_chrom, surfaces$oranges) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+pth_plot_palette(pal_oranges_light_chrom)
+```
+
+We may have to consider a different set of trajectories for green-purple; we'll see!
+
+```{r}
+pal_greens_light_chrom <- 
+  pth_new_palette_path(traj_light_chrom, surfaces$greens) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+pth_plot_palette(pal_greens_light_chrom)
+```
+
+
+```{r}
+pal_purples_light_chrom <- 
+  pth_new_palette_path(traj_light_chrom, surfaces$purples) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5) %>%
+  identity()
+
+pth_plot_palette(pal_purples_light_chrom)
+```
+
+This isn't so bad. Let's build the diverging palettes:
+
+```{r}
+pal_greens_light_grey <- 
+  pth_new_palette_path(traj_light_grey, surfaces$greens) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5)
+
+pal_purples_light_grey <- 
+  pth_new_palette_path(traj_light_grey, surfaces$purples) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5)
+
+pal_grpu_light <- 
+  pth_palette_join(pal_greens_light_grey, pal_purples_light_grey)
+
+pth_plot_palette(pal_grpu_light)
+```
+
+Let's see if we can live with that slight imbalance...
+
+```{r}
+seq(0, 1, by = 0.1) %>%
+  pal_grpu_light() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
+```
+
+```{r}
+pal_greens_dark_grey <- 
+  pth_new_palette_path(traj_dark_grey, surfaces$greens) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5)
+
+pal_purples_dark_grey <- 
+  pth_new_palette_path(traj_dark_grey, surfaces$purples) %>%
+  pth_palette_rescale_euclid(non_luminance_weight = 0.5)
+
+pal_grpu_dark <- 
+  pth_palette_join(pal_greens_dark_grey, pal_purples_dark_grey)
+
+pth_plot_palette(pal_grpu_dark)
+```
+Again, we need to see if we can live with the slight imbalance.
+
+```{r}
+seq(0, 1, by = 0.1) %>%
+  pal_grpu_dark() %>%
+  pth_to_hex() %>%
+  colorspace::swatchplot(cvd = TRUE)
 ```
