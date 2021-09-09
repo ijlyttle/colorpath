@@ -79,7 +79,7 @@ xyz100_to_rgb255 <- function(xyz100) {
   rgb255 <-
     t(
       srgb_space$to_rgb255(
-        srgb_space$from_xyz100(t(xyz100))
+        srgb_space$from_xyz100(t(xyz100), mode = "ignore")
       )
     )
 
