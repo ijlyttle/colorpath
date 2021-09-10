@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9012</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9013</span>
       </span>
     </div>
 
@@ -139,6 +139,7 @@
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#colorpath-001-development-version" class="anchor"></a>colorpath 0.0.1 (development version)</h1>
 <ul>
+<li><p>Add function to evaluate color from a surface, using luminance and saturation; this is useful in designing categorical palettes. (<a href='https://github.com/ijlyttle/colorpath/issues/94'>#94</a>)</p></li>
 <li><p>Add functions to evaluate distance within categorical and quantitative palettes: <code><a href="../reference/pth_data_cat_euclid.html">pth_data_cat_euclid()</a></code>, <code><a href="../reference/pth_data_cat_euclid.html">pth_data_cat_metric()</a></code>, <code><a href="../reference/pth_data_cat_euclid.html">pth_data_qnt_euclid()</a></code>, <code>pth_data_qn_metric()</code>. (<a href='https://github.com/ijlyttle/colorpath/issues/85'>#85</a>)</p></li>
 <li><p>Modify the data frame returned <code><a href="../reference/pth_data_cvd.html">pth_data_cvd()</a></code> to contain a column <code>hex_original</code>, rather than <code>index_color</code>. (<a href='https://github.com/ijlyttle/colorpath/issues/82'>#82</a>)</p></li>
 <li><p>Add function <code><a href="../reference/pth_mat_max_chroma.html">pth_mat_max_chroma()</a></code> to generate max-chroma colors. Implemented for <code>pth_surface</code>. Also implement <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> for <code>pth_mat</code>. (<a href='https://github.com/ijlyttle/colorpath/issues/80'>#80</a>)</p></li>
