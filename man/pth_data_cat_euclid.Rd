@@ -2,18 +2,100 @@
 % Please edit documentation in R/distance-palette.R
 \name{pth_data_cat_euclid}
 \alias{pth_data_cat_euclid}
+\alias{pth_data_cat_euclid.default}
+\alias{pth_data_cat_euclid.character}
+\alias{pth_data_cat_euclid.pth_hex}
+\alias{pth_data_cat_euclid.pth_mat}
 \alias{pth_data_cat_metric}
+\alias{pth_data_cat_metric.default}
+\alias{pth_data_cat_metric.character}
+\alias{pth_data_cat_metric.pth_hex}
+\alias{pth_data_cat_metric.pth_mat}
 \alias{pth_data_qnt_euclid}
+\alias{pth_data_qnt_euclid.default}
+\alias{pth_data_qnt_euclid.pth_palette}
 \alias{pth_data_qnt_metric}
+\alias{pth_data_qnt_metric.default}
+\alias{pth_data_qnt_metric.pth_palette}
 \title{Get color distances within palette}
 \usage{
 pth_data_cat_euclid(color, ...)
 
+\method{pth_data_cat_euclid}{default}(color, ...)
+
+\method{pth_data_cat_euclid}{character}(
+  color,
+  cvd = pth_cvd_grid_severity(),
+  transformer = NULL,
+  non_luminance_weight = 1,
+  ...
+)
+
+\method{pth_data_cat_euclid}{pth_hex}(
+  color,
+  cvd = pth_cvd_grid_severity(),
+  transformer = NULL,
+  non_luminance_weight = 1,
+  ...
+)
+
+\method{pth_data_cat_euclid}{pth_mat}(
+  color,
+  cvd = pth_cvd_grid_severity(),
+  transformer = NULL,
+  non_luminance_weight = 1,
+  ...
+)
+
 pth_data_cat_metric(color, ...)
+
+\method{pth_data_cat_metric}{default}(color, ...)
+
+\method{pth_data_cat_metric}{character}(
+  color,
+  cvd = pth_cvd_grid_severity(),
+  method = c("cie2000", "cie94", "cie1976", "cmc"),
+  ...
+)
+
+\method{pth_data_cat_metric}{pth_hex}(
+  color,
+  cvd = pth_cvd_grid_severity(),
+  method = c("cie2000", "cie94", "cie1976", "cmc"),
+  ...
+)
+
+\method{pth_data_cat_metric}{pth_mat}(
+  color,
+  cvd = pth_cvd_grid_severity(),
+  method = c("cie2000", "cie94", "cie1976", "cmc"),
+  ...
+)
 
 pth_data_qnt_euclid(palette, ...)
 
+\method{pth_data_qnt_euclid}{default}(palette, ...)
+
+\method{pth_data_qnt_euclid}{pth_palette}(
+  palette,
+  n_step = 12,
+  cvd = pth_cvd_grid_severity(),
+  transformer = NULL,
+  non_luminance_weight = 1,
+  ...
+)
+
 pth_data_qnt_metric(palette, ...)
+
+\method{pth_data_qnt_metric}{default}(palette, ...)
+
+\method{pth_data_qnt_metric}{pth_palette}(
+  palette,
+  n_step = 12,
+  cvd = pth_cvd_grid_severity(),
+  method = c("cie2000", "cie94", "cie1976", "cmc"),
+  ...
+)
 }
 \arguments{
 \item{color}{Object that can be coerced into colors,
@@ -21,15 +103,29 @@ i.e. \code{pth_hex} or \code{pth_mat}. Used for categorical palettes.}
 
 \item{...}{additional arguments passed on to \code{transformer}.}
 
+\item{cvd}{\code{tbl_df} with columns \code{condition}, \code{severity};
+see \code{\link[=pth_cvd_grid]{pth_cvd_grid()}}.}
+
+\item{transformer}{\code{function} used to transform the colors to new
+color space, e.g. \link{pth_to_cieluv}.}
+
+\item{non_luminance_weight}{\code{numeric} used to "discount" the effects of
+chroma and hue in the distance calculation.}
+
+\item{method}{\code{character} metric used by \code{farver::compare_colour()}.}
+
 \item{palette}{\code{function} with S3 class \code{pth_palette}. Used for quantitative
 palettes.}
+
+\item{n_step}{Object coerced to \code{integer}, number of steps to take along
+\code{palette}, \verb{0 <= x <= 1}.}
 }
 \value{
 \code{tbl_df} with columns:
 \describe{
 \item{hex_original_a}{\code{character} hex-code of original color.}
 \item{hex_original_b}{\code{character} hex-code of original color.}
-\item{cvd}{\code{character} type of color-vision deficiency.}
+\item{condition}{\code{character} type of color-vision deficiency.}
 \item{severity}{\code{numeric} indicates severity using scale 0-1.}
 \item{hex_a}{\code{character} hex-code of color under CVD.}
 \item{hex_b}{\code{character} hex-code of color under CVD.}
@@ -46,6 +142,6 @@ returned.
 \description{
 You can evaluate distance for categorial palettes (\verb{_cat} functions), or for
 quantitative functions (\verb{_qnt} functions). You can evaluate using Euclidean
-distance in a color space (\verb{_euclid} functions), or using a metic
+distance in a color space (\verb{_euclid} functions), or using a metric
 (\verb{_metric} functions).
 }
