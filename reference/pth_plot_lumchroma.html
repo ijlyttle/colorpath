@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create luminance-hue surface — pth_new_surface • colorpath</title>
+<title>Plot colors with CVD in luminance-chroma plane — pth_plot_lumchroma • colorpath</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Create luminance-hue surface — pth_new_surface" />
-<meta property="og:description" content="Create luminance-hue surface" />
+<meta property="og:title" content="Plot colors with CVD in luminance-chroma plane — pth_plot_lumchroma" />
+<meta property="og:description" content="Oversimplifying things, color-vision deficiency collapses the color-wheel
+into a &quot;color-line&quot;, such that luminance and chroma are the important
+dimensions." />
 
 
 
@@ -132,65 +134,123 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create luminance-hue surface</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/surface.R'><code>R/surface.R</code></a></small>
-    <div class="hidden name"><code>pth_new_surface.Rd</code></div>
+    <h1>Plot colors with CVD in luminance-chroma plane</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ijlyttle/colorpath/blob/master/R/plot-lumchroma.R'><code>R/plot-lumchroma.R</code></a></small>
+    <div class="hidden name"><code>pth_plot_lumchroma.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create luminance-hue surface</p>
+    <p>Oversimplifying things, color-vision deficiency collapses the color-wheel
+into a "color-line", such that luminance and chroma are the important
+dimensions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pth_new_surface</span><span class='op'>(</span><span class='va'>colors</span>, route <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"short"</span>, <span class='st'>"long"</span><span class='op'>)</span>, n_step <span class='op'>=</span> <span class='fl'>30</span>, <span class='va'>...</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>pth_plot_lumchroma</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>pth_new_surface</span><span class='op'>(</span><span class='va'>colors</span>, route <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"short"</span>, <span class='st'>"long"</span><span class='op'>)</span>, n_step <span class='op'>=</span> <span class='fl'>30</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>pth_plot_lumchroma</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>pth_new_surface</span><span class='op'>(</span>
-  <span class='va'>colors</span>,
-  route <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"short"</span>, <span class='st'>"long"</span><span class='op'>)</span>,
-  n_step <span class='op'>=</span> <span class='fl'>30</span>,
-  transformer <span class='op'>=</span> <span class='va'>pth_to_cieluv</span>,
+<span class='fu'>pth_plot_lumchroma</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_deupro</a></span><span class='op'>(</span><span class='op'>)</span>,
+  transformer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_point_inner <span class='op'>=</span> <span class='st'>"white"</span>,
+  color_point_outer <span class='op'>=</span> <span class='st'>"black"</span>,
+  size_point_inner <span class='op'>=</span> <span class='fl'>6</span>,
+  size_point_outer <span class='op'>=</span> <span class='fl'>7</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for pth_hex</span>
+<span class='fu'>pth_plot_lumchroma</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_deupro</a></span><span class='op'>(</span><span class='op'>)</span>,
+  transformer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_point_inner <span class='op'>=</span> <span class='st'>"white"</span>,
+  color_point_outer <span class='op'>=</span> <span class='st'>"black"</span>,
+  size_point_inner <span class='op'>=</span> <span class='fl'>6</span>,
+  size_point_outer <span class='op'>=</span> <span class='fl'>7</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
 <span class='co'># S3 method for pth_mat</span>
-<span class='fu'>pth_new_surface</span><span class='op'>(</span><span class='va'>colors</span>, route <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"short"</span>, <span class='st'>"long"</span><span class='op'>)</span>, n_step <span class='op'>=</span> <span class='fl'>30</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>pth_plot_lumchroma</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_deupro</a></span><span class='op'>(</span><span class='op'>)</span>,
+  color_point_inner <span class='op'>=</span> <span class='st'>"white"</span>,
+  color_point_outer <span class='op'>=</span> <span class='st'>"black"</span>,
+  size_point_inner <span class='op'>=</span> <span class='fl'>6</span>,
+  size_point_outer <span class='op'>=</span> <span class='fl'>7</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>pth_plot_lumchroma</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  name_color_space <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_point_inner <span class='op'>=</span> <span class='st'>"white"</span>,
+  color_point_outer <span class='op'>=</span> <span class='st'>"black"</span>,
+  size_point_inner <span class='op'>=</span> <span class='fl'>6</span>,
+  size_point_outer <span class='op'>=</span> <span class='fl'>7</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>colors</th>
-      <td><p><code>character</code> hex-codes, or matrix with object with
-S3 class <code>pth_mat</code>. Must have one or two elements.</p></td>
-    </tr>
-    <tr>
-      <th>route</th>
-      <td><p><code>character</code>, indicates which direction to take around the
-circle; must be either <code>"short"</code> (default), or <code>"long"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>n_step</th>
-      <td><p>(<code>double</code> coerced to) <code>integer</code> number of steps to take along
-luminance domain to calculate maximum chroma.</p></td>
+      <th>x</th>
+      <td><p>Object coerced into a CVD data-frame (<code><a href='pth_data_cvd.html'>pth_data_cvd()</a></code>). Can be a
+hex-code, <code>pth_mat</code>, or even a data frame.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other args, not used</p></td>
+      <td><p>other args (not used)</p></td>
+    </tr>
+    <tr>
+      <th>cvd</th>
+      <td><p><code>tbl_df</code> with columns <code>condition</code>, <code>severity</code>;
+see <code><a href='pth_cvd_grid.html'>pth_cvd_grid()</a></code>.</p></td>
     </tr>
     <tr>
       <th>transformer</th>
-      <td><p><code>function</code> used to transform to a color space.
-Used if <code>colors</code> are hex-codes.</p></td>
+      <td><p><code>function</code> used to transform the colors to new
+color space, e.g. <a href='pth_to_cieluv.html'>pth_to_cieluv</a>.</p></td>
+    </tr>
+    <tr>
+      <th>color_point_inner</th>
+      <td><p><code>character</code> colors to use
+to outline points.</p></td>
+    </tr>
+    <tr>
+      <th>color_point_outer</th>
+      <td><p><code>character</code> colors to use
+to outline points.</p></td>
+    </tr>
+    <tr>
+      <th>size_point_inner</th>
+      <td><p><code>numeric</code> size of the points.</p></td>
+    </tr>
+    <tr>
+      <th>size_point_outer</th>
+      <td><p><code>numeric</code> size of the points.</p></td>
+    </tr>
+    <tr>
+      <th>name_color_space</th>
+      <td><p><code>character</code> name of the color space used.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Onject with S3 class <code>pth_new_surface</code>.</p>
+    <p>Object with S3 class <code>ggplot</code>.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># uses some colors from Okabe-Ito</span>
+<span class='fu'>pth_plot_lumchroma</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#E69F00"</span>, <span class='st'>"#009E73"</span>, <span class='st'>"#D55E00"</span>, <span class='st'>"#F0E442"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='pth_plot_lumchroma-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

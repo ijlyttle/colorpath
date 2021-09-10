@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9013</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9014</span>
       </span>
     </div>
 
@@ -183,22 +183,8 @@
       <span class="st">"blues"</span>,       <span class="fl">30.0</span>,        <span class="fl">1.00</span>
   <span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># look at making this function a part of the package...</span>
-<span class="va">get_color_cat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">surface</span>, <span class="va">luminance</span>, <span class="va">saturation</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="va">chroma</span> <span class="op">&lt;-</span> <span class="va">surface</span><span class="op">$</span><span class="fu">fn_max_chroma</span><span class="op">(</span><span class="va">luminance</span><span class="op">)</span> <span class="op">*</span> <span class="va">saturation</span>
-  <span class="va">hue</span> <span class="op">&lt;-</span> <span class="va">surface</span><span class="op">$</span><span class="fu">fn_hue</span><span class="op">(</span><span class="va">luminance</span><span class="op">)</span>
-  
-  <span class="va">mat_polar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">luminance</span>, <span class="va">chroma</span>, <span class="va">hue</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-  <span class="va">mat_cartesian</span> <span class="op">&lt;-</span> <span class="fu">colorpath</span><span class="fu">::</span><span class="fu"><a href="../reference/pth_to_cartesian.html">pth_to_cartesian</a></span><span class="op">(</span><span class="va">mat_polar</span><span class="op">)</span>
-  
-  <span class="va">color</span> <span class="op">&lt;-</span> <span class="fu">colorpath</span><span class="fu">::</span><span class="fu"><a href="../reference/pth_creator.pth_cam02ucs.html">pth_creator</a></span><span class="op">(</span><span class="va">surface</span><span class="op">$</span><span class="va">colors</span><span class="op">)</span><span class="op">(</span><span class="va">mat_cartesian</span><span class="op">)</span>
-  
-  <span class="va">color</span>
-<span class="op">}</span>
-
-<span class="va">get_color_cat_surfaces</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">name</span>, <span class="va">luminance</span>, <span class="va">saturation</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu">get_color_cat</span><span class="op">(</span><span class="va">surfaces</span><span class="op">[[</span><span class="va">name</span><span class="op">]</span><span class="op">]</span>, <span class="va">luminance</span>, <span class="va">saturation</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">get_color_cat_surfaces</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">name</span>, <span class="va">luminance</span>, <span class="va">saturation</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/pth_color_sfclumsat.html">pth_color_sfclumsat</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">[[</span><span class="va">name</span><span class="op">]</span><span class="op">]</span>, <span class="va">luminance</span>, <span class="va">saturation</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">blues_purples_mat</span> <span class="op">&lt;-</span> 
@@ -214,29 +200,7 @@
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cat_plot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mat</span><span class="op">)</span> <span class="op">{</span>
- 
-  <span class="va">keep</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">keep</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">$</span><span class="va">severity</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">severity</span><span class="op">)</span>
-    <span class="va">x</span><span class="op">[</span><span class="va">keep</span>, <span class="op">]</span>
-  <span class="op">}</span>
-
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chroma</span>, y <span class="op">=</span> <span class="va">luminance</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">hex</span>, shape <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">hex_original</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> 
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">keep</span>, shape <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">keep</span>, shape <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"condition"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_color_identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_shape_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">16</span>, <span class="fl">17</span>, <span class="fl">18</span><span class="op">)</span>, guide <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> 
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
-      title <span class="op">=</span> <span class="st">"Colors under color-vision deficency of varying severity"</span>,
-      subtitle <span class="op">=</span> <span class="st">"Cross-marks indicate maximum severity"</span>
-    <span class="op">)</span> 
-<span class="op">}</span>
-
-<span class="fu">cat_plot</span><span class="op">(</span><span class="va">blues_purples_cvd</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">blues_purples_cvd</span><span class="op">)</span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>Here, we can see the measures we can take to keep these four colors more separated. We can see that, according to the color-vision deficiency models, the colors with the purple hue drop in luminance (and increase in chroma) as the severity increases.</p>
 <p>With this in mind, we can choose the “original” colors to improve the separation at maximum severity.</p>
@@ -263,7 +227,7 @@
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cat_plot</span><span class="op">(</span><span class="va">blues_purples_cvd_second</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">blues_purples_cvd_second</span><span class="op">)</span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>We can do the same thing with greens and oranges:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -289,7 +253,7 @@
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cat_plot</span><span class="op">(</span><span class="va">greens_oranges_cvd</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">greens_oranges_cvd</span><span class="op">)</span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>Let’s get these colors together:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">

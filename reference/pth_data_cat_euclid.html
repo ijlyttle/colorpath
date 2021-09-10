@@ -42,7 +42,7 @@
 <meta property="og:title" content="Get color distances within palette — pth_data_cat_euclid" />
 <meta property="og:description" content="You can evaluate distance for categorial palettes (_cat functions), or for
 quantitative functions (_qnt functions). You can evaluate using Euclidean
-distance in a color space (_euclid functions), or using a metic
+distance in a color space (_euclid functions), or using a metric
 (_metric functions)." />
 
 
@@ -75,7 +75,7 @@ distance in a color space (_euclid functions), or using a metic
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9013</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9014</span>
       </span>
     </div>
 
@@ -143,17 +143,99 @@ distance in a color space (_euclid functions), or using a metic
     <div class="ref-description">
     <p>You can evaluate distance for categorial palettes (<code>_cat</code> functions), or for
 quantitative functions (<code>_qnt</code> functions). You can evaluate using Euclidean
-distance in a color space (<code>_euclid</code> functions), or using a metic
+distance in a color space (<code>_euclid</code> functions), or using a metric
 (<code>_metric</code> functions).</p>
     </div>
 
     <pre class="usage"><span class='fu'>pth_data_cat_euclid</span><span class='op'>(</span><span class='va'>color</span>, <span class='va'>...</span><span class='op'>)</span>
 
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_data_cat_euclid</span><span class='op'>(</span><span class='va'>color</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for character</span>
+<span class='fu'>pth_data_cat_euclid</span><span class='op'>(</span>
+  <span class='va'>color</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  transformer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  non_luminance_weight <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for pth_hex</span>
+<span class='fu'>pth_data_cat_euclid</span><span class='op'>(</span>
+  <span class='va'>color</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  transformer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  non_luminance_weight <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for pth_mat</span>
+<span class='fu'>pth_data_cat_euclid</span><span class='op'>(</span>
+  <span class='va'>color</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  transformer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  non_luminance_weight <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
 <span class='fu'>pth_data_cat_metric</span><span class='op'>(</span><span class='va'>color</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_data_cat_metric</span><span class='op'>(</span><span class='va'>color</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for character</span>
+<span class='fu'>pth_data_cat_metric</span><span class='op'>(</span>
+  <span class='va'>color</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cie2000"</span>, <span class='st'>"cie94"</span>, <span class='st'>"cie1976"</span>, <span class='st'>"cmc"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for pth_hex</span>
+<span class='fu'>pth_data_cat_metric</span><span class='op'>(</span>
+  <span class='va'>color</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cie2000"</span>, <span class='st'>"cie94"</span>, <span class='st'>"cie1976"</span>, <span class='st'>"cmc"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for pth_mat</span>
+<span class='fu'>pth_data_cat_metric</span><span class='op'>(</span>
+  <span class='va'>color</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cie2000"</span>, <span class='st'>"cie94"</span>, <span class='st'>"cie1976"</span>, <span class='st'>"cmc"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
 <span class='fu'>pth_data_qnt_euclid</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>pth_data_qnt_metric</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_data_qnt_euclid</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_palette</span>
+<span class='fu'>pth_data_qnt_euclid</span><span class='op'>(</span>
+  <span class='va'>palette</span>,
+  n_step <span class='op'>=</span> <span class='fl'>12</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  transformer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  non_luminance_weight <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='fu'>pth_data_qnt_metric</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>pth_data_qnt_metric</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for pth_palette</span>
+<span class='fu'>pth_data_qnt_metric</span><span class='op'>(</span>
+  <span class='va'>palette</span>,
+  n_step <span class='op'>=</span> <span class='fl'>12</span>,
+  cvd <span class='op'>=</span> <span class='fu'><a href='pth_cvd_grid.html'>pth_cvd_grid_severity</a></span><span class='op'>(</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cie2000"</span>, <span class='st'>"cie94"</span>, <span class='st'>"cie1976"</span>, <span class='st'>"cmc"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,9 +250,33 @@ i.e. <code>pth_hex</code> or <code>pth_mat</code>. Used for categorical palettes
       <td><p>additional arguments passed on to <code>transformer</code>.</p></td>
     </tr>
     <tr>
+      <th>cvd</th>
+      <td><p><code>tbl_df</code> with columns <code>condition</code>, <code>severity</code>;
+see <code><a href='pth_cvd_grid.html'>pth_cvd_grid()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>transformer</th>
+      <td><p><code>function</code> used to transform the colors to new
+color space, e.g. <a href='pth_to_cieluv.html'>pth_to_cieluv</a>.</p></td>
+    </tr>
+    <tr>
+      <th>non_luminance_weight</th>
+      <td><p><code>numeric</code> used to "discount" the effects of
+chroma and hue in the distance calculation.</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p><code>character</code> metric used by <code><a href='https://farver.data-imaginist.com/reference/compare_colour.html'>farver::compare_colour()</a></code>.</p></td>
+    </tr>
+    <tr>
       <th>palette</th>
       <td><p><code>function</code> with S3 class <code>pth_palette</code>. Used for quantitative
 palettes.</p></td>
+    </tr>
+    <tr>
+      <th>n_step</th>
+      <td><p>Object coerced to <code>integer</code>, number of steps to take along
+<code>palette</code>, <code>0 &lt;= x &lt;= 1</code>.</p></td>
     </tr>
     </table>
 
@@ -179,7 +285,7 @@ palettes.</p></td>
     <p><code>tbl_df</code> with columns:</p><dl>
 <dt>hex_original_a</dt><dd><p><code>character</code> hex-code of original color.</p></dd>
 <dt>hex_original_b</dt><dd><p><code>character</code> hex-code of original color.</p></dd>
-<dt>cvd</dt><dd><p><code>character</code> type of color-vision deficiency.</p></dd>
+<dt>condition</dt><dd><p><code>character</code> type of color-vision deficiency.</p></dd>
 <dt>severity</dt><dd><p><code>numeric</code> indicates severity using scale 0-1.</p></dd>
 <dt>hex_a</dt><dd><p><code>character</code> hex-code of color under CVD.</p></dd>
 <dt>hex_b</dt><dd><p><code>character</code> hex-code of color under CVD.</p></dd>
