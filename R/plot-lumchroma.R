@@ -11,6 +11,10 @@
 #' @inheritParams pth_data_cvd
 #'
 #' @return Object with S3 class `ggplot`.
+#' @examples
+#' # uses some colors from Okabe-Ito
+#' pth_plot_lumchroma(c("#E69F00", "#009E73", "#D55E00", "#F0E442"))
+#'
 #' @export
 #'
 pth_plot_lumchroma <- function(x, ...) {

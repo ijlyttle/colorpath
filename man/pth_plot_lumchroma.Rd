@@ -87,3 +87,8 @@ Oversimplifying things, color-vision deficiency collapses the color-wheel
 into a "color-line", such that luminance and chroma are the important
 dimensions.
 }
+\examples{
+# uses some colors from Okabe-Ito
+pth_plot_lumchroma(c("#E69F00", "#009E73", "#D55E00", "#F0E442"))
+
+}
