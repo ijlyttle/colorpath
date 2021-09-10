@@ -1,6 +1,8 @@
 # colorpath 0.0.1 (development version)
 
--   Add function to evaluate color from a surface, using luminance and saturation; this is useful in designing categorical palettes. (#94)
+-   Add functions for designing categorical palettes: 
+  - `pth_color_sfclumsat()`: to evaluate color from a surface, using luminance and saturation. (\#94) 
+  - `pth_plot_lumchroma()`: to view the separation of colors under color-vision-deficiency. (\#96)
 
 -   Add functions to evaluate distance within categorical and quantitative palettes: `pth_data_cat_euclid()`, `pth_data_cat_metric()`, `pth_data_qnt_euclid()`, `pth_data_qn_metric()`. (\#85)
 

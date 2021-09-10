@@ -94,22 +94,8 @@ blues_purples_first <-
 ```
 
 ```{r function-cat}
-# look at making this function a part of the package...
-get_color_cat <- function(surface, luminance, saturation = 1) {
-  
-  chroma <- surface$fn_max_chroma(luminance) * saturation
-  hue <- surface$fn_hue(luminance)
-  
-  mat_polar <- matrix(c(luminance, chroma, hue), ncol = 3)
-  mat_cartesian <- colorpath::pth_to_cartesian(mat_polar)
-  
-  color <- colorpath::pth_creator(surface$colors)(mat_cartesian)
-  
-  color
-}
-
 get_color_cat_surfaces <- function(name, luminance, saturation = 1) {
-  get_color_cat(surfaces[[name]], luminance, saturation)
+  pth_color_sfclumsat(surfaces[[name]], luminance, saturation)
 }
 ```
 
@@ -132,29 +118,7 @@ blues_purples_cvd <-
 ```
 
 ```{r}
-cat_plot <- function(mat) {
- 
-  keep <- function(x) {
-    keep <- x$severity == max(x$severity)
-    x[keep, ]
-  }
-
-  ggplot2::ggplot(mat, aes(x = chroma, y = luminance)) +
-    ggplot2::geom_point(aes(color = hex, shape = factor(hex_original)), size = 4) + 
-    ggplot2::geom_point(data = keep, shape = 3, color = "black", size = 4) +
-    ggplot2::geom_point(data = keep, shape = 4, color = "white", size = 4) +
-    ggplot2::facet_wrap(facets = "condition") +
-    ggplot2::scale_color_identity() +
-    ggplot2::scale_shape_manual(values = c(15, 16, 17, 18), guide = NULL) + 
-    ggplot2::coord_fixed(ratio = 1, xlim = c(0, NA), ylim = c(0, 100)) +
-    ggplot2::theme_bw() + 
-    ggplot2::labs(
-      title = "Colors under color-vision deficency of varying severity",
-      subtitle = "Cross-marks indicate maximum severity"
-    ) 
-}
-
-cat_plot(blues_purples_cvd)
+pth_plot_lumchroma(blues_purples_cvd)
 ```
 
 Here, we can see the measures we can take to keep these four colors more separated. 
@@ -192,7 +156,7 @@ blues_purples_cvd_second <-
 ```
 
 ```{r}
-cat_plot(blues_purples_cvd_second)
+pth_plot_lumchroma(blues_purples_cvd_second)
 ```
 
 We can do the same thing with greens and oranges:
@@ -227,7 +191,7 @@ greens_oranges_cvd <-
 ```
 
 ```{r}
-cat_plot(greens_oranges_cvd)
+pth_plot_lumchroma(greens_oranges_cvd)
 ```
 
 Let's get these colors together:

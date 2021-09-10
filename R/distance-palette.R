@@ -2,20 +2,23 @@
 #'
 #' You can evaluate distance for categorial palettes (`_cat` functions), or for
 #' quantitative functions (`_qnt` functions). You can evaluate using Euclidean
-#' distance in a color space (`_euclid` functions), or using a metic
+#' distance in a color space (`_euclid` functions), or using a metric
 #' (`_metric` functions).
 #'
 #' @inheritParams pth_distance_euclid
+#' @inheritParams pth_data_cvd
 #' @param color Object that can be coerced into colors,
 #'   i.e. `pth_hex` or `pth_mat`. Used for categorical palettes.
 #' @param palette `function` with S3 class `pth_palette`. Used for quantitative
 #'   palettes.
+#' @param n_step Object coerced to `integer`, number of steps to take along
+#' `palette`, `0 <= x <= 1`.
 #'
 #' @return `tbl_df` with columns:
 #' \describe{
 #'   \item{hex_original_a}{`character` hex-code of original color.}
 #'   \item{hex_original_b}{`character` hex-code of original color.}
-#'   \item{cvd}{`character` type of color-vision deficiency.}
+#'   \item{condition}{`character` type of color-vision deficiency.}
 #'   \item{severity}{`numeric` indicates severity using scale 0-1.}
 #'   \item{hex_a}{`character` hex-code of color under CVD.}
 #'   \item{hex_b}{`character` hex-code of color under CVD.}
@@ -35,6 +38,7 @@ pth_data_cat_euclid <- function(color, ...) {
   UseMethod("pth_data_cat_euclid")
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_euclid.default <- function(color, ...) {
@@ -43,6 +47,7 @@ pth_data_cat_euclid.default <- function(color, ...) {
   )
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_euclid.character <- function(color,
@@ -55,6 +60,7 @@ pth_data_cat_euclid.character <- function(color,
   pth_data_cat_euclid(color, cvd, transformer, non_luminance_weight, ...)
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_euclid.pth_hex <- function(color,
@@ -75,6 +81,7 @@ pth_data_cat_euclid.pth_hex <- function(color,
   )
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_euclid.pth_mat <- function(color,
@@ -113,6 +120,7 @@ pth_data_cat_metric <- function(color, ...) {
   UseMethod("pth_data_cat_metric")
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_metric.default <- function(color, ...) {
@@ -121,6 +129,7 @@ pth_data_cat_metric.default <- function(color, ...) {
   )
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_metric.character <- function(color,
@@ -133,6 +142,7 @@ pth_data_cat_metric.character <- function(color,
   pth_data_cat_metric(color, cvd, method, ...)
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_metric.pth_hex <- function(color,
@@ -146,6 +156,7 @@ pth_data_cat_metric.pth_hex <- function(color,
   pth_data_cat_metric(color, cvd, method, ...)
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_cat_metric.pth_mat <- function(color,
@@ -183,6 +194,7 @@ pth_data_qnt_euclid <- function(palette, ...) {
   UseMethod("pth_data_qnt_euclid")
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_qnt_euclid.default <- function(palette, ...) {
@@ -191,6 +203,7 @@ pth_data_qnt_euclid.default <- function(palette, ...) {
   )
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_qnt_euclid.pth_palette <- function(palette, n_step = 12,
@@ -232,6 +245,7 @@ pth_data_qnt_metric <- function(palette, ...) {
   UseMethod("pth_data_qnt_metric")
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_qnt_metric.default <- function(palette, ...) {
@@ -240,6 +254,7 @@ pth_data_qnt_metric.default <- function(palette, ...) {
   )
 }
 
+#' @rdname pth_data_cat_euclid
 #' @export
 #'
 pth_data_qnt_metric.pth_palette <- function(palette, n_step = 12,
