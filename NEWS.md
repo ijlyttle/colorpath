@@ -1,5 +1,7 @@
 # colorpath 0.0.1 (development version)
 
+-   Add function to evaluate color from a surface, using luminance and saturation; this is useful in designing categorical palettes. (#94)
+
 -   Add functions to evaluate distance within categorical and quantitative palettes: `pth_data_cat_euclid()`, `pth_data_cat_metric()`, `pth_data_qnt_euclid()`, `pth_data_qn_metric()`. (\#85)
 
 -   Modify the data frame returned `pth_data_cvd()` to contain a column `hex_original`, rather than `index_color`.
