@@ -5,6 +5,7 @@
 \alias{pth_cvd_grid_full}
 \alias{pth_cvd_grid_none}
 \alias{pth_cvd_grid_severity}
+\alias{pth_cvd_grid_deupro}
 \title{Color-vision deficiency grid}
 \usage{
 pth_cvd_grid(condition = c("none", "deutan", "protan", "tritan"), severity = 1)
@@ -17,6 +18,11 @@ pth_cvd_grid_full(
 pth_cvd_grid_none(condition = "none", severity = 0)
 
 pth_cvd_grid_severity(severity = 1)
+
+pth_cvd_grid_deupro(
+  condition = c("deutan", "protan"),
+  severity = seq(0, 1, by = 0.1)
+)
 }
 \arguments{
 \item{condition}{\code{character} one or more color-vision deficiency conditions;
@@ -29,8 +35,21 @@ condition; legal values from 0 to 1.}
 \code{tbl_df} with columns \code{cvd} (factor), \code{severity} (double)
 }
 \description{
-Helper function to generate grid for color-vision deficiency (CVD)
-possibilities.
+Helper functions to generate grid for color-vision deficiency (CVD)
+possibilities. These functions do the same thing, but have different
+default values.
+}
+\details{
+\describe{
+\item{pth_cvd_grid()}{All cases, including "none", at maximum severity.}
+\item{pth_cvd_grid_full()}{All CVD cases, at four values of severity.}
+\item{pth_cvd_grid_none()}{No CVD cases, zero severity.}
+\item{pth_cvd_grid_severity()}{Useful for evaluating performance of
+categorical palettes, concatenates result of \code{pth_cvd_grid_none()} with
+\code{pth_cvd_grid_severity()}}.
+\item{pth_cvd_grid_deupro()}{Useful for choosing colors in categorical
+palettes, Deutan and Protan CVD cases, severity from zero to one.}
+}
 }
 \examples{
   pth_cvd_grid_none()

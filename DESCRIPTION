@@ -35,7 +35,8 @@ Imports:
     magrittr (>= 2.0.1),
     progress,
     memoise,
-    tidyr
+    tidyr,
+    forcats
 URL: https://github.com/ijlyttle/colorpath
 BugReports: https://github.com/ijlyttle/colorpath/issues
 Suggests: 

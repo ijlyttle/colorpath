@@ -1,7 +1,19 @@
 #' Color-vision deficiency grid
 #'
-#' Helper function to generate grid for color-vision deficiency (CVD)
-#' possibilities.
+#' Helper functions to generate grid for color-vision deficiency (CVD)
+#' possibilities. These functions do the same thing, but have different
+#' default values.
+#'
+#' \describe{
+#'   \item{pth_cvd_grid()}{All cases, including "none", at maximum severity.}
+#'   \item{pth_cvd_grid_full()}{All CVD cases, at four values of severity.}
+#'   \item{pth_cvd_grid_none()}{No CVD cases, zero severity.}
+#'   \item{pth_cvd_grid_severity()}{Useful for evaluating performance of
+#'    categorical palettes, concatenates result of `pth_cvd_grid_none()` with
+#'    `pth_cvd_grid_severity()`}.
+#'   \item{pth_cvd_grid_deupro()}{Useful for choosing colors in categorical
+#'    palettes, Deutan and Protan CVD cases, severity from zero to one.}
+#' }
 #'
 #' @param condition `character` one or more color-vision deficiency conditions;
 #'  legal values: `"none"`, `"deutan"`, `"protan"`, `"tritan"`.
@@ -61,6 +73,16 @@ pth_cvd_grid_severity <- function(severity = 1) {
 
 
   tibble::as_tibble(result)
+}
+
+
+#' @rdname pth_cvd_grid
+#' @export
+#'
+pth_cvd_grid_deupro <- function(condition = c("deutan", "protan"),
+                                severity = seq(0, 1, by = 0.1)) {
+
+  pth_cvd_grid(condition = condition, severity = severity)
 }
 
 #' Color data in CVD context
@@ -160,6 +182,11 @@ pth_data_cvd.pth_mat <- function(x, cvd = pth_cvd_grid(), ...) {
       result$condition,
       levels = c("none", "deutan", "protan", "tritan")
     )
+
+  # unchanged: set hex to hex_original
+  unchanged <-
+    result[["condition"]] == "none" | result[["severity"]] < 1.e-5
+  result[["hex"]][unchanged] <- result[["hex_original"]][unchanged]
 
   result
 }
