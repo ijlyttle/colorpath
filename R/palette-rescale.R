@@ -8,6 +8,9 @@
 #' `pth_palette_rescale_reverse()` reverses the input, so that `x` maps to
 #'   `1 - x`.
 #'
+#' `pth_palette_rescale_domain()` expands a part of input domain, so that `x`
+#'   maps to `domain`.
+#'
 #'  The other rescaling functions, `pth_palette_rescale_euclid()` and
 #'  `pth_palette_rescale_metric()`, are used so to rescale a palette function
 #'  such that a constant change in input, `x`, results in a constant change
@@ -16,6 +19,7 @@
 #' @param palette `function` with S3 class `pth_palette`.
 #' @param tolerance `numeric` relative tolerance for distance calculations.
 #' @inheritParams pth_distance_euclid
+#' @inheritParams pth_rescaler_reverse
 #'
 #' @return `function` with the same S3 classes as `palette`
 #' @export
@@ -27,6 +31,20 @@ pth_palette_rescale_reverse <- function(palette) {
   )
 
   rescaler <- pth_rescaler_reverse()
+
+  palette_rescale(palette, rescaler)
+}
+
+#' @rdname pth_palette_rescale_reverse
+#' @export
+#'
+pth_palette_rescale_domain <- function(palette, domain = c(0, 1)) {
+
+  assertthat::assert_that(
+    inherits(palette, "pth_palette")
+  )
+
+  rescaler <- pth_rescaler_domain(domain)
 
   palette_rescale(palette, rescaler)
 }
