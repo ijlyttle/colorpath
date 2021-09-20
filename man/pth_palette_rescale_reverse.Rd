@@ -2,11 +2,14 @@
 % Please edit documentation in R/palette-rescale.R
 \name{pth_palette_rescale_reverse}
 \alias{pth_palette_rescale_reverse}
+\alias{pth_palette_rescale_domain}
 \alias{pth_palette_rescale_euclid}
 \alias{pth_palette_rescale_metric}
 \title{Rescale palette-function}
 \usage{
 pth_palette_rescale_reverse(palette)
+
+pth_palette_rescale_domain(palette, domain = c(0, 1))
 
 pth_palette_rescale_euclid(
   palette,
@@ -24,6 +27,9 @@ pth_palette_rescale_metric(
 }
 \arguments{
 \item{palette}{\code{function} with S3 class \code{pth_palette}.}
+
+\item{domain}{\code{numeric} vector with length 2, each value between 0 and 1.
+Rescales to map new inputs of 0 and 1 to these values.}
 
 \item{tolerance}{\code{numeric} relative tolerance for distance calculations.}
 
@@ -47,6 +53,9 @@ Inputs to palette functions must be \verb{0 <= x <= 1}. A rescaler maps \code{x}
 
 \code{pth_palette_rescale_reverse()} reverses the input, so that \code{x} maps to
 \code{1 - x}.
+
+\code{pth_palette_rescale_domain()} expands a part of input domain, so that \code{x}
+maps to \code{domain}.
 
 The other rescaling functions, \code{pth_palette_rescale_euclid()} and
 \code{pth_palette_rescale_metric()}, are used so to rescale a palette function

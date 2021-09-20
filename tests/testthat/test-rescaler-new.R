@@ -11,6 +11,23 @@ test_that("pth_rescaler_reverse() works", {
 
 })
 
+test_that("pth_rescaler_domain() works", {
+
+  # test validation
+  expect_error(pth_rescaler_domain("a"))
+  expect_error(pth_rescaler_domain(c(0, 1, 0.5)))
+  expect_error(pth_rescaler_domain(c(-0.5, 1)))
+  expect_error(pth_rescaler_domain(c(1, -0.5)))
+
+  r <- pth_rescaler_domain(domain = c(0.25, 0.75))
+  x <- seq(0, 1, length.out = 10)
+
+  expect_type(r, "closure")
+
+  expect_identical(r(x), 0.25 + 0.5 * x)
+
+})
+
 test_that("pth_rescaler_euclid()", {
 
   expect_error(

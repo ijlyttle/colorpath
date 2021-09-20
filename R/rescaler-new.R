@@ -5,6 +5,8 @@
 #'
 #' \describe{
 #'   \item{`pth_rescaler_reverse()`}{Simply reverses the input.}
+#'   \item{`pth_rescaler_domain()`}{Expands the input `domain` to extend from
+#'     zero to one.}
 #'   \item{`pth_rescaler_euclid()`}{Uses `palette` and `pth_distance_euclid()`
 #'     to rescale the input so that the distance-change is constant.}
 #'   \item{`pth_rescaler_metric()`}{Uses `palette` and `pth_distance_metric()`
@@ -12,6 +14,8 @@
 #' }
 #'
 #' @inheritParams pth_palette_rescale_reverse
+#' @param domain `numeric` vector with length 2, each value between 0 and 1.
+#' Rescales to map new inputs of 0 and 1 to these values.
 #'
 #' @return `function`, for each input (`0 <= x <= 1`) returns a
 #'   value (`0 <= y <= 1`). The function shall be monotonic.
@@ -22,6 +26,24 @@
 pth_rescaler_reverse <- function() {
   function(x) {
     1 - x
+  }
+}
+
+#' @rdname pth_rescaler_reverse
+#' @export
+#'
+pth_rescaler_domain <- function(domain = c(0, 1)) {
+  assertthat::assert_that(
+    is.numeric(domain),
+    identical(length(domain), 2L),
+    domain[1] >= 0,
+    domain[1] <= 1,
+    domain[2] >= 0,
+    domain[2] <= 1
+  )
+
+  function(x) {
+    domain[1] + x * (domain[2] - domain[1])
   }
 }
 
