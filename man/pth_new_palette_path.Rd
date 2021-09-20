@@ -5,31 +5,30 @@
 \alias{pth_new_palette_hex}
 \title{Create palette function from path}
 \usage{
-pth_new_palette_path(trajectory, surface, constructor = pth_new_cieluv, ...)
+pth_new_palette_path(trajectory, surface)
 
 pth_new_palette_hex(hex, transformer = pth_to_cieluv, ...)
 }
 \arguments{
-\item{trajectory}{\code{function} with class \code{pth_chroma_trajectory}, used to
+\item{trajectory}{\code{function} with class \code{pth_trajectory}, used to
 define the path that the luminance and chroma follow.}
 
-\item{surface}{\code{function} with class \code{pth_hue_surface}, used to define the
+\item{surface}{\code{function} with class \code{pth_surface}, used to define the
 hue as a function of luminance.}
-
-\item{constructor}{\code{function} that constructs a \code{pth_mat}, used to
-identify the color space for the output matrix.}
-
-\item{...}{other arguments passed to \code{constructor} or \code{transformer}}
 
 \item{hex}{\code{character} that can be coerced to a six-digit hex code.}
 
 \item{transformer}{\code{function} used to transform the colors to new
 color space, e.g. \link{pth_to_cieluv}.}
+
+\item{...}{other arguments passed to \code{transformer}}
 }
 \value{
-\code{function} with S3 classes \code{pth_palette_path}, \code{pth_palette}. For
+\code{function} with S3 class \code{pth_palette}. For
 each given value (\verb{0 <= x <= 1}), returns a matrix, in the color space
-associated with \code{constructor}, with a row for each value.
+associated with \code{surface}, with a row for each value.
+\code{pth_new_palette_path()} returns an object with an additional class
+\code{pth_palette_path}; \code{pth_new_palette_hex()}: \code{pth_palettte_hex}.
 }
 \description{
 A palette function converts numerical inputs into colors. A path is defined
@@ -37,8 +36,8 @@ by the intersection of a hue-surface with a chroma-trajectory, in a given
 color space.
 
 Use \code{pth_new_palette_path()} to create a palette function by defining a path.
-You can create a \code{trajectory} using \code{\link[=pth_new_chroma_trajectory]{pth_new_chroma_trajectory()}}; you can
-create a \code{surface} using \code{\link[=pth_new_hue_surface]{pth_new_hue_surface()}}. Use the \code{constructor} to
+You can create a \code{trajectory} using \code{\link[=pth_new_trajectory]{pth_new_trajectory()}}; you can
+create a \code{surface} using \code{\link[=pth_new_surface]{pth_new_surface()}}. Use the \code{constructor} to
 identify which color space the palette function will use.
 
 Use \code{pth_new_palette_hex()} to create a palette function using a vector of

@@ -74,7 +74,7 @@ Associated classes:
 \item \strong{\code{pth_palette_path}} built using a path in the color space.
 }
 
-\strong{\code{pth_hue_surface}}
+\strong{\code{pth_surface}}
 
 A function that:
 \itemize{
@@ -82,7 +82,7 @@ A function that:
 \item returns values for hue (degrees)
 }
 
--\strong{\code{pth_chroma_trajectory}}
+-\strong{\code{pth_trajectory}}
 
 A function that:
 \itemize{

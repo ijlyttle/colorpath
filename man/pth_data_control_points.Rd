@@ -3,7 +3,7 @@
 \name{pth_data_control_points}
 \alias{pth_data_control_points}
 \alias{pth_data_control_points.default}
-\alias{pth_data_control_points.pth_chroma_trajectory}
+\alias{pth_data_control_points.pth_trajectory}
 \alias{pth_data_control_points.pth_palette_path}
 \title{Dataset for trajectories}
 \usage{
@@ -11,12 +11,12 @@ pth_data_control_points(x, ...)
 
 \method{pth_data_control_points}{default}(x, ...)
 
-\method{pth_data_control_points}{pth_chroma_trajectory}(x, ...)
+\method{pth_data_control_points}{pth_trajectory}(x, ...)
 
 \method{pth_data_control_points}{pth_palette_path}(x, ...)
 }
 \arguments{
-\item{x}{\code{function} with S3 class \code{pth_chroma_trajectory} or
+\item{x}{\code{function} with S3 class \code{pth_trajectory} or
 \code{pth_palette_path}.}
 
 \item{...}{other arguments (not used).}

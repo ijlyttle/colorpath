@@ -1,15 +1,17 @@
-sfc_blue <- pth_new_hue_surface(250)
-sfc_orange <- pth_new_hue_surface(35)
+sfc_blue <- pth_new_surface(c("#42B4E6", "#0087CD"))
+sfc_orange <- pth_new_surface(c("#E47F00", "#702407"))
 
 traj_chroma <- c(0, 80, 20)
 traj_lum <- c(80, 50, 20)
 
-traj <- pth_new_chroma_trajectory(chroma = traj_chroma, lum = traj_lum)
+traj <- pth_new_trajectory(chroma = traj_chroma, lum = traj_lum)
 
 pal_blue <- pth_new_palette_path(traj, sfc_blue)
 pal_orange <- pth_new_palette_path(traj, sfc_orange)
 
 pal_div <- pth_palette_join(pal_blue, pal_orange)
+
+step <- 0.5
 
 expect_snapshot_plot <- function(name, code) {
   # Other packages might affect results
@@ -30,8 +32,6 @@ expect_snapshot_plot <- function(name, code) {
 
 test_that("pth_plot_surface() works", {
 
-  step <- 20
-
   expect_error(
     pth_plot_surface("foo"),
     "No method"
@@ -51,12 +51,33 @@ test_that("pth_plot_surface() works", {
 
 test_that("layers work", {
 
-  step <- 10
-
   expect_snapshot_plot(
     "palette_div",
     pth_plot_surface(pal_div, step = step) +
       pth_layer_control_points(pal_div) +
       pth_layer_palette(pal_div)
+  )
+})
+
+test_that("we are correcting using chroma", {
+
+  sfc_oranges <- pth_new_surface(
+    c("#E47F00", "#702407"),
+    transformer = pth_to_jzazbz100
+  )
+
+  traj_light_grey <-
+    pth_new_trajectory(
+      lum = c(90, 75, 60, 35, 20),
+      chroma = c(0, 40, 50, 50, 40)
+    )
+
+  pal_oranges_light_grey <-
+    pth_new_palette_path(traj_light_grey, sfc_oranges) %>%
+    pth_palette_rescale_euclid(non_luminance_weight = 0.5)
+
+  expect_snapshot_plot(
+    "palette_chroma_cap",
+    pth_plot_palette(pal_oranges_light_grey, step = step)
   )
 })

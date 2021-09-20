@@ -1,51 +1,15 @@
-sfc_blue <- pth_new_hue_surface(250)
-sfc_orange <- pth_new_hue_surface(35)
+sfc_blue <- pth_new_surface("#0000FF")
+sfc_orange <- pth_new_surface("#E5813D")
 
 traj_chroma <- c(0, 80, 20)
 traj_lum <- c(80, 50, 20)
 
-traj <- pth_new_chroma_trajectory(chroma = traj_chroma, lum = traj_lum)
+traj <- pth_new_trajectory(lum = traj_lum, chroma = traj_chroma)
 
 pal_blue <- pth_new_palette_path(traj, sfc_blue)
 pal_orange <- pth_new_palette_path(traj, sfc_orange)
 
 pal_div <- pth_palette_join(pal_blue, pal_orange)
-
-test_that("pth_data_surface_raster() works", {
-
-  step <- 20
-
-  expect_error(
-    pth_data_surface_raster("foo"),
-    "No method"
-  )
-
-  df_sfc_blue <- pth_data_surface_raster(sfc_blue, step = step)
-
-  # check class, column-names
-  expect_s3_class(df_sfc_blue, "data.frame")
-  expect_named(
-    df_sfc_blue,
-    c("luminance", "chroma", "hue", "hex")
-  )
-
-  # check contents
-  expect_identical(
-    pth_data_surface_raster(pal_blue, step = step),
-    df_sfc_blue
-  )
-
-  # check diverging
-  df_sfc_orange <- pth_data_surface_raster(sfc_orange, step = step)
-  df_sfc_blue_reverse <- df_sfc_blue
-  df_sfc_blue_reverse$chroma <- -df_sfc_blue_reverse$chroma
-
-  expect_identical(
-    pth_data_surface_raster(pal_div, step = step),
-    rbind(df_sfc_blue_reverse, df_sfc_orange)
-  )
-
-})
 
 test_that("pth_data_control_points() works", {
 

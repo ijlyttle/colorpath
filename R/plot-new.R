@@ -4,11 +4,10 @@
 #' is the calculation of the maximum chroma. In the future, we could imagine
 #' providing a lookup table, as colorspace does, to speed things up.
 #'
-#' @param x `function` with S3 class `pth_palette_path` or `pth_hue_surface`,
+#' @param x `function` with S3 class `pth_palette_path` or `pth_surface`,
 #'  or `data.frame` with columns `luminance`, `chroma`, `hue`, `hex`
-#' @inheritParams pth_new_palette_path
-#' @inheritParams pth_data_surface_raster
-#' @param ... other arguments passed on to `constructor`
+#' @param step `numeric` size of step in luminance and chroma.
+#' @param ... addtional arguments, not used.
 #'
 #' @return `tibble` with columns `luminance`, `chroma`, `hue`, `hex`
 #'
@@ -49,19 +48,27 @@ pth_plot_surface.pth_surface <- function(x, step = 0.5, ...) {
 #' @rdname pth_plot_surface
 #' @export
 #'
-pth_plot_surface.pth_hue_surface <- function(x, step = 0.5,
-                                             constructor = pth_new_cieluv,
-                                             ...) {
-  data <- pth_data_surface_raster(x, step, constructor, ...)
-  plot_surface(data)
-}
-
-#' @rdname pth_plot_surface
-#' @export
-#'
 pth_plot_surface.pth_palette_path <- function(x, step = 0.5, ...) {
-  data <- pth_data_surface_raster(x, step, ...)
-  plot_surface(data)
+
+  # `x` is wrapped in a list so that we can join palettes
+  list_sfc <- attr(x, "surface")
+
+  if (identical(length(list_sfc), 1L)) {
+    result <- pth_plot_surface(list_sfc[[1]], step = step, ...)
+  }
+
+  if (identical(length(list_sfc), 2L)) {
+
+    data_one <- pth_surface_data(list_sfc[[1]], step = step)
+    data_two <- pth_surface_data(list_sfc[[2]], step = step)
+
+    # negate the chroma for the first set
+    data_one[["chroma"]] <- -data_one[["chroma"]]
+
+    result <- pth_plot_surface(rbind(data_one, data_two), step = step, ...)
+  }
+
+  result
 }
 
 plot_surface <- function(data, fn_hue = NULL) {
@@ -92,7 +99,7 @@ plot_surface <- function(data, fn_hue = NULL) {
 
 #' Layer for control points
 #'
-#' @param x `data.frame` or `function` with S3 class `pth_chroma_trajectory` or
+#' @param x `data.frame` or `function` with S3 class `pth_trajectory` or
 #'   `pth_palette_path`
 #' @param color_light,color_dark `character` R colors to use for symbols
 #'   and lines.
@@ -137,10 +144,9 @@ pth_layer_control_points.data.frame <- function(x, color_light = "grey67",
 #' @rdname pth_layer_control_points
 #' @export
 #'
-pth_layer_control_points.pth_chroma_trajectory <- function(x,
-                                                           color_light = "grey67",
-                                                           color_dark = "grey33",
-                                                           ...) {
+pth_layer_control_points.pth_trajectory <- function(x, color_light = "grey67",
+                                                    color_dark = "grey33",
+                                                    ...) {
   df <- pth_data_control_points(x)
   pth_layer_control_points(
     df,

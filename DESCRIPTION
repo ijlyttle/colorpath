@@ -49,6 +49,7 @@ Suggests:
     thematic,
     withr,
     dplyr,
+    patchwork,
     scales
 Remotes: 
     ijlyttle/splattr,
