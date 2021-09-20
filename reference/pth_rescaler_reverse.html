@@ -43,6 +43,8 @@
 <meta property="og:description" content="A rescaler function is used to rescale the input to a palette function.
 
 pth_rescaler_reverse()Simply reverses the input.
+pth_rescaler_domain()Expands the input domain to extend from
+zero to one.
 pth_rescaler_euclid()Uses palette and pth_distance_euclid()
 to rescale the input so that the distance-change is constant.
 pth_rescaler_metric()Uses palette and pth_distance_metric()
@@ -81,7 +83,7 @@ to rescale the input so that the distance-change is constant.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9015</span>
       </span>
     </div>
 
@@ -150,6 +152,8 @@ to rescale the input so that the distance-change is constant.
     <p>A rescaler function is used to rescale the input to a palette function.</p>
 <dl>
 <dt><code>pth_rescaler_reverse()</code></dt><dd><p>Simply reverses the input.</p></dd>
+<dt><code>pth_rescaler_domain()</code></dt><dd><p>Expands the input <code>domain</code> to extend from
+zero to one.</p></dd>
 <dt><code>pth_rescaler_euclid()</code></dt><dd><p>Uses <code>palette</code> and <code><a href='pth_distance_euclid.html'>pth_distance_euclid()</a></code>
 to rescale the input so that the distance-change is constant.</p></dd>
 <dt><code>pth_rescaler_metric()</code></dt><dd><p>Uses <code>palette</code> and <code><a href='pth_distance_euclid.html'>pth_distance_metric()</a></code>
@@ -160,6 +164,8 @@ to rescale the input so that the distance-change is constant.</p></dd>
     </div>
 
     <pre class="usage"><span class='fu'>pth_rescaler_reverse</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>pth_rescaler_domain</span><span class='op'>(</span>domain <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>pth_rescaler_euclid</span><span class='op'>(</span><span class='va'>palette</span>, <span class='va'>tolerance</span>, <span class='va'>non_luminance_weight</span>, <span class='va'>transformer</span>, <span class='va'>...</span><span class='op'>)</span>
 
@@ -173,30 +179,17 @@ to rescale the input so that the distance-change is constant.</p></dd>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>domain</th>
+      <td><p><code>numeric</code> vector with length 2, each value between 0 and 1.
+Rescales to map new inputs of 0 and 1 to these values.</p></td>
+    </tr>
+    <tr>
       <th>palette</th>
       <td><p><code>function</code> with S3 class <code>pth_palette</code>.</p></td>
     </tr>
     <tr>
       <th>tolerance</th>
       <td><p><code>numeric</code> relative tolerance for distance calculations.</p></td>
-    </tr>
-    <tr>
-      <th>non_luminance_weight</th>
-      <td><p><code>numeric</code> used to "discount" the effects of
-chroma and hue in the distance calculation.</p></td>
-    </tr>
-    <tr>
-      <th>transformer</th>
-      <td><p><code>function</code> used to transform the colors to new
-color space, e.g. <a href='pth_to_cieluv.html'>pth_to_cieluv</a>.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments passed on to <code>transformer</code>.</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p><code>character</code> metric used by <code><a href='https://farver.data-imaginist.com/reference/compare_colour.html'>farver::compare_colour()</a></code>.</p></td>
     </tr>
     </table>
 

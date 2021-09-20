@@ -45,6 +45,8 @@ Inputs to palette functions must be 0 &amp;lt;= x &amp;lt;= 1. A rescaler maps x
 x' such that 0 &amp;lt;= x' &amp;lt;= 1; a mapping function will be monotonic.
 pth_palette_rescale_reverse() reverses the input, so that x maps to
 1 - x.
+pth_palette_rescale_domain() expands a part of input domain, so that x
+maps to domain.
 The other rescaling functions, pth_palette_rescale_euclid() and
 pth_palette_rescale_metric(), are used so to rescale a palette function
 such that a constant change in input, x, results in a constant change
@@ -80,7 +82,7 @@ in color, for a given definition of &quot;change in color&quot;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9014</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9015</span>
       </span>
     </div>
 
@@ -151,6 +153,8 @@ Inputs to palette functions must be <code>0 &lt;= x &lt;= 1</code>. A rescaler m
 <code>x'</code> such that <code>0 &lt;= x' &lt;= 1</code>; a mapping function will be monotonic.</p>
 <p><code>pth_palette_rescale_reverse()</code> reverses the input, so that <code>x</code> maps to
 <code>1 - x</code>.</p>
+<p><code>pth_palette_rescale_domain()</code> expands a part of input domain, so that <code>x</code>
+maps to <code>domain</code>.</p>
 <p>The other rescaling functions, <code>pth_palette_rescale_euclid()</code> and
 <code>pth_palette_rescale_metric()</code>, are used so to rescale a palette function
 such that a constant change in input, <code>x</code>, results in a constant change
@@ -158,6 +162,8 @@ in color, for a given definition of "change in color".</p>
     </div>
 
     <pre class="usage"><span class='fu'>pth_palette_rescale_reverse</span><span class='op'>(</span><span class='va'>palette</span><span class='op'>)</span>
+
+<span class='fu'>pth_palette_rescale_domain</span><span class='op'>(</span><span class='va'>palette</span>, domain <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>pth_palette_rescale_euclid</span><span class='op'>(</span>
   <span class='va'>palette</span>,
@@ -179,6 +185,11 @@ in color, for a given definition of "change in color".</p>
     <tr>
       <th>palette</th>
       <td><p><code>function</code> with S3 class <code>pth_palette</code>.</p></td>
+    </tr>
+    <tr>
+      <th>domain</th>
+      <td><p><code>numeric</code> vector with length 2, each value between 0 and 1.
+Rescales to map new inputs of 0 and 1 to these values.</p></td>
     </tr>
     <tr>
       <th>tolerance</th>
