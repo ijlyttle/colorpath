@@ -2,11 +2,14 @@
 % Please edit documentation in R/rescaler-new.R
 \name{pth_rescaler_reverse}
 \alias{pth_rescaler_reverse}
+\alias{pth_rescaler_domain}
 \alias{pth_rescaler_euclid}
 \alias{pth_rescaler_metric}
 \title{Create rescaler function}
 \usage{
 pth_rescaler_reverse()
+
+pth_rescaler_domain(domain = c(0, 1))
 
 pth_rescaler_euclid(palette, tolerance, non_luminance_weight, transformer, ...)
 
@@ -17,19 +20,12 @@ pth_rescaler_metric(
 )
 }
 \arguments{
+\item{domain}{\code{numeric} vector with length 2, each value between 0 and 1.
+Rescales to map new inputs of 0 and 1 to these values.}
+
 \item{palette}{\code{function} with S3 class \code{pth_palette}.}
 
 \item{tolerance}{\code{numeric} relative tolerance for distance calculations.}
-
-\item{non_luminance_weight}{\code{numeric} used to "discount" the effects of
-chroma and hue in the distance calculation.}
-
-\item{transformer}{\code{function} used to transform the colors to new
-color space, e.g. \link{pth_to_cieluv}.}
-
-\item{...}{additional arguments passed on to \code{transformer}.}
-
-\item{method}{\code{character} metric used by \code{farver::compare_colour()}.}
 }
 \value{
 \code{function}, for each input (\verb{0 <= x <= 1}) returns a
@@ -40,6 +36,8 @@ A rescaler function is used to rescale the input to a palette function.
 
 \describe{
 \item{\code{pth_rescaler_reverse()}}{Simply reverses the input.}
+\item{\code{pth_rescaler_domain()}}{Expands the input \code{domain} to extend from
+zero to one.}
 \item{\code{pth_rescaler_euclid()}}{Uses \code{palette} and \code{pth_distance_euclid()}
 to rescale the input so that the distance-change is constant.}
 \item{\code{pth_rescaler_metric()}}{Uses \code{palette} and \code{pth_distance_metric()}

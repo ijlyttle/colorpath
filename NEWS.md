@@ -1,5 +1,7 @@
 # colorpath 0.0.1 (development version)
 
+- Add functions to expand the domain of a palette: `pth_palette_rescale_domain()`, `pth_rescaler_domain()`. (\#98)
+
 -   Add functions for designing categorical palettes: 
   - `pth_color_sfclumsat()`: to evaluate color from a surface, using luminance and saturation. (\#94) 
   - `pth_plot_lumchroma()`: to view the separation of colors under color-vision-deficiency. (\#96)

@@ -24,6 +24,30 @@ test_that("pth_palette_rescale_reverse() works", {
 
 })
 
+test_that("pth_palette_rescale_domain() works", {
+
+  viridis_11 <- hcl.colors(11, "viridis")
+  x_11 <- seq(0, 1, length.out = 11)
+
+  pal_viridis <- pth_new_palette_hex(viridis_11)
+  pal_viridis_domain <-
+    pth_palette_rescale_domain(pal_viridis, domain = c(0.25, 0.75))
+
+  expect_error(
+    pth_palette_rescale_domain("foo"),
+    "pth_palette"
+  )
+
+  expect_type(pal_viridis_domain, "closure")
+  expect_s3_class(pal_viridis_domain, c("pth_palette_hex", "pth_palette"))
+
+  expect_identical(
+    pal_viridis_domain(x_11),
+    pal_viridis(seq(0.25, 0.75, length.out = 11))
+  )
+
+})
+
 test_that("pth_palette_rescale_euclid() works", {
 
   expect_error(
