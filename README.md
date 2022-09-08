@@ -9,8 +9,7 @@
 status](https://www.r-pkg.org/badges/version/colorpath)](https://CRAN.R-project.org/package=colorpath)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build
-status](https://github.com/ijlyttle/colorpath/workflows/R-CMD-check/badge.svg)](https://github.com/ijlyttle/colorpath/actions)
+[![R-CMD-check](https://github.com/ijlyttle/colorpath/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ijlyttle/colorpath/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **Note**: on the off-chance that someone is reading this, as of
