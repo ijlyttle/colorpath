@@ -67,15 +67,10 @@ see \code{\link[=pth_cvd_grid]{pth_cvd_grid()}}.}
 \item{transformer}{\code{function} used to transform the colors to new
 color space, e.g. \link{pth_to_cieluv}.}
 
-\item{color_point_inner}{\code{character} colors to use
+\item{color_point_inner, color_point_outer}{\code{character} colors to use
 to outline points.}
 
-\item{color_point_outer}{\code{character} colors to use
-to outline points.}
-
-\item{size_point_inner}{\code{numeric} size of the points.}
-
-\item{size_point_outer}{\code{numeric} size of the points.}
+\item{size_point_inner, size_point_outer}{\code{numeric} size of the points.}
 
 \item{name_color_space}{\code{character} name of the color space used.}
 }

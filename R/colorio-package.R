@@ -21,3 +21,10 @@ check_colorio <- function() {
 
   invisible(NULL)
 }
+
+cran_checks <- function() {
+  # to help R CMD check
+  memoise::memoise
+
+  invisible(NULL)
+}
