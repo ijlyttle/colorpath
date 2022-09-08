@@ -26,18 +26,13 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: Install Python
+      - name: Install Python and colorio
         run: |
-          reticulate::install_miniconda()
-          reticulate::virtualenv_install("venv")
+          virtualenv_create("venv")
+          colorio::install_colorio(method = "virtualenv", envname = "venv")
         shell: Rscript {0}
 
-      - name: Install colorio
-        run: |
-          colorio::install_colorio(method = "virtualenv")
-        shell: Rscript {0}
-
-      - name: Confirm Python and check colorio
+      - name: Confirm Python and colorio
         run: |
           reticulate::py_config()
           colorio::check_colorio(quiet = FALSE)
