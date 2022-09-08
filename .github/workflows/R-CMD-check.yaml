@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Python and colorio
         run: |
-          virtualenv_create("venv")
+          reticulate::virtualenv_create("venv")
           colorio::install_colorio(method = "virtualenv", envname = "venv")
         shell: Rscript {0}
 
