@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9015</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9016</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/colorpath.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ijlyttle/colorpath/">
+  <a href="https://github.com/ijlyttle/colorpath/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,13 +84,13 @@
 
       
 
-      </header><script src="theory_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Theory for Color Scales</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ijlyttle/colorpath/blob/master/vignettes/theory.Rmd"><code>vignettes/theory.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ijlyttle/colorpath/blob/HEAD/vignettes/theory.Rmd" class="external-link"><code>vignettes/theory.Rmd</code></a></small>
       <div class="hidden name"><code>theory.Rmd</code></div>
 
     </div>
@@ -102,13 +98,13 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath">"colorpath"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://colorspace.R-Forge.R-project.org/">"colorspace"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://kwstat.github.io/pals/">"pals"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rstudio.github.io/thematic/">"thematic"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://farver.data-imaginist.com">"farver"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://withr.r-lib.org">"withr"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath" class="external-link">"colorpath"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://colorspace.R-Forge.R-project.org/" class="external-link">"colorspace"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://kwstat.github.io/pals/" class="external-link">"pals"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://rstudio.github.io/thematic/" class="external-link">"thematic"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://farver.data-imaginist.com" class="external-link">"farver"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://withr.r-lib.org" class="external-link">"withr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></code></pre></div>
 <p>The goal of this article is to make an entirely-too-brief overview of color theory as it applies to data visualization. Unmercifully to both reader and author, this includes:</p>
 <ul>
 <li>goals of color scales</li>
@@ -121,9 +117,9 @@
 </ul>
 <p>Everything in this article is grossly oversimplified, perhaps even misunderstood, by the author. Indeed, the following sections will no doubt seem like a maze of rabbit-holes that want nothing more than to divert our attention. For this reason, we’ll keep an example in mind to remind us of our destination.</p>
 <p>Let’s say you work for Acme Incorporated; your job is to create a collection of color scales to be used in all sorts of Acme data visualizations.</p>
-<div id="goals-of-color-scales" class="section level2">
-<h2 class="hasAnchor">
-<a href="#goals-of-color-scales" class="anchor"></a>Goals of color scales</h2>
+<div class="section level2">
+<h2 id="goals-of-color-scales">Goals of color scales<a class="anchor" aria-label="anchor" href="#goals-of-color-scales"></a>
+</h2>
 <p>Following <span class="citation">Zeileis et al. (2020)</span>, there are three broad categories of color scales:</p>
 <ul>
 <li><p><strong>categorical</strong>: the goal is to distinguish one “thing” from another</p></li>
@@ -131,11 +127,11 @@
 <li><p><strong>diverging</strong>: same goal as sequential scales, but there is a reference value (maybe zero); we want to communicate clearly how a value compares with the reference value</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span>
-  categorical <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/thematic/reference/okabe_ito.html">okabe_ito</a></span><span class="op">(</span><span class="op">)</span>,
-  sequential <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/hcl_palettes.html">sequential_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"blues"</span><span class="op">)</span><span class="op">)</span>,
-  diverging <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/hcl_palettes.html">diverging_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"Blue-Red 3"</span><span class="op">)</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html" class="external-link">swatchplot</a></span><span class="op">(</span></span>
+<span>  categorical <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/thematic/reference/okabe_ito.html" class="external-link">okabe_ito</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  sequential <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/hcl_palettes.html" class="external-link">sequential_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"blues"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  diverging <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/hcl_palettes.html" class="external-link">diverging_hcl</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"Blue-Red 3"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="theory_files/figure-html/categorical-1.png" width="768"></p>
 <p>Color scales may have additional constraints:</p>
 <ul>
@@ -144,18 +140,18 @@
 </ul>
 <p>Finally, everything may have to be done <em>twice</em>: for light mode and for dark mode.</p>
 </div>
-<div id="srgb-color-space" class="section level2">
-<h2 class="hasAnchor">
-<a href="#srgb-color-space" class="anchor"></a>sRGB color-space</h2>
+<div class="section level2">
+<h2 id="srgb-color-space">sRGB color-space<a class="anchor" aria-label="anchor" href="#srgb-color-space"></a>
+</h2>
 <p><span class="citation">Smith and van der Walt (2015)</span> give a great overview of the journey a color takes from a computer monitor into the human brain.</p>
-<p>This journey begins as a color is encoded for display. In day-to-day use, colors on a computer display are expressed using hex-codes, e.g. <a href="https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416"><code>#663399</code></a>. Hex-codes express color in terms of three color channels, or dimensions: red, green and blue. These three dimensions form a <strong>color space</strong> called <strong>sRGB</strong>.</p>
+<p>This journey begins as a color is encoded for display. In day-to-day use, colors on a computer display are expressed using hex-codes, e.g. <a href="https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416" class="external-link"><code>#663399</code></a>. Hex-codes express color in terms of three color channels, or dimensions: red, green and blue. These three dimensions form a <strong>color space</strong> called <strong>sRGB</strong>.</p>
 <p>In sRGB, each dimension may take a value from 0 to 255:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">farver</span><span class="fu">::</span><span class="fu"><a href="https://farver.data-imaginist.com/reference/decode_colour.html">decode_colour</a></span><span class="op">(</span><span class="st">"#663399"</span><span class="op">)</span>
-<span class="co">#&gt;        r  g   b</span>
-<span class="co">#&gt; [1,] 102 51 153</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">farver</span><span class="fu">::</span><span class="fu"><a href="https://farver.data-imaginist.com/reference/decode_colour.html" class="external-link">decode_colour</a></span><span class="op">(</span><span class="st">"#663399"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        r  g   b</span></span>
+<span><span class="co">#&gt; [1,] 102 51 153</span></span></code></pre></div>
 <p>The set of all colors that can be expressed using sRGB is called the sRGB <strong>gamut</strong>. It is a subset of the <em>visible</em> gamut, i.e. the set of all colors that can be perceived (generally) by the human eye. Because we are concerned only with colors displayed on monitors, we concern ourselves with the sRGB gamut.</p>
-<p>Here’s what the sRGB gamut looks like in the sRGB color space (<a href="https://commons.wikimedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_a.png">source</a>):</p>
+<p>Here’s what the sRGB gamut looks like in the sRGB color space (<a href="https://commons.wikimedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_a.png" class="external-link">source</a>):</p>
 <div class="figure">
 <img src="figs/srgb-gamut-srgb-space.png" alt="sRGB gamut in sRGB space, by Michael Horvath" width="400" height="300"><p class="caption">
 sRGB gamut in sRGB space, by Michael Horvath
@@ -164,27 +160,27 @@ sRGB gamut in sRGB space, by Michael Horvath
 <p>In this representation, the origin (0, 0, 0) is the color black, and is hidden in the back corner. The color white (255, 255, 255) is the corner “nearest” us. The primary colors: red, green, and blue, are at three of the vertices. The secondary colors: cyan, magenta, and yellow, are at the three remaining vertices.</p>
 <p>This colorspace has a concrete representation - it’s very easy for us humans to think of it as a cube. But there’s a problem with using the sRGB space to design color scales. Consider these three colors:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blue_cyan_green</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>blue <span class="op">=</span> <span class="st">"#0000FF"</span>, cyan <span class="op">=</span> <span class="st">"#00FFFF"</span>, green <span class="op">=</span> <span class="st">"#00FF00"</span><span class="op">)</span>
-<span class="fu">farver</span><span class="fu">::</span><span class="fu"><a href="https://farver.data-imaginist.com/reference/decode_colour.html">decode_colour</a></span><span class="op">(</span><span class="va">blue_cyan_green</span><span class="op">)</span>
-<span class="co">#&gt;       r   g   b</span>
-<span class="co">#&gt; blue  0   0 255</span>
-<span class="co">#&gt; cyan  0 255 255</span>
-<span class="co">#&gt; green 0 255   0</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">blue_cyan_green</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>blue <span class="op">=</span> <span class="st">"#0000FF"</span>, cyan <span class="op">=</span> <span class="st">"#00FFFF"</span>, green <span class="op">=</span> <span class="st">"#00FF00"</span><span class="op">)</span></span>
+<span><span class="fu">farver</span><span class="fu">::</span><span class="fu"><a href="https://farver.data-imaginist.com/reference/decode_colour.html" class="external-link">decode_colour</a></span><span class="op">(</span><span class="va">blue_cyan_green</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       r   g   b</span></span>
+<span><span class="co">#&gt; blue  0   0 255</span></span>
+<span><span class="co">#&gt; cyan  0 255 255</span></span>
+<span><span class="co">#&gt; green 0 255   0</span></span></code></pre></div>
 <p>You can “see” that in the sRGB color-space, cyan is equidistant from both blue and green. However:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://withr.r-lib.org/reference/with_par.html">with_par</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,
-  <span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">blue_cyan_green</span>, off <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://withr.r-lib.org/reference/with_par.html" class="external-link">with_par</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html" class="external-link">swatchplot</a></span><span class="op">(</span><span class="va">blue_cyan_green</span>, off <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="theory_files/figure-html/blue_cyan_green-display-1.png" width="220.8"></p>
 <p>To my eyes, there is a much bigger perceptual difference between blue and cyan than there is between cyan and green.</p>
 <p>A color space is <strong>perceptually uniform</strong> if the color-space distance between two colors in that space is proportional to the perceptual difference between the colors. The sRGB color space is not perceptually uniform.</p>
 <p>Perceptual uniformity is an important feature fo a color-space used to design color-scales. For categorical scales, we can use the distance between colors as a measure of perceptual difference. For sequential and diverging scales, we can use the differences between colors along a scale as a measure of the scale’s effectiveness.</p>
 <p>Of course, perceptual uniformity is in the eye of the beholder. We will consider a family of such color spaces that descend from CIELAB</p>
 </div>
-<div id="cieluv-like-color-spaces" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cieluv-like-color-spaces" class="anchor"></a>CIELUV-like color-spaces</h2>
+<div class="section level2">
+<h2 id="cieluv-like-color-spaces">CIELUV-like color-spaces<a class="anchor" aria-label="anchor" href="#cieluv-like-color-spaces"></a>
+</h2>
 <p>Defined in 1976, the CIELUV color space aims for perceptual uniformity; it describes color using dimensions:</p>
 <ul>
 <li><p><span class="math inline">\(L^*\)</span>: lightness or luminance, measured from 0 (black) to 100 (white).</p></li>
@@ -197,51 +193,51 @@ sRGB gamut in sRGB space, by Michael Horvath
 sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 </p>
 </div>
-<p>As you can see, it appears as a distorted cube. If you like, here’s a <a href="https://commons.wikimedia.org/w/index.php?title=File%3ASRGB_gamut_within_CIELUV_color_space_mesh.webm">rotating version</a>. If we follow the “left” edge of the cube from bottom to top, we see blue at the lower vertex, then cyan and green nearer the top. Notably, cyan and green appear closer together than cyan and blue.</p>
+<p>As you can see, it appears as a distorted cube. If you like, here’s a <a href="https://commons.wikimedia.org/w/index.php?title=File%3ASRGB_gamut_within_CIELUV_color_space_mesh.webm" class="external-link">rotating version</a>. If we follow the “left” edge of the cube from bottom to top, we see blue at the lower vertex, then cyan and green nearer the top. Notably, cyan and green appear closer together than cyan and blue.</p>
 <p>We can check the numbers; first, the LUV coordinates:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">as_luv</span> <span class="op">&lt;-</span> 
-  <span class="va">blue_cyan_green</span> <span class="op">%&gt;%</span>
-  <span class="fu">farver</span><span class="fu">::</span><span class="fu"><a href="https://farver.data-imaginist.com/reference/decode_colour.html">decode_colour</a></span><span class="op">(</span>to <span class="op">=</span> <span class="st">"luv"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;              l          u          v</span>
-<span class="co">#&gt; blue  32.29701  -9.405402 -130.34235</span>
-<span class="co">#&gt; cyan  91.11322 -70.477341  -15.20423</span>
-<span class="co">#&gt; green 87.73472 -83.077562  107.39854</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">as_luv</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">blue_cyan_green</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">farver</span><span class="fu">::</span><span class="fu"><a href="https://farver.data-imaginist.com/reference/decode_colour.html" class="external-link">decode_colour</a></span><span class="op">(</span>to <span class="op">=</span> <span class="st">"luv"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;              l          u          v</span></span>
+<span><span class="co">#&gt; blue  32.29701  -9.405402 -130.34235</span></span>
+<span><span class="co">#&gt; cyan  91.11322 -70.477341  -15.20423</span></span>
+<span><span class="co">#&gt; green 87.73472 -83.077562  107.39854</span></span></code></pre></div>
 <p>Next, the Euclidean distances between them:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">as_luv</span><span class="op">)</span>
-<span class="co">#&gt;           blue     cyan</span>
-<span class="co">#&gt; cyan  142.9892         </span>
-<span class="co">#&gt; green 254.9934 123.2948</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">as_luv</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           blue     cyan</span></span>
+<span><span class="co">#&gt; cyan  142.9892         </span></span>
+<span><span class="co">#&gt; green 254.9934 123.2948</span></span></code></pre></div>
 <p>This suggests that the CIELUV color space is more perceptually uniform than the sRGB color space.</p>
-<p>There’s a lot of color spaces based on dimensions of luminance, green-red, and blue-yellow - they each try to balance perceptual uniformity, hue consistency (is blue always blue?), and computational speed. Nico Schlömer develops and maintains the Python package <a href="https://github.com/nschloe/colorio/">colorio</a>, which provides access to recently-developed color spaces, including CAM02-UCS, CAM16-UCS, and Jzazbz. This package uses colorio, behind the scenes, to transform to-and-from these color spaces.</p>
+<p>There’s a lot of color spaces based on dimensions of luminance, green-red, and blue-yellow - they each try to balance perceptual uniformity, hue consistency (is blue always blue?), and computational speed. Nico Schlömer develops and maintains the Python package <a href="https://github.com/nschloe/colorio/" class="external-link">colorio</a>, which provides access to recently-developed color spaces, including CAM02-UCS, CAM16-UCS, and Jzazbz. This package uses colorio, behind the scenes, to transform to-and-from these color spaces.</p>
 <p>While using Cartesian coordinates makes distance calculations straightforward, the dimensions green-red and blue-yellow are not intuitive. The dimensions become more intuitive by transforming these dimensions to polar coordinates.</p>
 </div>
-<div id="polar-coordinates" class="section level2">
-<h2 class="hasAnchor">
-<a href="#polar-coordinates" class="anchor"></a>Polar coordinates</h2>
+<div class="section level2">
+<h2 id="polar-coordinates">Polar coordinates<a class="anchor" aria-label="anchor" href="#polar-coordinates"></a>
+</h2>
 <p>The CIELCH color space is a polar transformation of the CIELUV color space. It offers the dimensions:</p>
 <ul>
 <li><p><span class="math inline">\(L\)</span>: luminance, same as in CIELUV; values can be from 0 (black) to 100 (white).</p></li>
 <li><p><span class="math inline">\(C\)</span>: chroma, the radial component of the polar transformation, 0 is a grey; describes colorfulness.</p></li>
 <li><p><span class="math inline">\(H\)</span>: hue, the angular component of the polar transformation expressed as an angle with 0 being close to red, describes which color.</p></li>
 </ul>
-<p>This is the color space used by the <a href="http://colorspace.r-forge.r-project.org/">colorspace</a> package; where it is called HCL. Here’s a view of the sRGB gamut in HCL space, in the chroma-hue plane looking from “above”:</p>
+<p>This is the color space used by the <a href="http://colorspace.r-forge.r-project.org/" class="external-link">colorspace</a> package; where it is called HCL. Here’s a view of the sRGB gamut in HCL space, in the chroma-hue plane looking from “above”:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="fu"><a href="../reference/pth_mat_gamut.html">pth_mat_gamut</a></span><span class="op">(</span>n_point <span class="op">=</span> <span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span>
-    label <span class="op">=</span> <span class="st">"Edges of sRGB gamut in chroma-hue plane"</span>,
-    subtitle <span class="op">=</span> <span class="st">"Using CIEHCL space"</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="fu"><a href="../reference/pth_mat_gamut.html">pth_mat_gamut</a></span><span class="op">(</span>n_point <span class="op">=</span> <span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span></span>
+<span>    label <span class="op">=</span> <span class="st">"Edges of sRGB gamut in chroma-hue plane"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Using CIEHCL space"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="theory_files/figure-html/hcl-gamut-none-1.png" width="700"></p>
 <p>We are looking at points on the edges of the sRGB gamut, i.e. an outline of the cube. The cube is standing on its black vertex; both the white and black vertices are on the chroma-hue origin.</p>
 <p>You can think of it as three high-luminance edges branching from the top, and three-low luminance edges branching from the bottom. This plot can be useful to get a sense of how much chroma is available for a given hue.</p>
 <p>Each of the color spaces used in this package has a Cartesian variation, which we use for distance calculations, and a polar variation, which we use when we’re thinking and developing color scales.</p>
 </div>
-<div id="color-vision-deficiency" class="section level2">
-<h2 class="hasAnchor">
-<a href="#color-vision-deficiency" class="anchor"></a>Color-vision deficiency</h2>
+<div class="section level2">
+<h2 id="color-vision-deficiency">Color-vision deficiency<a class="anchor" aria-label="anchor" href="#color-vision-deficiency"></a>
+</h2>
 <p>Our eyes have receptors for three colors: red, green, and blue. The condition of having a deficiency in these receptors is called color-vision deficiency (CVD). A given deficiency can be further identified:</p>
 <ul>
 <li><p>Protan - red deficiency.</p></li>
@@ -251,33 +247,33 @@ sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 <p>To keep straight which is which, I keep in mind the order of RGB and remember the Latin roots of the words, i.e. <em>pro</em>, <em>deu</em>, <em>tri</em>, which refer to the numbers <em>1</em>, <em>2</em>, <em>3</em>.</p>
 <p>We can use the outline of the sRGB gamut to illustrate some models of CVD, with degree of severity varying from 0 (no deficiency) to 1 (completely deficient):</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="fu"><a href="../reference/pth_mat_gamut.html">pth_mat_gamut</a></span><span class="op">(</span><span class="op">)</span>, cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span>
-    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span>, 
-    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">severity</span><span class="op">)</span>,
-    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>severity <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span>
-    label <span class="op">=</span> <span class="st">"Edges of sRGB gamut in chroma-hue plane"</span>,
-    subtitle <span class="op">=</span> <span class="st">"Using CIEHCL space - simulating color-vision deficiency"</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="fu"><a href="../reference/pth_mat_gamut.html">pth_mat_gamut</a></span><span class="op">(</span><span class="op">)</span>, cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span></span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span>, </span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">severity</span><span class="op">)</span>,</span>
+<span>    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller</a></span><span class="op">(</span>severity <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span></span>
+<span>    label <span class="op">=</span> <span class="st">"Edges of sRGB gamut in chroma-hue plane"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Using CIEHCL space - simulating color-vision deficiency"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="theory_files/figure-html/hcl-gamut-full-1.png" width="700"></p>
 <p>This is a simulation, powered by colorspace. It can help us build a mental model of how CVD manifests itself. For me, as the severity of a given CVD condition increases, the dimension of the color space collapses from three to two (the luminance dimension does not appear in these plots). The effect of deuteranopia does not appear very different from protanopia.</p>
 </div>
-<div id="prominence-from-background" class="section level2">
-<h2 class="hasAnchor">
-<a href="#prominence-from-background" class="anchor"></a>Prominence from background</h2>
+<div class="section level2">
+<h2 id="prominence-from-background">Prominence from background<a class="anchor" aria-label="anchor" href="#prominence-from-background"></a>
+</h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">with_dark_mode</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_par.html">with_par</a></span><span class="op">(</span>
-    new <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>bg <span class="op">=</span> <span class="st">"#262626"</span>, fg <span class="op">=</span> <span class="st">"#FFFFFF"</span><span class="op">)</span>,
-    <span class="va">code</span>
-  <span class="op">)</span>
-<span class="op">}</span>
-
-<span class="va">swatchplot_dark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">x</span>, border <span class="op">=</span> <span class="st">"#3B3B3B"</span>, sborder <span class="op">=</span> <span class="st">"#3B3B3B"</span>, <span class="va">...</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">with_dark_mode</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_par.html" class="external-link">with_par</a></span><span class="op">(</span></span>
+<span>    new <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>bg <span class="op">=</span> <span class="st">"#262626"</span>, fg <span class="op">=</span> <span class="st">"#FFFFFF"</span><span class="op">)</span>,</span>
+<span>    <span class="va">code</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">swatchplot_dark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html" class="external-link">swatchplot</a></span><span class="op">(</span><span class="va">x</span>, border <span class="op">=</span> <span class="st">"#3B3B3B"</span>, sborder <span class="op">=</span> <span class="st">"#3B3B3B"</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>With the proliferation of mobile devices, often used in low-light environments, dark-mode is becoming more-and-more popular. The difficulty with dark-mode is that it has different rules for color scales than has light mode, and I am still trying to figure out which rules have changed.</p>
 <p>There’s a few of rules that (I think) I have sorted out:</p>
 <ul>
@@ -289,24 +285,24 @@ sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 <p>Thus we choose neutral colors with luminance values of 90 and 30. For each scale, we will use blue and orange hues. For now, I’ll make a back-of-the-envelope set of scales; it remains to use the methods of this package.</p>
 <p>Here’s what it could look like for light-mode:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">hex_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#326193"</span>, <span class="st">"#2F91E5"</span>, <span class="st">"#61B9FF"</span>, <span class="st">"#B2D5FF"</span>, <span class="st">"#E2E2E2"</span>, 
-               <span class="st">"#FFC6A7"</span>, <span class="st">"#FF9D55"</span>, <span class="st">"#CE7729"</span>, <span class="st">"#87512B"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">hex_light</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">hex_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#326193"</span>, <span class="st">"#2F91E5"</span>, <span class="st">"#61B9FF"</span>, <span class="st">"#B2D5FF"</span>, <span class="st">"#E2E2E2"</span>, </span>
+<span>               <span class="st">"#FFC6A7"</span>, <span class="st">"#FF9D55"</span>, <span class="st">"#CE7729"</span>, <span class="st">"#87512B"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html" class="external-link">swatchplot</a></span><span class="op">(</span><span class="va">hex_light</span><span class="op">)</span></span></code></pre></div>
 <p><img src="theory_files/figure-html/div-light-1.png" width="768"></p>
 <p>Here’s what it could look like for dark-mode:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">hex_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#B2D5FF"</span>, <span class="st">"#61B9FF"</span>, <span class="st">"#2F91E5"</span>, <span class="st">"#326193"</span>, <span class="st">"#474747"</span>,
-               <span class="st">"#87512B"</span>, <span class="st">"#CE7729"</span>, <span class="st">"#FF9D55"</span>, <span class="st">"#FFC6A7"</span><span class="op">)</span>
-
-<span class="fu">with_dark_mode</span><span class="op">(</span>
-  <span class="fu">swatchplot_dark</span><span class="op">(</span><span class="va">hex_light</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">hex_light</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#B2D5FF"</span>, <span class="st">"#61B9FF"</span>, <span class="st">"#2F91E5"</span>, <span class="st">"#326193"</span>, <span class="st">"#474747"</span>,</span>
+<span>               <span class="st">"#87512B"</span>, <span class="st">"#CE7729"</span>, <span class="st">"#FF9D55"</span>, <span class="st">"#FFC6A7"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">with_dark_mode</span><span class="op">(</span></span>
+<span>  <span class="fu">swatchplot_dark</span><span class="op">(</span><span class="va">hex_light</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="theory_files/figure-html/div-dark-1.png" width="768"></p>
 </div>
-<div id="roles-of-luminance-chroma-and-hue" class="section level2">
-<h2 class="hasAnchor">
-<a href="#roles-of-luminance-chroma-and-hue" class="anchor"></a>Roles of luminance, chroma, and hue</h2>
+<div class="section level2">
+<h2 id="roles-of-luminance-chroma-and-hue">Roles of luminance, chroma, and hue<a class="anchor" aria-label="anchor" href="#roles-of-luminance-chroma-and-hue"></a>
+</h2>
 <p>Among the three perceptual dimensions: luminance, chroma, and hue, luminance plays a pre-eminent role in color scales.</p>
 <ul>
 <li><p>All colors in all scales have to respect the luminance of the background. In light mode, all colors have to be noticeably darker than the background; in dark mode, they all have to be noticeably lighter.</p></li>
@@ -315,18 +311,18 @@ sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 </ul>
 <p>In other articles, we will touch on these ideas as we grapple with a framework for designing Acme’s color scales.</p>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references">
-<div id="ref-smith_vanderwalt15">
-<p>Smith, Nathaniel, and Stéfan van der Walt. 2015. “A Better Default Colormap for Matplotlib | Scipy 2015.” <a href="https://www.youtube.com/watch?v=xAoljeRJ3lU">https://www.youtube.com/watch?v=xAoljeRJ3lU</a>.</p>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-smith_vanderwalt15" class="csl-entry">
+Smith, Nathaniel, and Stéfan van der Walt. 2015. <span>“A Better Default Colormap for Matplotlib | SciPy 2015.”</span> <a href="https://www.youtube.com/watch?v=xAoljeRJ3lU" class="external-link">https://www.youtube.com/watch?v=xAoljeRJ3lU</a>.
 </div>
-<div id="ref-wilke19">
-<p>Wilke, Claus O. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. "O’Reilly Media, Inc.". <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>.</p>
+<div id="ref-wilke19" class="csl-entry">
+Wilke, Claus O. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. <span>"</span>O’Reilly Media, Inc.<span>"</span>. <a href="https://clauswilke.com/dataviz/" class="external-link">https://clauswilke.com/dataviz/</a>.
 </div>
-<div id="ref-zeileis2020">
-<p>Zeileis, Achim, Jason C. Fisher, Kurt Hornik, Ross Ihaka, Claire D. McWhite, Paul Murrell, Reto Stauffer, and Claus O. Wilke. 2020. “Colorspace : A Toolbox for Manipulating and Assessing Colors and Palettes.” <em>Journal of Statistical Software</em> 96 (1). <a href="https://doi.org/10.18637/jss.v096.i01">https://doi.org/10.18637/jss.v096.i01</a>.</p>
+<div id="ref-zeileis2020" class="csl-entry">
+Zeileis, Achim, Jason C. Fisher, Kurt Hornik, Ross Ihaka, Claire D. McWhite, Paul Murrell, Reto Stauffer, and Claus O. Wilke. 2020. <span>“<span></span>Colorspace<span></span> : A Toolbox for Manipulating and Assessing Colors and Palettes.”</span> <em>Journal of Statistical Software</em> 96 (1). <a href="https://doi.org/10.18637/jss.v096.i01" class="external-link">https://doi.org/10.18637/jss.v096.i01</a>.
 </div>
 </div>
 </div>
@@ -343,11 +339,13 @@ sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 
 
       <footer><div class="copyright">
-  <p>Developed by Ian J Lyttle.</p>
+  <p></p>
+<p>Developed by Ian J Lyttle.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -355,6 +353,8 @@ sRGB gamut in CIELUV space, by Michael Horvath and Christoph Lipka
 
   
 
+
+  
 
   </body>
 </html>

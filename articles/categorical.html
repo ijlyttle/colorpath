@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9015</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9016</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/colorpath.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ijlyttle/colorpath/">
+  <a href="https://github.com/ijlyttle/colorpath/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,13 +84,13 @@
 
       
 
-      </header><script src="categorical_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>categorical</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ijlyttle/colorpath/blob/master/vignettes/categorical.Rmd"><code>vignettes/categorical.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ijlyttle/colorpath/blob/HEAD/vignettes/categorical.Rmd" class="external-link"><code>vignettes/categorical.Rmd</code></a></small>
       <div class="hidden name"><code>categorical.Rmd</code></div>
 
     </div>
@@ -102,29 +98,26 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath">"colorpath"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://purrr.tidyverse.org">"purrr"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/tidyverse/glue">"glue"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tibble.tidyverse.org/">"tibble"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following object is masked from 'package:glue':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     collapse</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://scales.r-lib.org">"scales"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'scales'</span>
-<span class="co">#&gt; The following object is masked from 'package:purrr':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     discard</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath" class="external-link">"colorpath"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://purrr.tidyverse.org" class="external-link">"purrr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/tidyverse/glue" class="external-link">"glue"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tibble.tidyverse.org/" class="external-link">"tibble"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://scales.r-lib.org" class="external-link">"scales"</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'scales'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:purrr':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     discard</span></span></code></pre></div>
 <p>The goal of this vignette is to show a way of building a categorical color-palette:</p>
 <ul>
 <li>eight colors</li>
@@ -133,33 +126,33 @@
 </ul>
 <p>We will use the four surfaces introduced in the <a href="surfaces.html">surfaces</a> vignette.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># TODO: find a more-robust way to keep this in sync.</span>
-<span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-  blues <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#42B4E6"</span>, <span class="st">"#0087CD"</span><span class="op">)</span>,
-  oranges <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#E47F00"</span>, <span class="st">"#702407"</span><span class="op">)</span>,
-  greens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#007626"</span>, <span class="st">"#70E07C"</span><span class="op">)</span>,
-  purples <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#3D1152"</span>, <span class="st">"#C530FF"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">surfaces</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">colors</span>, <span class="va">pth_new_surface</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># TODO: find a more-robust way to keep this in sync.</span></span>
+<span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  blues <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#42B4E6"</span>, <span class="st">"#0087CD"</span><span class="op">)</span>,</span>
+<span>  oranges <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E47F00"</span>, <span class="st">"#702407"</span><span class="op">)</span>,</span>
+<span>  greens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#007626"</span>, <span class="st">"#70E07C"</span><span class="op">)</span>,</span>
+<span>  purples <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#3D1152"</span>, <span class="st">"#C530FF"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">surfaces</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">colors</span>, <span class="va">pth_new_surface</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></span></code></pre></div>
 <p>We can look at how the outer edge of these surfaces “collapse” under color-vision deficiency:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mat_surfaces</span> <span class="op">&lt;-</span> 
-  <span class="va">surfaces</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">pth_mat_max_chroma</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mat_surfaces</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">surfaces</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">pth_mat_max_chroma</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html" class="external-link">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></span></code></pre></div>
 <p>Next, we can plot these colors in polar coordinates, using <code><a href="../reference/pth_plot_polar.html">pth_plot_polar()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="va">mat_surfaces</span>, cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span>
-    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span>, 
-    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">severity</span><span class="op">)</span>,
-    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>severity <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span>
-    label <span class="op">=</span> <span class="st">"Outer (chroma) edge of surfaces, simulating color-vision deficiency"</span>,
-    subtitle <span class="op">=</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"Color space: {pth_colorspace_name(mat_surfaces)}"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="va">mat_surfaces</span>, cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span></span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span>, </span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">severity</span><span class="op">)</span>,</span>
+<span>    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller</a></span><span class="op">(</span>severity <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span></span>
+<span>    label <span class="op">=</span> <span class="st">"Outer (chroma) edge of surfaces, simulating color-vision deficiency"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Color space: {pth_colorspace_name(mat_surfaces)}"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="categorical_files/figure-html/plot-mat_surfaces-1.png" width="700"></p>
 <p>I am going to propose a design frameowrk, based on deuteranopia, because:</p>
 <ul>
@@ -174,167 +167,167 @@
 </ul>
 <p>It is clear that under full deuteranopia, for blues and purples, there is no variation in hue. Therefore, we will have to make things different using luminance and chroma.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blues_purples_first</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
-        <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">luminance</span>, <span class="op">~</span><span class="va">saturation</span>,
-      <span class="st">"blues"</span>,       <span class="fl">80.0</span>,        <span class="fl">1.00</span>, 
-    <span class="st">"purples"</span>,       <span class="fl">65.0</span>,        <span class="fl">1.00</span>, 
-    <span class="st">"purples"</span>,       <span class="fl">45.0</span>,        <span class="fl">1.00</span>, 
-      <span class="st">"blues"</span>,       <span class="fl">30.0</span>,        <span class="fl">1.00</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">blues_purples_first</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span>        <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">luminance</span>, <span class="op">~</span><span class="va">saturation</span>,</span>
+<span>      <span class="st">"blues"</span>,       <span class="fl">80.0</span>,        <span class="fl">1.00</span>, </span>
+<span>    <span class="st">"purples"</span>,       <span class="fl">65.0</span>,        <span class="fl">1.00</span>, </span>
+<span>    <span class="st">"purples"</span>,       <span class="fl">45.0</span>,        <span class="fl">1.00</span>, </span>
+<span>      <span class="st">"blues"</span>,       <span class="fl">30.0</span>,        <span class="fl">1.00</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">get_color_cat_surfaces</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">name</span>, <span class="va">luminance</span>, <span class="va">saturation</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="../reference/pth_color_sfclumsat.html">pth_color_sfclumsat</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">[[</span><span class="va">name</span><span class="op">]</span><span class="op">]</span>, <span class="va">luminance</span>, <span class="va">saturation</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">get_color_cat_surfaces</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">name</span>, <span class="va">luminance</span>, <span class="va">saturation</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/pth_color_sfclumsat.html">pth_color_sfclumsat</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">[[</span><span class="va">name</span><span class="op">]</span><span class="op">]</span>, <span class="va">luminance</span>, <span class="va">saturation</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blues_purples_mat</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span><span class="op">(</span><span class="va">blues_purples_first</span>, <span class="va">get_color_cat_surfaces</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">blues_purples_mat</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span><span class="va">blues_purples_first</span>, <span class="va">get_color_cat_surfaces</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html" class="external-link">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blues_purples_cvd</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span>
-    <span class="va">blues_purples_mat</span>, 
-    cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid</a></span><span class="op">(</span>
-      condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deutan"</span>, <span class="st">"protan"</span><span class="op">)</span>, 
-      severity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">blues_purples_cvd</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span></span>
+<span>    <span class="va">blues_purples_mat</span>, </span>
+<span>    cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid</a></span><span class="op">(</span></span>
+<span>      condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"deutan"</span>, <span class="st">"protan"</span><span class="op">)</span>, </span>
+<span>      severity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">blues_purples_cvd</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">blues_purples_cvd</span><span class="op">)</span></span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>Here, we can see the measures we can take to keep these four colors more separated. We can see that, according to the color-vision deficiency models, the colors with the purple hue drop in luminance (and increase in chroma) as the severity increases.</p>
 <p>With this in mind, we can choose the “original” colors to improve the separation at maximum severity.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blues_purples_second</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
-        <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">luminance</span>, <span class="op">~</span><span class="va">saturation</span>,
-      <span class="st">"blues"</span>,       <span class="fl">75.0</span>,        <span class="fl">0.75</span>, 
-    <span class="st">"purples"</span>,       <span class="fl">65.0</span>,        <span class="fl">0.77</span>, 
-    <span class="st">"purples"</span>,       <span class="fl">35.0</span>,        <span class="fl">1.00</span>, 
-      <span class="st">"blues"</span>,       <span class="fl">45.0</span>,        <span class="fl">1.00</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">blues_purples_second</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span>        <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">luminance</span>, <span class="op">~</span><span class="va">saturation</span>,</span>
+<span>      <span class="st">"blues"</span>,       <span class="fl">75.0</span>,        <span class="fl">0.75</span>, </span>
+<span>    <span class="st">"purples"</span>,       <span class="fl">65.0</span>,        <span class="fl">0.77</span>, </span>
+<span>    <span class="st">"purples"</span>,       <span class="fl">35.0</span>,        <span class="fl">1.00</span>, </span>
+<span>      <span class="st">"blues"</span>,       <span class="fl">45.0</span>,        <span class="fl">1.00</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blues_purples_mat_second</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span><span class="op">(</span><span class="va">blues_purples_second</span>, <span class="va">get_color_cat_surfaces</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">blues_purples_mat_second</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span><span class="va">blues_purples_second</span>, <span class="va">get_color_cat_surfaces</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html" class="external-link">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">blues_purples_cvd_second</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span>
-    <span class="va">blues_purples_mat_second</span>, 
-    cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid</a></span><span class="op">(</span>
-      condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deutan"</span>, <span class="st">"protan"</span><span class="op">)</span>, 
-      severity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">blues_purples_cvd_second</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span></span>
+<span>    <span class="va">blues_purples_mat_second</span>, </span>
+<span>    cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid</a></span><span class="op">(</span></span>
+<span>      condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"deutan"</span>, <span class="st">"protan"</span><span class="op">)</span>, </span>
+<span>      severity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">blues_purples_cvd_second</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">blues_purples_cvd_second</span><span class="op">)</span></span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>We can do the same thing with greens and oranges:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">greens_oranges</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
-        <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">luminance</span>, <span class="op">~</span><span class="va">saturation</span>,
-     <span class="st">"greens"</span>,       <span class="fl">65.0</span>,        <span class="fl">0.65</span>, 
-    <span class="st">"oranges"</span>,       <span class="fl">65.0</span>,        <span class="fl">0.90</span>, 
-    <span class="st">"oranges"</span>,       <span class="fl">30.0</span>,        <span class="fl">1.00</span>, 
-     <span class="st">"greens"</span>,       <span class="fl">40.0</span>,        <span class="fl">0.80</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">greens_oranges</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span>        <span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">luminance</span>, <span class="op">~</span><span class="va">saturation</span>,</span>
+<span>     <span class="st">"greens"</span>,       <span class="fl">65.0</span>,        <span class="fl">0.65</span>, </span>
+<span>    <span class="st">"oranges"</span>,       <span class="fl">65.0</span>,        <span class="fl">0.90</span>, </span>
+<span>    <span class="st">"oranges"</span>,       <span class="fl">30.0</span>,        <span class="fl">1.00</span>, </span>
+<span>     <span class="st">"greens"</span>,       <span class="fl">40.0</span>,        <span class="fl">0.80</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">greens_oranges_mat</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span><span class="op">(</span><span class="va">greens_oranges</span>, <span class="va">get_color_cat_surfaces</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">greens_oranges_mat</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span><span class="va">greens_oranges</span>, <span class="va">get_color_cat_surfaces</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html" class="external-link">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">greens_oranges_cvd</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span>
-    <span class="va">greens_oranges_mat</span>, 
-    cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid</a></span><span class="op">(</span>
-      condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deutan"</span>, <span class="st">"protan"</span><span class="op">)</span>, 
-      severity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">greens_oranges_cvd</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span></span>
+<span>    <span class="va">greens_oranges_mat</span>, </span>
+<span>    cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid</a></span><span class="op">(</span></span>
+<span>      condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"deutan"</span>, <span class="st">"protan"</span><span class="op">)</span>, </span>
+<span>      severity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">greens_oranges_cvd</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_lumchroma.html">pth_plot_lumchroma</a></span><span class="op">(</span><span class="va">greens_oranges_cvd</span><span class="op">)</span></span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>Let’s get these colors together:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">categorical_mat</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">blues_purples_mat_second</span>, <span class="va">greens_oranges_mat</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">`[`</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">7</span>, <span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>, <span class="op">)</span>
-
-<span class="va">categorical_hex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_to_hex.html">pth_to_hex</a></span><span class="op">(</span><span class="va">categorical_mat</span><span class="op">)</span>
-
-<span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">categorical_hex</span>, cvd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">categorical_mat</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">blues_purples_mat_second</span>, <span class="va">greens_oranges_mat</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">`[`</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">7</span>, <span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>, <span class="op">)</span></span>
+<span></span>
+<span><span class="va">categorical_hex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_to_hex.html">pth_to_hex</a></span><span class="op">(</span><span class="va">categorical_mat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html" class="external-link">swatchplot</a></span><span class="op">(</span><span class="va">categorical_hex</span>, cvd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html">show_col</a></span><span class="op">(</span><span class="va">categorical_hex</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="va">categorical_hex</span><span class="op">)</span></span></code></pre></div>
 <p><img src="categorical_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>Our next task is to see the performance of the categorical palette, defined as the minimum distance between colors under CVD.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">categorical_performance</span> <span class="op">&lt;-</span> 
-  <span class="va">categorical_mat</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/pth_data_cat_euclid.html">pth_data_cat_euclid</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hex_original_a</span> <span class="op">&lt;</span> <span class="va">hex_original_b</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">distance</span>, .by_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 12 × 7</span>
-<span class="co">#&gt; # Groups:   condition [4]</span>
-<span class="co">#&gt;    hex_original_a hex_original_b condition severity hex_a   hex_b   distance</span>
-<span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;fct&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 #2b7b38        #63c16d        none             0 #2b7b38 #63c16d     25.4</span>
-<span class="co">#&gt;  2 #72009a        #c16fea        none             0 #72009a #c16fea     30.6</span>
-<span class="co">#&gt;  3 #0071bb        #6fccee        none             0 #0071bb #6fccee     36.6</span>
-<span class="co">#&gt;  4 #0071bb        #72009a        deutan           1 #3655ba #072794     15.1</span>
-<span class="co">#&gt;  5 #2b7b38        #7b2600        deutan           1 #6d613b #4e3c00     15.7</span>
-<span class="co">#&gt;  6 #6fccee        #c16fea        deutan           1 #a2b3ee #718ce5     21.1</span>
-<span class="co">#&gt;  7 #0071bb        #c16fea        protan           1 #506bbf #6385f0     13.9</span>
-<span class="co">#&gt;  8 #63c16d        #e1862a        protan           1 #c4ae69 #a78825     18.1</span>
-<span class="co">#&gt;  9 #2b7b38        #e1862a        protan           1 #7c6b35 #a78825     20.3</span>
-<span class="co">#&gt; 10 #0071bb        #2b7b38        tritan           1 #008487 #237766     13.1</span>
-<span class="co">#&gt; 11 #63c16d        #6fccee        tritan           1 #59bca7 #51d8d6     14.7</span>
-<span class="co">#&gt; 12 #72009a        #7b2600        tritan           1 #740e2f #971a1b     21.8</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">categorical_performance</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">categorical_mat</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/pth_data_cat_euclid.html">pth_data_cat_euclid</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">hex_original_a</span> <span class="op">&lt;</span> <span class="va">hex_original_b</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">distance</span>, .by_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Groups:   condition [4]</span></span></span>
+<span><span class="co">#&gt;    hex_original_a hex_original_b condition severity hex_a   hex_b   distance</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> #2b7b38        #63c16d        none             0 #2b7b38 #63c16d     25.4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> #72009a        #c16fea        none             0 #72009a #c16fea     30.6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> #0071bb        #6fccee        none             0 #0071bb #6fccee     36.6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> #0071bb        #72009a        deutan           1 #3655ba #072794     15.1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> #2b7b38        #7b2600        deutan           1 #6d613b #4e3c00     15.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> #6fccee        #c16fea        deutan           1 #a2b3ee #718ce5     21.1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> #0071bb        #c16fea        protan           1 #506bbf #6385f0     13.9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> #63c16d        #e1862a        protan           1 #c4ae69 #a78825     18.1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> #2b7b38        #e1862a        protan           1 #7c6b35 #a78825     20.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> #0071bb        #2b7b38        tritan           1 #008487 #237766     13.1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> #63c16d        #6fccee        tritan           1 #59bca7 #51d8d6     14.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> #72009a        #7b2600        tritan           1 #740e2f #971a1b     21.8</span></span></code></pre></div>
 <p>Finally, let’s look at the highest and lowest luminance values for each condition. The motivation is that we want to stay away from the background color for both light mode and dark mode.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">categorical_cvd</span> <span class="op">&lt;-</span> 
-  <span class="va">categorical_mat</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span><span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_severity</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span>
-
-<span class="va">categorical_cvd</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">luminance</span>, .by_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 8 × 7</span>
-<span class="co">#&gt; # Groups:   condition [4]</span>
-<span class="co">#&gt;   condition severity hex_original luminance chroma   hue hex      </span>
-<span class="co">#&gt;   &lt;fct&gt;        &lt;dbl&gt; &lt;pth_hex&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;pth_hex&gt;</span>
-<span class="co">#&gt; 1 none             0 #7b2600           30     42.8  49.5 #7b2600  </span>
-<span class="co">#&gt; 2 none             0 #72009a           35     53.8 300.  #72009a  </span>
-<span class="co">#&gt; 3 deutan           1 #7b2600           25.0   27.6  85.6 #4e3c00  </span>
-<span class="co">#&gt; 4 deutan           1 #72009a           26.0   58.6 260.  #072794  </span>
-<span class="co">#&gt; 5 protan           1 #7b2600           18.5   21.7  84.3 #3b2c00  </span>
-<span class="co">#&gt; 6 protan           1 #72009a           26.7   66.6 260.  #001ca1  </span>
-<span class="co">#&gt; 7 tritan           1 #72009a           27.4   37.1  18.3 #740e2f  </span>
-<span class="co">#&gt; 8 tritan           1 #7b2600           35.7   50.7  38.1 #971a1b</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">categorical_cvd</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">categorical_mat</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/pth_data_cvd.html">pth_data_cvd</a></span><span class="op">(</span><span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_severity</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">categorical_cvd</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">luminance</span>, .by_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Groups:   condition [4]</span></span></span>
+<span><span class="co">#&gt;   condition severity hex_original luminance chroma   hue hex      </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pth_hex&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pth_hex&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> none             0 #7b2600           30     42.8  49.5 #7b2600  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none             0 #72009a           35     53.8 300.  #72009a  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> deutan           1 #7b2600           25.0   27.6  85.6 #4e3c00  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> deutan           1 #72009a           26.0   58.6 260.  #072794  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> protan           1 #7b2600           18.5   21.7  84.3 #3b2c00  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> protan           1 #72009a           26.7   66.6 260.  #001ca1  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> tritan           1 #72009a           27.4   37.1  18.3 #740e2f  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> tritan           1 #7b2600           35.7   50.7  38.1 #971a1b</span></span></code></pre></div>
 <p>We can see that the <code>#7b2600</code> color may be problematic in dark-mode. We need to be mindful that we have adquate separation from the luminance of the background.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">categorical_cvd</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">luminance</span><span class="op">)</span>, .by_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 8 × 7</span>
-<span class="co">#&gt; # Groups:   condition [4]</span>
-<span class="co">#&gt;   condition severity hex_original luminance chroma   hue hex      </span>
-<span class="co">#&gt;   &lt;fct&gt;        &lt;dbl&gt; &lt;pth_hex&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;pth_hex&gt;</span>
-<span class="co">#&gt; 1 none             0 #6fccee           75     31.6 231.  #6fccee  </span>
-<span class="co">#&gt; 2 none             0 #e1862a           65     54.8  67.6 #e1862a  </span>
-<span class="co">#&gt; 3 deutan           1 #6fccee           73.5   28.1 264.  #a2b3ee  </span>
-<span class="co">#&gt; 4 deutan           1 #63c16d           65.1   24.9  88.3 #b2a371  </span>
-<span class="co">#&gt; 5 protan           1 #6fccee           79.3   20.6 264.  #b6c4f0  </span>
-<span class="co">#&gt; 6 protan           1 #63c16d           69.7   33.3  87.9 #c4ae69  </span>
-<span class="co">#&gt; 7 tritan           1 #6fccee           75.0   30.5 203.  #51d8d6  </span>
-<span class="co">#&gt; 8 tritan           1 #e1862a           68.7   51.5  37.2 #ff726b</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">categorical_cvd</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">luminance</span><span class="op">)</span>, .by_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Groups:   condition [4]</span></span></span>
+<span><span class="co">#&gt;   condition severity hex_original luminance chroma   hue hex      </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pth_hex&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pth_hex&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> none             0 #6fccee           75     31.6 231.  #6fccee  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none             0 #e1862a           65     54.8  67.6 #e1862a  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> deutan           1 #6fccee           73.5   28.1 264.  #a2b3ee  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> deutan           1 #63c16d           65.1   24.9  88.3 #b2a371  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> protan           1 #6fccee           79.3   20.6 264.  #b6c4f0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> protan           1 #63c16d           69.7   33.3  87.9 #c4ae69  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> tritan           1 #6fccee           75.0   30.5 203.  #51d8d6  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> tritan           1 #e1862a           68.7   51.5  37.2 #ff726b</span></span></code></pre></div>
 <p>It looks like we are OK with light mode - in fact, this suggests the possibilty of using disctinct light-mode and dark-mode palettes.</p>
   </div>
 
@@ -347,11 +340,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Ian J Lyttle.</p>
+  <p></p>
+<p>Developed by Ian J Lyttle.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -359,6 +354,8 @@
 
   
 
+
+  
 
   </body>
 </html>

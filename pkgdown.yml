@@ -1,10 +1,10 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.14.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   categorical: categorical.html
   colorpath: colorpath.html
   surfaces: surfaces.html
   theory: theory.html
-last_built: 2021-09-20T19:19Z
+last_built: 2022-09-08T22:38Z
 

@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">colorpath</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9015</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.1.9016</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/colorpath.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ijlyttle/colorpath/">
+  <a href="https://github.com/ijlyttle/colorpath/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,13 +84,13 @@
 
       
 
-      </header><script src="surfaces_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using Color Surfaces to Incorporate an Identity</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ijlyttle/colorpath/blob/master/vignettes/surfaces.Rmd"><code>vignettes/surfaces.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ijlyttle/colorpath/blob/HEAD/vignettes/surfaces.Rmd" class="external-link"><code>vignettes/surfaces.Rmd</code></a></small>
       <div class="hidden name"><code>surfaces.Rmd</code></div>
 
     </div>
@@ -102,27 +98,27 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath">"colorpath"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://purrr.tidyverse.org">"purrr"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/tidyverse/glue">"glue"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ijlyttle/colorpath" class="external-link">"colorpath"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://purrr.tidyverse.org" class="external-link">"purrr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/tidyverse/glue" class="external-link">"glue"</a></span><span class="op">)</span></span></code></pre></div>
 <p>One goal of this package is to help you design sets of categorical and quantitative palettes that are consistent amongst themselves.</p>
 <p>We propose a mechanism for this, what this package calls a <em>surface</em>.</p>
-<div id="single-hue-surface" class="section level2">
-<h2 class="hasAnchor">
-<a href="#single-hue-surface" class="anchor"></a>Single-hue surface</h2>
+<div class="section level2">
+<h2 id="single-hue-surface">Single-hue surface<a class="anchor" aria-label="anchor" href="#single-hue-surface"></a>
+</h2>
 <p>At it’s simplest, a surface is the set of all colors (in a given color space) with a given hue. Let’s consider a dark-blue hue in the Jzazbz color-space:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sfc_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="st">"#0000FF"</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sfc_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="st">"#0000FF"</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></span></code></pre></div>
 <p>It takes a few seconds for the surface to be computed; it is calculating values for maximum chroma. Here’s a plot of the result:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_blue</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_blue</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_blue-plot-1.png" width="700"></p>
 <p>This surface is a slice of the RGB gamut for the Jzazbz color-space (scaled here to 100) where the hue is fixed to the hue of <code>#0000FF</code>.</p>
 <p>We can make a similar surface for cyan (<code>#00FFFF</code>):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sfc_cyan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="st">"#00FFFF"</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span>
-<span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_cyan</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sfc_cyan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="st">"#00FFFF"</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_cyan</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_cyan-1.png" width="700"></p>
 <p>We notice a couple of things here:</p>
 <ul>
@@ -130,13 +126,13 @@
 <li>the maximum chroma for cyan is at a high luminance.</li>
 </ul>
 </div>
-<div id="multi-hue-surfaces" class="section level2">
-<h2 class="hasAnchor">
-<a href="#multi-hue-surfaces" class="anchor"></a>Multi-hue surfaces</h2>
+<div class="section level2">
+<h2 id="multi-hue-surfaces">Multi-hue surfaces<a class="anchor" aria-label="anchor" href="#multi-hue-surfaces"></a>
+</h2>
 <p>We can create a surface that captures both these maxima:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sfc_cyan_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00FFFF"</span>, <span class="st">"#0000FF"</span><span class="op">)</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span>
-<span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_cyan_blue</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sfc_cyan_blue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#00FFFF"</span>, <span class="st">"#0000FF"</span><span class="op">)</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_cyan_blue</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_cyan_blue-1.png" width="700"></p>
 <p>This shows another aspect of surfaces: using the given color-space, hue is a linear function of luminance. This was also the case for the single-hue surfaces.</p>
 <p>Also note that you can define surfaces using hex-codes. This could be useful if you are designing a set of palettes for an organization, you can design surfaces using the hex-codes of existing brand-colors.</p>
@@ -148,14 +144,14 @@
 </ul>
 <p>You can see that the surface <code>sfc_blue_cyan</code> starts to look “purple” for values of luminance below around 40. We can make the surface more “blue” at the low end by choosing a different dark blue, in this case <code>"#000099"</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sfc_cyan_blue_clipped</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#00FFFF"</span>, <span class="st">"#000099"</span><span class="op">)</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span>
-<span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_cyan_blue_clipped</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sfc_cyan_blue_clipped</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pth_new_surface.html">pth_new_surface</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#00FFFF"</span>, <span class="st">"#000099"</span><span class="op">)</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">sfc_cyan_blue_clipped</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_cyan_blue_clipped-1.png" width="700"></p>
 <p>This surface looks more “blue” top-to-bottom.</p>
 </div>
-<div id="incorporating-an-identity" class="section level2">
-<h2 class="hasAnchor">
-<a href="#incorporating-an-identity" class="anchor"></a>Incorporating an identity</h2>
+<div class="section level2">
+<h2 id="incorporating-an-identity">Incorporating an identity<a class="anchor" aria-label="anchor" href="#incorporating-an-identity"></a>
+</h2>
 <p>My suggestion for a set of palettes is to specify four surfaces. In this case, I’ll choose:</p>
 <ul>
 <li>a set of blues</li>
@@ -165,61 +161,61 @@
 </ul>
 <p>We’ll also look at how these surfaces behave when we simulate color-vision deficiency.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-  blues <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#42B4E6"</span>, <span class="st">"#0087CD"</span><span class="op">)</span>,
-  oranges <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#E47F00"</span>, <span class="st">"#702407"</span><span class="op">)</span>,
-  greens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#007626"</span>, <span class="st">"#70E07C"</span><span class="op">)</span>,
-  purples <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#3D1152"</span>, <span class="st">"#C530FF"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  blues <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#42B4E6"</span>, <span class="st">"#0087CD"</span><span class="op">)</span>,</span>
+<span>  oranges <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E47F00"</span>, <span class="st">"#702407"</span><span class="op">)</span>,</span>
+<span>  greens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#007626"</span>, <span class="st">"#70E07C"</span><span class="op">)</span>,</span>
+<span>  purples <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#3D1152"</span>, <span class="st">"#C530FF"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">surfaces</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">colors</span>, <span class="va">pth_new_surface</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">surfaces</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">colors</span>, <span class="va">pth_new_surface</span>, transformer <span class="op">=</span> <span class="va">pth_to_jzazbz100</span><span class="op">)</span></span></code></pre></div>
 <p>Here are the surfaces.</p>
 <p>I restrained the blues:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">blues</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">blues</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_blues-1.png" width="700"></p>
 <p>With the oranges, I added a redder-orange with lower luminance to add some chroma to the lower “half” of the luminance range.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">oranges</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">oranges</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_oranges-1.png" width="700"></p>
 <p>Whereas the blues and oranges are multi-hue the greens and purples are more single-hue:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">greens</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">greens</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_greens-1.png" width="700"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">purples</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_surface.html">pth_plot_surface</a></span><span class="op">(</span><span class="va">surfaces</span><span class="op">$</span><span class="va">purples</span><span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/sfc_purples-1.png" width="700"></p>
 </div>
-<div id="color-vision-deficiency" class="section level2">
-<h2 class="hasAnchor">
-<a href="#color-vision-deficiency" class="anchor"></a>Color-vision deficiency</h2>
+<div class="section level2">
+<h2 id="color-vision-deficiency">Color-vision deficiency<a class="anchor" aria-label="anchor" href="#color-vision-deficiency"></a>
+</h2>
 <p>The idea is that all the colors used in a set of categorical and quantitative palettes would be found on these surfaces. It could be useful to see how these surfaces interact with each other under simulated color-vision deficiency (CVD).</p>
 <p>Our first step is to generate lots of colors. Here, for each of our surfaces, we are generating (in this case 21) colors at the maximum-chroma, distributed evenly along the luminance domain.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mat_surfaces</span> <span class="op">&lt;-</span> 
-  <span class="va">surfaces</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">pth_mat_max_chroma</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mat_surfaces</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">surfaces</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">pth_mat_max_chroma</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html" class="external-link">reduce</a></span><span class="op">(</span><span class="va">rbind</span><span class="op">)</span></span></code></pre></div>
 <p>Next, we can plot these colors in polar coordinates, using <code><a href="../reference/pth_plot_polar.html">pth_plot_polar()</a></code>:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="va">mat_surfaces</span>, cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span>
-    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span>, 
-    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">severity</span><span class="op">)</span>,
-    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>severity <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span>
-    label <span class="op">=</span> <span class="st">"Outer (chroma) edge of surfaces, simulating color-vision deficiency"</span>,
-    subtitle <span class="op">=</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"Color space: {pth_colorspace_name(mat_surfaces)}"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/pth_plot_polar.html">pth_plot_polar</a></span><span class="op">(</span><span class="va">mat_surfaces</span>, cvd <span class="op">=</span> <span class="fu"><a href="../reference/pth_cvd_grid.html">pth_cvd_grid_full</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span></span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">condition</span><span class="op">)</span>, </span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">severity</span><span class="op">)</span>,</span>
+<span>    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller</a></span><span class="op">(</span>severity <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span></span>
+<span>    label <span class="op">=</span> <span class="st">"Outer (chroma) edge of surfaces, simulating color-vision deficiency"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Color space: {pth_colorspace_name(mat_surfaces)}"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="surfaces_files/figure-html/plot-mat_surfaces-1.png" width="700"></p>
 <p>This is a facetted plot. Each row shows a given type of color-vision deficiency (deutan is most prevalent); each column shows a certain severity.</p>
 <p>We are plotting points that lie on the most-chromatic part of each surface; this can give us an idea of how that surface behaves within the color space. We can use this mental-model as a guide to untangle color “collisions” in CVD. Keep in mind that the points are equally-spaced in luminance, the luminance considered in the non-CVD case.</p>
 <p>In each case, the color space collapses from three to (almost) two dimensions. However, in each case, blues are always opposite to oranges; greens are always opposite to purples.</p>
 </div>
-<div id="next-steps" class="section level2">
-<h2 class="hasAnchor">
-<a href="#next-steps" class="anchor"></a>Next steps</h2>
+<div class="section level2">
+<h2 id="next-steps">Next steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
+</h2>
 <p>We will use these surfaces as the bases for categorical and quantitative palettes, for both light mode and dark mode. Our design constraints will also include the background color we will use for both light mode and dark mode.</p>
 </div>
   </div>
@@ -235,11 +231,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Ian J Lyttle.</p>
+  <p></p>
+<p>Developed by Ian J Lyttle.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -247,6 +245,8 @@
 
   
 
+
+  
 
   </body>
 </html>
