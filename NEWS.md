@@ -1,5 +1,7 @@
 # colorpath 0.0.1 (development version)
 
+- Update to use newest colorio. (\#100)
+
 - Add functions to expand the domain of a palette: `pth_palette_rescale_domain()`, `pth_rescaler_domain()`. (\#98)
 
 -   Add functions for designing categorical palettes: 
