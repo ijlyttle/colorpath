@@ -2,7 +2,7 @@
 title: "Using Color Surfaces to Incorporate an Identity"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{surfaces}
+  %\VignetteIndexEntry{Using Color Surfaces to Incorporate an Identity}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

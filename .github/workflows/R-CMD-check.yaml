@@ -26,6 +26,10 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
+      - uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '2.17.1'
+
       - name: Install Python and colorio
         run: |
           reticulate::virtualenv_create("venv")
